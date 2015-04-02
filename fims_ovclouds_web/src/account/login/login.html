@@ -1,0 +1,36 @@
+<style type="text/css">
+	body {background-color: rgb(236,244,249)}
+	.wrapper {font-family: "微软雅黑";padding: 4em 1em;max-width: 558px;margin: 3em auto 0 auto; }
+	.alert{font-size: 16px;display: inline-block;}
+	h1 {color: rgb(77,77,77);}
+	form {max-width: 558px;margin-top: 30px;margin-bottom: 20px;}
+	.control-label {font-size: 16px;}
+	
+	.btn {font-size: 18px;padding: 10px 30px;margin-top: 7px;}
+	p {font-size: 16px;}
+	a {color:#999; cursor: pointer;}
+</style>
+
+<div class="wrapper" ng-controller="loginController">
+	<div class="alert alert-danger alert-dismissible fade in" style="display: {{response.alert_display}}" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		{{response.returnMsg}}
+	</div>
+	<h1>登录 FIMS</h1>
+	<form name="loginForm" novalidate>
+		<div class="form-group {{response.emailStatus}}">
+			<label for="email" class="control-label">Email</label>
+			<input type="email"  class="form-control input-lg" name="email" ng-model="user.email" required placeholder="请输入您的邮箱">
+		</div>
+		<div class="form-group {{response.pwStatus}}">
+			<label for="password" class="control-label" >密码</label>
+			<input type="password" class="form-control input-lg" id="password" ng-model="user.password" required>
+		</div>
+		<button class="btn btn-success" ng-click="subData()" ng-disabled="loginForm.$invalid">登录</button>
+	</form>
+	
+	<p>如果您还没有FIMS账号，请先<u><a ui-sref="sigup">免费注册</a></u></p>
+
+</div>
+
+

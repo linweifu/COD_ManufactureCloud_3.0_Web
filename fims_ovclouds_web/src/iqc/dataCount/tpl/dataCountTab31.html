@@ -1,0 +1,58 @@
+<style>
+   .data_form  {
+       text-align: center;
+       margin-left: 10px;
+       overflow: scroll;
+       white-space: nowrap;
+       height: 600px;
+   }
+   
+   .data_form span {
+       border:1px solid #e0e0e0;
+       padding: 3px 0;
+       margin-right: 1px;
+       width: 160px;
+       height: 23px;
+       display: inline-block;
+       overflow: hidden;
+   }
+ 
+   .filter {
+       margin-top: 5px;
+       background-color: #f6f6f6;
+       padding: 5px;
+       text-align: center;
+       margin-top: 10px;
+       border: 1px solid #f0f0f0;
+   }
+ 
+   .filter label {
+       margin-right: 1em;
+   }
+</style>
+ 
+<div class="filter" >
+   <label for="start-date">请输入日期(年-月):</label><input  id="start-date" type="text" placeholder="yyyy-mm" style="width:6.6em;padding:3px;" ng-model="dataCountInputs.dataCountTab3.checkoutTime" />
+<!--     物料分组 &nbsp;<input type="radio" name="g" value="0" checked="checked" /> 
+   供应商分组 &nbsp<input type="radio" name="g" value="1" />  -->
+   
+<!--    <span ng-repeat="item in radio">&nbsp;&nbsp;{{item.name}}&nbsp;<input type="radio"  ng-value="item.value" name="radio" ng-checked="item.status">&nbsp;</span> -->
+ 
+    <a id="search" name="search" style="margin-left:2em;display:block;background-color:#ea8010;padding:6px 20px;display: inline-block;color:#fff;cursor: pointer"  ng-click="getMonthCount()">查询</a>
+</div>
+<h1 style="text-align: center;margin-top:10px;font-size: 16px;font-weight: bold">进货检验质量状况每月月报统计(按供应商分组)</h1>
+<h1 style="text-align: center;margin-top:3px;margin-bottom:10px;font-size: 14px;font-weight: bold">IQC Quality Monthly Statistics</h1>
+<div class="data_form">
+<div class="data_line">
+   <span style="width: 55px">序号</span><span>检验日期</span><span>进货检验记录编号</span><span>批次编号</span><span>条形码编号</span><span>供应商编号</span><span>供应商简称</span><span>物料编号</span><span>送检数量总计</span><span>抽样数量总计</span><span>抽样合格品数量总计</span><span>抽样不合格品数总计</span><span>抽样不良数量总计</span><span>平均抽样合格率%</span><span>整体抽样合格率%</span><span>平均抽样不合格率%</span><span>整体抽样不合格率%</span><span>整体抽样不合格率PPM</span><span>批次合格率%</span><span>送检数量</span><span>抽样数量</span><span>抽样合格品数量</span><span>抽样不合格品数量</span><span>批次内抽样不良现象总计</span><span>抽样合格率%</span><span>抽样不合格率%</span><span>抽样不合格率PPM</span><span style="width: 90px;">AQL</span><span style="width: 90px;">判定结果</span><span style="width: 90px;">检验员姓名</span>    
+</div>
+<div class="data_line" ng-repeat="array in dataCountData3">
+<span style="width: 55px">{{$index}}</span><span>{{array.iqcCheckoutQualityDetails.checkoutTime}}</span><span>{{array.iqcCheckoutQualityDetails.checkoutRecordId}}</span><span>{{array.iqcCheckoutQualityDetails.batchId}}</span><span>{{array.iqcCheckoutQualityDetails.materialBarcode}}</span><span>{{array.iqcCheckoutQualityDetails.vendorId}}</span><span>{{array.iqcCheckoutQualityDetails.vendorShortName}}</span><span>{{array.iqcCheckoutQualityDetails.materialId}}</span><span>{{array.submitCheckoutAmountTotal}}</span><span>{{array.sampleAmountTotal}}</span><span>{{array.sampleQualifiedAmountTotal}}</span><span>{{array.sampleUnqualifiedAmountTotal}}</span><span>{{array.inbatchSampleBadPhenomenonTotalTotal}}</span><span>{{array.averageSampleQualifiedRate}}</span><span>{{array.overallSampleQualifiedRate}}</span><span>{{array.averageSampleUnqualifiedRate}}</span><span>{{array.overallSampleUnqualifiedRate}}</span><span>{{array.overallSampleUnqualifiedRatePpm}}</span><span>{{array.batchQualifiedRate}}</span><span>{{array.iqcCheckoutQualityDetails.submitCheckoutAmount}}</span><span>{{array.iqcCheckoutQualityDetails.sampleAmount}}</span><span>{{array.iqcCheckoutQualityDetails.sampleQualifiedAmount}}</span><span>{{array.iqcCheckoutQualityDetails.sampleUnqualifiedAmount}}</span><span>{{array.iqcCheckoutQualityDetails.inbatchSampleBadPhenomenonTotal}}</span><span>{{array.iqcCheckoutQualityDetails.sampleQualifiedRate}}</span><span>{{array.iqcCheckoutQualityDetails.sampleUnqualifiedRate}}</span><span>{{array.iqcCheckoutQualityDetails.sampleUnqualifiedRatePpm}}</span><span style="width: 90px;">{{array.iqcCheckoutQualityDetails.aql}}</span><span style="width: 90px;">{{array.iqcCheckoutQualityDetails.determinationResults}}</span><span style="width: 90px;">{{array.iqcCheckoutQualityDetails.inspectorName}}</span>
+</div>
+</div>
+ 
+   <!-- <div class=record_form_text" ng-controller="recordController">
+       <ul ng-repeat="array in data">
+           
+       </ul>
+   </div> -->

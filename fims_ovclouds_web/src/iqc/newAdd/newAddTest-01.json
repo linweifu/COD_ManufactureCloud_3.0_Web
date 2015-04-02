@@ -1,0 +1,1076 @@
+{
+    "BasicData": {
+        "checkoutRecordSid": "jyjl-20150120-003",
+        "checkoutRecordId": "jyjl-20150120-003",
+        "planId": "QCP-RM-900303.A-0061",
+        "scope": "物料复杂录入",
+        "companyId": "FIT",
+        "submitCheckoutAmount": "50",
+        "submitCheckoutTime": "2015-01-03T07:30:00Z",
+        "checkoutTime": "2015-01-03T07:30:00Z",
+        "sampleAmount": "10",
+        "createOperatorId": $rootScope.userId
+    },
+    "metricDatas": [
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 1
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": " 是",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 2
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 3
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 4
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "是",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 5
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 6
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 7
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 8
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 9
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "颜色是黑色",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 10
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "  ",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 1
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 2
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": " 是",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 3
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 4
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 5
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 6
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "是",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 7
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 8
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 9
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "null",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "内外包装无明显破损",
+            "dimensions": [
+                {
+                    "name": "物料编号",
+                    "value": "FIT-RM-900303.A"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 10
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "否  ",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 1
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "40",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 2
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 3
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 4
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "40.05",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 5
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 6
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 7
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 8
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 9
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "形状尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 10
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 1
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 2
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 3
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 4
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 5
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "39.05",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 6
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 7
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 8
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 9
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "",
+            "timestamp": "2014-05-26T07:30:00Z"
+        },
+        {
+            "metricName": "位置尺寸",
+            "dimensions": [
+                {
+                    "name": "物料编号"
+                },
+                {
+                    "name": "供应商编号",
+                    "value": "gysId-20150103"
+                },
+                {
+                    "name": "样品ID",
+                    "value": 10
+                },
+                {
+                    "name": "批次编号",
+                    "value": "20150120-003"
+                },
+                {
+                    "name": "供应商简称",
+                    "value": "gysName-20150103"
+                }
+            ],
+            "value": "39",
+            "timestamp": "2014-05-26T07:30:00Z"
+        }
+    ]
+}

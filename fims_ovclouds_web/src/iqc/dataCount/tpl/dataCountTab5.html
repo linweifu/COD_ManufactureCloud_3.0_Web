@@ -1,0 +1,31 @@
+<style>
+	.filter {
+		background-color: #f6f6f6;
+		padding: 5px;
+		text-align: center;
+		margin-top: 10px;
+		border: 1px solid #f0f0f0;
+	}
+
+	.filter label {
+		margin-right: 1em;
+		margin-left: 1em;
+	}
+</style>
+<div class="filter" >
+	<label for="start-date">请输入日期(年-月):</label><input  id="start-date" type="text"placeholder="yyyy-mm-dd" style="width:6.6em;padding:3px;" ng-model="dataCountInputs.dataCountTab5.checkoutTime"  />
+	<label for="name">供应商名称:</label><input  id="name" type="text"placeholder="xxxxx" style="width:15em;padding:3px;" ng-model="dataCountInputs.dataCountTab5.vendorid" />
+<!-- 	<label for="end-date" style="width: 4.5em;margin-left: 1em;">结束时间:</label>
+    <input type="text" placeholder="yyyy-mm-dd" style="width:6.6em;padding:3px;"/>
+    <label for="end-date" style="width: 3.5em;margin-left: 1em;">物料名:</label>
+    <input type="text" placeholder="物料A" style="width:9.6em;padding:3px;"/>
+    <label for="end-date" style="width: 3.5em;margin-left: 1em;">供应商:</label>
+    <input type="text" placeholder="武汉网酷" style="width:8.6em;padding:3px;"/> -->
+    <a id="search" name="search" style="margin-left:2em;display:block;background-color:#ea8010;padding:6px 20px;display: inline-block;color:#fff;cursor: pointer " ng-click="getSingleProvider();">查询</a>
+</div>
+<h1 style="text-align: center;margin-top:10px;font-size: 16px;font-weight: bold">进货检验质量状况每月图表_物料（单供应商）</h1>
+<h1 style="text-align: center;margin-top:3px;margin-bottom:10px;font-size: 14px;font-weight: bold">IQC Quality Monthly Report by Material（One Vendor）</h1>
+<div id="main1" style="height:400px;width:900px;margin: 0 auto"></div>
+<div id="main2" style="height:400px;width:900px;margin: 0 auto"></div>
+<div id="main3" style="height:400px;width:900px;margin: 0 auto"></div>
+

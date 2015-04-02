@@ -1,0 +1,44 @@
+<style type="text/css">
+	body {background-color: rgb(236,244,249)}
+	.wrapper {font-family: "微软雅黑";padding: 4em 1em;max-width: 558px;margin: 3em auto 0 auto; }
+	.alert{font-size: 16px;display: inline-block;}
+	h1 {color: rgb(77,77,77);}
+	form {max-width: 558px;margin-top: 30px;margin-bottom: 20px;}
+	.control-label {font-size: 16px;}
+	
+	.btn {font-size: 18px;padding: 10px 30px;margin-top: 7px;}
+	p {font-size: 16px;}
+	a {color:#999; cursor: pointer;}
+</style>
+
+<div class="wrapper" ng-controller="sigupController">
+	<div class="alert alert-danger alert-dismissible fade in hidden" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		{{response.returnMsg}}
+	</div>
+	<h1>创建一个 FIMS 账号</h1>
+	<form name="sigupForm"  novalidate >
+		<div class="form-group">
+			<label for="name" class="control-label">姓名</label>
+			<input type="text" class="form-control input-lg" name="username" placeholder="张三" required ng-model="user.username">
+		</div>
+		<div class="form-group {{response.emailStatus}}" >
+			<label for="email" class="control-label">Email</label>
+			<input type="email" class="form-control input-lg" name="userId" placeholder="123456@qq.com" required ng-model="user.userId">
+		</div>
+		<div class="form-group">
+			<label for="password1" class="control-label">密码</label>
+			<input type="password" class="form-control input-lg" id="password1" name="pw1" required ng-model="user.password1">
+		</div>
+		<div class="form-group">
+			<label for="password2" class="control-label">请重复输入密码</label>
+			<input type="password" class="form-control input-lg" id="password2" name="pw2" required ng-model="user.password2">
+			<span class="text-danger" style="display:{{response.pwTextShow}}">两次输入的密码不一样</span>
+		</div>
+		<button class="btn btn-success" ng-click="subData()" ng-disabled="sigupForm.$invalid">创建账户</button>
+	</form>
+	
+	<b><p>请填写您的真实姓名 （该姓名将用于您日后的工作报表）</p></b>
+	<p>如果您已经拥有FIMS账号，请直接<u><a ui-sref="index">登陆</a></u></p>
+
+</div>

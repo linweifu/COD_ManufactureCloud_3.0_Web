@@ -1,0 +1,22 @@
+<!-- <div class="filter_plan" >
+	<label for="start-date" style="width: 4.5em">开始时间:</label><input  id="start-date" type="text"placeholder="yyyy-mm-dd" style="width:6.6em;padding:3px;" />
+	<label for="end-date" style="width: 4.5em;margin-left: 1em;">结束时间:</label>
+    <input type="text" placeholder="yyyy-mm-dd" style="width:6.6em;padding:3px;"/>
+    <label for="end-date" style="width: 3.5em;margin-left: 1em;">物料名:</label>
+    <input type="text" placeholder="物料A" style="width:9.6em;padding:3px;"/>
+    <label for="end-date" style="width: 3.5em;margin-left: 1em;">供应商:</label>
+    <input type="text" placeholder="武汉网酷" style="width:8.6em;padding:3px;"/>
+    <a id="search" name="search" style="margin-left:1em;display:block;background-color:#ea8010;padding:6px 20px;display: inline-block;color:#fff;cursor: pointer ">查询</a>
+</div> -->
+<div class="qc_content_detail" >
+		<ul class="qc_form_tab">
+			<a ui-sref="dashboard.dataCount.dataCountTab1"><li class="qc_form_selected" id="dataCountTab1">日报明细</li></a>
+			<!-- <a ui-sref="dashboard.subNav.home"><li id="qc_form1_tab" class="qc_form_selected" data-id="1">进货检验明细表</li></a> -->
+			<a ui-sref="dashboard.dataCount.dataCountTab2"><li id="dataCountTab2">月报明细</li></a>
+			<a ui-sref="dashboard.dataCount.dataCountTab3"><li id="dataCountTab3">月报统计_物料</li></a>
+			<a ui-sref="dashboard.dataCount.dataCountTab31"><li id="dataCountTab31">月报统计_供应商</li></a>
+			<a ui-sref="dashboard.dataCount.dataCountTab4"><li id="dataCountTab4">月图表_供应商（单物料）</li></a>
+			<a ui-sref="dashboard.dataCount.dataCountTab5"><li id="dataCountTab5">月图表_物料（单供应商）</li></a>
+		</ul>
+		<div ui-view></div>
+</div>

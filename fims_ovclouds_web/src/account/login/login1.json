@@ -1,0 +1,9 @@
+{
+    "code": "N01",
+    "message": "登陆成功",
+    "contents": {
+        "userSid": "12",
+        "username": "小黄",
+        "uniqueCode": "Uw=="
+    }
+}

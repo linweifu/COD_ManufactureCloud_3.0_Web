@@ -1,0 +1,13 @@
+{
+  "name": "FIMS",
+  "version": "0.1.0",
+  "description": "FIMS Website",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-cssmin": "latest"
+  }
+}
