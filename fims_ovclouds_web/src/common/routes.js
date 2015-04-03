@@ -48,11 +48,16 @@ FIMS.config([
 		// controller:'joinController',
 		templateUrl:'account/applyApproval/applyApproval.html'
 	})
-	// .state('dashboard.record',{
-	// 	url:'/record',
-	// 	controller:'recordController',
-	// 	templateUrl:"view/dashboard/record.html"
-	// 	})
+	.state('account_index.userOption',{
+		url:'/userOption',
+		// controller:'userOptionController',
+		templateUrl:"account/userOption/userOption.html"
+	})
+	.state('account_index.comOption',{
+		url:'/comOption',
+		// controller:'userOptionController',
+		templateUrl:"account/comOption/comOption.html"
+	})
 	// .state('dashboard.dataCount',{
 	// 	url:'/dataCount',
 	// 	controller:'dataCountController',
