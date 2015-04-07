@@ -1,6 +1,5 @@
 FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
     var login = {};
-    // var HOST = "http://"+config.Interface;
 
     login.user = {
         email: '',
@@ -29,7 +28,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         $http({
             method: 'POST',
             // url: postUrl,
-            url: "http://ovclouds.com/api/2.0/bp/account/user/loginSystem",
+            url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "userId": login.user.email,
@@ -39,7 +38,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         }).success(function (data) {
             if(data.code == "N01"){
                 console.log(data);
-                $location.path("account_index/chooseTeam");
+                $location.path("account_index/chooseTeam").replace();
                 // window.localStorage.clear();
                 // $.cookie("userId",null,{path:"/"});
                 var storage = window.localStorage;
@@ -53,6 +52,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                 if(storage){
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
+                    storage.setItem('email',login.user.email);    
                 }else{
                     // $.cookie('email',localData);
                 }

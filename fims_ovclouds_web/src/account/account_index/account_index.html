@@ -20,32 +20,27 @@ a {color: #888;}
 footer {margin-top: 2em;}
 </style>
 
-<div class="navbar">
+<div class="navbar" ng-controller="account_indexCtrl">
 	<div class="container">
 		<div class="navbar-header col-md-10 col-sm-10 col-xs-10">
 			<a href="" class="navbar-brand">飞特FIMS</a>
 		</div>
 		<div class="header-right dropdown col-md-2 col-sm-2 col-xs-2">
-			<a class="dropdown-toggle btn btn-defSault" data-toggle="dropdown" aria-expand="false">张三 <span class="caret"></span></a>
+			<a class="dropdown-toggle btn btn-defSault" data-toggle="dropdown" aria-expand="false">{{userName}}&nbsp;&nbsp;<span class="caret"></span></a>
 			<ul class="dropdown-menu">
 				<li><a ui-sref="account_index.userSetting">个人设置</a></li>
 				<li><a href="" ui-sref="account_index.agreeMem">生成邀请链接</a></li>
 				<li><a href="" ui-sref="account_index.joinCo">申请加入公司</a></li>
 				<li class="divider"></li>
 				<li><a ui-sref="account_index.comSetting">公司设置</a></li>
-				<li><a ui-sref="account_index.chooseTeam">切换公司</a></li>
-				<li><a ui-sref="index">退出</a></li>
+				<li><a ng-click="switchCom()">切换公司</a></li>
+				<li><a ng-click="exitSystem()">退出</a></li>
 			</ul>
 			<!-- <a href="" class="btn btn-success">注册</a> -->
 		</div>
 	</div>
 </div>
-<div class="container text-center" style="max-width: 798px;">
-	<div class="alert alert-warning alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <strong>提示:</strong> 您有1条来自“武汉网酷科技有限公司”未审核的加入申请，<a ui-sref="account_index.applyApproval">现在去处理</a>
-	</div>
-</div>
+
 <div ui-view=""></div>
 
 <footer class="text-center"><a href="#">@ 武汉飞特信息技术有限公司</a></footer>

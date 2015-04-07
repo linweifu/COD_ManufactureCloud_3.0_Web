@@ -1,8 +1,13 @@
-FIMS.controller('loginController',['$scope','loginService', '$rootScope','$q',
-	function($scope,loginService, $rootScope, $q) {
-		$scope.user = loginService.user;
-		$scope.response = loginService.response;
-		$scope.subData = loginService.subData;
+FIMS.controller('loginController',['$location','$scope','loginService', '$rootScope','$q',
+	function($location,$scope,loginService, $rootScope, $q) {
+		if (localStorage.getItem('sid')&&localStorage.getItem('userName')&&localStorage.getItem('email')) {
+			$location.path("account_index/chooseTeam").replace();
+		}else{
+			localStorage.clear();
+			$scope.user = loginService.user;
+			$scope.response = loginService.response;
+			$scope.subData = loginService.subData;
+		}	
 }])
 
 FIMS.controller('sigupController',['$scope','sigupService', '$rootScope','$q',
@@ -12,9 +17,29 @@ FIMS.controller('sigupController',['$scope','sigupService', '$rootScope','$q',
 		$scope.subData = sigupService.subData;
 }])
 
+FIMS.controller('account_indexCtrl',['$scope','account_indexService', '$rootScope','$q',
+	function($scope,account_indexService, $rootScope, $q) {
+		// $scope.userName = localStorage.getItem("userName");
+		$scope.exitSystem = account_indexService.exitSystem;
+		$scope.switchCom= account_indexService.switchCom;
+		account_indexService.getUserName();
+}])
+
+FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','$q',
+	function($scope,userSettingService, $rootScope, $q) {
+		// $rootScope.userName = localStorage.getItem("userName");
+		$scope.usersetting = userSettingService.user;
+		$scope.subData = userSettingService.subData;
+}])
+
+FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScope','$q',
+	function($scope,chooseTeamService, $rootScope, $q) {
+      $scope.subData = chooseTeamService.subData;
+	$scope.createCom = chooseTeamService.createCom;
+}])
+
 FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
     var login = {};
-    // var HOST = "http://"+config.Interface;
 
     login.user = {
         email: '',
@@ -43,7 +68,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         $http({
             method: 'POST',
             // url: postUrl,
-            url: "http://ovclouds.com/api/2.0/bp/account/user/loginSystem",
+            url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "userId": login.user.email,
@@ -53,7 +78,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         }).success(function (data) {
             if(data.code == "N01"){
                 console.log(data);
-                $location.path("account_index/chooseTeam");
+                $location.path("account_index/chooseTeam").replace();
                 // window.localStorage.clear();
                 // $.cookie("userId",null,{path:"/"});
                 var storage = window.localStorage;
@@ -67,6 +92,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                 if(storage){
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
+                    storage.setItem('email',login.user.email);    
                 }else{
                     // $.cookie('email',localData);
                 }
@@ -92,7 +118,6 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
 
 FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
     var sigup = {};
-    // var HOST = "http://"+config.Interface;
 
     sigup.user = {
         userId: '',
@@ -115,7 +140,7 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
         if (sigup.user.password1===sigup.user.password2) {
             $http({
                 method: 'POST',
-                url: "http://ovclouds.com/api/2.0/bp/account/user/registNewUser",
+                url: config.HOST+"/api/2.0/bp/account/user/registNewUser",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "userId": sigup.user.userId,
@@ -152,3 +177,173 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
 
     return sigup;
 }]);
+
+FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
+    var account_index = {};
+
+    account_index.getUserName = function(){
+        $rootScope.userName = localStorage.getItem("userName");
+    }
+
+    account_index.switchCom = function(){
+        localStorage.removeItem('curCompanyName');
+        $location.path('account_index/chooseTeam');
+    }
+
+    account_index.exitSystem = function(){
+        $http({
+            method: 'post',
+            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            url: 'account/account_index/exitSystem.json',
+            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid')
+            }
+        }).success(function(data){
+            if (data.code == 'N01') {
+                localStorage.clear();
+                $location.path('/login');
+            }else{alert("退出系统失败！")}
+        })
+    }
+    //     $http({
+    //         method: 'POST',
+    //         // url: postUrl,
+    //         url: config.HOST+"/api/2.0/bp/account/user/account_indexSystem",
+    //         headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+    //         data: {
+    //             "userId": account_index.user.email,
+    //             "password": account_index.user.password
+    //             // "password": hex_md5(account_index.user.password)
+    //         }
+    //     }).success(function (data) {
+    //         if(data.code == "N01"){
+    //             console.log(data);
+    //             $location.path("account_index/chooseTeam");
+    //             // window.localStorage.clear();
+    //             // $.cookie("userId",null,{path:"/"});
+    //             var storage = window.localStorage;
+    //             account_index.response = {
+    //                 returnMsg:  '',
+    //                 emailStatus: '',
+    //                 pwStatus: '',
+    //                 alert_display: 'none'
+    //             };
+    //             var localData = data.contents;
+    //             if(storage){
+    //                 storage.setItem('sid',localData.sid);    
+    //                 storage.setItem('userName',localData.userName);    
+    //             }else{
+    //                 // $.cookie('email',localData);
+    //             }
+    //         }else if (data.code == "E01") {
+    //             account_index.response.returnMsg = data.message;
+    //             account_index.response.pwStatus = "has-error";
+    //             account_index.response.alert_display = "block";
+
+    //         }else if (data.code == "E02"){
+    //             account_index.response.returnMsg = data.message;
+    //             account_index.response.emailStatus = "has-error";
+    //             account_index.response.alert_display = "block";
+    //         }
+
+
+    //     }).error(function(){
+    //         console.log('http error')
+    //     });
+    // }
+
+    return account_index;
+}]);
+
+FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootScope', '$http' ,function($location,account_indexService,$rootScope, $http) {
+    var userSetting = {};
+    userSetting.user = {
+        "email": localStorage.getItem('email'),
+        "userName": localStorage.getItem('userName')
+    };
+    userSetting.subData = function(){
+        $http({
+            method: 'post',
+            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            url: 'account/userSetting/userSetting.json',
+            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                // "contactPhone": "13026397003",
+                // "contactAddress": "联系地址",
+                "sid": localStorage.getItem('sid'),
+                "contents": {
+                    "userName": userSetting.user.userName
+                }
+            }
+        }).success(function(data){
+            if (data.code == 'N01') {
+                localStorage.setItem('userName',userSetting.user.userName);
+                account_indexService.getUserName();
+                alert("更新成功！");
+               // console.log($rootScope.userName);
+            }else{alert("更新失败！")}
+        })
+    }
+
+    return userSetting;
+}]);
+
+FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
+	function($location,$http, $q,$rootScope){
+		var chooseTeam = {};
+        chooseTeam.createCom = {
+            "name": '',
+            "cid": ''
+        };
+        
+        chooseTeam.subData = function(){
+            $http({
+                method: 'POST',
+                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                url: "account/chooseTeam/createNewCompany.json",
+                headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+                data: {
+                    "sid": localStorage.getItem("sid"),
+                    "contents":{
+                       "companyName":  chooseTeam.createCom.name,
+                       "userJobNumber": chooseTeam.createCom.cid
+                    }
+                }
+            }).success(function (data){
+                if (data.code == 'N01') {
+                    $location.path('/account_index/chooseModule');
+                    localStorage.setItem("curCompanyName",chooseTeam.createCom.name);
+                }else{alert("退出系统失败！")}
+                
+            }).error(function (data){
+                
+            });
+        }
+       
+        //     $http({
+        //             method: 'POST',
+        //             url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+        //             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+        //             data: {
+        //                 "companyId":companyId,
+        //                 "userPurview":userPurview
+        //             }
+        //         }).success(function (data){
+        //             if(data.array[0] != null)
+        //             {
+        //                chooseTeam.CompanyInfoByUserId.applychooseUser = data.array;
+        //                if(userPurview === 0)
+        //                {
+        //                 chooseTeam.CompanyInfoByUserId.show = true;
+        //                };
+        //             }
+                    
+        //         }).error(function (data){
+                    
+        //         });
+        // }
+		return chooseTeam;
+	}
+
+])

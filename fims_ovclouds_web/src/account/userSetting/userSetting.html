@@ -12,27 +12,27 @@
 	#label {padding: 0.7em;display: inline-block;}
 </style>
 
-<div id="container" class="container">
+<div id="container" class="container" ng-controller="userSettingCtrl">
 	<h3>用户信息设置</h3>
-	<form class="form-horizontal" id="form-horizontal">
+	<form class="form-horizontal" id="form-horizontal" name="userSetting" novalidate>
 		<div class="form-group">
 			<label for="email" class="col-sm-1 control-label">邮箱</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="email" value="dotfit@163.com" ng-disabled="true">
+				<input type="text" class="form-control" id="email" ng-model="usersetting.email" ng-disabled="true">
 			</div>
 			<a class="col-sm-2 control-label link">修改邮箱</a>
 		</div>
 		<div class="form-group">
 			<label for="name" class="col-sm-1 control-label">名字</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name" value="张三">
+				<input type="text" class="form-control" id="name" ng-model="usersetting.userName" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="password" class="col-sm-1 control-label">邮箱</label>
+			<label for="password" class="col-sm-1 control-label">密码</label>
 			<a class="col-sm-2 control-label link">修改密码</a>
 		</div>
-		<button class="btn btn-success" style="padding: .3em .6em;">保存修改</button
+		<button class="btn btn-success" style="padding: .3em .6em;"  ng-click="subData();">保存修改</button
 	</form>
 
 <!-- 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>

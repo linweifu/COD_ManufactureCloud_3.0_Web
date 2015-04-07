@@ -1,6 +1,5 @@
 FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
     var sigup = {};
-    // var HOST = "http://"+config.Interface;
 
     sigup.user = {
         userId: '',
@@ -23,7 +22,7 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
         if (sigup.user.password1===sigup.user.password2) {
             $http({
                 method: 'POST',
-                url: "http://ovclouds.com/api/2.0/bp/account/user/registNewUser",
+                url: config.HOST+"/api/2.0/bp/account/user/registNewUser",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "userId": sigup.user.userId,

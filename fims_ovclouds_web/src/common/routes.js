@@ -1,3 +1,6 @@
+var config = {
+	HOST : "http://ovclouds.com"
+}
 var FIMS = angular.module('FIMS', ['ui.router']);
 FIMS.config([
 	'$stateProvider',
@@ -8,6 +11,10 @@ FIMS.config([
 		url:'',
 		templateUrl:'account/login/login.html'
 	})
+	.state('login',{
+		url:'/login',
+		templateUrl:'account/login/login.html'
+	})
 	.state('sigup',{
 		url:'/sigup',
 		// controller:'recordController',
@@ -16,7 +23,7 @@ FIMS.config([
 	.state('account_index',{
 		url:'/account_index',
 		// controller:'recordController',
-		templateUrl:"account/account_index.html"
+		templateUrl:"account/account_index/account_index.html"
 	})
 	.state('account_index.chooseTeam',{
 		url:'/chooseTeam',
@@ -133,7 +140,7 @@ FIMS.config([
 	// 	controller:'loginController',
 	// 	templateUrl:'view/login/choice2.html'
 	// });
-		 // $urlRouterProvider.otherwise('index');
+		 // $urlRouterProvider.otherwise('');
 
 }]);
 

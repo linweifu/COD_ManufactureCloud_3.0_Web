@@ -10,11 +10,16 @@ module.exports = function(grunt) {
 			// 	dest: 'src/asset/style.less'
 			// },
 			controller: {
-				src: ["src/account/login/loginController.js","src/account/sigup/sigupController.js"],
+				src: ["src/account/login/loginController.js","src/account/sigup/sigupController.js",
+				"src/account/account_index/account_indexController.js","src/account/userSetting/userSettingCtrl.js",
+				"src/account/chooseTeam/chooseTeamController.js"
+				],
 				dest: "src/asset/concat/controller.js"
 			},
 			service: {
-				src: ["src/account/login/loginService.js","src/account/sigup/sigupService.js"],
+				src: ["src/account/login/loginService.js","src/account/sigup/sigupService.js",
+				"src/account/account_index/account_indexServicer.js","src/account/userSetting/userSettingService.js",
+				"src/account/chooseTeam/chooseTeamService.js"],
 				dest: "src/asset/concat/service.js"
 			},
 			zchar : {
@@ -61,7 +66,8 @@ module.exports = function(grunt) {
 
 		// 实时监听文件变化并编译
 		watch: {
-			files: ["src/common/routes.js","src/account/login/*.js","src/account/sigup/*.js"],
+			files: ["src/common/routes.js","src/account/login/*.js","src/account/sigup/*.js",
+			"src/account/account_index/*.js","src/account/userSetting/*.js","src/account/chooseTeam/*.js"],
         	// tasks: ['concat','less', 'cssmin', 'uglify']
         	tasks: ['concat', 'uglify']
         	

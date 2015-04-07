@@ -1,0 +1,6 @@
+{
+    "code": "N01",
+    "message": "公司创建成功",
+    "contents": {"companySid":"1",
+                 "userPerview":"3"}
+}
