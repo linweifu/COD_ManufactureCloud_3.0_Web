@@ -7,6 +7,8 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
 
     account_index.switchCom = function(){
         localStorage.removeItem('curCompanyName');
+        localStorage.removeItem('cSid');
+        localStorage.removeItem('applyJoinCompanyNumber');
         $location.path('account_index/chooseTeam');
     }
 

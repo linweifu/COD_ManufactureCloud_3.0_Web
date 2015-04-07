@@ -37,7 +37,6 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
             }
         }).success(function (data) {
             if(data.code == "N01"){
-                console.log(data);
                 $location.path("account_index/chooseTeam").replace();
                 // window.localStorage.clear();
                 // $.cookie("userId",null,{path:"/"});

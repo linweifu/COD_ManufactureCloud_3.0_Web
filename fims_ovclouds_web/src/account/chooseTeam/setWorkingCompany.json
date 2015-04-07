@@ -1,0 +1,8 @@
+{
+    "code": "N01",
+    "message": "获取当前公司信息成功",
+    "contents": {                  
+        "companyShortName": "FIMS",
+        "applyJoinCompanyNumber": "2"
+    }
+}

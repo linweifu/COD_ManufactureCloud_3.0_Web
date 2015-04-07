@@ -1,0 +1,19 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": {
+        "userName":"黄总",
+        "joinedCompanies": [
+            {
+                "companySid": "=1fq",
+                "companyShortName": "武汉网酷科技有限公司",
+                "userApplyStatus":"0"
+            },
+            {
+                "companySid": "=1f2q",
+                "companyShortName": "LABN",
+                "userApplyStatus":"1"
+            }
+        ]
+    }
+}

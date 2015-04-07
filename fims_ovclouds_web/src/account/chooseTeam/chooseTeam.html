@@ -11,7 +11,7 @@
 <div ng-controller="chooseTeamController">
 <div class="container" id="container">
 	<div class="list-group">
-		<a href="" class="list-group-item disabled">
+<!-- 		<a href="" class="list-group-item disabled">
 			<h4 class="list-group-item-heading">NewThread</h4>
       <p class="list-group-item-text">审核已经提交，等待管理员审核</p>
 		</a>
@@ -21,9 +21,16 @@
 		<a href="" class="list-group-item" ui-sref="account_index.chooseModule">
 			<h4 class="list-group-item-heading">武汉极创信息技术有限公司</h4>
 		</a>
-		<a href="" class="list-group-item active" data-toggle="modal" data-target="#creatCo" data-whatever="@zchar">
-			<h4 class="list-group-item-heading">+ 创建公司</h4>
-		</a>
+    <a href="" class="list-group-item active" data-toggle="modal" data-target="#creatCo" data-whatever="@zchar">
+      <h4 class="list-group-item-heading">+ 创建公司</h4>
+    </a>
+ -->
+    <a ng-repeat="company in companyList" class="list-group-item {{company.userApplyStatus}}" ng-click="setWorkingCompany(company.companySid)">
+      <h4 class="list-group-item-heading">{{company.companyShortName}}</h4>
+    </a>
+    <a href="" class="list-group-item active" data-toggle="modal" data-target="#creatCo" data-whatever="@zchar">
+      <h4 class="list-group-item-heading">+ 创建公司</h4>
+    </a>
 	</div>
 </div>
 <div class="modal fade" id="creatCo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

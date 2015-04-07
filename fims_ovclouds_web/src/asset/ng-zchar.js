@@ -34,8 +34,19 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 
 FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScope','$q',
 	function($scope,chooseTeamService, $rootScope, $q) {
-      $scope.subData = chooseTeamService.subData;
-	$scope.createCom = chooseTeamService.createCom;
+     	$scope.subData = chooseTeamService.subData;
+		$scope.createCom = chooseTeamService.createCom;
+		chooseTeamService.queryJoinedCompanies();
+		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
+		$scope.joinedCompanies = chooseTeamService.joinedCompanies;
+		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
+}])
+
+FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q',
+	function($scope, $rootScope, $q) {
+		// $scope.userName = localStorage.getItem("userName");
+		$scope.curCompanyName = localStorage.getItem("curCompanyName");
+		$scope.applyJoinCompanyNumber = localStorage.getItem("applyJoinCompanyNumber");
 }])
 
 FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
@@ -77,7 +88,6 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
             }
         }).success(function (data) {
             if(data.code == "N01"){
-                console.log(data);
                 $location.path("account_index/chooseTeam").replace();
                 // window.localStorage.clear();
                 // $.cookie("userId",null,{path:"/"});
@@ -187,6 +197,8 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
 
     account_index.switchCom = function(){
         localStorage.removeItem('curCompanyName');
+        localStorage.removeItem('cSid');
+        localStorage.removeItem('applyJoinCompanyNumber');
         $location.path('account_index/chooseTeam');
     }
 
@@ -296,6 +308,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             "name": '',
             "cid": ''
         };
+        chooseTeam.companyList=[];
         
         chooseTeam.subData = function(){
             $http({
@@ -313,14 +326,74 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             }).success(function (data){
                 if (data.code == 'N01') {
                     $location.path('/account_index/chooseModule');
-                    localStorage.setItem("curCompanyName",chooseTeam.createCom.name);
+                    localStorage.setItem("curCompanyName",data.contents.companyName);
+                    localStorage.setItem("cSid",data.contents.companySid);
+                    localStorage.setItem("applyJoinCompanyNumber",0);
                 }else{alert("退出系统失败！")}
+                
+            }).error(function (data){
+                
+            });
+        };
+
+        chooseTeam.queryJoinedCompanies = function(){
+            $http({
+                method: 'POST',
+                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                url: "account/chooseTeam/queryJoinedCompanies.json",
+                headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+                data: {
+                    "sid": localStorage.getItem("sid"),
+                }
+            }).success(function (data){
+                chooseTeam.companyList=[];
+
+                if (data.code == 'N01') {
+                    chooseTeam.companyList = data.contents.joinedCompanies;
+                    for(var i=0;i<chooseTeam.companyList.length;i++){
+                        chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==1)?'':'disabled';
+                    }
+                    $rootScope.companyList  =chooseTeam.companyList;
+                }else{
+                    console.log("获取失败！");
+                    localStorage.clear();
+                    $location.path('login').replace();
+                }
                 
             }).error(function (data){
                 
             });
         }
        
+       chooseTeam.setWorkingCompany = function(sid){
+            $http({
+                method: 'POST',
+                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                url: "account/chooseTeam/setWorkingCompany.json",
+                headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+                data: {
+                    "sid": localStorage.getItem("sid"),
+                    "contents": {
+                        "companySid": sid
+                    }
+                }
+            }).success(function (data){
+                if (data.code == 'N01') {
+                    localStorage.setItem("curCompanyName",data.contents.companyShortName);
+                    localStorage.setItem("cSid",sid);
+                    localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
+                    $location.path("account_index/chooseModule");
+                }else{
+                    console.log("获取失败！");
+                    localStorage.clear();
+                    $location.path('login').replace();
+                }
+                console.log(chooseTeam.companyList)
+                
+            }).error(function (data){
+                
+            });
+       }
         //     $http({
         //             method: 'POST',
         //             url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
@@ -347,3 +420,37 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 	}
 
 ])
+// FIMS.factory('chooseModuleService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
+//     var chooseModule = {};
+
+//     chooseModule.getUserName = function(){
+//         $rootScope.userName = localStorage.getItem("userName");
+//     }
+
+//     chooseModule.switchCom = function(){
+//         localStorage.removeItem('curCompanyName');
+//         localStorage.removeItem('cSid');
+//         $location.path('chooseModule/chooseTeam');
+//     }
+
+//     chooseModule.exitSystem = function(){
+//         $http({
+//             method: 'post',
+//             // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+//             url: 'account/chooseModule/exitSystem.json',
+//             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+//             data: {
+//                 "sid": localStorage.getItem('sid')
+//             }
+//         }).success(function(data){
+//             if (data.code == 'N01') {
+//                 localStorage.clear();
+//                 $location.path('/login');
+//             }else{alert("退出系统失败！")}
+//         })
+//     }
+
+//     // }
+
+//     return chooseModule;
+// }]);

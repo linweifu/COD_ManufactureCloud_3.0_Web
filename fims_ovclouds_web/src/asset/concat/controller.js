@@ -34,6 +34,17 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 
 FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScope','$q',
 	function($scope,chooseTeamService, $rootScope, $q) {
-      $scope.subData = chooseTeamService.subData;
-	$scope.createCom = chooseTeamService.createCom;
+     	$scope.subData = chooseTeamService.subData;
+		$scope.createCom = chooseTeamService.createCom;
+		chooseTeamService.queryJoinedCompanies();
+		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
+		$scope.joinedCompanies = chooseTeamService.joinedCompanies;
+		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
+}])
+
+FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q',
+	function($scope, $rootScope, $q) {
+		// $scope.userName = localStorage.getItem("userName");
+		$scope.curCompanyName = localStorage.getItem("curCompanyName");
+		$scope.applyJoinCompanyNumber = localStorage.getItem("applyJoinCompanyNumber");
 }])
