@@ -28,12 +28,13 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         $http({
             method: 'POST',
             // url: postUrl,
-            url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
+            // url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
+            url: "account/login/login.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "userId": login.user.email,
-                "password": login.user.password
-                // "password": hex_md5(login.user.password)
+                // "password": login.user.password
+                "password": hex_md5(login.user.password)
             }
         }).success(function (data) {
             if(data.code == "N01"){
@@ -145,10 +146,23 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
     }
 
     account_index.switchCom = function(){
-        localStorage.removeItem('curCompanyName');
-        localStorage.removeItem('cSid');
-        localStorage.removeItem('applyJoinCompanyNumber');
-        $location.path('account_index/chooseTeam');
+        $http({
+            method: 'post',
+            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            url: 'account/account_index/quitWorkingCompany.json',
+            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid')
+            }
+        }).success(function(data){
+            if (data.code == 'N01') {
+                localStorage.removeItem('curCompanyName');
+                localStorage.removeItem('cSid');
+                localStorage.removeItem('applyJoinCompanyNumber');
+                localStorage.removeItem('inlink');
+                $location.path('account_index/chooseTeam');
+            }else{alert("退出系统失败！")}
+        })
     }
 
     account_index.exitSystem = function(){
@@ -262,7 +276,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.subData = function(){
             $http({
                 method: 'POST',
-                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                // url: HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
                 url: "account/chooseTeam/createNewCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -288,7 +302,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.queryJoinedCompanies = function(){
             $http({
                 method: 'POST',
-                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                // url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
                 url: "account/chooseTeam/queryJoinedCompanies.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -304,7 +318,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }else{
-                    console.log("获取失败！");
+                    console.log(data.message+"[queryJoinedCompanies]");
                     localStorage.clear();
                     $location.path('login').replace();
                 }
@@ -403,3 +417,35 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
 //     return chooseModule;
 // }]);
+
+FIMS.factory('userManageService', ['$location','$http', function($location,$http){
+	var userManage = {};
+	userManage.genLink = function(){
+		$http({
+			method: 'POST',
+		 // url: HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
+            url: "account/userManage/generateInvitationLink.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"contents": {
+					"companySid": localStorage.getItem("cSid")
+				}
+			}
+		})
+		.success(function(data) {
+			if (data.code == 'N01') {
+				$location.path('account_index/agreeMem');
+				localStorage.setItem('inlink',data.contents);	
+			}
+		})
+	}
+	return userManage;
+}])
+FIMS.factory('agreeMemService', ['$location','$http', function($location,$http){
+	var agreeMem = {};
+	agreeMem.agreeMemBack = function(){
+		
+	}
+	return agreeMem;
+}])

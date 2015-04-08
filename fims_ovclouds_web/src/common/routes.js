@@ -33,7 +33,7 @@ FIMS.config([
 	.state('account_index.chooseModule',{
 		url:'/chooseModule',
 		// controller:'recordController',
-		templateUrl:"account/chooseModule.html"
+		templateUrl:"account/chooseModule/chooseModule.html"
 	})
 	.state('account_index.joinCo',{
 		url:'/joinCo',

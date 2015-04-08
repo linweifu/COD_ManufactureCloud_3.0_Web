@@ -8,13 +8,14 @@
 	}	
 	h3 {color: #000;}
 
-	#label {padding: 0.7em;display: inline-block;}
+	#label {padding: .6em;display: inline-block;font-size: 15px;}
 </style>
 
-<div id="container" class="container">
+<div id="container" class="container" ng-controller="agreeMemCtrl">
 	<h3>添加新成员</h3>
 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>
 	<p style="color: #555;font-size: 14px;">将下面的公共邀请链接通过QQ，微信等任何方式发给同事，即可点击申请加入公司。（申请需团队管理员审核并分配访问权限）</p>
-	<span class="label label-success" id="label">https://ovclouds.com/join?t=59a1817fd9ea087dabb6c9ebd123ece0</span><button class="btn btn-default" style="padding: .3em .5em;margin-left: .2em;">复制</button>
-	<p style="color: #666;font-size: 14px;margin-top: 8px;">注意：任何看到邀请链接的人，都可以申请加入团队。意外泄漏请 <a style="color: #555">重新生成邀请链接</a></p>
+	<span class="label label-success" id="label">{{invitLink}}</span><!-- <button class="btn btn-default" style="padding: .3em .5em;margin-left: .2em;">复制</button> -->
+	<p style="color: #666;font-size: 14px;margin-top: 8px;">注意：任何看到邀请链接的人，都可以申请加入团队。意外泄漏请 <button class="btn btn-warning" style="padding: .1em .2em" ng-click="regenLink()">重新生成邀请链接</button></p>
+	<button class="btn btn-default" style="padding: .3em .7em;" ng-click="agreeMemBack()">返回</button>
 </div>

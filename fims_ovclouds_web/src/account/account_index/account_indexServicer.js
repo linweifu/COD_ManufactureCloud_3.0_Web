@@ -6,10 +6,23 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
     }
 
     account_index.switchCom = function(){
-        localStorage.removeItem('curCompanyName');
-        localStorage.removeItem('cSid');
-        localStorage.removeItem('applyJoinCompanyNumber');
-        $location.path('account_index/chooseTeam');
+        $http({
+            method: 'post',
+            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            url: 'account/account_index/quitWorkingCompany.json',
+            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid')
+            }
+        }).success(function(data){
+            if (data.code == 'N01') {
+                localStorage.removeItem('curCompanyName');
+                localStorage.removeItem('cSid');
+                localStorage.removeItem('applyJoinCompanyNumber');
+                localStorage.removeItem('inlink');
+                $location.path('account_index/chooseTeam');
+            }else{alert("退出系统失败！")}
+        })
     }
 
     account_index.exitSystem = function(){

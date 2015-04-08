@@ -25,7 +25,7 @@
       <h4 class="list-group-item-heading">+ 创建公司</h4>
     </a>
  -->
-    <a ng-repeat="company in companyList" class="list-group-item {{company.userApplyStatus}}" ng-click="setWorkingCompany(company.companySid)">
+    <a ng-repeat="company in companyList" class="list-group-item {{company.userApplyStatus}}" ng-click="setWorkingCompany(company.companySid)" ng-disabled="{{company.userApplyStatus}}">
       <h4 class="list-group-item-heading">{{company.companyShortName}}</h4>
     </a>
     <a href="" class="list-group-item active" data-toggle="modal" data-target="#creatCo" data-whatever="@zchar">

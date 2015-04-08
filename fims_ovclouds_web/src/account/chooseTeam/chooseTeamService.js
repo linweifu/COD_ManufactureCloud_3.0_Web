@@ -10,7 +10,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.subData = function(){
             $http({
                 method: 'POST',
-                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                // url: HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
                 url: "account/chooseTeam/createNewCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -36,7 +36,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.queryJoinedCompanies = function(){
             $http({
                 method: 'POST',
-                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                // url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
                 url: "account/chooseTeam/queryJoinedCompanies.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -52,7 +52,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }else{
-                    console.log("获取失败！");
+                    console.log(data.message+"[queryJoinedCompanies]");
                     localStorage.clear();
                     $location.path('login').replace();
                 }

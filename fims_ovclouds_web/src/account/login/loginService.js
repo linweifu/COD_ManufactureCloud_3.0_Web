@@ -28,12 +28,13 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         $http({
             method: 'POST',
             // url: postUrl,
-            url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
+            // url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
+            url: "account/login/login.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "userId": login.user.email,
-                "password": login.user.password
-                // "password": hex_md5(login.user.password)
+                // "password": login.user.password
+                "password": hex_md5(login.user.password)
             }
         }).success(function (data) {
             if(data.code == "N01"){
