@@ -20,6 +20,7 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
                 localStorage.removeItem('cSid');
                 localStorage.removeItem('applyJoinCompanyNumber');
                 localStorage.removeItem('inlink');
+                localStorage.removeItem('applyJoin');
                 $location.path('account_index/chooseTeam');
             }else{alert("退出系统失败！")}
         })

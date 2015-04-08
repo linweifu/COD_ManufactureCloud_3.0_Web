@@ -1,0 +1,22 @@
+{
+    "code": "N01",
+    "message": "获取申请信息成功",
+    "contents": [
+        {
+            "applyJoinSid":1,
+            "applySid": 1,
+            "applyName": "小明",
+            "inviteSid": 2,
+            "inviteName": "小红",
+            "remark": "我是小明"
+        },
+        {
+            "applyJoinSid":2,
+            "applySid": 3,
+            "applyName": "小黑",
+            "inviteSid": 2,
+            "inviteName": "小红",
+            "remark": "我是小黑"
+        }
+    ]
+}

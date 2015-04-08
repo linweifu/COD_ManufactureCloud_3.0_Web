@@ -42,11 +42,31 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
 		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
 }])
 
-FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q',
-	function($scope, $rootScope, $q) {
+FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$http",
+	function($scope, $rootScope, $q,$location,$http) {
 		// $scope.userName = localStorage.getItem("userName");
 		$scope.curCompanyName = localStorage.getItem("curCompanyName");
 		$scope.applyJoinCompanyNumber = localStorage.getItem("applyJoinCompanyNumber");
+
+		$scope.getApplies = function(){
+			 $http({
+	            method: 'post',
+	            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+	            url: 'account/chooseModule/getAppliesJoinCompany.json',
+	            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+	            data: {
+	                "sid": localStorage.getItem('sid'),
+	                 "contents": {
+				        "companySid": localStorage.getItem("cSid")
+				    }
+	            }
+	        }).success(function(data){
+	            if (data.code == 'N01') {
+	                localStorage.setItem('applyJoin', JSON.stringify(data.contents));
+	                $location.path("account_index/applyApproval");
+	            }else{alert("退出系统失败！")}
+	        })
+		}
 }])
 
 FIMS.controller('userManageCtrl', ['$scope','$location','userManageService',
@@ -85,7 +105,7 @@ FIMS.controller('agreeMemCtrl', ['$scope','$location','$http',
 	};
 }])
 FIMS.controller('applyApprovalCtrl', ['$scope', function($scope){
-	
+	$scope.applyInfo = JSON.parse(localStorage.getItem('applyJoin'));
 }])
 FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
     var login = {};
@@ -249,6 +269,7 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
                 localStorage.removeItem('cSid');
                 localStorage.removeItem('applyJoinCompanyNumber');
                 localStorage.removeItem('inlink');
+                localStorage.removeItem('applyJoin');
                 $location.path('account_index/chooseTeam');
             }else{alert("退出系统失败！")}
         })
@@ -407,7 +428,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }else{
-                    console.log(data.message+"[queryJoinedCompanies]");
+                    // console.log(data.message+"[queryJoinedCompanies]");
                     localStorage.clear();
                     $location.path('login').replace();
                 }
@@ -440,7 +461,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.clear();
                     $location.path('login').replace();
                 }
-                console.log(chooseTeam.companyList)
+                // console.log(chooseTeam.companyList)
                 
             }).error(function (data){
                 

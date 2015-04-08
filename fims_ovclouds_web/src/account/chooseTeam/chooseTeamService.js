@@ -52,7 +52,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }else{
-                    console.log(data.message+"[queryJoinedCompanies]");
+                    // console.log(data.message+"[queryJoinedCompanies]");
                     localStorage.clear();
                     $location.path('login').replace();
                 }
@@ -85,7 +85,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.clear();
                     $location.path('login').replace();
                 }
-                console.log(chooseTeam.companyList)
+                // console.log(chooseTeam.companyList)
                 
             }).error(function (data){
                 

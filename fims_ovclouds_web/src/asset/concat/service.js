@@ -160,6 +160,7 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
                 localStorage.removeItem('cSid');
                 localStorage.removeItem('applyJoinCompanyNumber');
                 localStorage.removeItem('inlink');
+                localStorage.removeItem('applyJoin');
                 $location.path('account_index/chooseTeam');
             }else{alert("退出系统失败！")}
         })
@@ -318,7 +319,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }else{
-                    console.log(data.message+"[queryJoinedCompanies]");
+                    // console.log(data.message+"[queryJoinedCompanies]");
                     localStorage.clear();
                     $location.path('login').replace();
                 }
@@ -351,7 +352,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.clear();
                     $location.path('login').replace();
                 }
-                console.log(chooseTeam.companyList)
+                // console.log(chooseTeam.companyList)
                 
             }).error(function (data){
                 
