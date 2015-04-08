@@ -30,39 +30,14 @@
 
 <div id="container" class="container" ng-controller="applyApprovalCtrl">
 	<h3>Newthread加入申请</h3>
-<!-- 	<div class="checkbox" ng-repeat="apply in applyInfo">
-		
-	</div> -->
-
-  	<div class="checkbox">
-	    <label>
-	      <input type="checkbox" style="position: relative;"> <img src="common/img/waves.jpg" class="img-circle" alt="">杜旻翔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013110255&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我是阿杜，加我加我！
+	<div class="checkbox" ng-repeat="apply in applyInfo">
+		<label for="">
+			<input type="checkbox" style="position: relative"><img src="common/img/waves.jpg" class="img-circle" alt="">{{apply.applyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.applyJoinSid}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.remark}}
 	    </label>
-  	</div>
+	</div>
 
-  	<div class="checkbox">
-	    <label>
-	      <input type="checkbox" style="position: relative;"> <img src="common/img/waves.jpg" class="img-circle" alt="">杜旻翔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013110255&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我是阿杜，加我加我！
-	    </label>
-  	</div>
 
-  	<div class="checkbox">
-	    <label>
-	      <input type="checkbox" style="position: relative;"> <img src="common/img/waves.jpg" class="img-circle" alt="">杜旻翔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013110255&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我是阿杜，加我加我！
-	    </label>
-  	</div>
 
-  	<div class="checkbox">
-	    <label>
-	      <input type="checkbox" style="position: relative;"> <img src="common/img/waves.jpg" class="img-circle" alt="">杜旻翔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013110255&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我是阿杜，加我加我！
-	    </label>
-  	</div>
-
-  	<div class="checkbox">
-	    <label>
-	      <input type="checkbox" style="position: relative;"> <img src="common/img/waves.jpg" class="img-circle" alt="">杜旻翔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2013110255&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我是阿杜，加我加我！
-	    </label>
-  	</div>
 
 	<button class="btn btn-success" id="btn-agreeApply" ui-sref="account_index.userManage">同意加入</button><button class="btn btn-warning" id="btn-refuseApply"  ui-sref="account_index.userManage">拒绝加入</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-default" id="btn-refuseApply"  ui-sref="account_index.chooseModule">稍后处理</button>
 </div>
