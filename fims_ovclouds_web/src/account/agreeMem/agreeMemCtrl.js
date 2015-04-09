@@ -8,7 +8,7 @@ FIMS.controller('agreeMemCtrl', ['$scope','$location','$http',
 	$scope.regenLink = function(){
 		$http({
             method: 'post',
-            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            // url: config.HOST + '/api/2.0/bp/account/mailbox_link/regenerateInvitationLink',
             url: 'account/agreeMem/regenerateInvitationLink.json',
             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {

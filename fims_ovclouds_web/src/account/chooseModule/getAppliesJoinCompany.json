@@ -8,7 +8,8 @@
             "applyName": "小明",
             "inviteSid": 2,
             "inviteName": "小红",
-            "remark": "我是小明"
+            "remark": "我是小明",
+            "userApplyStatus": 0
         },
         {
             "applyJoinSid":2,
@@ -16,7 +17,8 @@
             "applyName": "小黑",
             "inviteSid": 2,
             "inviteName": "小红",
-            "remark": "我是小黑"
+            "remark": "我是小黑",
+            "userApplyStatus": 0
         }
     ]
 }

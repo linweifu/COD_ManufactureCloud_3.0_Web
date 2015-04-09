@@ -32,12 +32,10 @@
 	<h3>Newthread加入申请</h3>
 	<div class="checkbox" ng-repeat="apply in applyInfo">
 		<label for="">
-			<input type="checkbox" style="position: relative"><img src="common/img/waves.jpg" class="img-circle" alt="">{{apply.applyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.applyJoinSid}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.remark}}
+			<input type="checkbox"  style="position: relative" ng-model="apply.userApplyStatus" ng-true-value="1" ng-false-value="0"><img src="common/img/waves.jpg" class="img-circle" alt="">{{apply.applyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.applyJoinSid}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.remark}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning"  ng-click="refuseJoin($index,apply.applyJoinSid)">拒绝加入</button>
 	    </label>
 	</div>
 
 
-
-
-	<button class="btn btn-success" id="btn-agreeApply" ui-sref="account_index.userManage">同意加入</button><button class="btn btn-warning" id="btn-refuseApply"  ui-sref="account_index.userManage">拒绝加入</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-default" id="btn-refuseApply"  ui-sref="account_index.chooseModule">稍后处理</button>
+	<button class="btn btn-success" id="btn-agreeApply" ng-click="agreeJoin()">同意加入</button>&nbsp;&nbsp;&nbsp;<button class="btn btn-default" id="btn-refuseApply"  ng-click="applyApprovalBack()">稍后处理</button>
 </div>

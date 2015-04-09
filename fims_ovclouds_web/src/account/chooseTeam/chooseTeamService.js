@@ -10,7 +10,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.subData = function(){
             $http({
                 method: 'POST',
-                // url: HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
+                // url: config.HOST+'/api/2.0/bp/account/company/createNewCompany',
                 url: "account/chooseTeam/createNewCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -52,9 +52,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }else{
-                    // console.log(data.message+"[queryJoinedCompanies]");
-                    localStorage.clear();
-                    $location.path('login').replace();
+                    console.log(data.message+"[queryJoinedCompanies]");
+                    // localStorage.clear();
+                    // $location.path('login').replace();
                 }
                 
             }).error(function (data){
@@ -66,6 +66,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             $http({
                 method: 'POST',
                 // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
+                // url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
                 url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -91,28 +92,6 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 
             });
        }
-        //     $http({
-        //             method: 'POST',
-        //             url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
-        //             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-        //             data: {
-        //                 "companyId":companyId,
-        //                 "userPurview":userPurview
-        //             }
-        //         }).success(function (data){
-        //             if(data.array[0] != null)
-        //             {
-        //                chooseTeam.CompanyInfoByUserId.applychooseUser = data.array;
-        //                if(userPurview === 0)
-        //                {
-        //                 chooseTeam.CompanyInfoByUserId.show = true;
-        //                };
-        //             }
-                    
-        //         }).error(function (data){
-                    
-        //         });
-        // }
 		return chooseTeam;
 	}
 

@@ -8,7 +8,7 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
     account_index.switchCom = function(){
         $http({
             method: 'post',
-            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            // url: config.HOST + '/api/2.0/bp/account/releation/quitWorkingCompany',
             url: 'account/account_index/quitWorkingCompany.json',
             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {

@@ -3,7 +3,7 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 	userManage.genLink = function(){
 		$http({
 			method: 'POST',
-		 // url: HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
+		 // url: config.HOST+'/api/2.0/bp/account//mailbox_link/generateInvitationLink',
             url: "account/userManage/generateInvitationLink.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {

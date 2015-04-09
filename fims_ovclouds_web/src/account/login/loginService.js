@@ -28,8 +28,8 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         $http({
             method: 'POST',
             // url: postUrl,
-            // url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
-            url: "account/login/login.json",
+            url: config.HOST+"/api/2.0/bp/account/user/loginSystem",
+            // url: "account/login/login.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "userId": login.user.email,
