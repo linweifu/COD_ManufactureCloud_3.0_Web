@@ -277,7 +277,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.subData = function(){
             $http({
                 method: 'POST',
-                // url: config.HOST+'/api/2.0/bp/account/company/createNewCompany',
+                url: config.HOST+'/api/2.0/bp/account/company/createNewCompany',
                 url: "account/chooseTeam/createNewCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -303,7 +303,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.queryJoinedCompanies = function(){
             $http({
                 method: 'POST',
-                // url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
+                url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
                 url: "account/chooseTeam/queryJoinedCompanies.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
@@ -332,8 +332,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
        chooseTeam.setWorkingCompany = function(sid){
             $http({
                 method: 'POST',
-                // url: HOST+'/api/1.0/user-manager/getCompanyApplicant',
-                // url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
+                url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
                 url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
