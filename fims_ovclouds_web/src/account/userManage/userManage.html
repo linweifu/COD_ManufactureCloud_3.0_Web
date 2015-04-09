@@ -20,52 +20,25 @@
 		margin-left: .2em;
 	}
 
-	.row {margin-top: 1.8em;}
+	.row {margin-top: 1.8em;margin-bottom: 1em;}
 
 	.span {float: right;line-height: 1.5em;padding-top: .5em;padding-right: .6em;}
 	.name {font-size: 14px;}
 	.author {color: #f68539;font-size: 12px;}
+	.top {margin-top: 1.8em;}
 	
 </style>
 
 <div id="container" class="container text-center" ng-controller="userManageCtrl">
 	<h3>Newthread现有成员</h3>
-	<div class="row">
-		<a class="col-md-3 col-sm-3 col-xs-6">
+	<div class="row" >
+		<a class="col-md-3 col-sm-3 col-xs-6 top" ng-repeat="company in companyMem.array">
 			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
-		</a>
-		<a class="col-md-3 col-sm-3 col-xs-6">
-			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
-		</a>
-		<a class="col-md-3 col-sm-3 col-xs-6">
-			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
-		</a>
-		<a class="col-md-3 col-sm-3 col-xs-6">
-			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
+			<div class="span"><span class="name">{{company.userName}}</span><br><span class="author">{{company.userPurview}}</div>
 		</a>
 	</div>
-	<div class="row" style="margin-top: 1.6em;">
-		<a class="col-md-3 col-sm-3 col-xs-6">
-			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
-		</a>
-		<a class="col-md-3 col-sm-3 col-xs-6">
-			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
-		</a>
-		<a class="col-md-3 col-sm-3 col-xs-6">
-			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
-		</a>
-		<a class="col-md-3 col-sm-3 col-xs-6">
-			<img src="common/img/waves.jpg" class="img-circle" alt="">
-			<div class="span"><span class="name">张三</span><br><span class="author">超级管理员</div>
-		</a>
-	</div>
+
+
 	<button class="btn btn-success btn-newMem" id="btn-newMem" ng-click="genLink()">新增公司成员</button>
 	<button class="btn btn-default btn-newMem" ng-click="userManageBack()">返回公司管理</button>
 </div>

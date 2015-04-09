@@ -45,7 +45,7 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
                     }
                 }else {
                     sigup.response.returnMsg = data.message;
-                    sigup.response.userIdStatus = "has-error";
+                    sigup.response.emailStatus = "has-error";
                     sigup.response.alert_display = "block";
                 }
             }).error(function(){
@@ -53,8 +53,7 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
             });
         }else {
             sigup.response.pwTextShow = "block";
-            console.log(sigup.response.pwTextShow);
-        }
+         }
     }
 
     return sigup;

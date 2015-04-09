@@ -12,9 +12,8 @@
 </style>
 
 <div class="wrapper" ng-controller="sigupController">
-	<div class="alert alert-danger alert-dismissible fade in hidden" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-		{{response.returnMsg}}
+	<div class="alert alert-danger alert-dismissible fade in" style="display: {{response.alert_display}}" role="alert">
+				{{response.returnMsg}}
 	</div>
 	<h1>创建一个 FIMS 账号</h1>
 	<form name="sigupForm"  novalidate >

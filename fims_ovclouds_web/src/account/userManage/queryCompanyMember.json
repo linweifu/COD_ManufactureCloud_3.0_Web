@@ -4,6 +4,26 @@
     "contents": [
         {
             "userSid": "加密后的Sid",
+            "userName": "小谢",
+            "userPurview": "0"
+        },
+        {
+            "userSid": "加密后的Sid",
+            "userName": "阿杜",
+            "userPurview": "1"
+        },
+        {
+            "userSid": "加密后的Sid",
+            "userName": "大黄",
+            "userPurview": "2"
+        },
+        {
+            "userSid": "加密后的Sid",
+            "userName": "大黄",
+            "userPurview": "2"
+        },        
+        {
+            "userSid": "加密后的Sid",
             "userName": "大黄",
             "userPurview": "2"
         },
@@ -12,5 +32,9 @@
             "userName": "大黄",
             "userPurview": "2"
         }
+        
+
+
+
     ]
 }

@@ -4,4 +4,7 @@ FIMS.controller('userManageCtrl', ['$scope','$location','userManageService',
 	$scope.userManageBack = function(){
 		$location.path("account_index/chooseModule").replace();
 	}
+	userManageService.queryMember();
+	$scope.companyMem =  userManageService.companyMem;
+	console.log(userManageService.companyMem);
 }])

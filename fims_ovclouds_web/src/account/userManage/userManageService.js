@@ -1,6 +1,8 @@
 FIMS.factory('userManageService', ['$location','$http', function($location,$http){
 	var userManage = {};
-	userManage.companyMem = [];
+	userManage.companyMem = {
+		"array": []
+	};
 	
 	userManage.genLink = function(){
 		$http({
@@ -38,9 +40,22 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 		})
 		.success(function(data) {
 			if (data.code == 'N01') {
-				$location.path('account_index/agreeMem');
-				localStorage.setItem('inlink',data.contents);	
+				userManage.companyMem.array = data.contents;
+				for(var i=0;i<userManage.companyMem.array.length;i++) {
+					switch(userManage.companyMem.array[i].userPurview) {
+						case '0' : 
+							userManage.companyMem.array[i].userPurview = "超级管理员";
+							break;
+						case '1' : 
+							userManage.companyMem.array[i].userPurview = "公司管理员";
+							break;
+						case '2' :
+							userManage.companyMem.array[i].userPurview = "普通成员";
+							break;
+					}
+				}
 			}
+			console.log(userManage.companyMem.array);
 		})
 	}
 

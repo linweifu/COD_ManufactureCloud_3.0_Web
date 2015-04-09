@@ -75,6 +75,9 @@ FIMS.controller('userManageCtrl', ['$scope','$location','userManageService',
 	$scope.userManageBack = function(){
 		$location.path("account_index/chooseModule").replace();
 	}
+	userManageService.queryMember();
+	$scope.companyMem =  userManageService.companyMem;
+	console.log(userManageService.companyMem);
 }])
 FIMS.controller('agreeMemCtrl', ['$scope','$location','$http',
 	function($scope,$location,$http){
@@ -308,7 +311,7 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
                     }
                 }else {
                     sigup.response.returnMsg = data.message;
-                    sigup.response.userIdStatus = "has-error";
+                    sigup.response.emailStatus = "has-error";
                     sigup.response.alert_display = "block";
                 }
             }).error(function(){
@@ -316,8 +319,7 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
             });
         }else {
             sigup.response.pwTextShow = "block";
-            console.log(sigup.response.pwTextShow);
-        }
+         }
     }
 
     return sigup;
@@ -488,8 +490,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.queryJoinedCompanies = function(){
             $http({
                 method: 'POST',
-                url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
-                // url: "account/chooseTeam/queryJoinedCompanies.json,
+                // url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
+                url: "account/chooseTeam/queryJoinedCompanies.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -517,8 +519,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
        chooseTeam.setWorkingCompany = function(sid){
             $http({
                 method: 'POST',
-                url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
-                // url: "account/chooseTeam/setWorkingCompany.json",
+                // url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
+                url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -584,7 +586,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
 FIMS.factory('userManageService', ['$location','$http', function($location,$http){
 	var userManage = {};
-	userManage.companyMem = [];
+	userManage.companyMem = {
+		"array": []
+	};
 	
 	userManage.genLink = function(){
 		$http({
@@ -622,9 +626,22 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 		})
 		.success(function(data) {
 			if (data.code == 'N01') {
-				$location.path('account_index/agreeMem');
-				localStorage.setItem('inlink',data.contents);	
+				userManage.companyMem.array = data.contents;
+				for(var i=0;i<userManage.companyMem.array.length;i++) {
+					switch(userManage.companyMem.array[i].userPurview) {
+						case '0' : 
+							userManage.companyMem.array[i].userPurview = "超级管理员";
+							break;
+						case '1' : 
+							userManage.companyMem.array[i].userPurview = "公司管理员";
+							break;
+						case '2' :
+							userManage.companyMem.array[i].userPurview = "普通成员";
+							break;
+					}
+				}
 			}
+			console.log(userManage.companyMem.array);
 		})
 	}
 
