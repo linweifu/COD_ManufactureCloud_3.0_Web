@@ -1,0 +1,16 @@
+{
+    "code": "N01",
+    "message": "获取公司用户信息成功",
+    "contents": [
+        {
+            "userSid": "加密后的Sid",
+            "userName": "大黄",
+            "userPurview": "2"
+        },
+        {
+            "userSid": "加密后的Sid",
+            "userName": "大黄",
+            "userPurview": "2"
+        }
+    ]
+}

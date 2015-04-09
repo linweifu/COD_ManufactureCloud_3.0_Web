@@ -110,7 +110,43 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 
 
 	$scope.agreeJoin = function(){
-		console.log($scope.applyInfo);
+		// console.log($scope.applyInfo);
+		var subContent = [];
+		var subContentBody = {};
+		// console.log(subContent);
+		// console.log($scope.applyInfo.length);
+
+		// subContentBody = {
+		// 	"applyJoinSid":($scope.applyInfo)[0].applyJoinSid,
+		// 	"userApplyStatus":($scope.applyInfo)[0].userApplyStatus
+		// }
+		// console.log(subContentBody);
+
+		for(var i =0;i<$scope.applyInfo.length;i++){
+			subContentBody = {
+				"applyJoinSid":($scope.applyInfo)[i].applyJoinSid,
+				"userApplyStatus":($scope.applyInfo)[i].userApplyStatus
+			}
+			subContent.push(subContentBody);
+		}
+		$http({
+            method: 'POST',
+			// url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+            url: "account/applyApproval/applyApproval.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "contents": subContent
+            }
+        }).success(function (data) {
+            if(data.code == "N01"){
+            	console.log($scope.applyInfo);
+            	localStorage.setItem("applyJoin",JSON.stringify($scope.applyInfo));
+            	$location.path('account_index/chooseModule').replace();
+            }else{console.log(data.message);}
+        }).error(function(){
+            console.log('http error')
+        });
 	}
 
 	$scope.applyApprovalBack = function(){

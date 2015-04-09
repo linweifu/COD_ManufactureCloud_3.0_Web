@@ -11,7 +11,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/company/createNewCompany',
-                url: "account/chooseTeam/createNewCompany.json",
+                // url: "account/chooseTeam/createNewCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -37,7 +37,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
-                url: "account/chooseTeam/queryJoinedCompanies.json",
+                // url: "account/chooseTeam/queryJoinedCompanies.json,
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -66,7 +66,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
-                url: "account/chooseTeam/setWorkingCompany.json",
+                // url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -81,9 +81,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     $location.path("account_index/chooseModule");
                 }else{
-                    console.log("获取失败！");
-                    localStorage.clear();
-                    $location.path('login').replace();
+                    // console.log("获取失败！");
+                    // localStorage.clear();
+                    // $location.path('login').replace();
                 }
                 // console.log(chooseTeam.companyList)
                 

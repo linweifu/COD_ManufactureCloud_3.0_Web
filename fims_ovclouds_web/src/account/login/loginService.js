@@ -34,7 +34,8 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
             data: {
                 "userId": login.user.email,
                 // "password": login.user.password
-                "password": hex_md5(login.user.password)
+                "password": hex_md5(login.user.password),
+                "token": "hzc"
             }
         }).success(function (data) {
             if(data.code == "N01"){

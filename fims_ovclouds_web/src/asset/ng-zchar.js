@@ -110,7 +110,43 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 
 
 	$scope.agreeJoin = function(){
-		console.log($scope.applyInfo);
+		// console.log($scope.applyInfo);
+		var subContent = [];
+		var subContentBody = {};
+		// console.log(subContent);
+		// console.log($scope.applyInfo.length);
+
+		// subContentBody = {
+		// 	"applyJoinSid":($scope.applyInfo)[0].applyJoinSid,
+		// 	"userApplyStatus":($scope.applyInfo)[0].userApplyStatus
+		// }
+		// console.log(subContentBody);
+
+		for(var i =0;i<$scope.applyInfo.length;i++){
+			subContentBody = {
+				"applyJoinSid":($scope.applyInfo)[i].applyJoinSid,
+				"userApplyStatus":($scope.applyInfo)[i].userApplyStatus
+			}
+			subContent.push(subContentBody);
+		}
+		$http({
+            method: 'POST',
+			// url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+            url: "account/applyApproval/applyApproval.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "contents": subContent
+            }
+        }).success(function (data) {
+            if(data.code == "N01"){
+            	console.log($scope.applyInfo);
+            	localStorage.setItem("applyJoin",JSON.stringify($scope.applyInfo));
+            	$location.path('account_index/chooseModule').replace();
+            }else{console.log(data.message);}
+        }).error(function(){
+            console.log('http error')
+        });
 	}
 
 	$scope.applyApprovalBack = function(){
@@ -182,7 +218,8 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
             data: {
                 "userId": login.user.email,
                 // "password": login.user.password
-                "password": hex_md5(login.user.password)
+                "password": hex_md5(login.user.password),
+                "token": "hzc"
             }
         }).success(function (data) {
             if(data.code == "N01"){
@@ -317,8 +354,8 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
     account_index.exitSystem = function(){
         $http({
             method: 'post',
-            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
-            url: 'account/account_index/exitSystem.json',
+            url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            // url: 'account/account_index/exitSystem.json',
             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid')
@@ -426,7 +463,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/company/createNewCompany',
-                url: "account/chooseTeam/createNewCompany.json",
+                // url: "account/chooseTeam/createNewCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -452,7 +489,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
-                url: "account/chooseTeam/queryJoinedCompanies.json",
+                // url: "account/chooseTeam/queryJoinedCompanies.json,
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -481,7 +518,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
-                url: "account/chooseTeam/setWorkingCompany.json",
+                // url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -496,9 +533,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     $location.path("account_index/chooseModule");
                 }else{
-                    console.log("获取失败！");
-                    localStorage.clear();
-                    $location.path('login').replace();
+                    // console.log("获取失败！");
+                    // localStorage.clear();
+                    // $location.path('login').replace();
                 }
                 // console.log(chooseTeam.companyList)
                 
@@ -547,10 +584,12 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
 FIMS.factory('userManageService', ['$location','$http', function($location,$http){
 	var userManage = {};
+	userManage.companyMem = [];
+	
 	userManage.genLink = function(){
 		$http({
 			method: 'POST',
-		 // url: config.HOST+'/api/2.0/bp/account//mailbox_link/generateInvitationLink',
+		 // url: config.HOST+'/api/2.0/bp/account/mailbox_link/generateInvitationLink',
             url: "account/userManage/generateInvitationLink.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
@@ -567,6 +606,28 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 			}
 		})
 	}
+
+	userManage.queryMember = function(){
+		$http({
+			method: 'POST',
+		 // url: config.HOST+'/api/2.0/bp//account/company/queryCompanyMember',
+            url: "account/userManage/queryCompanyMember.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"contents": {
+					"companySid": localStorage.getItem("cSid")
+				}
+			}
+		})
+		.success(function(data) {
+			if (data.code == 'N01') {
+				$location.path('account_index/agreeMem');
+				localStorage.setItem('inlink',data.contents);	
+			}
+		})
+	}
+
 	return userManage;
 }])
 FIMS.factory('agreeMemService', ['$location','$http', function($location,$http){

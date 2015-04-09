@@ -29,8 +29,8 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
     account_index.exitSystem = function(){
         $http({
             method: 'post',
-            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
-            url: 'account/account_index/exitSystem.json',
+            url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            // url: 'account/account_index/exitSystem.json',
             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid')
