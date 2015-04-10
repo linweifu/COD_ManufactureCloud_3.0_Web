@@ -1,8 +1,7 @@
 {
     "code": "N01",
     "message": "获取成功",
-    "contents": {
-        "companyList": [
+    "contents":[
             {
                 "companySid": "=1fq",
                 "companyShortName": "武汉网酷科技有限公司",
@@ -14,5 +13,4 @@
                 "userApplyStatus":"1"
             }
         ]
-    }
 }

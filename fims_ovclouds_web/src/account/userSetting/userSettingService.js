@@ -9,8 +9,8 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
     userSetting.subData = function(){
         $http({
             method: 'post',
-            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
-            url: 'account/userSetting/userSetting.json',
+            url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            // url: 'account/userSetting/userSetting.json',
             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 // "contactPhone": "13026397003",

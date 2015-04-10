@@ -7,8 +7,8 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 	userManage.genLink = function(){
 		$http({
 			method: 'POST',
-		 // url: config.HOST+'/api/2.0/bp/account/mailbox_link/generateInvitationLink',
-            url: "account/userManage/generateInvitationLink.json",
+		 url: config.HOST+'/api/2.0/bp/account/mailbox_link/generateInvitationLink',
+            // url: "account/userManage/generateInvitationLink.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -28,8 +28,8 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 	userManage.queryMember = function(){
 		$http({
 			method: 'POST',
-		 // url: config.HOST+'/api/2.0/bp//account/company/queryCompanyMember',
-            url: "account/userManage/queryCompanyMember.json",
+		 url: config.HOST+'/api/2.0/bp//account/company/queryCompanyMember',
+            // url: "account/userManage/queryCompanyMember.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

@@ -16,7 +16,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 data: {
                     "sid": localStorage.getItem("sid"),
                     "contents":{
-                       "companyName":  chooseTeam.createCom.name,
+                       "companyShortName":  chooseTeam.createCom.name,
                        "userJobNumber": chooseTeam.createCom.cid
                     }
                 }
@@ -46,7 +46,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 console.log(data);
                 chooseTeam.companyList=[];
                 if (data.code == 'N01') {
-                    chooseTeam.companyList = data.contents.companyList;
+                    chooseTeam.companyList = data.contents;
                     for(var i=0;i<chooseTeam.companyList.length;i++){
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==1)?'':'disabled';
                     }

@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 				"src/account/chooseTeam/chooseTeamController.js","src/account/chooseModule/chooseModuleCtrl.js",
 				"src/account/userManage/userManageCtrl.js","src/account/agreeMem/agreeMemCtrl.js",
 				"src/account/applyApproval/applyApprovalCtrl.js","src/account/company_index/.company_indexCtrl.js",
-				"src/account/joinCo/joinCoCtrl.js"
+				"src/account/joinCo/joinCoCtrl.js","src/account/comSetting/comSettingCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"
 			},
@@ -74,7 +74,8 @@ module.exports = function(grunt) {
 			files: ["src/common/routes.js","src/account/login/*.js","src/account/sigup/*.js",
 			"src/account/account_index/*.js","src/account/userSetting/*.js","src/account/chooseTeam/*.js",
 			"src/account/chooseModule/*.js","src/account/userManage/*.js","src/account/agreeMem/*.js",
-			"src/account/applyApproval/*.js","src/account/company_index/*.js","src/account/joinCo/*.js"
+			"src/account/applyApproval/*.js","src/account/company_index/*.js","src/account/joinCo/*.js",
+			"src/account/comSetting/*.js"
 			],
         	// tasks: ['concat','less', 'cssmin', 'uglify']
         	tasks: ['concat', 'uglify']

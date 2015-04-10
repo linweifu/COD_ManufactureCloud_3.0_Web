@@ -15,31 +15,24 @@
 
 <div id="container" class="container">
 	<h3>公司信息设置</h3>
-	<form class="form-horizontal" id="form-horizontal">
+	<form class="form-horizontal" id="form-horizontal" name="companySetting" novalidate>
 		<div class="form-group">
 			<label for="comName" class="control-label left">公司简称</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="comName" placeholder="武汉网酷科技有限公司">
+				<input type="text" class="form-control" id="comName" name="shortName" ng-model="comSetting.shortName" required>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="name" class="left control-label">公司全称</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name" value="张三">
+				<input type="text" class="form-control" id="name" name="name" ng-model="comSetting.name" required>
 			</div>
 		</div>
 		<div class="form-group">
 			<label class="left control-label">公司行业</label>
 			<div class="col-sm-3">
-				<select class="form-control">
-				  <option>1</option>
-				  <option>2</option>
-				  <option>3</option>
-				  <option>4</option>
-				  <option>5</option>
-				</select>
-			</div>
-			<div class="col-sm-3">
+				<!-- <select class="form-control" ng-model="comSetting.dictionary.country" ng-options="select as label for value in array"></select> -->
+
 				<select class="form-control">
 				  <option>1</option>
 				  <option>2</option>
@@ -61,22 +54,12 @@
 		<div class="form-group">
 			<label class="left control-label">公司地址</label>
 			<div class="col-sm-3">
-				<select class="form-control">
-				  <option>1</option>
-				  <option>2</option>
-				  <option>3</option>
-				  <option>4</option>
-				  <option>5</option>
+				<select class="form-control" ng-disabled="true">
+				  <option>中国</option>
 				</select>
 			</div>
 			<div class="col-sm-3">
-				<select class="form-control">
-				  <option>1</option>
-				  <option>2</option>
-				  <option>3</option>
-				  <option>4</option>
-				  <option>5</option>
-				</select>
+				<select class="form-control" ng-model="comSetting"></select>
 			</div>
 			<div class="col-sm-3">
 				<select class="form-control">
@@ -89,26 +72,26 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="name" class="left control-label">公司邮编</label>
+			<label for="comCode" class="left control-label">公司邮编</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name" >
+				<input type="text" class="form-control" id="comCode" name="comCode" ng-model="comSetting.comCode" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="name" class="left control-label">公司电话</label>
+			<label for="comTel" class="left control-label">公司电话</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name" >
+				<input type="text" class="form-control" id="comTel" name="comTel" ng-model="comSetting.comTel" required>
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="name" class="left control-label">公司网址</label>
+			<label for="comWeb" class="left control-label">公司网址</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name">
+				<input type="text" class="form-control" id="comWeb" name="comWeb" ng-model="comSetting.comWeb" required>
 			</div>
 		</div>
 		
 
-		<button class="btn btn-success" style="padding: .3em .6em;">保存修改</button
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="companySetting.$invalid">保存修改</button
 	</form>
 
 <!-- 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>
