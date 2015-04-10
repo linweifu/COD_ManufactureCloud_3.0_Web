@@ -55,7 +55,7 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 					}
 				}
 			}
-			console.log(userManage.companyMem.array);
+			// console.log(userManage.companyMem.array);
 		})
 	}
 

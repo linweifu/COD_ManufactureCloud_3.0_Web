@@ -1,5 +1,6 @@
 var config = {
-	HOST : "http://ovclouds.com"
+	HOST : "http://ovclouds.com",
+	DebugStatus: "true"
 }
 var FIMS = angular.module('FIMS', ['ui.router']);
 FIMS.config([

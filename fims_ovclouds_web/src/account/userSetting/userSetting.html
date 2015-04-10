@@ -25,12 +25,25 @@
 		<div class="form-group">
 			<label for="name" class="col-sm-1 control-label">名字</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name" ng-model="usersetting.userName" required>
+				<input type="text" class="form-control" id="name" ng-disabled="true" ng-model="usersetting.userName" required >
 			</div>
+			<a class="col-sm-2 control-label link">修改名字</a>
 		</div>
 		<div class="form-group">
 			<label for="password" class="col-sm-1 control-label">密码</label>
 			<a class="col-sm-2 control-label link">修改密码</a>
+		</div>
+		<div class="form-group">
+			<label for="contactPhone" class="col-sm-1 control-label" ng-model="usersetting.contactPhone">电话</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="contactPhone" ng-model="usersetting.contactPhone" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="contactAddress" class="col-sm-1 control-label">地址</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="contactAddress" ng-model="usersetting.contactAddress" required>
+			</div>
 		</div>
 		<button class="btn btn-success" style="padding: .3em .6em;"  ng-click="subData();" ng-disabled="userSetting.$invalid">保存修改</button
 	</form>

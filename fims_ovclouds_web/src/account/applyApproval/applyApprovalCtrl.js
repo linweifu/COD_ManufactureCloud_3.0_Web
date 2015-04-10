@@ -1,8 +1,5 @@
 FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($scope,$location,$http){
 	$scope.applyInfo = JSON.parse(localStorage.getItem('applyJoin'));
-	console.log($scope.applyInfo);
-
-
 	$scope.agreeJoin = function(){
 		// console.log($scope.applyInfo);
 		var subContent = [];

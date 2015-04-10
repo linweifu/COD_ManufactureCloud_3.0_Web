@@ -7,7 +7,7 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 		$scope.getApplies = function(){
 			 $http({
 	            method: 'post',
-	            // url: config.HOST + '/api/2.0/bp/account/releation/getAppliesJoinCompany',
+	            // url: config.HOST + '/api/2.0/bp/account/relation/getAppliesJoinCompany',
 	            url: 'account/chooseModule/getAppliesJoinCompany.json',
 	            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 	            data: {

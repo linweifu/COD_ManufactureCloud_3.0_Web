@@ -2,7 +2,9 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
     var userSetting = {};
     userSetting.user = {
         "email": localStorage.getItem('email'),
-        "userName": localStorage.getItem('userName')
+        "userName": localStorage.getItem('userName'),
+        "contactPhone": "",
+        "contactAddress": ""
     };
     userSetting.subData = function(){
         $http({
@@ -15,7 +17,8 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
                 // "contactAddress": "联系地址",
                 "sid": localStorage.getItem('sid'),
                 "contents": {
-                    "userName": userSetting.user.userName
+                    "contactPhone": userSetting.user.contactPhone,
+                    "contactAddress": userSetting.user.contactAddress
                 }
             }
         }).success(function(data){

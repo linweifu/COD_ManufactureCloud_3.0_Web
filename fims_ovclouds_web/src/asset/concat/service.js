@@ -236,7 +236,9 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
     var userSetting = {};
     userSetting.user = {
         "email": localStorage.getItem('email'),
-        "userName": localStorage.getItem('userName')
+        "userName": localStorage.getItem('userName'),
+        "contactPhone": "",
+        "contactAddress": ""
     };
     userSetting.subData = function(){
         $http({
@@ -249,7 +251,8 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
                 // "contactAddress": "联系地址",
                 "sid": localStorage.getItem('sid'),
                 "contents": {
-                    "userName": userSetting.user.userName
+                    "contactPhone": userSetting.user.contactPhone,
+                    "contactAddress": userSetting.user.contactAddress
                 }
             }
         }).success(function(data){
@@ -303,17 +306,17 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.queryJoinedCompanies = function(){
             $http({
                 method: 'POST',
-                // url: config.HOST+'/api/2.0/bp/account/releation/queryJoinedCompanies',
-                url: "account/chooseTeam/queryJoinedCompanies.json",
+                url: config.HOST+'/api/2.0/bp/account/relation/queryJoinedCompanies',
+                // url: "account/chooseTeam/queryJoinedCompanies.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
                 }
             }).success(function (data){
+                console.log(data);
                 chooseTeam.companyList=[];
-
                 if (data.code == 'N01') {
-                    chooseTeam.companyList = data.contents.joinedCompanies;
+                    chooseTeam.companyList = data.contents.companyList;
                     for(var i=0;i<chooseTeam.companyList.length;i++){
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==1)?'':'disabled';
                     }
@@ -332,8 +335,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
        chooseTeam.setWorkingCompany = function(sid){
             $http({
                 method: 'POST',
-                // url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
-                url: "account/chooseTeam/setWorkingCompany.json",
+                url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
+                // url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -454,7 +457,7 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 					}
 				}
 			}
-			console.log(userManage.companyMem.array);
+			// console.log(userManage.companyMem.array);
 		})
 	}
 
