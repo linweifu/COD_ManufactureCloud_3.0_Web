@@ -51,8 +51,8 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 		$scope.getApplies = function(){
 			 $http({
 	            method: 'post',
-	            // url: config.HOST + '/api/2.0/bp/account/relation/getAppliesJoinCompany',
-	            url: 'account/chooseModule/getAppliesJoinCompany.json',
+	            url: config.HOST + '/api/2.0/bp/account/relation/getAppliesJoinCompany',
+	            // url: 'account/chooseModule/getAppliesJoinCompany.json',
 	            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 	            data: {
 	                "sid": localStorage.getItem('sid'),
@@ -131,8 +131,8 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 		}
 		$http({
             method: 'POST',
-			// url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
-            url: "account/applyApproval/applyApproval.json",
+			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+            // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),
@@ -257,14 +257,13 @@ FIMS.controller('comSettingCtrl', ['$scope','$location',function($scope,$locatio
 		}
 	};
 
-	comSetting.getCountry = function(){
+	comSetting.getProvince = function(){
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
-				"sid": localStorage.getItem('sid'),
-				"countryRegionId": ''
+				"sid": localStorage.getItem('sid')
 			}
 
 		})
@@ -284,10 +283,6 @@ FIMS.controller('comSettingCtrl', ['$scope','$location',function($scope,$locatio
         }).error(function () {
             console.log('error');
         });
-	}
-
-	comSetting.getProvince =function(){
-
 	}
 
 	comSetting.getCity = function(){
@@ -551,8 +546,8 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
     userSetting.subData = function(){
         $http({
             method: 'post',
-            // url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
-            url: 'account/userSetting/userSetting.json',
+            url: config.HOST + '/api/2.0/bp/account/user/exitSystem',
+            // url: 'account/userSetting/userSetting.json',
             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 // "contactPhone": "13026397003",
@@ -588,8 +583,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.subData = function(){
             $http({
                 method: 'POST',
-                // url: config.HOST+'/api/2.0/bp/account/company/createNewCompany',
-                url: "account/chooseTeam/createNewCompany.json",
+                url: config.HOST+'/api/2.0/bp/account/company/createNewCompany',
+                // url: "account/chooseTeam/createNewCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -614,8 +609,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         chooseTeam.queryJoinedCompanies = function(){
             $http({
                 method: 'POST',
-                // url: config.HOST+'/api/2.0/bp/account/relation/queryJoinedCompanies',
-                url: "account/chooseTeam/queryJoinedCompanies.json",
+                url: config.HOST+'/api/2.0/bp/account/relation/queryJoinedCompanies',
+                // url: "account/chooseTeam/queryJoinedCompanies.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -643,8 +638,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
        chooseTeam.setWorkingCompany = function(sid){
             $http({
                 method: 'POST',
-                // url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
-                url: "account/chooseTeam/setWorkingCompany.json",
+                url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
+                // url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem("sid"),
@@ -717,8 +712,8 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 	userManage.genLink = function(){
 		$http({
 			method: 'POST',
-		 // url: config.HOST+'/api/2.0/bp/account/mailbox_link/generateInvitationLink',
-            url: "account/userManage/generateInvitationLink.json",
+		 url: config.HOST+'/api/2.0/bp/account/mailbox_link/generateInvitationLink',
+            // url: "account/userManage/generateInvitationLink.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -738,8 +733,8 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 	userManage.queryMember = function(){
 		$http({
 			method: 'POST',
-		 // url: config.HOST+'/api/2.0/bp//account/company/queryCompanyMember',
-            url: "account/userManage/queryCompanyMember.json",
+		 url: config.HOST+'/api/2.0/bp//account/company/queryCompanyMember',
+            // url: "account/userManage/queryCompanyMember.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

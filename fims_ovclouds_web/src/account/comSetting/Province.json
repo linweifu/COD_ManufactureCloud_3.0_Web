@@ -1,0 +1,16 @@
+{
+    "code": "N01",
+    "message": "获取省份成功",
+    "contents": [
+        {
+            "provinceCode": "86#31",
+            "provinceName": "北京市",
+            "provinceEnglishName": "Beijing",
+            "display":"1"
+        },{
+            "provinceCode": "86#12",
+            "provinceName": "天津市",
+            "provinceEnglishName": "hebei",
+            "display":"2"
+        }]
+}

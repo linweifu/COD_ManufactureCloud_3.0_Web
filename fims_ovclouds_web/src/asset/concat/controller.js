@@ -51,8 +51,8 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 		$scope.getApplies = function(){
 			 $http({
 	            method: 'post',
-	            // url: config.HOST + '/api/2.0/bp/account/relation/getAppliesJoinCompany',
-	            url: 'account/chooseModule/getAppliesJoinCompany.json',
+	            url: config.HOST + '/api/2.0/bp/account/relation/getAppliesJoinCompany',
+	            // url: 'account/chooseModule/getAppliesJoinCompany.json',
 	            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 	            data: {
 	                "sid": localStorage.getItem('sid'),
@@ -131,8 +131,8 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 		}
 		$http({
             method: 'POST',
-			// url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
-            url: "account/applyApproval/applyApproval.json",
+			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+            // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),
@@ -257,14 +257,13 @@ FIMS.controller('comSettingCtrl', ['$scope','$location',function($scope,$locatio
 		}
 	};
 
-	comSetting.getCountry = function(){
+	comSetting.getProvince = function(){
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
-				"sid": localStorage.getItem('sid'),
-				"countryRegionId": ''
+				"sid": localStorage.getItem('sid')
 			}
 
 		})
@@ -284,10 +283,6 @@ FIMS.controller('comSettingCtrl', ['$scope','$location',function($scope,$locatio
         }).error(function () {
             console.log('error');
         });
-	}
-
-	comSetting.getProvince =function(){
-
 	}
 
 	comSetting.getCity = function(){
