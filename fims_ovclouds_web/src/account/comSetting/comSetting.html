@@ -13,18 +13,19 @@
 
 </style>
 
-<div id="container" class="container">
+<div id="container" class="container" ng-controller="comSettingCtrl">
 	<h3>公司信息设置</h3>
 	<form class="form-horizontal" id="form-horizontal" name="companySetting" novalidate>
 		<div class="form-group">
 			<label for="comName" class="control-label left">公司简称</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="comName" name="shortName" ng-model="comSetting.shortName" required>
+				<input type="text" class="form-control" id="comName" name="shortName" ng-model="comSetting.shortName" ng-disabled="true" required> 
 			</div>
+			<a class="col-sm-2 control-label link">修改公司简称</a>
 		</div>
 		<div class="form-group">
 			<label for="name" class="left control-label">公司全称</label>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<input type="text" class="form-control" id="name" name="name" ng-model="comSetting.name" required>
 			</div>
 		</div>
@@ -59,16 +60,10 @@
 				</select>
 			</div>
 			<div class="col-sm-3">
-				<select class="form-control" ng-model="comSetting.address.province" ng-options="select as label for value in array"></select>
+				<select class="form-control" ng-model="comSetting.address.province" ng-options="o as o.name for o in comSetting.dictionary.province" ng-click="comSetting.getCity()"></select>
 			</div>
 			<div class="col-sm-3">
-				<select class="form-control">
-				  <option>1</option>
-				  <option>2</option>
-				  <option>3</option>
-				  <option>4</option>
-				  <option>5</option>
-				</select>
+				<select class="form-control" ng-model="comSetting.address.city" ng-options="o as o.name for o in comSetting.dictionary.city"></select>
 			</div>
 		</div>
 		<div class="form-group">

@@ -1,0 +1,16 @@
+{
+    "code": "N01",
+    "message": "获取省份成功",
+    "contents": [
+        {
+            "cityCode": "86#31",
+            "cityName": "北京市",
+            "cityEnglishName": "Beijing",
+            "display":"1"
+        },{
+            "cityCode": "86#12",
+            "cityName": "天津市",
+            "cityEnglishName": "hebei",
+            "display":"2"
+        }]
+}
