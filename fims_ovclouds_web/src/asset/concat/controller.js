@@ -242,9 +242,21 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 			// country: [],
 			province: [],
 			city: [],
-			industry: [],
-			industry2: []
+			iType: [],
+			iInfo: []
 		},
+		industry: {
+			iType: {
+				name: '',
+				code: ''
+			},
+			iInfo: {
+				name: '',
+				code: ''
+			}
+
+		},
+
 		address: {
 			province: {
 				name: '',
@@ -256,6 +268,43 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 			}
 		}
 	};
+
+	comSetting.improveComInfo = function(){
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
+			url: "account/comSetting/improveComInfo.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				 "contents": {
+			        "companySid": localStorage.getItem("cSid"),
+			        "companyShortName": comSetting.shortName,
+			        "companyFullName": comSetting.name,
+			        "companyRegionCode": comSetting.address.province.code,
+			        "companyRegion": comSetting.address.province.name,
+			        "companyProvinceCode": comSetting.address.city.code,
+			        "companyProvince": comSetting.address.city.name,
+			        "companyIndustryCode": comSetting.industry.iInfo.code,
+			        "companyIndustry": comSetting.industry.iInfo.name,
+			        "companyZipCode": comSetting.comCode,
+			        "companyPhone": comSetting.comTel,
+			        "companyWebsite": comSetting.comWeb
+			    }
+			}
+		})
+		.success(function(data){
+            if (data.code=="N01"){
+            	alert("公司信息更新成功");
+            	$location.path("account_index/chooseModule");
+            }
+            else {
+                console.log(data.message);
+            }
+        }).error(function () {
+            console.log('error');
+        });
+	}
 
 	comSetting.getProvince = function(){
 		$http({
@@ -317,10 +366,63 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	}
 
 	comSetting.queryType = function(){
-
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
+			url: "account/comSetting/Industry.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid')
+			}
+		})
+		.success(function(data){
+            if (data.code=="N01"){
+                comSetting.dictionary.iType = [];
+                for (var i=0;i < data.contents.length;i++){
+                    comSetting.dictionary.iType.push({
+                        "code": data.contents[i].companyIndustryCode,
+                        "name" : data.contents[i].companyIndustry
+                    });
+                }   
+            }
+            else {
+                console.log(data.message);
+            }
+        }).error(function () {
+            console.log('error');
+        });
 	}
 
-	comSetting.queryIndustry = function(){
+	comSetting.queryType();
+
+
+	comSetting.queryInfo = function(){
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
+			url: "account/comSetting/Industry.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companyIndustryCode": comSetting.industry.iType.code
+			}
+		})
+		.success(function(data){
+            if (data.code=="N01"){
+                comSetting.dictionary.iInfo = [];
+                for (var i=0;i < data.contents.length;i++){
+                    comSetting.dictionary.iInfo.push({
+                        "code": data.contents[i].companyIndustryCode,
+                        "name" : data.contents[i].companyIndustry
+                    });
+                }   
+            }
+            else {
+                console.log(data.message);
+            }
+        }).error(function () {
+            console.log('error');
+        });
 
 	}
 

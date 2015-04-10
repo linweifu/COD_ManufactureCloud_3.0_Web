@@ -1,0 +1,23 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": [{
+ "companyIndustryCode": "C131111",
+ "companyIndustry": " 谷物磨制",
+ "companyIndustryEnglishName": "",
+ "display": 0
+ },
+ {
+ "companyIndustryCode": "C13211",
+ "companyIndustry": " 饲料加工 ",
+ "companyIndustryEnglishName": "",
+ "display": 0
+ },
+ {
+ "companyIndustryCode": "C133111",
+ "companyIndustry": " 植物油加工",
+ "companyIndustryEnglishName": "",
+ "display": 0
+ }
+       ]
+}
