@@ -7,7 +7,6 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         "contactAddress": ""
     };
     userSetting.subData = function(){
-        alert("Start");
         $http({
             method: 'post',
             url: config.HOST + '/api/2.0/bp/account/user/improveUserInfo',
