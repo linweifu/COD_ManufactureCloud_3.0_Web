@@ -131,7 +131,7 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 		}
 		$http({
             method: 'POST',
-			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+			url: config.HOST+"/api/2.0/bp/account/relation/ratifyJoinCompany",
             // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
@@ -157,7 +157,7 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 	$scope.refuseJoin = function(index,aid){
 	 	$http({
             method: 'POST',
-			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+			url: config.HOST+"/api/2.0/bp/account/relation/ratifyJoinCompany",
             // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
@@ -767,7 +767,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
        chooseTeam.setWorkingCompany = function(sid){
             $http({
                 method: 'POST',
-                url: config.HOST+'/api/2.0/bp/account/releation/setWorkingCompany',
+                url: config.HOST+'/api/2.0/bp/account/relation/setWorkingCompany',
                 // url: "account/chooseTeam/setWorkingCompany.json",
                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {

@@ -131,7 +131,7 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 		}
 		$http({
             method: 'POST',
-			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+			url: config.HOST+"/api/2.0/bp/account/relation/ratifyJoinCompany",
             // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
@@ -157,7 +157,7 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 	$scope.refuseJoin = function(index,aid){
 	 	$http({
             method: 'POST',
-			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+			url: config.HOST+"/api/2.0/bp/account/relation/ratifyJoinCompany",
             // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
