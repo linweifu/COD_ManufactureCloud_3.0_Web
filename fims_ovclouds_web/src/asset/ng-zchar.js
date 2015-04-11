@@ -542,18 +542,11 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
                 }
             }).success(function (data) {
                 if(data.code == "N01"){
-                    console.log(data);
+                    localStorage.setItem('sid',localData.sid);    
+                    localStorage.setItem('userName',localData.userName);    
+                    localStorage.setItem("email",localData.userId);
                     $location.path("account_index/chooseTeam");
-                    // window.localStorage.clear();
-                    // $.cookie("userId",null,{path:"/"});
-                    var storage = window.localStorage;
-                    var localData = data.contents;
-                    if(storage){
-                        storage.setItem('sid',localData.sid);    
-                        storage.setItem('userName',localData.userName);    
-                    }else{
-                        // $.cookie('email',localData);
-                    }
+                   
                 }else {
                     sigup.response.returnMsg = data.message;
                     sigup.response.emailStatus = "has-error";
@@ -753,10 +746,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==0)?'':'disabled';
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
-                }else{
-                    console.log(data.message+"[queryJoinedCompanies]");
-                    // localStorage.clear();
-                    // $location.path('login').replace();
+                }else if(data.code=="E00"){
+                    localStorage.clear();
+                    $location.path('login').replace();
                 }
                 
             }).error(function (data){

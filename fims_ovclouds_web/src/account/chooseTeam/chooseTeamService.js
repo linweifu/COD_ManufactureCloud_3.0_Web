@@ -51,10 +51,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==0)?'':'disabled';
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
-                }else{
-                    console.log(data.message+"[queryJoinedCompanies]");
-                    // localStorage.clear();
-                    // $location.path('login').replace();
+                }else if(data.code=="E00"){
+                    localStorage.clear();
+                    $location.path('login').replace();
                 }
                 
             }).error(function (data){

@@ -31,18 +31,11 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
                 }
             }).success(function (data) {
                 if(data.code == "N01"){
-                    console.log(data);
+                    localStorage.setItem('sid',localData.sid);    
+                    localStorage.setItem('userName',localData.userName);    
+                    localStorage.setItem("email",localData.userId);
                     $location.path("account_index/chooseTeam");
-                    // window.localStorage.clear();
-                    // $.cookie("userId",null,{path:"/"});
-                    var storage = window.localStorage;
-                    var localData = data.contents;
-                    if(storage){
-                        storage.setItem('sid',localData.sid);    
-                        storage.setItem('userName',localData.userName);    
-                    }else{
-                        // $.cookie('email',localData);
-                    }
+                   
                 }else {
                     sigup.response.returnMsg = data.message;
                     sigup.response.emailStatus = "has-error";
