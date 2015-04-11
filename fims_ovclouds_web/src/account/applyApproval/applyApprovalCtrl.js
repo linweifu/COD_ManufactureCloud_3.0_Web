@@ -48,8 +48,8 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 	$scope.refuseJoin = function(index,aid){
 	 	$http({
             method: 'POST',
-			// url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
-            url: "account/applyApproval/applyApproval.json",
+			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+            // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),

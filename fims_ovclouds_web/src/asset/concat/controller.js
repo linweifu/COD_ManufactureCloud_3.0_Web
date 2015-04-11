@@ -89,8 +89,8 @@ FIMS.controller('agreeMemCtrl', ['$scope','$location','$http',
 	$scope.regenLink = function(){
 		$http({
             method: 'post',
-            // url: config.HOST + '/api/2.0/bp/account/mailbox_link/regenerateInvitationLink',
-            url: 'account/agreeMem/regenerateInvitationLink.json',
+            url: config.HOST + '/api/2.0/bp/account/mailbox_link/regenerateInvitationLink',
+            // url: 'account/agreeMem/regenerateInvitationLink.json',
             headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),
@@ -157,8 +157,8 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 	$scope.refuseJoin = function(index,aid){
 	 	$http({
             method: 'POST',
-			// url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
-            url: "account/applyApproval/applyApproval.json",
+			url: config.HOST+"/api/2.0/bp/account/releation/ratifyJoinCompany",
+            // url: "account/applyApproval/applyApproval.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),
@@ -272,8 +272,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	comSetting.improveComInfo = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
-			url: "account/comSetting/improveComInfo.json",
+			url: config.HOST + "/api/2.0/bp/account/company/queryDicCountry",
+			// url: "account/comSetting/improveComInfo.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -309,8 +309,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	comSetting.getProvince = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
-			url: "account/comSetting/Province.json",
+			url: config.HOST + "/api/2.0/bp/account/dic/queryDicProvince",
+			// url: "account/comSetting/Province.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid')
@@ -339,8 +339,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	comSetting.getCity = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
-			url: "account/comSetting/City.json",
+			url: config.HOST + "/api/2.0/bp/account/dic/queryDicCity",
+			// url: "account/comSetting/City.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -368,8 +368,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	comSetting.queryType = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
-			url: "account/comSetting/Industry.json",
+			url: config.HOST + "/api/2.0/bp/account/dic/queryDicCompanyIndustryType",
+			// url: "account/comSetting/Industry.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid')
@@ -399,8 +399,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	comSetting.queryInfo = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCountry",
-			url: "account/comSetting/Industry.json",
+			url: config.HOST + "/api/2.0/bp/account/dic/queryDicCompanyIndustry",
+			// url: "account/comSetting/Industry.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
