@@ -31,10 +31,10 @@
 		</div>
 		<div class="form-group">
 			<label class="left control-label">公司行业</label>
-			<div class="col-sm-3">
-				<select class="form-control" ng-model="comSetting.industry.iType" ng-options="o as o.name for o in comSetting.dictionary.iType" ng-click="comSetting.queryInfo()" name="s"></select>
+			<div class="col-sm-5">
+				<select class="form-control" ng-model="comSetting.industry.iType" ng-options="o as o.name for o in comSetting.dictionary.iType" ng-change="comSetting.queryInfo()" name="s"></select>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-5">
 				<select class="form-control" ng-model="comSetting.industry.iInfo" ng-options="o as o.name for o in comSetting.dictionary.iInfo" name="s1"></select>
 			</div>
 		</div>
@@ -46,7 +46,7 @@
 				</select>
 			</div>
 			<div class="col-sm-3">
-				<select class="form-control" ng-model="comSetting.address.province" ng-options="o as o.name for o in comSetting.dictionary.province" ng-click="comSetting.getCity()" name="s2"></select>
+				<select class="form-control" ng-model="comSetting.address.province" ng-options="o as o.name for o in comSetting.dictionary.province" ng-change="comSetting.getCity()" name="s2"></select>
 			</div>
 			<div class="col-sm-3">
 				<select class="form-control" ng-model="comSetting.address.city" ng-options="o as o.name for o in comSetting.dictionary.city" name="s3"></select>
@@ -72,7 +72,7 @@
 		</div>
 		
 
-		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="companySetting.$invalid||companySetting.s.$pristine||companySetting.s1.$pristine||companySetting.s2.$pristine||companySetting.s3.$pristine||companySetting.s4.$pristine" ng-click="comSetting.improveComInfo()">完善信息</button
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="companySetting.$invalid||companySetting.s.$pristine||companySetting.s1.$pristine||companySetting.s2.$pristine||companySetting.s3.$pristine||companySetting.s4.$pristine" ng-change="comSetting.improveComInfo()">完善信息</button
 	</form>
 
 <!-- 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>
