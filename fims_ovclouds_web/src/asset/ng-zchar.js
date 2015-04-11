@@ -542,9 +542,9 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
                 }
             }).success(function (data) {
                 if(data.code == "N01"){
-                    localStorage.setItem('sid',localData.sid);    
-                    localStorage.setItem('userName',localData.userName);    
-                    localStorage.setItem("email",localData.userId);
+                    localStorage.setItem('sid',data.contents.sid);    
+                    localStorage.setItem('userName',data.contents.userName);    
+                    localStorage.setItem("email",sigup.user.userId);
                     $location.path("account_index/chooseTeam");
                    
                 }else {
