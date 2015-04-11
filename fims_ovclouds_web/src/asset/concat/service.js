@@ -39,7 +39,6 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
             }
         }).success(function (data) {
             if(data.code == "N01"){
-                $location.path("account_index/chooseTeam").replace();
                 // window.localStorage.clear();
                 // $.cookie("userId",null,{path:"/"});
                 var storage = window.localStorage;
@@ -57,6 +56,11 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                 }else{
                     // $.cookie('email',localData);
                 }
+                if (localStorage.getItem('apj')) {
+                  $location.path("account_index/joinCo").replace();
+                  return;
+                }
+                $location.path("account_index/chooseTeam").replace();
             }else if (data.code == "E01") {
                 login.response.returnMsg = data.message;
                 login.response.pwStatus = "has-error";
@@ -234,7 +238,6 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         "contactAddress": ""
     };
     userSetting.subData = function(){
-        alert("Start");
         $http({
             method: 'post',
             url: config.HOST + '/api/2.0/bp/account/user/improveUserInfo',

@@ -1,7 +1,7 @@
-FIMS.controller('joinCoCtrl', ['$scope','$http', '$state',function ($scope,$http,$state) {
+FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function ($scope,$http,$state,$location) {
 	var joinCo = {
 			paramObj: {},
-			userJobNumber: "",
+			applicantJobNumber: "",
 			notes: "我是"+localStorage.getItem('userName')
 	};
 
@@ -13,14 +13,25 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state',function ($scope,$http
 		// console.log($stateParams.companyShortName);
 		var url = location.href;
 		var param = url.substring(url.indexOf("?")+1, url.length).split("&");
-		var paramObj = {};
 		for (var i=0;i< param.length;i++) {
 			joinCo.paramObj[param[i].substring(0,param[i].indexOf("="))] = param[i].substring(param[i].indexOf("=")+1)
 		}
+		if (joinCo.paramObj!=null){
+			if (localStorage.getItem('sid')&&localStorage.getItem('userName')&&localStorage.getItem('email')) {
+				localStorage.setItem("apj",JSON.stringify(joinCo.paramObj));
+			}else {
+				localStorage.setItem("apj",JSON.stringify(joinCo.paramObj));
+				alert("您还未登录");
+				$location.path("login");
+			}
+		}
 	}
+	
 	init();
 
+
 	$scope.applyJoinCompany = function(){
+		var paramObj = JSON.parse(localStorage.getItem('apj'));
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
@@ -29,17 +40,21 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state',function ($scope,$http
 			data: {
 				"sid": localStorage.getItem('sid'),
 				"contents": {
-				 	"companySid": joinCo.paramObj.companySid,
-			        "invitePeopleSid": joinCo.paramObj.invitePeopleSid,
-			        "userJobNumber":joinCo.userJobNumber,
-			        "notes":joinCo.notes
+				 	"companySid": paramObj.companySid,
+			        "invitePeopleSid":paramObj.invitePeopleSid,
+			        "applicantJobNumber":joinCo.applicantJobNumber,
+			        "notes":joinCo.notes,
+			        "inviteString": location.href
 				}
 			}
 		})
 		.success(function(data) {
-			if (data.code == 'N01') {
+			if (data.code=='N01') {
 				alert("完成申请!");
+				localStorage.removeItem('apj');
 				$state.go('account_index.chooseTeam');
+			}else {
+				alert(data.message);
 			}
 
 		})

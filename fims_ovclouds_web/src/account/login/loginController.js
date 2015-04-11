@@ -3,7 +3,6 @@ FIMS.controller('loginController',['$location','$scope','loginService', '$rootSc
 		if (localStorage.getItem('sid')&&localStorage.getItem('userName')&&localStorage.getItem('email')) {
 			$location.path("account_index/chooseTeam").replace();
 		}else{
-			localStorage.clear();
 			$scope.user = loginService.user;
 			$scope.response = loginService.response;
 			$scope.subData = loginService.subData;
