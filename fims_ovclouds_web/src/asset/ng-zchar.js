@@ -750,7 +750,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 if (data.code == 'N01') {
                     chooseTeam.companyList = data.contents;
                     for(var i=0;i<chooseTeam.companyList.length;i++){
-                        chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==1)?'':'disabled';
+                        chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==0)?'':'disabled';
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }else{
