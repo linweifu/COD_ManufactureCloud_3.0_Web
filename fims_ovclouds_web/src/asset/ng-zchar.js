@@ -63,7 +63,14 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 	            if (data.code == 'N01') {
 	                localStorage.setItem('applyJoin', JSON.stringify(data.contents));
 	                $location.path("account_index/applyApproval");
-	            }else{alert("退出系统失败！")}
+	            }
+	            else if(data.code=="E00"){
+                    alert(data.message+",请重新登陆");
+                    localStorage.clear();
+                    $location.path('login').replace();
+                }else {
+                    alert(data.message);
+                }  
 	        })
 		}
 }])
@@ -102,7 +109,15 @@ FIMS.controller('agreeMemCtrl', ['$scope','$location','$http',
                 $scope.invitLink = data.contents;
                 console.log(data.contents);
                 localStorage.setItem('inlink',data.contents);
-            }else{};
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         })
 	};
 }])
@@ -142,7 +157,14 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
             	console.log($scope.applyInfo);
             	localStorage.setItem("applyJoin",JSON.stringify($scope.applyInfo));
             	$location.path('account_index/chooseModule').replace();
-            }else{console.log(data.message);}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
         }).error(function(){
             console.log('http error')
         });
@@ -175,7 +197,15 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 
             	localStorage.setItem("applyJoin",JSON.stringify($scope.applyInfo));
             	console.log(index);
-            }else{console.log(data.message);}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         }).error(function(){
             console.log('http error')
         });
@@ -236,10 +266,14 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function (
 				alert("完成申请!");
 				localStorage.removeItem('apj');
 				$state.go('account_index.chooseTeam');
-			}else {
-				alert(data.message);
 			}
-
+		    else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
 		})
 	}
 
@@ -286,7 +320,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	comSetting.improveComInfo = function(){
 		$http({
 			method: "POST",
-			url: config.HOST + "/api/2.0/bp/account/company/queryDicCountry",
+			url: config.HOST + "/api/2.0/bp/account/company/improveCompanyInfo",
 			// url: "account/comSetting/improveComInfo.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
@@ -312,11 +346,15 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
             	alert("公司信息更新成功");
             	$location.path("account_index/chooseModule");
             }
-            else {
-                console.log(data.message);
+            else if(data.code=="E00"){
+            	alert(data.message+"（获取省份）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
             }
         }).error(function () {
-            console.log('error');
+            console.log('improveComInfo'+data.message);
         });
 	}
 
@@ -340,11 +378,15 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
                     });
                 }   
             }
-            else {
-                console.log(data.message);
+            else if(data.code=="E00"){
+            	alert(data.message+"（获取省份）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
             }
         }).error(function () {
-            console.log('error');
+            console.log('data.message');
         });
 	}
 
@@ -371,9 +413,13 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
                     });
                 }   
             }
-            else {
-                console.log(data.message);
-            }
+         	else if(data.code=="E00"){
+            	alert(data.message+"（获取城市）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }        
         }).error(function () {
             console.log('error');
         });
@@ -431,9 +477,14 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
                     });
                 }   
             }
-            else {
-                console.log(data.message);
-            }
+            else if(data.code=="E00"){
+            	alert(data.message+"（获取行业内容）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }        
+            
         }).error(function () {
             console.log('error');
         });
@@ -605,7 +656,15 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
                 localStorage.removeItem('inlink');
                 localStorage.removeItem('applyJoin');
                 $location.path('account_index/chooseTeam');
-            }else{alert("退出系统失败！")}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         })
     }
 
@@ -622,7 +681,15 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
             if (data.code == 'N01') {
                 localStorage.clear();
                 $location.path('/login');
-            }else{alert("退出系统失败！")}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         })
     }
     //     $http({
@@ -702,9 +769,15 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         .success(function(data){
             if(data.code == 'N01') {
                 alert("更新成功");
-            } else {
-                alert("更新失败");
-            }
+            } 
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         }) 
         
     }
@@ -740,8 +813,14 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("curCompanyName",data.contents.companyShortName);
                     localStorage.setItem("cSid",data.contents.companySid);
                     localStorage.setItem("applyJoinCompanyNumber",0);
-                }else{alert("退出系统失败！")}
-                
+                }
+                else if(data.code=="E00"){
+                    alert(data.message+"（创建公司）,请重新登陆");
+                    localStorage.clear();
+                    $location.path('login');
+                }else {
+                    console.log(data.message);
+                }        
             }).error(function (data){
                 
             });
@@ -765,10 +844,14 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==0)?'':'disabled';
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
-                }else if(data.code=="E00"){
+                }
+                else if(data.code=="E00"){
+                    alert(data.message+"（获取加入公司列表）,请重新登陆");
                     localStorage.clear();
                     $location.path('login').replace();
-                }
+                }else {
+                    console.log(data.message);
+                }  
                 
             }).error(function (data){
                 
@@ -793,13 +876,17 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("cSid",sid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     $location.path("account_index/chooseModule");
-                }else{
-                    // console.log("获取失败！");
-                    // localStorage.clear();
-                    // $location.path('login').replace();
                 }
-                // console.log(chooseTeam.companyList)
-                
+
+                else if(data.code=="E00"){
+                    alert(data.message+",请重新登陆");
+                    localStorage.clear();
+                    $location.path('login').replace();
+                }else {
+                    console.log(data.message);
+                }  
+
+
             }).error(function (data){
                 
             });
@@ -867,6 +954,14 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 				$location.path('account_index/agreeMem');
 				localStorage.setItem('inlink',data.contents);	
 			}
+		    else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
 		})
 	}
 
@@ -900,6 +995,14 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 					}
 				}
 			}
+		    else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
 			// console.log(userManage.companyMem.array);
 		})
 	}

@@ -25,9 +25,15 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         .success(function(data){
             if(data.code == 'N01') {
                 alert("更新成功");
-            } else {
-                alert("更新失败");
-            }
+            } 
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         }) 
         
     }

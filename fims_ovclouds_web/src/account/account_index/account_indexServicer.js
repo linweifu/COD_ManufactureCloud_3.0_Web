@@ -22,7 +22,15 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
                 localStorage.removeItem('inlink');
                 localStorage.removeItem('applyJoin');
                 $location.path('account_index/chooseTeam');
-            }else{alert("退出系统失败！")}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         })
     }
 
@@ -39,7 +47,15 @@ FIMS.factory('account_indexService',  ['$location', '$rootScope', '$http' ,funct
             if (data.code == 'N01') {
                 localStorage.clear();
                 $location.path('/login');
-            }else{alert("退出系统失败！")}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         })
     }
     //     $http({

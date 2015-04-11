@@ -20,7 +20,14 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 	            if (data.code == 'N01') {
 	                localStorage.setItem('applyJoin', JSON.stringify(data.contents));
 	                $location.path("account_index/applyApproval");
-	            }else{alert("退出系统失败！")}
+	            }
+	            else if(data.code=="E00"){
+                    alert(data.message+",请重新登陆");
+                    localStorage.clear();
+                    $location.path('login').replace();
+                }else {
+                    alert(data.message);
+                }  
 	        })
 		}
 }])

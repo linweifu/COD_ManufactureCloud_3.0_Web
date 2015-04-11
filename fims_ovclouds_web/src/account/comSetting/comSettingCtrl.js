@@ -39,7 +39,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 	comSetting.improveComInfo = function(){
 		$http({
 			method: "POST",
-			url: config.HOST + "/api/2.0/bp/account/company/queryDicCountry",
+			url: config.HOST + "/api/2.0/bp/account/company/improveCompanyInfo",
 			// url: "account/comSetting/improveComInfo.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
@@ -65,11 +65,15 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
             	alert("公司信息更新成功");
             	$location.path("account_index/chooseModule");
             }
-            else {
-                console.log(data.message);
+            else if(data.code=="E00"){
+            	alert(data.message+"（获取省份）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
             }
         }).error(function () {
-            console.log('error');
+            console.log('improveComInfo'+data.message);
         });
 	}
 
@@ -93,11 +97,15 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
                     });
                 }   
             }
-            else {
-                console.log(data.message);
+            else if(data.code=="E00"){
+            	alert(data.message+"（获取省份）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
             }
         }).error(function () {
-            console.log('error');
+            console.log('data.message');
         });
 	}
 
@@ -124,9 +132,13 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
                     });
                 }   
             }
-            else {
-                console.log(data.message);
-            }
+         	else if(data.code=="E00"){
+            	alert(data.message+"（获取城市）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }        
         }).error(function () {
             console.log('error');
         });
@@ -184,9 +196,14 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
                     });
                 }   
             }
-            else {
-                console.log(data.message);
-            }
+            else if(data.code=="E00"){
+            	alert(data.message+"（获取行业内容）,请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }        
+            
         }).error(function () {
             console.log('error');
         });

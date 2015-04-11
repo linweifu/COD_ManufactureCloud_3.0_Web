@@ -26,8 +26,14 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("curCompanyName",data.contents.companyShortName);
                     localStorage.setItem("cSid",data.contents.companySid);
                     localStorage.setItem("applyJoinCompanyNumber",0);
-                }else{alert("退出系统失败！")}
-                
+                }
+                else if(data.code=="E00"){
+                    alert(data.message+"（创建公司）,请重新登陆");
+                    localStorage.clear();
+                    $location.path('login');
+                }else {
+                    console.log(data.message);
+                }        
             }).error(function (data){
                 
             });
@@ -51,10 +57,14 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==0)?'':'disabled';
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
-                }else if(data.code=="E00"){
+                }
+                else if(data.code=="E00"){
+                    alert(data.message+"（获取加入公司列表）,请重新登陆");
                     localStorage.clear();
                     $location.path('login').replace();
-                }
+                }else {
+                    console.log(data.message);
+                }  
                 
             }).error(function (data){
                 
@@ -79,13 +89,17 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("cSid",sid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     $location.path("account_index/chooseModule");
-                }else{
-                    // console.log("获取失败！");
-                    // localStorage.clear();
-                    // $location.path('login').replace();
                 }
-                // console.log(chooseTeam.companyList)
-                
+
+                else if(data.code=="E00"){
+                    alert(data.message+",请重新登陆");
+                    localStorage.clear();
+                    $location.path('login').replace();
+                }else {
+                    console.log(data.message);
+                }  
+
+
             }).error(function (data){
                 
             });

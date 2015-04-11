@@ -53,10 +53,14 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function (
 				alert("完成申请!");
 				localStorage.removeItem('apj');
 				$state.go('account_index.chooseTeam');
-			}else {
-				alert(data.message);
 			}
-
+		    else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
 		})
 	}
 

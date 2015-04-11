@@ -34,7 +34,14 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
             	console.log($scope.applyInfo);
             	localStorage.setItem("applyJoin",JSON.stringify($scope.applyInfo));
             	$location.path('account_index/chooseModule').replace();
-            }else{console.log(data.message);}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
         }).error(function(){
             console.log('http error')
         });
@@ -67,7 +74,15 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
 
             	localStorage.setItem("applyJoin",JSON.stringify($scope.applyInfo));
             	console.log(index);
-            }else{console.log(data.message);}
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
         }).error(function(){
             console.log('http error')
         });

@@ -22,6 +22,14 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 				$location.path('account_index/agreeMem');
 				localStorage.setItem('inlink',data.contents);	
 			}
+		    else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
 		})
 	}
 
@@ -55,6 +63,14 @@ FIMS.factory('userManageService', ['$location','$http', function($location,$http
 					}
 				}
 			}
+		    else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
 			// console.log(userManage.companyMem.array);
 		})
 	}
