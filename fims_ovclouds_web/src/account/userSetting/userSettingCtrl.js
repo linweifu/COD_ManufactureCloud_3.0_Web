@@ -3,4 +3,5 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		// $rootScope.userName = localStorage.getItem("userName");
 		$scope.usersetting = userSettingService.user;
 		$scope.subData = userSettingService.subData;
+		userSettingService.queryUserExtendInfo();
 }])

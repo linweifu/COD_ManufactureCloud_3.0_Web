@@ -29,6 +29,7 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		// $rootScope.userName = localStorage.getItem("userName");
 		$scope.usersetting = userSettingService.user;
 		$scope.subData = userSettingService.subData;
+		userSettingService.queryUserExtendInfo();
 }])
 
 FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScope','$q',
@@ -392,6 +393,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 
 	comSetting.getProvince();
 
+
 	comSetting.getCity = function(){
 		$http({
 			method: "POST",
@@ -478,7 +480,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
                 }   
             }
             else if(data.code=="E00"){
-            	alert(data.message+"（获取行业内容）,请重新登陆");
+            	alert(data.message+",请重新登陆");
             	localStorage.clear();
             	$location.path('login');
             }else {
@@ -490,6 +492,45 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
         });
 
 	}
+
+	comSetting.queryCompanyExtendInfo = function(){
+		$http({
+			method: "POST",
+			url: config.HOST + "/api/2.0/bp/account/company/queryCompanyExtendInfo",
+			// url: "account/comSetting/queryCompanyExtendInfo.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companySid": localStorage.getItem("cSid")
+			}
+		})
+		.success(function(data){
+            if (data.code=="N01"){
+            	comSetting.shortName = data.contents.companyShortName ;
+		        comSetting.name = data.contents.companyFullName;
+		        ccomSetting.address.province.code = data.contents.countryRegionCode;
+			    comSetting.address.province.name = data.contents.companyRegion;
+			    comSetting.address.city.code =data.contents.companyProvinceCode;
+			    comSetting.address.city.name = data.contents.companyProvince;
+			    comSetting.industry.iInfo.code = data.contents.companyIndustryCode;
+			    comSetting.industry.iInfo.name = data.contents.companyIndustry;
+			    comSetting.comCode = data.contents.companyZipCode;
+			    comSetting.comTel = data.contents.companyPhone;
+			    comSetting.comWeb = data.contents.companyWebsite;
+            }
+            else if(data.code=="E00"){
+            	alert(data.message+",请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }
+        }).error(function () {
+            console.log('improveComInfo'+data.message);
+        });
+	}
+
+	comSetting.queryCompanyExtendInfo();
 
 	$scope.comSetting = comSetting;
 
@@ -750,6 +791,33 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         "contactPhone": "",
         "contactAddress": ""
     };
+    userSetting.queryUserExtendInfo = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/queryUserExtendInfo',
+            // url: 'account/userSetting/queryUserExtendInfo.json',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                // "contactPhone": "13026397003",
+                // "contactAddress": "联系地址",
+                "sid": localStorage.getItem('sid'),
+            }
+        })
+        .success(function(data){
+            if(data.code == 'N01') {
+                userSetting.user.contactPhone = data.contents.contactPhone,
+                userSetting.user.contactAddress = data.contents.contactAddress
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
+        }) 
+    }
     userSetting.subData = function(){
         $http({
             method: 'post',

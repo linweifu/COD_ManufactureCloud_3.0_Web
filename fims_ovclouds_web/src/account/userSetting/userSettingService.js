@@ -6,6 +6,33 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         "contactPhone": "",
         "contactAddress": ""
     };
+    userSetting.queryUserExtendInfo = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/queryUserExtendInfo',
+            // url: 'account/userSetting/queryUserExtendInfo.json',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                // "contactPhone": "13026397003",
+                // "contactAddress": "联系地址",
+                "sid": localStorage.getItem('sid'),
+            }
+        })
+        .success(function(data){
+            if(data.code == 'N01') {
+                userSetting.user.contactPhone = data.contents.contactPhone,
+                userSetting.user.contactAddress = data.contents.contactAddress
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                console.log(data.message);
+            }  
+
+        }) 
+    }
     userSetting.subData = function(){
         $http({
             method: 'post',
