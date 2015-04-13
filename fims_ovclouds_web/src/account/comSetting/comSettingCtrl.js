@@ -229,7 +229,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
             if (data.code=="N01"){
             	comSetting.shortName = data.contents.companyShortName ;
 		        comSetting.name = data.contents.companyFullName;
-		        ccomSetting.address.province.code = data.contents.countryRegionCode;
+		        comSetting.address.province.code = data.contents.countryRegionCode;
 			    comSetting.address.province.name = data.contents.companyRegion;
 			    comSetting.address.city.code =data.contents.companyProvinceCode;
 			    comSetting.address.city.name = data.contents.companyProvince;
