@@ -34,8 +34,11 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
                     localStorage.setItem('sid',data.contents.sid);    
                     localStorage.setItem('userName',data.contents.userName);    
                     localStorage.setItem("email",sigup.user.userId);
-                    $location.path("account_index/chooseTeam");
-                   
+                    if (localStorage.getItem('apj')) {
+                      $location.path("account_index/joinCo").replace();
+                      return;
+                    }
+                    $location.path("account_index/chooseTeam").replace();
                 }else {
                     sigup.response.returnMsg = data.message;
                     sigup.response.emailStatus = "has-error";

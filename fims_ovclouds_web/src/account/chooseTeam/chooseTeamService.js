@@ -59,7 +59,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     $rootScope.companyList  =chooseTeam.companyList;
                 }
                 else if(data.code=="E00"){
-                    alert(data.message+"（获取加入公司列表）,请重新登陆");
+                    alert(data.message+",请重新登陆");
                     localStorage.clear();
                     $location.path('login').replace();
                 }else {

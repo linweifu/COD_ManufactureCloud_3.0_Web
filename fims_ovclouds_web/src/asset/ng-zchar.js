@@ -658,8 +658,11 @@ FIMS.factory('sigupService',  ['$location', '$rootScope', '$http' ,function($loc
                     localStorage.setItem('sid',data.contents.sid);    
                     localStorage.setItem('userName',data.contents.userName);    
                     localStorage.setItem("email",sigup.user.userId);
-                    $location.path("account_index/chooseTeam");
-                   
+                    if (localStorage.getItem('apj')) {
+                      $location.path("account_index/joinCo").replace();
+                      return;
+                    }
+                    $location.path("account_index/chooseTeam").replace();
                 }else {
                     sigup.response.returnMsg = data.message;
                     sigup.response.emailStatus = "has-error";
@@ -917,7 +920,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     $rootScope.companyList  =chooseTeam.companyList;
                 }
                 else if(data.code=="E00"){
-                    alert(data.message+"（获取加入公司列表）,请重新登陆");
+                    alert(data.message+",请重新登陆");
                     localStorage.clear();
                     $location.path('login').replace();
                 }else {
