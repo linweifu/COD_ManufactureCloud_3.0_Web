@@ -107,6 +107,45 @@
 	</div>
 
 
-	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;">新增物料信息</button>
+	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;"  data-toggle="modal" data-target="#creatCo">新增物料信息</button>
 	<button class="btn btn-default btn-newMem" ng-click="materiallistBack()">返回管理面板</button>
+
+	<div class="modal fade" id="creatCo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:left">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="modal-body">
+	        <form name="createNewCompany" novalidate>
+	          <div class="form-group">
+	            <label for="companyName" class="control-label">物料编号</label>
+	            <input type="text" class="form-control" id="companyName" name="companyName" required ng-model="createCom.name">
+	          </div>
+	          <div class="form-group">
+	            <label for="cid" class="control-label">物料版本</label>
+	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	          </div>
+	          <div class="form-group">
+	            <label for="cid" class="control-label">物料简称</label>
+	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	          </div>
+	          <div class="form-group">
+	            <label for="cid" class="control-label">物料全称</label>
+	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	          </div>
+	          <div class="form-group">
+	            <label for="cid" class="control-label">物料备注</label>
+	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	          </div>
+	          <div class="modal-footer">
+	            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	            <button type="button" class="btn btn-primary" ng-disabled="createNewCompany.$invalid"  data-dismiss="modal" ng-click="subData()">创建新公司</button>
+	           </div>
+	        </form>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
 </div>

@@ -75,6 +75,16 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'manage/engineer/material/material.html'
 	})
+	.state('account_index.customerlist',{
+		url:'/customerlist',
+		// controller:'dataCountController',
+		templateUrl:'manage/customer/customer/customerlist.html'
+	})
+	.state('account_index.customer',{
+		url:'/customer',
+		// controller:'dataCountController',
+		templateUrl:'manage/customer/customer/customer.html'
+	})
 	// .state('account_index.engineerlist',{
 	// 	url:'/engineerlist',
 	// 	// controller:'dataCountController',

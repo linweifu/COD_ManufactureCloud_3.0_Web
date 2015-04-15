@@ -35,17 +35,19 @@
 </style>
 
 <div id="container" class="container text-center" ng-controller="materialListCtrl">
-	<h3>{{companyShortName}}——物料管理</h3>
+	<h3>{{companyShortName}}——客户管理</h3>
 	
 	<div class="table-responsive">
 		<table class="table table-striped table-bordered table-hover ">
 			<thead>
 		    <tr>
 		      <th>#</th>
-		      <th>物料编号</th>
-		      <th>物料版本</th>
-		      <th>物料简称</th>
-		      <th>物料全称</th>
+		      <th>客户编号</th>
+		      <th>客户简称</th>
+		      <th>客户全称</th>
+		      <th>邮编</th>
+		      <th>联系电话</th>
+		      <th>联系地址</th>
 		      <th>操作</th>
 		    </tr>
 		  </thead>
@@ -56,7 +58,7 @@
 		  		<td ng-bind="list.materialVersion"></td>
 		  		<td ng-bind="list.materialShortName"></td>
 		  		<td ng-bind="list.materialFullName"></td>
-		  		<td><a href="" ng-click="addOrUpdateMaterials(list.materialSid)">修改</a></td>
+		  		<td><a href="" ng-click="querySingleMaterial(list.materialSid)">修改</a></td>
 		  	</tr>
 		   <!--  <tr>
 		      <td>1</td>
@@ -107,6 +109,6 @@
 	</div>
 
 
-	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;">新增物料信息</button>
+	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;">新增客户信息</button>
 	<button class="btn btn-default btn-newMem" ng-click="materiallistBack()">返回管理面板</button>
 </div>
