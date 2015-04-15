@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 				"src/account/chooseTeam/chooseTeamController.js","src/account/chooseModule/chooseModuleCtrl.js",
 				"src/account/userManage/userManageCtrl.js","src/account/agreeMem/agreeMemCtrl.js",
 				"src/account/applyApproval/applyApprovalCtrl.js","src/account/company_index/.company_indexCtrl.js",
-				"src/account/joinCo/joinCoCtrl.js","src/account/comSetting/comSettingCtrl.js"
+				"src/account/joinCo/joinCoCtrl.js","src/account/comSetting/comSettingCtrl.js",
+				"src/manage/engineer/material/materialCtrl.js",'src/manage/engineer/material/materiallistCtrl.js'
 				],
 				dest: "src/asset/concat/controller.js"
 			},
@@ -24,6 +25,7 @@ module.exports = function(grunt) {
 				"src/account/account_index/account_indexServicer.js","src/account/userSetting/userSettingService.js",
 				"src/account/chooseTeam/chooseTeamService.js",'src/account/chooseModule/chooseModuleService.js',
 				"src/account/userManage/userManageService.js","src/account/agreeMem/agreeMemService.js",
+				"src/manage/engineer/material/materiallistService.js"
 				],
 				dest: "src/asset/concat/service.js"
 			},
@@ -75,7 +77,7 @@ module.exports = function(grunt) {
 			"src/account/account_index/*.js","src/account/userSetting/*.js","src/account/chooseTeam/*.js",
 			"src/account/chooseModule/*.js","src/account/userManage/*.js","src/account/agreeMem/*.js",
 			"src/account/applyApproval/*.js","src/account/company_index/*.js","src/account/joinCo/*.js",
-			"src/account/comSetting/*.js"
+			"src/account/comSetting/*.js",'src/manage/engineer/material/*.js'
 			],
         	// tasks: ['concat','less', 'cssmin', 'uglify']
         	tasks: ['concat', 'uglify']

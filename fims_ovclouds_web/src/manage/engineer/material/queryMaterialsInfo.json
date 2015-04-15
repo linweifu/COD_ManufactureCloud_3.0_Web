@@ -1,0 +1,24 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": [
+        {
+            "materialSid": "1",
+            "materialNo": "我是",
+            "materialShortName": "水水",
+            "materialVersion": "点点滴滴",
+            "materialFullName": "古古怪怪",
+            "materialBarcode": "去去去",
+            "notes": "顶顶顶"
+        },
+        {
+            "materialSid": "2",
+            "materialNo": "撒大大",
+            "materialShortName": "vvdadasd",
+            "materialVersion": "地对地导弹",
+            "materialFullName": "生生世世",
+            "materialBarcode": "纷纷反对撒大苏打",
+            "notes": "生生世世"
+        }
+    ]
+}

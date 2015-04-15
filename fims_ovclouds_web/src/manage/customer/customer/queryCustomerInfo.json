@@ -1,0 +1,26 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": [
+        {
+            "customerSid": "",
+            "customerNo": "",
+            "customerShortName": "",
+            "customerFullName": "",
+            "contactPhone": "",
+            "contactAddress": "",
+            "customerBarcode": "",
+            "notes": ""
+        },
+        {
+            "customerSid": "",
+            "customerNo": "",
+            "customerShortName": "",
+            "customerFullName": "",
+            "contactPhone": "",
+            "contactAddress": "",
+            "customerBarcode": "",
+            "notes": ""
+        }
+    ]
+}

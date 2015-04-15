@@ -1,0 +1,114 @@
+<style type="text/css">
+	#container {
+		background-color: #fefefe;
+		border: 1px solid #ececec;
+		border-radius: 5px;
+		padding: 10px 25px;
+	}	
+	
+	h3 {margin-top: .5em;margin-bottom: .8em;}
+	
+	.table th{text-align: center;}
+
+	.btn-newMem {
+		padding: .4em 4.5em ;
+		margin: .5em  auto .6em auto;
+		font-size: 16px;
+	}
+
+	.table a {color: rgb(29,124,244);}
+
+	.img-circle {
+		width: 55px;
+		height: 55px;
+		float: left;
+		margin-left: .2em;
+	}
+
+	.row {margin-bottom: 1em;}
+
+	.span {float: right;line-height: 1.5em;padding-top: .5em;padding-right: .6em;}
+	.name {font-size: 14px;}
+	.author {color: #f68539;font-size: 12px;}
+	.top {margin-top: 1.8em;}
+	
+</style>
+
+<div id="container" class="container text-center" ng-controller="materialListCtrl">
+	<h3>{{companyShortName}}——供应商管理</h3>
+	
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover ">
+			<thead>
+		    <tr>
+		      <th>#</th>
+		      <th>供应商编号</th>
+		      <th>供应商简称</th>
+		      <th>供应商全称</th>
+		      <th>邮编</th>
+		      <th>联系电话</th>
+		      <th>联系地址</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<tr ng-repeat="list in listdata">
+		  		<td>{{$index+1}}</td>
+		  		<td ng-bind="list.materialNo"></td>
+		  		<td ng-bind="list.materialVersion"></td>
+		  		<td ng-bind="list.materialShortName"></td>
+		  		<td ng-bind="list.materialFullName"></td>
+		  		<td><a href="" ng-click="addOrUpdateMaterials(list.materialSid)">修改</a></td>
+		  	</tr>
+		   <!--  <tr>
+		      <td>1</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td><a href="">修改</a></td>
+		    </tr>
+		    <tr>
+		      <td>2</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		    </tr>
+		    <tr>
+		      <td>1</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		    </tr>
+		    <tr>
+		      <td>1</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		    </tr>
+		    <tr>
+		      <td>1</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		    </tr>
+		    <tr>
+		      <td>1</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		      <td>Column content</td>
+		    </tr> -->
+		    
+		  </tbody>
+		</table>
+	</div>
+
+
+	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;">新增物料信息</button>
+	<button class="btn btn-default btn-newMem" ng-click="materiallistBack()">返回管理面板</button>
+</div>

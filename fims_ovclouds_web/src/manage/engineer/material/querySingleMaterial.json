@@ -1,0 +1,14 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": 
+        {
+            "materialSid": "123",
+            "materialNo": "1123123",
+            "materialShortName": "啊卡卡卡",
+            "materialVersion": "点点滴滴",
+            "materialFullName": "上山生",
+            "materialBarcode": "",
+            "notes": "顶顶顶"
+        }
+}

@@ -1,0 +1,26 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": [
+        {
+            "vendorSid": "",
+            "vendorNo": "",
+            "vendorShortName": "",
+            "vendorFullName": "",
+            "contactPhone": "",
+            "contactAddress": "",
+            "vendorBarcode": "",
+            "notes": ""
+        },
+        {
+            "vendorSid": "",
+            "vendorNo": "",
+            "vendorShortName": "",
+            "vendorFullName": "",
+            "contactPhone": "",
+            "contactAddress": "",
+            "vendorBarcode": "",
+            "notes": ""
+        }
+    ]
+}

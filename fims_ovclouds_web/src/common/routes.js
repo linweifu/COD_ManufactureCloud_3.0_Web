@@ -65,10 +65,20 @@ FIMS.config([
 		// controller:'userSettingController',
 		templateUrl:"account/comSetting/comSetting.html"
 	})
-	// .state('dashboard.dataCount',{
-	// 	url:'/dataCount',
-	// 	controller:'dataCountController',
-	// 	templateUrl:'view/dashboard/dataCount.html'
+	.state('account_index.materiallist',{
+		url:'/materiallist',
+		// controller:'dataCountController',
+		templateUrl:'manage/engineer/material/materiallist.html'
+	})
+	.state('account_index.material',{
+		url:'/material',
+		// controller:'dataCountController',
+		templateUrl:'manage/engineer/material/material.html'
+	})
+	// .state('account_index.engineerlist',{
+	// 	url:'/engineerlist',
+	// 	// controller:'dataCountController',
+	// 	templateUrl:'manage/engineering/engineerlist.html'
 	// })
 	// .state('dashboard.dataCount.dataCountTab1',{
 	// 	url:'/dataCountTab1',
