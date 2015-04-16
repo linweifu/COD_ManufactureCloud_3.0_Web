@@ -1,0 +1,16 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": 
+        {
+            "customerSid": "2",
+            "customerNo": "2",
+            "customerShortName": "3",
+            "customerFullName": "萨达",
+            "contactPhone": "大大",
+            "contactAddress": "方法",
+            "customerBarcode": "实施",
+            "zipCode": "邮编",
+            "notes": "实施"
+        }
+}

@@ -49,7 +49,6 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     "sid": localStorage.getItem("sid"),
                 }
             }).success(function (data){
-                console.log(data);
                 chooseTeam.companyList=[];
                 if (data.code == 'N01') {
                     chooseTeam.companyList = data.contents;

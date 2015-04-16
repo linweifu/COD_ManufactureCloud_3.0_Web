@@ -58,89 +58,45 @@
 		  		<td ng-bind="list.materialFullName"></td>
 		  		<td><a href="" ng-click="querySingleMaterial(list.materialSid)">修改</a></td>
 		  	</tr>
-		   <!--  <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td><a href="">修改</a></td>
-		    </tr>
-		    <tr>
-		      <td>2</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr> -->
-		    
 		  </tbody>
 		</table>
 	</div>
 
 
-	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;"  data-toggle="modal" data-target="#creatCo">新增物料信息</button>
+	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;"  data-toggle="modal" data-target="#form">新增物料信息</button>
 	<button class="btn btn-default btn-newMem" ng-click="materiallistBack()">返回管理面板</button>
 
-	<div class="modal fade" id="creatCo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:left">
+	<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:left">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	      </div>
 	      <div class="modal-body">
-	        <form name="createNewCompany" novalidate>
+	        <form name="materialForm" novalidate>
 	          <div class="form-group">
-	            <label for="companyName" class="control-label">物料编号</label>
-	            <input type="text" class="form-control" id="companyName" name="companyName" required ng-model="createCom.name">
+	            <label for="materialNo" class="control-label">物料编号</label>
+	            <input type="text" class="form-control" id="materialNo" name="materialNo" required ng-model="newMaterial.materialNo">
 	          </div>
 	          <div class="form-group">
-	            <label for="cid" class="control-label">物料版本</label>
-	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	            <label for="materialVersion" class="control-label">物料版本</label>
+	            <input type="text" class="form-control" id="materialVersion" name="materialVersion" required ng-model="newMaterial.materialVersion">
 	          </div>
 	          <div class="form-group">
-	            <label for="cid" class="control-label">物料简称</label>
-	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	            <label for="materialShortName" class="control-label">物料简称</label>
+	            <input type="text" class="form-control" id="materialShortName" name="materialShortName" required ng-model="newMaterial.materialShortName">
 	          </div>
 	          <div class="form-group">
-	            <label for="cid" class="control-label">物料全称</label>
-	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	            <label for="materialFullName" class="control-label">物料全称</label>
+	            <input type="text" class="form-control" id="materialFullName" name="materialFullName" required ng-model="newMaterial.materialFullName">
 	          </div>
 	          <div class="form-group">
-	            <label for="cid" class="control-label">物料备注</label>
-	            <input type="text" class="form-control" id="cid" name="cid" required ng-model="createCom.cid">
+	            <label for="notes" class="control-label">物料备注</label>
+	            <input type="text" class="form-control" id="notes" name="notes" required ng-model="newMaterial.notes">
 	          </div>
 	          <div class="modal-footer">
 	            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-	            <button type="button" class="btn btn-primary" ng-disabled="createNewCompany.$invalid"  data-dismiss="modal" ng-click="subData()">创建新公司</button>
+	            <button type="button" class="btn btn-success" ng-disabled="materialForm.$invalid"  data-dismiss="modal" ng-click="addOrUpdateMaterials(0)">新增物料</button>
 	           </div>
 	        </form>
 	      </div>

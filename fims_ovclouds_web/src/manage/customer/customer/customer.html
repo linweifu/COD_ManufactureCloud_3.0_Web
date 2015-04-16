@@ -1,1 +1,68 @@
-hah
+<style type="text/css">
+	#container {
+		max-width: 768px;
+		background-color: #f8f8f8;
+		border: 1px solid #ececec;
+		border-radius: 5px;
+		padding: 0 25px 20px 25px;
+	}	
+	h3 {color: #000;}
+	#form-horizontal {margin-top: 1.5em;color: #333}
+	.link {text-align: left !important; color: rgb(79,159,207)} 
+	.left{text-align: left !important;float: left;padding-left: 15px;padding-top: 7px;padding-right: 5px;}
+
+</style>
+
+<div id="container" class="container" ng-controller="customerCtrl">
+	<h3>客户信息修改</h3>
+	<form class="form-horizontal" id="form-horizontal" name="customerform" novalidate>
+		<div class="form-group">
+			<label for="customerNo" class="control-label left">客户编号</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="customerNo" name="customerNo" ng-model="updatecustomer.customerNo" required> 
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comWeb" class="left control-label">客户简称</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="comWeb" name="customerShortName" ng-model="updatecustomer.customerShortName" required>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="name" class="left control-label">客户全称</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="name" name="customerFullName" ng-model="updatecustomer.customerFullName" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comTel" class="left control-label">客户邮编</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="comTel" name="customerFullName" ng-model="updatecustomer.zipCode" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="contactPhone" class="left control-label">客户电话</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="contactPhone" name="contactPhone" ng-model="updatecustomer.contactPhone" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="contactAddress" class="left control-label">客户地址</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="contactAddress" name="contactAddress" ng-model="updatecustomer.contactAddress" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="notes" class="left control-label">客户备注</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="notes" name="notes" ng-model="updatecustomer.notes" required>
+			</div>
+		</div>
+
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="customerform.$invalid" ng-click="addOrUpdateCustomerInfo()">保存修改</button>
+
+		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="customerBack()">返回</button>
+	</form>
+
+</div>

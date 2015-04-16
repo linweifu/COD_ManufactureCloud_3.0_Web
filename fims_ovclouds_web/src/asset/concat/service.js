@@ -369,7 +369,6 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     "sid": localStorage.getItem("sid"),
                 }
             }).success(function (data){
-                console.log(data);
                 chooseTeam.companyList=[];
                 if (data.code == 'N01') {
                     chooseTeam.companyList = data.contents;
@@ -549,24 +548,42 @@ FIMS.factory('agreeMemService', ['$location','$http', function($location,$http){
 	}
 	return agreeMem;
 }])
-// FIMS.factory('materiallistService',['$location','$http',
+// FIMS.factory('addOrUpdateMaterialService',['$location','$http',
 // 	function($location,$http){
-// 		var materiallist = {};
-// 		materiallist.querySingleMaterial = function(msid){
+// 		var addOrUpdateMaterial = {};
+// 		addOrUpdateMaterial.newMaterial = {
+// 			"materialNo": "",
+//             "materialShortName": "",
+//             "materialVersion": "",
+//             "materialFullName": "",
+//             "notes": ""
+// 		};
+
+// 		addOrUpdateMaterial.addOrUpdateMaterials = function(s){
 // 			$http({
 // 				method: "POST",
 // 				// url: "account/joinCo/joinCo.json",
 // 				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-// 				url: "manage/engineer/material/querySingleMaterial.json",
+// 				url: "manage/engineer/material/queryMaterialsInfo.json",
 // 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 // 				data: {
 // 					"sid": localStorage.getItem('sid'),
-// 					"materialSid": msid
+// 				    "status": s,
+// 				    "materialNo":"",
+// 				    "materialShortName":"",
+// 				    "materialVersion":"",
+// 				    "materialFullName":"",
+// 				    "companySid": localStorage.getItem('cSid'),
+// 				    "companySidHash":,
+// 				    "companyShortName":"",
+// 				    "materialBarcode":"",
+// 				    "notes":""
+
 // 				}
 // 			})
 // 			.success(function(data){
 // 	            if (data.code == 'N01') {
-// 	                $scope.singlematerial = data.contents;
+// 	                addOrUpdateMaterial.listdata = data.contents;
 // 	            }
 // 	            else if(data.code=="E00"){
 // 	                alert(data.message+",请重新登陆");
@@ -577,6 +594,6 @@ FIMS.factory('agreeMemService', ['$location','$http', function($location,$http){
 // 	            }  
 // 	        })
 // 		}
-		
-// 		return materiallist;
+
+// 		return addOrUpdateMaterial;
 // }])

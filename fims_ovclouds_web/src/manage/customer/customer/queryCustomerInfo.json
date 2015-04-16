@@ -3,24 +3,26 @@
     "message": "获取成功",
     "contents": [
         {
-            "customerSid": "",
-            "customerNo": "",
-            "customerShortName": "",
-            "customerFullName": "",
-            "contactPhone": "",
-            "contactAddress": "",
-            "customerBarcode": "",
-            "notes": ""
+            "customerSid": "1",
+            "customerNo": "2",
+            "customerShortName": "3",
+            "customerFullName": "4",
+            "contactPhone": "5",
+            "contactAddress": "6",
+            "customerBarcode": "2",
+            "zipCode": "123456",
+            "notes": "3"
         },
         {
-            "customerSid": "",
-            "customerNo": "",
-            "customerShortName": "",
-            "customerFullName": "",
-            "contactPhone": "",
-            "contactAddress": "",
-            "customerBarcode": "",
-            "notes": ""
+            "customerSid": "a1",
+            "customerNo": "d1",
+            "customerShortName": "是",
+            "customerFullName": "方法",
+            "contactPhone": "上山生",
+            "contactAddress": "方法·1",
+            "customerBarcode": "实施",
+            "zipCode": "123456",
+            "notes": "公告"
         }
     ]
 }

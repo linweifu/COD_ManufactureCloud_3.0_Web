@@ -34,7 +34,7 @@
 	
 </style>
 
-<div id="container" class="container text-center" ng-controller="materialListCtrl">
+<div id="container" class="container text-center" ng-controller="customerListCtrl">
 	<h3>{{companyShortName}}——客户管理</h3>
 	
 	<div class="table-responsive">
@@ -45,70 +45,75 @@
 		      <th>客户编号</th>
 		      <th>客户简称</th>
 		      <th>客户全称</th>
-		      <th>邮编</th>
+		      <th>客户邮编</th>
 		      <th>联系电话</th>
-		      <th>联系地址</th>
+		      <th>客户地址</th>
 		      <th>操作</th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  	<tr ng-repeat="list in listdata">
 		  		<td>{{$index+1}}</td>
-		  		<td ng-bind="list.materialNo"></td>
-		  		<td ng-bind="list.materialVersion"></td>
-		  		<td ng-bind="list.materialShortName"></td>
-		  		<td ng-bind="list.materialFullName"></td>
-		  		<td><a href="" ng-click="querySingleMaterial(list.materialSid)">修改</a></td>
+		  		<td ng-bind="list.customerNo"></td>
+		  		<td ng-bind="list.customerShortName"></td>
+		  		<td ng-bind="list.customerFullName"></td>
+		  		<td ng-bind="list.zipCode"></td>
+		  		<td ng-bind="list.contactPhone"></td>
+		  		<td ng-bind="list.contactAddress"></td>
+		  		<td><a href="" ng-click="querySingleCustomerInfo(list.customerSid)">修改</a></td>
 		  	</tr>
-		   <!--  <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td><a href="">修改</a></td>
-		    </tr>
-		    <tr>
-		      <td>2</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr>
-		    <tr>
-		      <td>1</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		      <td>Column content</td>
-		    </tr> -->
-		    
 		  </tbody>
 		</table>
 	</div>
 
 
-	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;">新增客户信息</button>
-	<button class="btn btn-default btn-newMem" ng-click="materiallistBack()">返回管理面板</button>
+	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;"  data-toggle="modal" data-target="#form">新增客户信息</button>
+	<button class="btn btn-default btn-newMem" ng-click="customerlistBack()">返回管理面板</button>
+
+	<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="text-align:left">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="modal-body">
+	        <form name="customerForm" novalidate>
+	          <div class="form-group">
+	            <label for="customerNo" class="control-label">客户编号</label>
+	            <input type="text" class="form-control" id="customerNo" name="customerNo" required ng-model="newcustomer.customerNo">
+	          </div>
+	          <div class="form-group">
+	            <label for="customerShortName" class="control-label">客户简称</label>
+	            <input type="text" class="form-control" id="customerShortName" name="customerShortName" required ng-model="newcustomer.customerShortName">
+	          </div>
+	          <div class="form-group">
+	            <label for="customerFullName" class="control-label">客户全称</label>
+	            <input type="text" class="form-control" id="customerFullName" name="customerFullName" required ng-model="newcustomer.customerFullName">
+	          </div>
+	          <div class="form-group">
+	            <label for="zipCode" class="control-label">客户邮编</label>
+	            <input type="text" class="form-control" id="zipCode" name="zipCode" required ng-model="newcustomer.zipCode">
+	          </div>
+	          <div class="form-group">
+	            <label for="contactPhone" class="control-label">联系电话</label>
+	            <input type="text" class="form-control" id="contactPhone" name="contactPhone" required ng-model="newcustomer.contactPhone">
+	          </div>
+	          <div class="form-group">
+	            <label for="contactAddress" class="control-label">客户地址</label>
+	            <input type="text" class="form-control" id="contactAddress" name="contactAddress" required ng-model="newcustomer.contactAddress">
+	          </div>
+	          <div class="form-group">
+	            <label for="notes" class="control-label">客户备注</label>
+	            <input type="text" class="form-control" id="notes" name="notes" required ng-model="newcustomer.notes">
+	          </div>
+	          <div class="modal-footer">
+	            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	            <button type="button" class="btn btn-success" ng-disabled="customerForm.$invalid"  data-dismiss="modal" ng-click="addOrUpdateCustomers()">新增客户</button>
+	           </div>
+	        </form>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
 </div>

@@ -1,1 +1,68 @@
-hah
+<style type="text/css">
+	#container {
+		max-width: 768px;
+		background-color: #f8f8f8;
+		border: 1px solid #ececec;
+		border-radius: 5px;
+		padding: 0 25px 20px 25px;
+	}	
+	h3 {color: #000;}
+	#form-horizontal {margin-top: 1.5em;color: #333}
+	.link {text-align: left !important; color: rgb(79,159,207)} 
+	.left{text-align: left !important;float: left;padding-left: 15px;padding-top: 7px;padding-right: 5px;}
+
+</style>
+
+<div id="container" class="container" ng-controller="vendorCtrl">
+	<h3>供应商信息修改</h3>
+	<form class="form-horizontal" id="form-horizontal" name="vendorform" novalidate>
+		<div class="form-group">
+			<label for="vendorNo" class="control-label left">供应商编号</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="vendorNo" name="vendorNo" ng-model="updatevendor.vendorNo" required> 
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comWeb" class="left control-label">供应商简称</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="comWeb" name="vendorShortName" ng-model="updatevendor.vendorShortName" required>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="name" class="left control-label">供应商全称</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="name" name="vendorFullName" ng-model="updatevendor.vendorFullName" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comTel" class="left control-label">供应商邮编</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="comTel" name="vendorFullName" ng-model="updatevendor.zipCode" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="contactPhone" class="left control-label">供应商电话</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="contactPhone" name="contactPhone" ng-model="updatevendor.contactPhone" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="contactAddress" class="left control-label">供应商地址</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="contactAddress" name="contactAddress" ng-model="updatevendor.contactAddress" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="notes" class="left control-label">供应商备注</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="notes" name="notes" ng-model="updatevendor.notes" required>
+			</div>
+		</div>
+
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="vendorform.$invalid" ng-click="addOrUpdateVendorInfo()">保存修改</button>
+
+		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="vendorBack()">返回</button>
+	</form>
+
+</div>
