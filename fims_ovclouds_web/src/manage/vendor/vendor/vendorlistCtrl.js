@@ -9,8 +9,8 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/vendor/vendor/queryvendorInfo",
-			url: "manage/vendor/vendor/queryVendorInfo.json",
+			url: config.HOST + "/api/2.0/bp/vendor/vendor/queryVendorInfo",
+			// url: "manage/vendor/vendor/queryVendorInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -36,8 +36,8 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 	$scope.querySingleVendorInfo = function(msid){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
-			url: "manage/vendor/vendor/querySingleVendorInfo.json",
+			url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
+			// url: "manage/vendor/vendor/querySingleVendorInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -78,8 +78,8 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/vendor/vendor//addOrUpdatevendors",
-			url: "manage/vendor/vendor/addOrUpdateVendorInfo.json",
+			url: config.HOST + "/api/2.0/bp/vendor/vendor/addOrUpdateVendorInfo",
+			// url: "manage/vendor/vendor/addOrUpdateVendorInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

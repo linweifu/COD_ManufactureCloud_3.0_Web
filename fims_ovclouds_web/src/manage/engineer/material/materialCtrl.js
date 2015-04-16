@@ -17,31 +17,6 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 			$location.path('account_index/materiallist').replace();
 		}
 
-		$scope.addOrUpdateMaterials = function(status){
-			$http({
-				method: "POST",
-				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-				url: "manage/engineer/material/queryMaterialsInfo.json",
-				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"companySid": localStorage.getItem('cSid')
-				}
-			})
-			.success(function(data){
-	            if (data.code == 'N01') {
-	                $scope.listdata = data.contents;
-	            }
-	            else if(data.code=="E00"){
-	                alert(data.message+",请重新登陆");
-	                localStorage.clear();
-	                $location.path('login').replace();
-	            }else {
-	                alert(data.message);
-	            }  
-	        })
-		}
 
 		$scope.updateMaterial = updateMaterial;
 
@@ -49,7 +24,7 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+				url: config.HOST + "/api/2.0/bp/engineering/materials/addOrUpdateMaterials",
 				url: "manage/engineer/material/addOrUpdateMaterials.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {

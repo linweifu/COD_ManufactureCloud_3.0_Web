@@ -558,31 +558,6 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 			$location.path('account_index/materiallist').replace();
 		}
 
-		$scope.addOrUpdateMaterials = function(status){
-			$http({
-				method: "POST",
-				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-				url: "manage/engineer/material/queryMaterialsInfo.json",
-				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"companySid": localStorage.getItem('cSid')
-				}
-			})
-			.success(function(data){
-	            if (data.code == 'N01') {
-	                $scope.listdata = data.contents;
-	            }
-	            else if(data.code=="E00"){
-	                alert(data.message+",请重新登陆");
-	                localStorage.clear();
-	                $location.path('login').replace();
-	            }else {
-	                alert(data.message);
-	            }  
-	        })
-		}
 
 		$scope.updateMaterial = updateMaterial;
 
@@ -590,7 +565,7 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+				url: config.HOST + "/api/2.0/bp/engineering/materials/addOrUpdateMaterials",
 				url: "manage/engineer/material/addOrUpdateMaterials.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
@@ -632,8 +607,8 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/queryMaterialsInfo.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+			// url: "manage/engineer/material/queryMaterialsInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -660,8 +635,8 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/querySingleMaterial.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+			// url: "manage/engineer/material/querySingleMaterial.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -698,8 +673,8 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/addOrUpdateMaterials.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/addOrUpdateMaterials",
+			// url: "manage/engineer/material/addOrUpdateMaterials.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -756,40 +731,15 @@ FIMS.controller('customerCtrl', ['$scope',  '$location', '$http',
 			$location.path('account_index/customerlist').replace();
 		}
 
-		$scope.addOrUpdateCustomers = function(status){
-			$http({
-				method: "POST",
-				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + /api/2.0/bp/customer/customer/querycustomersInfo",
-				url: "manage/customer/customer/queryCustomerInfo.json",
-				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"companySid": localStorage.getItem('cSid')
-				}
-			})
-			.success(function(data){
-	            if (data.code == 'N01') {
-	                $scope.listdata = data.contents;
-	            }
-	            else if(data.code=="E00"){
-	                alert(data.message+",请重新登陆");
-	                localStorage.clear();
-	                $location.path('login').replace();
-	            }else {
-	                alert(data.message);
-	            }  
-	        })
-		}
 
 		$scope.updatecustomer = updatecustomer;
 
-		$scope.addOrUpdateCustomerInfo = function(s){
+		$scope.addOrUpdateCustomerInfo = function(){
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/customer/customer/querycustomersInfo",
-				url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
+				url: config.HOST + "/api/2.0/bp/customer/customer/addOrUpdateCustomerInfo",
+				// url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -831,8 +781,8 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/customer/customer/queryCustomerInfo",
-			url: "manage/customer/customer/queryCustomerInfo.json",
+			url: config.HOST + "/api/2.0/bp/customer/customer/queryCustomerInfo",
+			// url: "manage/customer/customer/queryCustomerInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -858,8 +808,8 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 	$scope.querySingleCustomerInfo = function(msid){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
-			url: "manage/customer/customer/querySingleCustomerInfo.json",
+			url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
+			// url: "manage/customer/customer/querySingleCustomerInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -900,8 +850,8 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/customer/customer//addOrUpdatecustomers",
-			url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
+			url: config.HOST + "/api/2.0/bp/customer/customer/addOrUpdatecustomers",
+			// url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -964,40 +914,14 @@ FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http',
 			$location.path('account_index/vendorlist').replace();
 		}
 
-		$scope.addOrUpdateVendors = function(status){
-			$http({
-				method: "POST",
-				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + /api/2.0/bp/vendor/vendor/queryVndorsInfo",
-				url: "manage/vendor/vendor/queryVndorInfo.json",
-				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"companySid": localStorage.getItem('cSid')
-				}
-			})
-			.success(function(data){
-	            if (data.code == 'N01') {
-	                $scope.listdata = data.contents;
-	            }
-	            else if(data.code=="E00"){
-	                alert(data.message+",请重新登陆");
-	                localStorage.clear();
-	                $location.path('login').replace();
-	            }else {
-	                alert(data.message);
-	            }  
-	        })
-		}
-
 		$scope.updatevendor = updatevendor;
 
-		$scope.addOrUpdateVendorInfo = function(s){
+		$scope.addOrUpdateVendorInfo = function(){
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/vendor/vendor/queryVndorsInfo",
-				url: "manage/vendor/vendor/addOrUpdatevendorInfo.json",
+				url: config.HOST + "/api/2.0/bp/vendor/vendor/addOrUpdateVendorInfo",
+				// url: "manage/vendor/vendor/addOrUpdatevendorInfo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1039,8 +963,8 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/vendor/vendor/queryvendorInfo",
-			url: "manage/vendor/vendor/queryVendorInfo.json",
+			url: config.HOST + "/api/2.0/bp/vendor/vendor/queryVendorInfo",
+			// url: "manage/vendor/vendor/queryVendorInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -1066,8 +990,8 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 	$scope.querySingleVendorInfo = function(msid){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
-			url: "manage/vendor/vendor/querySingleVendorInfo.json",
+			url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
+			// url: "manage/vendor/vendor/querySingleVendorInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -1108,8 +1032,8 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/vendor/vendor//addOrUpdatevendors",
-			url: "manage/vendor/vendor/addOrUpdateVendorInfo.json",
+			url: config.HOST + "/api/2.0/bp/vendor/vendor/addOrUpdateVendorInfo",
+			// url: "manage/vendor/vendor/addOrUpdateVendorInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

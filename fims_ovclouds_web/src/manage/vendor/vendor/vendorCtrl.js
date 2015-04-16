@@ -18,40 +18,14 @@ FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http',
 			$location.path('account_index/vendorlist').replace();
 		}
 
-		$scope.addOrUpdateVendors = function(status){
-			$http({
-				method: "POST",
-				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + /api/2.0/bp/vendor/vendor/queryVndorsInfo",
-				url: "manage/vendor/vendor/queryVndorInfo.json",
-				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"companySid": localStorage.getItem('cSid')
-				}
-			})
-			.success(function(data){
-	            if (data.code == 'N01') {
-	                $scope.listdata = data.contents;
-	            }
-	            else if(data.code=="E00"){
-	                alert(data.message+",请重新登陆");
-	                localStorage.clear();
-	                $location.path('login').replace();
-	            }else {
-	                alert(data.message);
-	            }  
-	        })
-		}
-
 		$scope.updatevendor = updatevendor;
 
-		$scope.addOrUpdateVendorInfo = function(s){
+		$scope.addOrUpdateVendorInfo = function(){
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/vendor/vendor/queryVndorsInfo",
-				url: "manage/vendor/vendor/addOrUpdatevendorInfo.json",
+				url: config.HOST + "/api/2.0/bp/vendor/vendor/addOrUpdateVendorInfo",
+				// url: "manage/vendor/vendor/addOrUpdatevendorInfo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),

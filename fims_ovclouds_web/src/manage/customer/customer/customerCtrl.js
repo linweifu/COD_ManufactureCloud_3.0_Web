@@ -18,40 +18,15 @@ FIMS.controller('customerCtrl', ['$scope',  '$location', '$http',
 			$location.path('account_index/customerlist').replace();
 		}
 
-		$scope.addOrUpdateCustomers = function(status){
-			$http({
-				method: "POST",
-				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + /api/2.0/bp/customer/customer/querycustomersInfo",
-				url: "manage/customer/customer/queryCustomerInfo.json",
-				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"companySid": localStorage.getItem('cSid')
-				}
-			})
-			.success(function(data){
-	            if (data.code == 'N01') {
-	                $scope.listdata = data.contents;
-	            }
-	            else if(data.code=="E00"){
-	                alert(data.message+",请重新登陆");
-	                localStorage.clear();
-	                $location.path('login').replace();
-	            }else {
-	                alert(data.message);
-	            }  
-	        })
-		}
 
 		$scope.updatecustomer = updatecustomer;
 
-		$scope.addOrUpdateCustomerInfo = function(s){
+		$scope.addOrUpdateCustomerInfo = function(){
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/customer/customer/querycustomersInfo",
-				url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
+				url: config.HOST + "/api/2.0/bp/customer/customer/addOrUpdateCustomerInfo",
+				// url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),

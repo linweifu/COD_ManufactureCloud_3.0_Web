@@ -9,8 +9,8 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/customer/customer/queryCustomerInfo",
-			url: "manage/customer/customer/queryCustomerInfo.json",
+			url: config.HOST + "/api/2.0/bp/customer/customer/queryCustomerInfo",
+			// url: "manage/customer/customer/queryCustomerInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -36,8 +36,8 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 	$scope.querySingleCustomerInfo = function(msid){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
-			url: "manage/customer/customer/querySingleCustomerInfo.json",
+			url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
+			// url: "manage/customer/customer/querySingleCustomerInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -78,8 +78,8 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/customer/customer//addOrUpdatecustomers",
-			url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
+			url: config.HOST + "/api/2.0/bp/customer/customer/addOrUpdatecustomers",
+			// url: "manage/customer/customer/addOrUpdateCustomerInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

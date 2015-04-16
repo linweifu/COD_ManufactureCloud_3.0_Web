@@ -9,8 +9,8 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/queryMaterialsInfo.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+			// url: "manage/engineer/material/queryMaterialsInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -37,8 +37,8 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/querySingleMaterial.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+			// url: "manage/engineer/material/querySingleMaterial.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -75,8 +75,8 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/addOrUpdateMaterials.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/addOrUpdateMaterials",
+			// url: "manage/engineer/material/addOrUpdateMaterials.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
