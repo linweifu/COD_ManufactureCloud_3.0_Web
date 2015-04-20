@@ -95,6 +95,26 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'manage/vendor/vendor/vendor.html'
 	})
+	.state('account_index.planList',{
+		url:'/planList',
+		// controller:'dataCountController',
+		templateUrl:'plan/planList.html'
+	})
+	.state('account_index.planAdd',{
+		url:'/planAdd',
+		// controller:'dataCountController',
+		templateUrl:'plan/planAdd.html'
+	})
+	.state('account_index.planCheck',{
+		url:'/planCheck',
+		// controller:'dataCountController',
+		templateUrl:'plan/planCheck.html'
+	})
+	.state('account_index.planRevise',{
+		url:'/planRevise',
+		// controller:'dataCountController',
+		templateUrl:'plan/planRevise.html'
+	})
 	// .state('account_index.engineerlist',{
 	// 	url:'/engineerlist',
 	// 	// controller:'dataCountController',

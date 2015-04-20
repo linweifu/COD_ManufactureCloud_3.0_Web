@@ -1,0 +1,28 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": [
+        {
+            "vendorSid": "1",
+            "vendorNo": "2",
+            "vendorShortName": "3",
+            "vendorFullName": "4",
+            "contactPhone": "5",
+            "contactAddress": "6",
+            "vendorBarcode": "2",
+            "zipCode": "123456",
+            "notes": "3"
+        },
+        {
+            "vendorSid": "a1",
+            "vendorNo": "d1",
+            "vendorShortName": "是",
+            "vendorFullName": "方法",
+            "contactPhone": "上山生",
+            "contactAddress": "方法·1",
+            "vendorBarcode": "实施",
+            "zipCode": "123456",
+            "notes": "公告"
+        }
+    ]
+}
