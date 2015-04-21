@@ -115,6 +115,16 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'plan/planRevise.html'
 	})
+	.state('account_index.planHistoryList',{
+		url:'/planHistoryList',
+		// controller:'dataCountController',
+		templateUrl:'plan/planHistoryList.html'
+	})
+	.state('account_index.plan',{
+		url:'/plan',
+		// controller:'dataCountController',
+		templateUrl:'plan/plan.html'
+	})
 	// .state('account_index.engineerlist',{
 	// 	url:'/engineerlist',
 	// 	// controller:'dataCountController',

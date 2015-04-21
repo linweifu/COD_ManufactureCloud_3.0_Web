@@ -81,9 +81,9 @@
 		</div>
 		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ui-sref="account_index.planList" >启用</button>
 
-		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planList" >检验项目</button>
+		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.plan" >检验项目</button>
 
-		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="companySetting.$invalid||companySetting.s.$pristine||companySetting.s1.$pristine||companySetting.s2.$pristine||companySetting.s3.$pristine||companySetting.s4.$pristine" ng-click="planRevise.improveComInfo()">查看历史版本</button>
+		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planHistoryList">查看历史版本</button>
 
 		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ui-sref="account_index.planList" >返回</button>
 	</form>
