@@ -26,7 +26,6 @@
 		margin-left: .2em;
 	}
 
-	.row {margin-bottom: 1em;}
 
 	.span {float: right;line-height: 1.5em;padding-top: .5em;padding-right: .6em;}
 	.name {font-size: 14px;}
@@ -37,38 +36,24 @@
 
 <div id="container" class="container text-center" ng-controller="planListCtrl">
 <!-- <div id="container" class="container text-center"> -->
-	<div class="row">
+	<div class="row" style="margin-bottom: 1.5em;">
 
-	<form class="form-horizontal" id="form-horizontal" name="companySetting" novalidate>
+	<form class="form-horizontal" id="form-horizontal" name="planList" novalidate>
 		<label class="left control-label">{{companyShortName}}</label>
 		<label class="left control-label">检验计划类型</label>
 		<div class="col-md-2">
-			<select class="form-control">
-			  <option>入库检验</option>
-			  <option>出库检验</option>
-			  <option>制程检验</option>
-			  <option>入库检验</option>
+			<select class="form-control" ng-model="planlist.Selected.checkoutPlanType" ng-options="o as o.name for o in planlist.dictionary.QCPType" ng-change="queryQCPByType()">
 			</select>
 		</div>
 
 		<label class="left control-label">物料名称</label>
 		<div class="col-md-3">
-			<select class="form-control">
-			  <option>入库检验</option>
-			  <option>出库检验</option>
-			  <option>制程检验</option>
-			  <option>入库检验</option>
-			</select>
+			<select class="form-control" ng-options="o.materialNo as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.materialSelected.materialNo"  ng-change="queryMaterialVersionByMaterialNo()"></select>
 		</div>
 
 		<label class="left control-label">物料版本</label>
 		<div class="col-md-2">
-			<select class="form-control">
-			  <option>1</option>
-			  <option>2</option>
-			  <option>3</option>
-			  <option>4</option>
-			</select>
+			<select class="form-control" ng-options="o.materialVersion as o.materialVersion for o in planlist.dictionary.materialVersion" ng-model="planlist.materialSelected.materialVersion" ng-change="queryQCPByMaterial()"></select>
 		</div>
 	</form>
 	</div>
@@ -95,48 +80,29 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<tr ng-repeat="list in listdata">
+		  	<tr ng-repeat="list in planlist.QCPSelected">
 		  		<td>{{$index+1}}</td>
-		  		<td ng-bind="list.planNo"></td>
-		  		<td ng-bind="list.planShortName"></td>
-		  		<td ng-bind="list.planFullName"></td>
-		  		<td ng-bind="list.zipCode"></td>
-		  		<td ng-bind="list.contactPhone"></td>
-		  		<td ng-bind="list.contactAddress"></td>
-		  		<td><a href="" ng-click="querySingleplanInfo(list.planSid)">修改</a></td>
-		  	</tr>
-		  	<tr>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td>启用</td>
-		  		<td><a ui-sref="account_index.planCheck">查看</a></td>
-		  	</tr>
-		  	<tr>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td>修订</td>
-		  		<td><a ui-sref="account_index.planRevise">修改</a></td>
+		  		<td ng-bind="list.checkoutPlanNo"></td>
+		  		<td ng-bind="list.checkoutPlanVersion"></td>
+		  		<td ng-bind="list.materialNo"></td>
+		  		<td ng-bind="list.materialVersion"></td>
+		  		<td ng-bind="list.aql"></td>
+		  		<td ng-bind="list.materialShortName"></td>
+		  		<td ng-bind="list.makeName"></td>
+		  		<td ng-bind="list.makeTime"></td>
+		  		<td ng-bind="list.entryName"></td>
+		  		<td ng-bind="list.entryTime"></td>
+		  		<td ng-bind="list.checkoutPlanStatus"></td>
+		  		<td><a href="" ng-click="querySingleplanInfo(list.planSid)" ng-bind="list.operateStatus">修改</a></td>
 		  	</tr>
 		  </tbody>
 		</table>
+		<nav>
+		  <ul class="pager">
+		    <li><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+		    <li><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+		  </ul>
+		</nav>
 	</div>
 	</div>
 

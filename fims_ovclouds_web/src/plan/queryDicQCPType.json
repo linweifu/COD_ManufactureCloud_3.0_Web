@@ -1,0 +1,18 @@
+{
+    "code": "N01",
+    "message": "成功",
+    "contents": [
+        {
+            "checkoutPlanTypeCode": "1",
+            "checkoutPlanType": "入库检验",
+            "checkoutPlanTypeEnglishName": "",
+            "display": ""
+        },
+        {
+            "checkoutPlanTypeCode": "2",
+            "checkoutPlanType": "出库检验",
+            "checkoutPlanTypeEnglishName": "",
+            "display": ""
+        }
+    ]
+}
