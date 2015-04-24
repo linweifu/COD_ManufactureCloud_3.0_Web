@@ -4,6 +4,9 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 		$scope.curCompanyName = localStorage.getItem("curCompanyName");
 		$scope.applyJoinCompanyNumber = localStorage.getItem("applyJoinCompanyNumber");
 
+		// 将所有当前改为1
+		localStorage.setItem("page",1);
+
 		$scope.getApplies = function(){
 			 $http({
 	            method: 'post',

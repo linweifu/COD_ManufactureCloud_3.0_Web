@@ -14,8 +14,8 @@
             "materialSid": 1,
             "materialSidHash": 1,
             "materialNo": "1",
-            "materialVersion": "A",
-            "materialShortName": "A",
+            "materialVersion": "B",
+            "materialShortName": "B",
             "aql": 5,
             "entrySid": 1,
             "entrySidHash": 1,
@@ -31,7 +31,8 @@
             "checkoutPlanStatusCode": "1",
             "checkoutPlanStatus": "1",
             "notes": "1"
-            },{
+            },
+            {
                 "checkoutPlanSid": 1,
             "checkoutPlanSidHash": 1,
             "checkoutPlanNo": "20140420",
@@ -61,5 +62,6 @@
             "checkoutPlanStatusCode": "1",
             "checkoutPlanStatus": "1",
             "notes": "1"
-    }]
+            }
+]
 }

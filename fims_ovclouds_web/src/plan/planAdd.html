@@ -15,27 +15,23 @@
 
 <div id="container" class="container" ng-controller="planAddCtrl">
 	<h3>新增检验计划</h3>
-	<form class="form-horizontal" id="form-horizontal" name="companySetting" novalidate>
+	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
-			<label for="planType" class="control-label left">检验计划类型</label>
-			<div class="col-sm-3">
-				<select class="form-control" ng-disabled="true">
-				  <option>IQCP</option>
-				  <option>IPQCP</option>
-				  <option>FQCP</option>
-				  <option>OQCP</option>
-				</select>
-			</div>
+			<label class="control-label left">检验计划类型</label>
+			<div class="col-md-3">
+			<select class="form-control" ng-model="planAdd.Selected.QCPType"   ng-options="o as o.name for o in planAdd.dictionary.QCPType">
+			</select>
+		</div>
 		</div>
 		<div class="form-group">
-			<label for="name" class="left control-label">待检物料编号</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" id="name" name="name" ng-model="planAdd.name" required>
+			<label class="left control-label">待检物料编号</label>
+			<div class="col-md-3">
+				<select class="form-control" ng-options="o.materialNo as o.materialNo for o in planAdd.dictionary.materialNo" ng-model="planAdd.Selected.materialNo" ng-change="queryMaterialVersionByMaterialNo()"></select>
 			</div>
 
-			<label for="name" class="left control-label">版本</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="name" name="name" ng-model="planAdd.name" required>
+			<label class="left control-label">物料版本</label>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o.materialVersion as o.materialVersion for o in planAdd.dictionary.materialVersion" ng-model="planAdd.Selected.materialVersion" ng-change="queryMaterialShortName()"></select>
 			</div>
 
 			<!-- <div class="col-sm-5">
@@ -45,14 +41,14 @@
 		<div class="form-group">
 			<label class="left control-label">待检物料简称</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name" name="name" ng-model="planAdd.name" required>
+				<input type="text" class="form-control" id="materialShortName" name="materialShortName" ng-model="planAdd.materialShortName" required ng-disabled="true">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="left control-label">检验计划编号</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" id="name" name="name" ng-model="planAdd.name" required>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="planId" name="planId" ng-model="planAdd.planId" required ng-disabled="true">
 			</div>
 
 			<label class="left control-label">版本</label>
@@ -92,9 +88,9 @@
 			</div>
 		</div>
 
-		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="companySetting.$invalid||companySetting.s.$pristine||companySetting.s1.$pristine||companySetting.s2.$pristine||companySetting.s3.$pristine||companySetting.s4.$pristine" ng-click="planAdd.improveComInfo()">确认添加</button>
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="planAdd.$invalid||planAdd.s.$pristine||planAdd.s1.$pristine||planAdd.s2.$pristine||planAdd.s3.$pristine||planAdd.s4.$pristine" ng-click="planAdd.improveComInfo()">确认添加</button>
 
-		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ui-sref="account_index.planList" >取消添加</button>
+		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ui-sref="account_index.planAdd" >取消添加</button>
 	</form>
 
 <!-- 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>

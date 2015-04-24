@@ -1,9 +1,9 @@
+
 {
-    "code": "N01",
-    "message": "添加成功",
-    "contents": [
-        {
-            "checkoutPlanSid": 1,
+    "code":"N01",
+    "message": "成功",
+    "contents":[{
+                "checkoutPlanSid": 1,
             "checkoutPlanSidHash": 1,
             "checkoutPlanNo": "20140420",
             "checkoutPlanVersion": "A",
@@ -16,7 +16,7 @@
             "materialSidHash": 1,
             "materialNo": "1",
             "materialVersion": "A",
-            "materialShortName": "物料1",
+            "materialShortName": "A",
             "aql": 5,
             "entrySid": 1,
             "entrySidHash": 1,
@@ -28,13 +28,12 @@
             "makeName": "123",
             "makeTime": 123,
             "operateStatusCode": "1",
-            "operateStatus": "1",
+            "operateStatus": "查看",
             "checkoutPlanStatusCode": "1",
-            "checkoutPlanStatus": "1",
+            "checkoutPlanStatus": "启用",
             "notes": "1"
-        },
-        {
-            "checkoutPlanSid": 1,
+            },{
+                "checkoutPlanSid": 1,
             "checkoutPlanSidHash": 1,
             "checkoutPlanNo": "20140420",
             "checkoutPlanVersion": "A",
@@ -43,11 +42,11 @@
             "companySid": 1,
             "companySidHash": 1,
             "companyShortName": "极创",
-            "materialSid": 2,
-            "materialSidHash": 2,
-            "materialNo": "2",
+            "materialSid": 1,
+            "materialSidHash": 1,
+            "materialNo": "1",
             "materialVersion": "A",
-            "materialShortName": "物料2",
+            "materialShortName": "A",
             "aql": 5,
             "entrySid": 1,
             "entrySidHash": 1,
@@ -59,10 +58,9 @@
             "makeName": "123",
             "makeTime": 123,
             "operateStatusCode": "1",
-            "operateStatus": "1",
+            "operateStatus": "修改",
             "checkoutPlanStatusCode": "1",
-            "checkoutPlanStatus": "1",
+            "checkoutPlanStatus": "修订",
             "notes": "1"
-        }
-    ]
+    }]
 }

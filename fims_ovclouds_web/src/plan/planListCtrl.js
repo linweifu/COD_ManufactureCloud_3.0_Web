@@ -6,17 +6,19 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 				materialName: [],
 				materialVersion: []
 			},
-			QCPType: {
-				checkoutPlanTypeCode: "",
-				checkoutPlanType: ""
-			},
+			
 			Selected : {
-				checkoutPlanType :"",
-				materialNo: "",
+				QCPType: {},
+				materialName : {},
+				// materialVersion : {},
+				// materialNo: "",
 				materialVersion: ""
 			},
-			QCPSelected :[]
+			QCPSelected :[],
+			display: "",
+			page: localStorage.getItem("page")
 		};
+
 		$scope.companyShortName = localStorage.getItem('curCompanyName');
 		$scope.planlist = planlist;
 
@@ -26,7 +28,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		}
 
 		//  /api/2.0/bp/qcp/qcp
-		//
+		
 		$scope.queryDicQCPType = function(){
 			$http({
 				method: "POST",
@@ -46,6 +48,9 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                		"code": data.contents[i].checkoutPlanTypeCode
 	                	});
 	                }
+            		planlist.Selected.QCPType = (planlist.dictionary.QCPType)[0];
+            		$scope.queryQCPByType(planlist.Selected.QCPType.code);
+
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -59,6 +64,15 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 
 		$scope.queryDicQCPType();
 
+
+		// 上一页
+		$scope.previous = function(){
+			if (planlist.page==1) {
+				alert("当前是第1页...")
+			} 
+			
+		}
+
 		//根据检验计划类型获取检验计划
 		$scope.queryQCPByType = function(){
 			$http({
@@ -69,12 +83,19 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 				data: {
 					"sid": localStorage.getItem('sid'),
 					"companySid": localStorage.getItem('cSid'),
-					"checkoutPlanType": planlist.Selected.checkoutPlanType
+					"checkoutPlanTypeCode": planlist.Selected.QCPType.code,
+					"page": localStorage.getItem('page')
 				}
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
-	                planlist.QCPSelected = data.contents;          
+	            	planlist.dictionary.materialVersion = [];
+	            	planlist.Selected.materialName = {};
+	                planlist.display = "display:block"; 
+	 				localStorage.setItem('page',1);	
+	                planlist.QCPSelected = data.contents; 
+	                console.log(planlist.Selected.QCPType);
+
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -85,13 +106,45 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	            }  
 	        })
 		}
+		
 
 		// 查询检验计划
-		$scope.queryQCP = function(){
+		// $scope.queryQCP = function(){
+		// 	$http({
+		// 		method: "POST",
+		// 		// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
+		// 		url: "plan/queryQCP.json",
+		// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+		// 		data: {
+		// 			"sid": localStorage.getItem('sid'),
+		// 			"companySid": localStorage.getItem('cSid'),
+		// 			"page": localStorage.getItem('page')
+		// 		}
+		// 	})
+		// 	.success(function(data){
+	 //            if (data.code == 'N01') {
+	 //                // planlist.dictionary.materialName = data.contents;
+	 //                planlist.QCPSelected = data.contents;          
+	 //            }
+	 //            else if(data.code=="E00"){
+	 //                alert(data.message+",请重新登陆");
+	 //                localStorage.clear();
+	 //                $location.path('login').replace();
+	 //            }else {
+	 //                alert(data.message);
+	 //            }  
+	 //        })
+		// }
+
+		// $scope.queryQCP();
+
+		//获取物料字典
+		$scope.queryMaterialsInfo = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
-				url: "plan/queryQCP.json",
+				// url: "account/joinCo/joinCo.json",
+				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+				url: "manage/engineer/material/queryMaterialsInfo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -100,8 +153,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
-	                planlist.dictionary.materialName = data.contents;
-	                planlist.QCPSelected = data.contents;          
+	            	planlist.dictionary.materialName = data.contents;
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -113,7 +165,10 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	        })
 		}
 
-		$scope.queryQCP();
+	$scope.queryMaterialsInfo();
+
+
+
 
 		//根据物料编号获取物料版本
 		$scope.queryMaterialVersionByMaterialNo = function(){
@@ -125,11 +180,14 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 				data: {
 					"sid": localStorage.getItem('sid'),
 					"companySid": localStorage.getItem('cSid'),
-					"materialNo": planlist.Selected.materialNo
+					"materialNo": planlist.Selected.materialName.materialNo 
 				}
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {           	
+	                planlist.display = "display:none"; 
+	                planlist.dictionary.materialVersion = [];
+	            	planlist.Selected.materialVersion = "";
 	                planlist.dictionary.materialVersion = data.contents;
 	                planlist.QCPSelected = data.contents;
 	            }
@@ -153,12 +211,13 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 				data: {
 					"sid": localStorage.getItem('sid'),
 					"companySid": localStorage.getItem('cSid'),
-					"materialNo": planlist.Selected.materialNo,
+					"materialNo": planlist.Selected.materialName.materialNo ,
 					"materialVersion": planlist.Selected.materialVersion
 				}
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {           	
+	 				localStorage.setItem('page',1);
 	                planlist.QCPSelected = data.contents;
 	            }
 	            else if(data.code=="E00"){

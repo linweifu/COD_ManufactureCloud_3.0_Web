@@ -42,18 +42,18 @@
 		<label class="left control-label">{{companyShortName}}</label>
 		<label class="left control-label">检验计划类型</label>
 		<div class="col-md-2">
-			<select class="form-control" ng-model="planlist.Selected.checkoutPlanType" ng-options="o as o.name for o in planlist.dictionary.QCPType" ng-change="queryQCPByType()">
+			<select class="form-control" ng-model="planlist.Selected.QCPType"  ng-selected="planlist.dictionary.QCPType[0]" ng-options="o as o.name for o in planlist.dictionary.QCPType" ng-change="queryQCPByType()">
 			</select>
 		</div>
 
 		<label class="left control-label">物料名称</label>
 		<div class="col-md-3">
-			<select class="form-control" ng-options="o.materialNo as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.materialSelected.materialNo"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
 		</div>
 
 		<label class="left control-label">物料版本</label>
 		<div class="col-md-2">
-			<select class="form-control" ng-options="o.materialVersion as o.materialVersion for o in planlist.dictionary.materialVersion" ng-model="planlist.materialSelected.materialVersion" ng-change="queryQCPByMaterial()"></select>
+			<select class="form-control" ng-options="o.materialVersion as o.materialVersion for o in planlist.dictionary.materialVersion" ng-model="planlist.Selected.materialVersion" ng-change="queryQCPByMaterial()"></select>
 		</div>
 	</form>
 	</div>
@@ -97,9 +97,9 @@
 		  	</tr>
 		  </tbody>
 		</table>
-		<nav>
+		<nav style="{{planlist.display}}">
 		  <ul class="pager">
-		    <li><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+		    <li class="disabled"><a href="javascript:void(0)" ><span aria-hidden="true">&larr;</span> 上一页</a></li>
 		    <li><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
 		  </ul>
 		</nav>

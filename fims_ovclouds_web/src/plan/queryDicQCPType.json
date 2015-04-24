@@ -3,13 +3,13 @@
     "message": "成功",
     "contents": [
         {
-            "checkoutPlanTypeCode": "1",
+            "checkoutPlanTypeCode": "IPC",
             "checkoutPlanType": "入库检验",
             "checkoutPlanTypeEnglishName": "",
             "display": ""
         },
         {
-            "checkoutPlanTypeCode": "2",
+            "checkoutPlanTypeCode": "OQC",
             "checkoutPlanType": "出库检验",
             "checkoutPlanTypeEnglishName": "",
             "display": ""

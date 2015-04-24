@@ -1,7 +1,8 @@
+
 {
     "code":"N01",
-    "message": "添加成功",
-    "content":[{
+    "message": "成功",
+    "contents":[{
                 "checkoutPlanSid": 1,
             "checkoutPlanSidHash": 1,
             "checkoutPlanNo": "20140420",
@@ -27,9 +28,9 @@
             "makeName": "123",
             "makeTime": 123,
             "operateStatusCode": "1",
-            "operateStatus": "1",
+            "operateStatus": "查看",
             "checkoutPlanStatusCode": "1",
-            "checkoutPlanStatus": "1",
+            "checkoutPlanStatus": "启用",
             "notes": "1"
             },{
                 "checkoutPlanSid": 1,
@@ -57,9 +58,9 @@
             "makeName": "123",
             "makeTime": 123,
             "operateStatusCode": "1",
-            "operateStatus": "1",
+            "operateStatus": "修改",
             "checkoutPlanStatusCode": "1",
-            "checkoutPlanStatus": "1",
+            "checkoutPlanStatus": "修订",
             "notes": "1"
     }]
 }
