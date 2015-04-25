@@ -1113,8 +1113,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryDicQCPType = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
-				url: "plan/queryDicQCPType.json",
+				url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
+				// url: "plan/queryDicQCPType.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1158,8 +1158,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryQCPByType = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
-				url: "plan/queryQCPByType.json",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
+				// url: "plan/queryQCPByType.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1224,8 +1224,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-				url: "manage/engineer/material/queryMaterialsInfo.json",
+				url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+				// url: "manage/engineer/material/queryMaterialsInfo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1255,8 +1255,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryMaterialVersionByMaterialNo = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-				url: "plan/queryMaterialVersionByMaterialNo.json",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
+				// url: "plan/queryMaterialVersionByMaterialNo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1286,8 +1286,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryQCPByMaterial = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByMaterial",
-				url: "plan/queryQCPByMaterial.json",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByMaterial",
+				// url: "plan/queryQCPByMaterial.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
