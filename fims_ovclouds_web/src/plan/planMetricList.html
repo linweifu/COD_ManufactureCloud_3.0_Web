@@ -30,8 +30,10 @@
 	.top {margin-top: 1.8em;}
 	
 </style>
+<div ng-controller="planMetricListCtrl">
+	
 
-<div id="container" class="container text-center" ng-controller="planListCtrl">
+<div id="container" class="container text-center" >
 <!-- <div id="container" class="container text-center"> -->
 	<h3>定性检验项目列表</h3>
 	<!-- <span style="font-size: 20px;">{{companyShortName}}</span>
@@ -52,35 +54,36 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<tr ng-repeat="list in listdata">
+		  	<tr ng-repeat="list in planMetricList.DXCheckoutMetricList">
 		  		<td>{{$index+1}}</td>
-		  		<td ng-bind="list.planNo"></td>
-		  		<td ng-bind="list.planShortName"></td>
-		  		<td ng-bind="list.planFullName"></td>
-		  		<td ng-bind="list.zipCode"></td>
-		  		<td ng-bind="list.contactPhone"></td>
-		  		<td ng-bind="list.contactAddress"></td>
-		  		<td><a href="" ng-click="querySingleplanInfo(list.planSid)">修改</a></td>
-		  	</tr>
-		  	<tr>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td><a ui-sref="account_index.planRevise">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ui-sref="account_index.planRevise">删除</a></td>
-		  	</tr>
-		  	<tr>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td><a ui-sref="account_index.planRevise">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ui-sref="account_index.planRevise">删除</a></td>
+		  		<td ng-bind="list.checkoutMetricNo"></td>
+		  		<td ng-bind="list.checkoutMetricClassify"></td>
+		  		<td ng-bind="list.checkoutMetricName"></td>
+		  		<td ng-bind="list.checkoutMetricDescription"></td>
+		  		<td ng-bind="list.checkoutToolName"></td>
+		  		<td ng-bind="list.processName"></td>
+
+	            <!-- checkoutMetricSid: "", -->
+<!-- 	            checkoutPlanSid: "",
+	            checkoutMetricName: "",
+	            checkoutMetricDescription: "",
+	            checkoutToolCode: "",
+	            checkoutToolName: "",
+	            checkoutMetricTypeCode: "",
+	            checkoutMetricType: "",
+	            checkoutMetricClassifyCode: "",
+	            checkoutMetricClassify: "",
+	            processName: "",
+	            metricUnit: "",
+	            referenceStandard: "",
+	            underTolerance: "",
+	            upTolerance: "",
+	            mapPosition: "",
+	            threeDimensionalRogramNo: "",
+	            fixtureId: "",
+	            checkoutMetricNo: ""
+ -->
+		  		<td><a href="">修改</a></td>
 		  	</tr>
 		  </tbody>
 		</table>
@@ -90,7 +93,7 @@
 	<button class="btn btn-success add" id="btn-newMem" style="margin-right:.3em;" ui-sref="account_index.planAdd">添加</button>
 </div>
 
-<div id="container" class="container text-center"  style="margin-top: 2em;" ng-controller="planListCtrl">
+<div id="container" class="container text-center"  style="margin-top: 2em;">
 <!-- <div id="container" class="container text-center"> -->
 	<h3>定量检验项目列表</h3>
 	<!-- <span style="font-size: 20px;">{{companyShortName}}</span>
@@ -118,7 +121,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<tr ng-repeat="list in listdata">
+		  	<tr ng-repeat="list in planMetricList.DLCheckoutMetricList">
 		  		<td>{{$index+1}}</td>
 		  		<td ng-bind="list.planNo"></td>
 		  		<td ng-bind="list.planShortName"></td>
@@ -126,7 +129,7 @@
 		  		<td ng-bind="list.zipCode"></td>
 		  		<td ng-bind="list.contactPhone"></td>
 		  		<td ng-bind="list.contactAddress"></td>
-		  		<td><a href="" ng-click="querySingleplanInfo(list.planSid)">修改</a></td>
+		  		<td><a href="" ng-click="">修改</a></td>
 		  	</tr>
 		  	<tr>
 		  		<td></td>
@@ -168,4 +171,6 @@
 	</div>
 
 	<button class="btn btn-success add" id="btn-newMem" style="margin-right:.3em;" ui-sref="account_index.planAdd">添加</button>
+</div>
+
 </div>
