@@ -120,10 +120,10 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'plan/planHistoryList.html'
 	})
-	.state('account_index.plan',{
-		url:'/plan',
+	.state('account_index.planMetricList',{
+		url:'/planMetricList',
 		// controller:'dataCountController',
-		templateUrl:'plan/plan.html'
+		templateUrl:'plan/planMetricList.html'
 	})
 	// .state('account_index.engineerlist',{
 	// 	url:'/engineerlist',
