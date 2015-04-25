@@ -34,30 +34,34 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 	$scope.queryCustomerInfo();
 
 	$scope.querySingleCustomerInfo = function(msid){
-		$http({
-			method: "POST",
-			url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
-			// url: "manage/customer/customer/querySingleCustomerInfo.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"customerSid": msid
-			}
-		})
-		.success(function(data){
-            if (data.code == 'N01') {
-                // $scope.singlecustomer = data.contents;
-                localStorage.setItem('singlecustomer',JSON.stringify(data.contents));
-                $location.path('account_index/customer');
-            }
-            // else if(data.code=="E00"){
-            //     alert(data.message+",请重新登陆");
-            //     localStorage.clear();
-            //     $location.path('login').replace();
-            // }else {
-            //     alert(data.message);
-            // }  
-        })
+        localStorage.setItem('curC',msid);
+ 		$location.path('account_index/customer');        
+
+		// $http({
+		// 	method: "POST",
+		// 	url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
+		// 	// url: "manage/customer/customer/querySingleCustomerInfo.json",
+		// 	header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+		// 	data: {
+		// 		"sid": localStorage.getItem('sid'),
+		// 		"customerSid": msid
+		// 	}
+		// })
+		// .success(function(data){
+  //           if (data.code == 'N01') {
+  //               // $scope.singlecustomer = data.contents;
+  //               localStorage.setItem('singlecustomer',JSON.stringify(data.contents));
+  //               localStorage.setItem('singlecustomer',JSON.stringify(data.contents));
+  //               $location.path('account_index/customer');
+  //           }
+  //           // else if(data.code=="E00"){
+  //           //     alert(data.message+",请重新登陆");
+  //           //     localStorage.clear();
+  //           //     $location.path('login').replace();
+  //           // }else {
+  //           //     alert(data.message);
+  //           // }  
+  //       })
 	}
 
 	var newcustomer = {

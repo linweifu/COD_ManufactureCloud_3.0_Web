@@ -34,32 +34,36 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 	$scope.queryMaterialsInfo();
 
 	$scope.querySingleMaterial = function(msid){
-		$http({
-			method: "POST",
-			// url: "account/joinCo/joinCo.json",
-			url: config.HOST + "/api/2.0/bp/engineering/materials/querySingleMaterialsInfo",
-			// url: "manage/engineer/material/querySingleMaterial.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"materialSid": msid
-			}
-		})
-		.success(function(data){
-            if (data.code == 'N01') {
-                $scope.singlematerial = data.contents;
-                localStorage.setItem('singlematerial',JSON.stringify(data.contents));
-                $location.path('account_index/material');
-            }
-            else if(data.code=="E00"){
-                alert(data.message+",请重新登陆");
-                localStorage.clear();
-                $location.path('login').replace();
-            }else {
-                alert(data.message);
-            }  
-        })
+		localStorage.setItem('curM',msid);
+ 		$location.path('account_index/material');     
 	}
+	// $scope.querySingleMaterial = function(msid){
+	// 	$http({
+	// 		method: "POST",
+	// 		// url: "account/joinCo/joinCo.json",
+	// 		url: config.HOST + "/api/2.0/bp/engineering/materials/querySingleMaterialsInfo",
+	// 		// url: "manage/engineer/material/querySingleMaterial.json",
+	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+	// 		data: {
+	// 			"sid": localStorage.getItem('sid'),
+	// 			"materialSid": msid
+	// 		}
+	// 	})
+	// 	.success(function(data){
+ //            if (data.code == 'N01') {
+ //                $scope.singlematerial = data.contents;
+ //                localStorage.setItem('singlematerial',JSON.stringify(data.contents));
+ //                $location.path('account_index/material');
+ //            }
+ //            else if(data.code=="E00"){
+ //                alert(data.message+",请重新登陆");
+ //                localStorage.clear();
+ //                $location.path('login').replace();
+ //            }else {
+ //                alert(data.message);
+ //            }  
+ //        })
+	// }
 
 	var newMaterial = {
 		"materialNo": "",

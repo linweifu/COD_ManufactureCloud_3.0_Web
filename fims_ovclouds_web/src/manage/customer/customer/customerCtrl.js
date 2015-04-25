@@ -1,25 +1,53 @@
 FIMS.controller('customerCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var customer = JSON.parse(localStorage.getItem('singlecustomer'));
-		var updatecustomer = {
-			"customerNo": customer.customerNo,
-            "customerShortName": customer.customerShortName,
-            "customerFullName": customer.customerFullName,
-            "contactPhone": customer.contactPhone,
-            "contactAddress": customer.contactAddress,
-		    "zipCode": customer.zipCode,
-            "notes": customer.notes
-		};
-		console.log(customer);
-		$scope.updatecustomer= updatecustomer;
+		var customer = {};
 
+		// var customer = {
+		// 	"customerNo": customer.customerNo,
+  //           "customerShortName": customer.customerShortName,
+  //           "customerFullName": customer.customerFullName,
+  //           "contactPhone": customer.contactPhone,
+  //           "contactAddress": customer.contactAddress,
+		//     "zipCode": customer.zipCode,
+  //           "notes": customer.notes
+		// };
+
+		//数据绑定以及准备
+		$scope.customer= customer;
+
+
+		//方法定义区
 		$scope.customerBack = function(){
-			localStorage.removeItem('singlecustomer');
+			localStorage.removeItem('curC');
 			$location.path('account_index/customerlist').replace();
 		}
 
-
-		$scope.updatecustomer = updatecustomer;
+		$scope.querySingleCustomerInfo = function(msid){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
+				// url: "manage/customer/customer/querySingleCustomerInfo.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"customerSid": msid
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	                $scope.customer = data.contents;
+	                console.log($scope.customer);
+	                
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
 
 		$scope.addOrUpdateCustomerInfo = function(){
 			$http({
@@ -31,19 +59,21 @@ FIMS.controller('customerCtrl', ['$scope',  '$location', '$http',
 				data: {
 					"sid": localStorage.getItem('sid'),
 				    "operateStatus": 1,
-				    "customerNo":updatecustomer.customerNo,
-				    "customerShortName":updatecustomer.customerShortName,
-				    "customerFullName":updatecustomer.customerFullName,
+				    // "customerNo":$scope.customer.customerNo,
+				    "customerSid":$scope.customer.customerSid,
+				    "customerShortName":$scope.customer.customerShortName,
+				    "customerFullName":$scope.customer.customerFullName,
 				    "companySid": localStorage.getItem('cSid'),
 				    "companyShortName":localStorage.getItem('curCompanyName'),
-				    "contactPhone": updatecustomer.contactPhone,
-				    "contactAddress": updatecustomer.contactAddress,
-		    		"zipCode": updatecustomer.zipCode,
-				    "notes":updatecustomer.notes
+				    "contactPhone": $scope.customer.contactPhone,
+				    "contactAddress": $scope.customer.contactAddress,
+		    		"zipCode": $scope.customer.zipCode,
+				    "notes": $scope.customer.notes
 				}
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
+	            	console.log(customer);
 	                alert(data.message);
 	                $scope.customerBack();
 	            }
@@ -56,4 +86,8 @@ FIMS.controller('customerCtrl', ['$scope',  '$location', '$http',
 	            }  
 	        })
 		}
+
+		//*********初始化调用区域
+		$scope.querySingleCustomerInfo(localStorage.getItem("curC"));
+
 }])

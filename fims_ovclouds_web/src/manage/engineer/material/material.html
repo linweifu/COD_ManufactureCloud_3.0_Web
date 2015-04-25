@@ -19,36 +19,36 @@
 		<div class="form-group">
 			<label for="materialNo" class="control-label left">物料编号</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="materialNo" name="materialNo" ng-model="updateMaterial.materialNo" required> 
+				<input type="text" class="form-control" id="materialNo" name="materialNo" ng-model="material.materialNo"  ng-disabled="true" required> 
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="comWeb" class="left control-label">物料版本</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="comWeb" name="materialVersion" ng-model="updateMaterial.materialVersion" required>
+				<input type="text" class="form-control" id="comWeb" name="materialVersion" ng-model="material.materialVersion" required>
 			</div>
 		</div>
 		
 		<div class="form-group">
 			<label for="name" class="left control-label">物料简称</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="name" name="materialShortName" ng-model="updateMaterial.materialShortName" required>
+				<input type="text" class="form-control" id="name" name="materialShortName" ng-model="material.materialShortName" required>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="comTel" class="left control-label">物料全称</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="comTel" name="materialFullName" ng-model="updateMaterial.materialFullName" required>
+				<input type="text" class="form-control" id="comTel" name="materialFullName" ng-model="material.materialFullName" required>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="comTel" class="left control-label">物料备注</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="comTel" name="notes" ng-model="updateMaterial.notes" required>
+				<input type="text" class="form-control" id="comTel" name="notes" ng-model="material.notes" required>
 			</div>
 		</div>
 
-		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="materialform.$invalid" ng-click="addOrUpdateMaterials(1)">保存修改</button>
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="materialform.$invalid||materialform.$pristine" ng-click="addOrUpdateMaterials(1)">保存修改</button>
 
 		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="materialBack()">返回</button>
 	</form>
