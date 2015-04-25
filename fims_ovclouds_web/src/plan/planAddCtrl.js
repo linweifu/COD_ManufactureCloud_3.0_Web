@@ -15,7 +15,13 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		},
 
 		materialShortName : "",
-		planId: ""
+		checkoutPlanNo: "",
+		checkoutPlanVersion : "checkoutPlanVersion",
+		aql: "aql",
+		makeName : "makeName",
+		makeTime: "makeTime",
+		entryName: "entryName",
+		entryTime: "entryTime"
 	};
 
 	$scope.queryDicQCPType = function(){
@@ -37,6 +43,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
                 		"code": data.contents[i].checkoutPlanTypeCode
                 	});
                 }
+        		planAdd.Selected.QCPType = (planAdd.dictionary.QCPType)[0];
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -100,6 +107,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
                 planAdd.dictionary.materialVersion = [];
             	planAdd.Selected.materialVersion = "";
                 planAdd.dictionary.materialVersion = data.contents;
+                planAdd.checkoutPlanNo = '';
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -127,8 +135,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		.success(function(data){
             if (data.code == 'N01') {           	
             	planAdd.materialShortName = data.contents.materialShortName;
-            	planAdd.planId = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo+"-"+planAdd.Selected.materialVersion ;
-	console.log(planAdd)
+            	planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo+"-"+planAdd.Selected.materialVersion ;
 
             }
             else if(data.code=="E00"){

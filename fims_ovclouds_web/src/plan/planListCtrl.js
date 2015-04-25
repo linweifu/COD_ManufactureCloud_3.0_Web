@@ -94,8 +94,6 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                planlist.display = "display:block"; 
 	 				localStorage.setItem('page',1);	
 	                planlist.QCPSelected = data.contents; 
-	                console.log(planlist.Selected.QCPType);
-
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");

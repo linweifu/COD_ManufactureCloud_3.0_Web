@@ -24,8 +24,8 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 			$http({
 				method: "POST",
 				// url: "account/joinCo/joinCo.json",
-				url: config.HOST + "/api/2.0/bp/engineering/materials/addOrUpdateMaterials",
-				url: "manage/engineer/material/addOrUpdateMaterials.json",
+				url: config.HOST + "/api/2.0/bp/engineering/materials/addOrUpdateMaterialsInfo",
+				// url: "manage/engineer/material/addOrUpdateMaterials.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),

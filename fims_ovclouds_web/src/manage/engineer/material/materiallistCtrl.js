@@ -37,7 +37,7 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/querySingleMaterialsInfo",
 			// url: "manage/engineer/material/querySingleMaterial.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
