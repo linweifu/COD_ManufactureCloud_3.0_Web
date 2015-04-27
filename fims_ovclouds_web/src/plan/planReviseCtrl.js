@@ -143,7 +143,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 */
 	var dataTransfer = function(oObj,iObj){
 
-            oObj.sid                  = iObj.sid,
+            oObj.sid                  = iObj.sid;
             oObj.checkoutPlanSid      = iObj.checkoutPlanSid;
             oObj.checkoutPlanNo       =	iObj.checkoutPlanNo;
             oObj.checkoutPlanVersion  =	iObj.checkoutPlanVersion;
