@@ -596,7 +596,7 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 				    "materialSid": localStorage.getItem('curM'),
 				    // "materialNo":updateMaterial.materialNo,
 				    "materialShortName":$scope.material.materialShortName,
-				    "materialVersion":$scope.material.materialVersion,
+				    // "materialVersion":$scope.material.materialVersion,
 				    "materialFullName":$scope.material.materialFullName,
 				    "companySid":localStorage.getItem('cSid'),
 				    "companyShortName":$scope.material.companyShortName,
@@ -1993,12 +1993,12 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 
 		materialShortName : "",
 		checkoutPlanNo: "",
-		checkoutPlanVersion : "checkoutPlanVersion",
-		aql: "aql",
-		makeName : "makeName",
-		makeTime: "makeTime",
-		entryName: "entryName",
-		entryTime: "entryTime"
+		checkoutPlanVersion : "",
+		aql: "",
+		makeName : "",
+		makeTime: "",
+		entryName: "",
+		entryTime: ""
 	};
 
 	$scope.queryDicQCPType = function(){

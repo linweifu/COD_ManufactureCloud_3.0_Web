@@ -179,7 +179,18 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  <!-- 	<tr ng-repeat="list in planMetricList.DLCheckoutMetricList">
+		  <!--  -->
+		  	
+		  </tbody>
+		</table>
+	</div>
+	</div>
+<div >
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">添加</button>  
+
+         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<tr ng-repeat="list in planMetricList.DLCheckoutMetricList">
 		  		<td>{{$index+1}}</td>
 		  		<td ng-bind="list.checkoutMetricNo"></td>
 		  		<td ng-bind="list.checkoutMetricClassify"></td>
@@ -198,18 +209,7 @@
 		  		<td ng-bind="list. fixtureId"></td>
 		  		<td><a ui-sref="account_index.planRevise">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ui-sref="account_index.planRevise">删除</a></td>
 		  	</tr>
-		  	 -->
-		  	
-		  </tbody>
-		</table>
-	</div>
-	</div>
-<div >
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">添加</button>  
-
-         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
+		  	    <div class="modal-content">
       
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <div class="modal-header"><h3>添加项目</h3></div>

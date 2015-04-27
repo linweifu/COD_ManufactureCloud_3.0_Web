@@ -16,12 +16,12 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 
 		materialShortName : "",
 		checkoutPlanNo: "",
-		checkoutPlanVersion : "checkoutPlanVersion",
-		aql: "aql",
-		makeName : "makeName",
-		makeTime: "makeTime",
-		entryName: "entryName",
-		entryTime: "entryTime"
+		checkoutPlanVersion : "",
+		aql: "",
+		makeName : "",
+		makeTime: "",
+		entryName: "",
+		entryTime: ""
 	};
 
 	$scope.queryDicQCPType = function(){
