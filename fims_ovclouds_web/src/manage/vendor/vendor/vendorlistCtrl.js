@@ -34,31 +34,38 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 	$scope.queryVendorInfo();
 
 	$scope.querySingleVendorInfo = function(msid){
-		$http({
-			method: "POST",
-			url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
-			// url: "manage/vendor/vendor/querySingleVendorInfo.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"vendorSid": msid
-			}
-		})
-		.success(function(data){
-            if (data.code == 'N01') {
-                // $scope.singlevendor = data.contents;
-                localStorage.setItem('singlevendor',JSON.stringify(data.contents));
-                $location.path('account_index/vendor');
-            }
-            // else if(data.code=="E00"){
-            //     alert(data.message+",请重新登陆");
-            //     localStorage.clear();
-            //     $location.path('login').replace();
-            // }else {
-            //     alert(data.message);
-            // }  
-        })
+		localStorage.setItem('curV',msid);
+ 		$location.path('account_index/vendor');
 	}
+
+	// $scope.querySingleVendorInfo = function(msid){
+	// 	$http({
+	// 		method: "POST",
+	// 		url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
+	// 		// url: "manage/vendor/vendor/querySingleVendorInfo.json",
+	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+	// 		data: {
+	// 			"sid": localStorage.getItem('sid'),
+	// 			"vendorSid": msid
+	// 		}
+	// 	})
+	// 	.success(function(data){
+ //            if (data.code == 'N01') {
+ //                // $scope.singlevendor = data.contents;
+ //                localStorage.setItem('singlevendor',JSON.stringify(data.contents));
+ //                $location.path('account_index/vendor');
+ //            }
+ //            // else if(data.code=="E00"){
+ //            //     alert(data.message+",请重新登陆");
+ //            //     localStorage.clear();
+ //            //     $location.path('login').replace();
+ //            // }else {
+ //            //     alert(data.message);
+ //            // }  
+ //        })
+	// }
+
+
 
 	var newvendor = {
 	    "vendorNo":"",

@@ -1,24 +1,47 @@
 FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var vendor = JSON.parse(localStorage.getItem('singlevendor'));
-		var updatevendor = {
-			"vendorNo": vendor.vendorNo,
-            "vendorShortName": vendor.vendorShortName,
-            "vendorFullName": vendor.vendorFullName,
-            "contactPhone": vendor.contactPhone,
-            "contactAddress": vendor.contactAddress,
-		    "zipCode": vendor.zipCode,
-            "notes": vendor.notes
-		};
-		console.log(vendor);
-		$scope.updatevendor= updatevendor;
+		var vendor = {};
+
+		//数据绑定以及准备
+		$scope.vendor= vendor;
+
+
+		// $scope.updatevendor= updatevendor;
 
 		$scope.vendorBack = function(){
-			localStorage.removeItem('singlevendor');
+			localStorage.removeItem('curV');
 			$location.path('account_index/vendorlist').replace();
 		}
 
-		$scope.updatevendor = updatevendor;
+		// $scope.updatevendor = updatevendor;
+
+
+		$scope.querySingleVendorInfo = function(msid){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
+				// url: "manage/vendor/vendor/querySingleVendorInfo.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"vendorSid": msid
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	                $scope.vendor = data.contents;
+	                $location.path('account_index/vendor');
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+		$scope.querySingleVendorInfo(localStorage.getItem("curV"));
 
 		$scope.addOrUpdateVendorInfo = function(){
 			$http({
@@ -29,16 +52,17 @@ FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http',
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
+				    "vendorSid": localStorage.getItem("curV"),
 				    "operateStatus": 1,
-				    "vendorNo":updatevendor.vendorNo,
-				    "vendorShortName":updatevendor.vendorShortName,
-				    "vendorFullName":updatevendor.vendorFullName,
+				    "vendorNo": $scope.vendor.vendorNo,
+				    "vendorShortName": $scope.vendor.vendorShortName,
+				    "vendorFullName": $scope.vendor.vendorFullName,
 				    "companySid": localStorage.getItem('cSid'),
-				    "companyShortName":localStorage.getItem('curCompanyName'),
-				    "contactPhone": updatevendor.contactPhone,
-				    "contactAddress": updatevendor.contactAddress,
-		    		"zipCode": updatevendor.zipCode,
-				    "notes":updatevendor.notes
+				    "companyShortName": localStorage.getItem('curCompanyName'),
+				    "contactPhone": $scope.vendor.contactPhone,
+				    "contactAddress": $scope.vendor.contactAddress,
+		    		"zipCode": $scope.vendor.zipCode,
+				    "notes": $scope.vendor.notes
 				}
 			})
 			.success(function(data){

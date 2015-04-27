@@ -88,7 +88,7 @@
 			</div>
 		</div>
 
-		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="planAddForm.$invalid||planAddForm.QCPType.$pristine||planAddForm.materialNo.$pristine||planAddForm.checkoutPlanVersion.$pristine" ng-click="planAdd.improveComInfo()">确认添加</button>
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="planAddForm" ng-click="planAdd.improveComInfo()">确认添加</button>
 
 		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ui-sref="account_index.planAdd" >取消添加</button>
 	</form>

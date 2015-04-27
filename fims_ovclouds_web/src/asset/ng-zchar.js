@@ -544,25 +544,44 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http',function($scope,
 }])
 FIMS.controller('materialCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var material = JSON.parse(localStorage.getItem('singlematerial'));
-		var updateMaterial = {
-			"materialNo": material.materialNo,
-            "materialShortName": material.materialShortName,
-            "materialVersion": material.materialVersion,
-            "materialFullName": material.materialFullName,
-           	"materialSid": material.materialSid,
-            "notes": material.notes
-		};
-		console.log(material);
-		$scope.updateMaterial= updateMaterial;
+		var material = {};
+		$scope.material = material;
 
 		$scope.materialBack = function(){
-			localStorage.removeItem('singlematerial');
+			localStorage.removeItem('curM');
 			$location.path('account_index/materiallist').replace();
 		}
 
 
-		$scope.updateMaterial = updateMaterial;
+		// $scope.updateMaterial = updateMaterial;
+
+		$scope.querySingleMaterial = function(msid){
+			$http({
+				method: "POST",
+				// url: "account/joinCo/joinCo.json",
+				url: config.HOST + "/api/2.0/bp/engineering/materials/querySingleMaterialsInfo",
+				// url: "manage/engineer/material/querySingleMaterial.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"materialSid": msid
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	                $scope.material = data.contents;
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+
+		$scope.querySingleMaterial(localStorage.getItem('curM'));
 
 		$scope.addOrUpdateMaterials = function(){
 			$http({
@@ -574,14 +593,15 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 				data: {
 					"sid": localStorage.getItem('sid'),
 				    "operateStatus": 1,
-				    "materialSid": material.materialSid,
-				    "materialNo":updateMaterial.materialNo,
-				    "materialShortName":updateMaterial.materialShortName,
-				    "materialVersion":updateMaterial.materialVersion,
-				    "materialFullName":updateMaterial.materialFullName,
-				    "companySid": localStorage.getItem('cSid'),
-				    "companyShortName":updateMaterial.materialShortName,
-				    "notes":updateMaterial.notes
+				    "materialSid": localStorage.getItem('curM'),
+				    // "materialNo":updateMaterial.materialNo,
+				    "materialShortName":$scope.material.materialShortName,
+				    "materialVersion":$scope.material.materialVersion,
+				    "materialFullName":$scope.material.materialFullName,
+				    "companySid":localStorage.getItem('cSid'),
+				    "companyShortName":$scope.material.companyShortName,
+				    "notes":$scope.material.notes
+				        
 				}
 			})
 			.success(function(data){
@@ -635,32 +655,36 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 	$scope.queryMaterialsInfo();
 
 	$scope.querySingleMaterial = function(msid){
-		$http({
-			method: "POST",
-			// url: "account/joinCo/joinCo.json",
-			url: config.HOST + "/api/2.0/bp/engineering/materials/querySingleMaterialsInfo",
-			// url: "manage/engineer/material/querySingleMaterial.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"materialSid": msid
-			}
-		})
-		.success(function(data){
-            if (data.code == 'N01') {
-                $scope.singlematerial = data.contents;
-                localStorage.setItem('singlematerial',JSON.stringify(data.contents));
-                $location.path('account_index/material');
-            }
-            else if(data.code=="E00"){
-                alert(data.message+",请重新登陆");
-                localStorage.clear();
-                $location.path('login').replace();
-            }else {
-                alert(data.message);
-            }  
-        })
+		localStorage.setItem('curM',msid);
+ 		$location.path('account_index/material');     
 	}
+	// $scope.querySingleMaterial = function(msid){
+	// 	$http({
+	// 		method: "POST",
+	// 		// url: "account/joinCo/joinCo.json",
+	// 		url: config.HOST + "/api/2.0/bp/engineering/materials/querySingleMaterialsInfo",
+	// 		// url: "manage/engineer/material/querySingleMaterial.json",
+	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+	// 		data: {
+	// 			"sid": localStorage.getItem('sid'),
+	// 			"materialSid": msid
+	// 		}
+	// 	})
+	// 	.success(function(data){
+ //            if (data.code == 'N01') {
+ //                $scope.singlematerial = data.contents;
+ //                localStorage.setItem('singlematerial',JSON.stringify(data.contents));
+ //                $location.path('account_index/material');
+ //            }
+ //            else if(data.code=="E00"){
+ //                alert(data.message+",请重新登陆");
+ //                localStorage.clear();
+ //                $location.path('login').replace();
+ //            }else {
+ //                alert(data.message);
+ //            }  
+ //        })
+	// }
 
 	var newMaterial = {
 		"materialNo": "",
@@ -716,26 +740,54 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 }])
 FIMS.controller('customerCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var customer = JSON.parse(localStorage.getItem('singlecustomer'));
-		var updatecustomer = {
-			"customerNo": customer.customerNo,
-            "customerShortName": customer.customerShortName,
-            "customerFullName": customer.customerFullName,
-            "contactPhone": customer.contactPhone,
-            "contactAddress": customer.contactAddress,
-		    "zipCode": customer.zipCode,
-            "notes": customer.notes
-		};
-		console.log(customer);
-		$scope.updatecustomer= updatecustomer;
+		var customer = {};
 
+		// var customer = {
+		// 	"customerNo": customer.customerNo,
+  //           "customerShortName": customer.customerShortName,
+  //           "customerFullName": customer.customerFullName,
+  //           "contactPhone": customer.contactPhone,
+  //           "contactAddress": customer.contactAddress,
+		//     "zipCode": customer.zipCode,
+  //           "notes": customer.notes
+		// };
+
+		//数据绑定以及准备
+		$scope.customer= customer;
+
+
+		//方法定义区
 		$scope.customerBack = function(){
-			localStorage.removeItem('singlecustomer');
+			localStorage.removeItem('curC');
 			$location.path('account_index/customerlist').replace();
 		}
 
-
-		$scope.updatecustomer = updatecustomer;
+		$scope.querySingleCustomerInfo = function(msid){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
+				// url: "manage/customer/customer/querySingleCustomerInfo.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"customerSid": msid
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	                $scope.customer = data.contents;
+	                console.log($scope.customer);
+	                
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
 
 		$scope.addOrUpdateCustomerInfo = function(){
 			$http({
@@ -747,19 +799,21 @@ FIMS.controller('customerCtrl', ['$scope',  '$location', '$http',
 				data: {
 					"sid": localStorage.getItem('sid'),
 				    "operateStatus": 1,
-				    "customerNo":updatecustomer.customerNo,
-				    "customerShortName":updatecustomer.customerShortName,
-				    "customerFullName":updatecustomer.customerFullName,
+				    // "customerNo":$scope.customer.customerNo,
+				    "customerSid":$scope.customer.customerSid,
+				    "customerShortName":$scope.customer.customerShortName,
+				    "customerFullName":$scope.customer.customerFullName,
 				    "companySid": localStorage.getItem('cSid'),
 				    "companyShortName":localStorage.getItem('curCompanyName'),
-				    "contactPhone": updatecustomer.contactPhone,
-				    "contactAddress": updatecustomer.contactAddress,
-		    		"zipCode": updatecustomer.zipCode,
-				    "notes":updatecustomer.notes
+				    "contactPhone": $scope.customer.contactPhone,
+				    "contactAddress": $scope.customer.contactAddress,
+		    		"zipCode": $scope.customer.zipCode,
+				    "notes": $scope.customer.notes
 				}
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
+	            	console.log(customer);
 	                alert(data.message);
 	                $scope.customerBack();
 	            }
@@ -772,6 +826,10 @@ FIMS.controller('customerCtrl', ['$scope',  '$location', '$http',
 	            }  
 	        })
 		}
+
+		//*********初始化调用区域
+		$scope.querySingleCustomerInfo(localStorage.getItem("curC"));
+
 }])
 FIMS.controller('customerListCtrl', ['$scope', '$location', '$http', 
 	function($scope,$location,$http){
@@ -809,30 +867,34 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 	$scope.queryCustomerInfo();
 
 	$scope.querySingleCustomerInfo = function(msid){
-		$http({
-			method: "POST",
-			url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
-			// url: "manage/customer/customer/querySingleCustomerInfo.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"customerSid": msid
-			}
-		})
-		.success(function(data){
-            if (data.code == 'N01') {
-                // $scope.singlecustomer = data.contents;
-                localStorage.setItem('singlecustomer',JSON.stringify(data.contents));
-                $location.path('account_index/customer');
-            }
-            // else if(data.code=="E00"){
-            //     alert(data.message+",请重新登陆");
-            //     localStorage.clear();
-            //     $location.path('login').replace();
-            // }else {
-            //     alert(data.message);
-            // }  
-        })
+        localStorage.setItem('curC',msid);
+ 		$location.path('account_index/customer');        
+
+		// $http({
+		// 	method: "POST",
+		// 	url: config.HOST + "/api/2.0/bp/customer/customer/querySingleCustomerInfo",
+		// 	// url: "manage/customer/customer/querySingleCustomerInfo.json",
+		// 	header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+		// 	data: {
+		// 		"sid": localStorage.getItem('sid'),
+		// 		"customerSid": msid
+		// 	}
+		// })
+		// .success(function(data){
+  //           if (data.code == 'N01') {
+  //               // $scope.singlecustomer = data.contents;
+  //               localStorage.setItem('singlecustomer',JSON.stringify(data.contents));
+  //               localStorage.setItem('singlecustomer',JSON.stringify(data.contents));
+  //               $location.path('account_index/customer');
+  //           }
+  //           // else if(data.code=="E00"){
+  //           //     alert(data.message+",请重新登陆");
+  //           //     localStorage.clear();
+  //           //     $location.path('login').replace();
+  //           // }else {
+  //           //     alert(data.message);
+  //           // }  
+  //       })
 	}
 
 	var newcustomer = {
@@ -899,25 +961,48 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 }])
 FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var vendor = JSON.parse(localStorage.getItem('singlevendor'));
-		var updatevendor = {
-			"vendorNo": vendor.vendorNo,
-            "vendorShortName": vendor.vendorShortName,
-            "vendorFullName": vendor.vendorFullName,
-            "contactPhone": vendor.contactPhone,
-            "contactAddress": vendor.contactAddress,
-		    "zipCode": vendor.zipCode,
-            "notes": vendor.notes
-		};
-		console.log(vendor);
-		$scope.updatevendor= updatevendor;
+		var vendor = {};
+
+		//数据绑定以及准备
+		$scope.vendor= vendor;
+
+
+		// $scope.updatevendor= updatevendor;
 
 		$scope.vendorBack = function(){
-			localStorage.removeItem('singlevendor');
+			localStorage.removeItem('curV');
 			$location.path('account_index/vendorlist').replace();
 		}
 
-		$scope.updatevendor = updatevendor;
+		// $scope.updatevendor = updatevendor;
+
+
+		$scope.querySingleVendorInfo = function(msid){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
+				// url: "manage/vendor/vendor/querySingleVendorInfo.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"vendorSid": msid
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	                $scope.vendor = data.contents;
+	                $location.path('account_index/vendor');
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+		$scope.querySingleVendorInfo(localStorage.getItem("curV"));
 
 		$scope.addOrUpdateVendorInfo = function(){
 			$http({
@@ -928,16 +1013,17 @@ FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http',
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
+				    "vendorSid": localStorage.getItem("curV"),
 				    "operateStatus": 1,
-				    "vendorNo":updatevendor.vendorNo,
-				    "vendorShortName":updatevendor.vendorShortName,
-				    "vendorFullName":updatevendor.vendorFullName,
+				    "vendorNo": $scope.vendor.vendorNo,
+				    "vendorShortName": $scope.vendor.vendorShortName,
+				    "vendorFullName": $scope.vendor.vendorFullName,
 				    "companySid": localStorage.getItem('cSid'),
-				    "companyShortName":localStorage.getItem('curCompanyName'),
-				    "contactPhone": updatevendor.contactPhone,
-				    "contactAddress": updatevendor.contactAddress,
-		    		"zipCode": updatevendor.zipCode,
-				    "notes":updatevendor.notes
+				    "companyShortName": localStorage.getItem('curCompanyName'),
+				    "contactPhone": $scope.vendor.contactPhone,
+				    "contactAddress": $scope.vendor.contactAddress,
+		    		"zipCode": $scope.vendor.zipCode,
+				    "notes": $scope.vendor.notes
 				}
 			})
 			.success(function(data){
@@ -991,31 +1077,38 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 	$scope.queryVendorInfo();
 
 	$scope.querySingleVendorInfo = function(msid){
-		$http({
-			method: "POST",
-			url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
-			// url: "manage/vendor/vendor/querySingleVendorInfo.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"vendorSid": msid
-			}
-		})
-		.success(function(data){
-            if (data.code == 'N01') {
-                // $scope.singlevendor = data.contents;
-                localStorage.setItem('singlevendor',JSON.stringify(data.contents));
-                $location.path('account_index/vendor');
-            }
-            // else if(data.code=="E00"){
-            //     alert(data.message+",请重新登陆");
-            //     localStorage.clear();
-            //     $location.path('login').replace();
-            // }else {
-            //     alert(data.message);
-            // }  
-        })
+		localStorage.setItem('curV',msid);
+ 		$location.path('account_index/vendor');
 	}
+
+	// $scope.querySingleVendorInfo = function(msid){
+	// 	$http({
+	// 		method: "POST",
+	// 		url: config.HOST + "/api/2.0/bp/vendor/vendor/querySingleVendorInfo",
+	// 		// url: "manage/vendor/vendor/querySingleVendorInfo.json",
+	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+	// 		data: {
+	// 			"sid": localStorage.getItem('sid'),
+	// 			"vendorSid": msid
+	// 		}
+	// 	})
+	// 	.success(function(data){
+ //            if (data.code == 'N01') {
+ //                // $scope.singlevendor = data.contents;
+ //                localStorage.setItem('singlevendor',JSON.stringify(data.contents));
+ //                $location.path('account_index/vendor');
+ //            }
+ //            // else if(data.code=="E00"){
+ //            //     alert(data.message+",请重新登陆");
+ //            //     localStorage.clear();
+ //            //     $location.path('login').replace();
+ //            // }else {
+ //            //     alert(data.message);
+ //            // }  
+ //        })
+	// }
+
+
 
 	var newvendor = {
 	    "vendorNo":"",
