@@ -1196,18 +1196,34 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.companyShortName = localStorage.getItem('curCompanyName');
 		$scope.planlist = planlist;
 
+		//页面初始化
+		(function(){
+			localStorage.removeItem("checkoutPlanSid");
+		})()
+
 		$scope.planlistBack = function(){
 			// localStorage.removeItem('singleplan');
 			$location.path('account_index/chooseModule').replace();
 		}
 
 		//  /api/2.0/bp/qcp/qcp
+
+		$scope.querySingleplanInfo =function(planSid,operateStatus){
+			localStorage.setItem("checkoutPlanSid",planSid);
+			if (operateStatus=="查看") {
+				$location.path("account_index/planCheck");
+			}else if(operateStatus=="修改") {
+				$location.path("account_index/planRevise");
+			}else {
+				alert("不是“查看/修改”状态");
+			}
+		}
 		
 		$scope.queryDicQCPType = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
-				url: "plan/queryDicQCPType.json",
+				url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
+				// url: "plan/queryDicQCPType.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1251,7 +1267,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryQCPByType = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
+				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
 				url: "plan/queryQCPByType.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
@@ -1314,9 +1330,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryMaterialsInfo = function(){
 			$http({
 				method: "POST",
-				// url: "account/joinCo/joinCo.json",
-				// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-				url: "manage/engineer/material/queryMaterialsInfo.json",
+				url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+				// url: "manage/engineer/material/queryMaterialsInfo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1346,8 +1361,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryMaterialVersionByMaterialNo = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-				url: "plan/queryMaterialVersionByMaterialNo.json",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
+				// url: "plan/queryMaterialVersionByMaterialNo.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1377,8 +1392,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryQCPByMaterial = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByMaterial",
-				url: "plan/queryQCPByMaterial.json",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByMaterial",
+				// url: "plan/queryQCPByMaterial.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1699,34 +1714,34 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 
 }
 */
-            sid:"",
-            checkoutPlanSid: 1,
-            checkoutPlanNo: "",
-            checkoutPlanVersion: "",
-            checkoutPlanTypeCode: "",
-            checkoutPlanType: "",
-            companySid: 1,
-            companyShortName: "",
-            materialSid: 1,
-            materialNo: "",
-            materialVersion: "",
-            materialShortName: "",
-            aql: 5,
-            entrySid: 1,
-            entrySidHash: 1,
-            entryId: "",
-            entryJobNumber: "",
-            entryName: "",
-            entryTime: 123,
-            makeJobNumber: "2014",
-            makeName: "123",
-            makeTime: 123,
-            operateStatusCode: "1",
-            operateStatus: "1",
-            checkoutPlanStatusCode: "1",
-            checkoutPlanStatus: "1",
-            notes: "1",
-            page:"2"
+                  sid:"",
+                  checkoutPlanSid: 1,
+                  checkoutPlanNo: "",
+                  checkoutPlanVersion: "",
+                  checkoutPlanTypeCode: "",
+                  checkoutPlanType: "",
+                  companySid: 1,
+                  companyShortName: "",
+                  materialSid: 1,
+                  materialNo: "",
+                  materialVersion: "",
+                  materialShortName: "",
+                  aql: 5,
+                  entrySid: 1,
+                  entrySidHash: 1,
+                  entryId: "",
+                  entryJobNumber: "",
+                  entryName: "",
+                  entryTime: 123,
+                  makeJobNumber: "2014",
+                  makeName: "123",
+                  makeTime: 123,
+                  operateStatusCode: "1",
+                  operateStatus: "1",
+                  checkoutPlanStatusCode: "1",
+                  checkoutPlanStatus: "1",
+                  notes: "1",
+                  page:"2"
 		},
 
 		auxCheckoutPlan:{
@@ -1763,42 +1778,42 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             "notes": "1"
 }
 */
-            checkoutPlanSid: 1,
-            checkoutPlanSidHash: 1,
-            checkoutPlanNo: "20140420",
-            checkoutPlanVersion: "A",
-            checkoutPlanTypeCode: "A",
-            checkoutPlanType: "A",
-            companySid: 1,
-            companySidHash: 1,
-            companyShortName: "极创",
-            materialSid: 1,
-            materialSidHash: 1,
-            materialNo: "1",
-            materialVersion: "A",
-            materialShortName: "A",
-            aql: 5,
-            entrySid: 1,
-            entrySidHash: 1,
-            entryId: "1",
-            entryJobNumber: "123",
-            entryName: "123",
-            entryTime: 123,
-            makeJobNumber: "2014",
-            makeName: "123",
-            makeTime: 123,
-            operateStatusCode: "1",
-            operateStatus: "1",
-            checkoutPlanStatusCode: "1",
-            checkoutPlanStatus: "1",
-            notes: "1"
+                  checkoutPlanSid: 1,
+                  checkoutPlanSidHash: 1,
+                  checkoutPlanNo: "20140420",
+                  checkoutPlanVersion: "A",
+                  checkoutPlanTypeCode: "A",
+                  checkoutPlanType: "A",
+                  companySid: 1,
+                  companySidHash: 1,
+                  companyShortName: "极创",
+                  materialSid: 1,
+                  materialSidHash: 1,
+                  materialNo: "1",
+                  materialVersion: "A",
+                  materialShortName: "A",
+                  aql: 5,
+                  entrySid: 1,
+                  entrySidHash: 1,
+                  entryId: "1",
+                  entryJobNumber: "123",
+                  entryName: "123",
+                  entryTime: 123,
+                  makeJobNumber: "2014",
+                  makeName: "123",
+                  makeTime: 123,
+                  operateStatusCode: "1",
+                  operateStatus: "1",
+                  checkoutPlanStatusCode: "1",
+                  checkoutPlanStatus: "1",
+                  notes: "1"
 
-		},
+      		},
 
-		selectedCheckoutPlanSid: 0
+      		selectedCheckoutPlanSid: 0
 
 
-	};
+      	};
 /*
 ***************************************************
 ***************************************************
@@ -1848,7 +1863,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 			method: "POST",
 			//url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
 			 url: "plan/querySingleQCP.json",
-            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+                   headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
 				"checkoutPlanSid": planRevise.selectedCheckoutPlanSid
@@ -1859,7 +1874,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	//alert("公司信息更新成功");
             	//$location.path("account_index/chooseModule");
             	planRevise.auxCheckoutPlan = data.contents;
-            	console.log(planRevise.auxCheckoutPlan);
+            	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
 
             }
@@ -1889,25 +1904,25 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 			var o = {};
 
 			o.sid		                = planRevise.keyCheckoutPlan.sid,
-            o.checkoutPlanSid		    = planRevise.keyCheckoutPlan.checkoutPlanSid,
-            o.aql		                = planRevise.keyCheckoutPlan.aql,
-            o.entryId		            = planRevise.keyCheckoutPlan.entryId,
-            o.entryJobNumber		    = planRevise.keyCheckoutPlan.entryJobNumber,
-            o.entryName		            = planRevise.keyCheckoutPlan.entryName,
-            o.entryTime		            = planRevise.keyCheckoutPlan.entryTime,
-            o.makeJobNumber		        = planRevise.keyCheckoutPlan.makeJobNumber,
-            o.makeName		            = planRevise.keyCheckoutPlan.makeName,
-            o.makeTime		            = planRevise.keyCheckoutPlan.makeTime,
-            o.notes		                = planRevise.keyCheckoutPlan.notes
+                  o.checkoutPlanSid		    = planRevise.keyCheckoutPlan.checkoutPlanSid,
+                  o.aql		                = planRevise.keyCheckoutPlan.aql,
+                  o.entryId		            = planRevise.keyCheckoutPlan.entryId,
+                  o.entryJobNumber		    = planRevise.keyCheckoutPlan.entryJobNumber,
+                  o.entryName		            = planRevise.keyCheckoutPlan.entryName,
+                  o.entryTime		            = planRevise.keyCheckoutPlan.entryTime,
+                  o.makeJobNumber		        = planRevise.keyCheckoutPlan.makeJobNumber,
+                  o.makeName		            = planRevise.keyCheckoutPlan.makeName,
+                  o.makeTime		            = planRevise.keyCheckoutPlan.makeTime,
+                  o.notes		                = planRevise.keyCheckoutPlan.notes
 
 			return o;
 		}
 
 		var entry = assemblyObj();
 
-		 alert("set11");
-        console.log(entry);
-	 	 alert("set11");
+		 // alert("set11");
+   //      console.log(entry);
+	 	//  alert("set11");
 
 		//
 		$http({
@@ -1932,9 +1947,8 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		})
 		.success(function(data){
             if (data.code=="N01"){
-            	alert("检验计划信息更新成功");
-          //  	//$location.path("account_index/chooseModule");
-
+            	alert(data.message);
+                  planRevise.querySingleQCP();
             }
             else if(data.code=="E00"){
             	alert(data.message+"，请重新登录");
@@ -1958,11 +1972,11 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 	$scope.planRevise = planRevise;
 
  	// alert("set");
- 	localStorage.setItem('checkoutPlanSid','111');
- 	// alert("get");
- 	planRevise.selectedCheckoutPlanSid = localStorage.getItem('checkoutPlanSid');
- 	// alert("remove");
- 	localStorage.removeItem('checkoutPlanSid');
+ 	// localStorage.setItem('checkoutPlanSid','111');
+ 	// // alert("get");
+ 	// planRevise.selectedCheckoutPlanSid = localStorage.getItem('checkoutPlanSid');
+ 	// // alert("remove");
+ 	// localStorage.removeItem('checkoutPlanSid');
 
 	planRevise.querySingleQCP();
 
@@ -1995,20 +2009,51 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		checkoutPlanNo: "",
 		checkoutPlanVersion : "",
 		aql: "",
-		makeName : "",
+		makeName : localStorage.getItem("userName"),
 		makeTime: "",
-		entryName: "",
+		entryName: localStorage.getItem("userName"),
 		entryTime: ""
+
 	};
+
+	var time  = new Date();
+	// function toTime(date) {
+	// 	return date.toLocaleDateString().split('/').join('-');	
+	// }
+	// planAdd.makeTime = toTime(time);
+	// console.log(planAdd.makeTime);
+
+	//调整时间格式
+	Date.prototype.format = function() {
+   		var year = this.getFullYear().toString();
+   		var month = (this.getMonth()+1).toString();
+   		var day = this.getDate().toString();
+   		console.log(year);
+
+		if (month<10) {
+			month = "0" + month;
+		}
+
+		if (day<10) {
+			day = "0" + day;
+		}
+
+	 	return (year + "-" + month + "-" +day );
+	}
+
+	planAdd.makeTime = time.format();
+	planAdd.entryTime = time.format();
+
+
 
 	$scope.queryDicQCPType = function(){
 		$http({
+			url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
+			// url: "plan/queryDicQCPType.json",
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
-			url: "plan/queryDicQCPType.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
-				"sid": localStorage.getItem('sid'),
+				"sid": localStorage.getItem('sid')
 			}
 		})
 		.success(function(data){
@@ -2039,8 +2084,8 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/queryMaterialsInfo.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+			// url: "manage/engineer/material/queryMaterialsInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -2070,8 +2115,8 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	$scope.queryMaterialVersionByMaterialNo = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-			url: "plan/queryMaterialVersionByMaterialNo.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
+			// url: "plan/queryMaterialVersionByMaterialNo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -2100,8 +2145,8 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	$scope.queryMaterialShortName = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-			url: "plan/queryMaterialShortName.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialShortName",
+			// url: "plan/queryMaterialShortName.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -2112,7 +2157,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		.success(function(data){
             if (data.code == 'N01') {           	
             	planAdd.materialShortName = data.contents.materialShortName;
-            	planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo+"-"+planAdd.Selected.materialVersion ;
+            	planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo.materialNo+"-"+planAdd.Selected.materialVersion ;
 
             }
             else if(data.code=="E00"){
@@ -2125,8 +2170,62 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
         })
 	}
 
-		
 
+	/*********************************************************
+	*  
+	*/
+
+	$scope.addQCP = function(){
+		$http({
+			method: "POST",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCP",
+			// url: "plan/addQCP.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+	            "checkoutPlanNo":planAdd.checkoutPlanNo,
+	            "checkoutPlanVersion":planAdd.checkoutPlanVersion,
+	            "checkoutPlanTypeCode":planAdd.Selected.QCPType.code,
+	            "checkoutPlanType":planAdd.Selected.QCPType.name,
+	            "companySid":localStorage.getItem('cSid'),
+	            "companyShortName":localStorage.getItem('curCompanyName'),
+	            "materialSid":planAdd.Selected.materialNo.materialSid,
+	            "materialNo":planAdd.Selected.materialNo.materialNo,
+	            "materialVersion":planAdd.Selected.materialVersion,
+	            "materialShortName":planAdd.materialShortName,
+	            "aql":planAdd.aql,
+	            // "entrySid":planAdd. 1,
+	            "entryId":localStorage.getItem('email'),
+	            "entryJobNumber":localStorage.getItem('userJobNumber'),
+	            "entryName":planAdd.entryName,
+	            "entryTime":(new Date(planAdd.entryTime)).valueOf(),
+	            "makeJobNumber":localStorage.getItem('userJobNumber'),
+	            "makeName":planAdd.makeName,
+	            "makeTime":(new Date(planAdd.makeTime)).valueOf(),
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {           	
+		     	alert(data.message);
+		     	$location.path('account_index/planList');       	
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+
+	$scope.backQCP = function(){
+		var a = confirm("您确定要退出吗？退出将丢失填写数据!")
+		if (a) {
+			$location.path("account_index/planList");
+		}
+	}
+	
 }])
 FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http', 
 	function($scope,$location,$http){

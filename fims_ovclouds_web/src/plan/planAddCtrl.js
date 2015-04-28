@@ -18,20 +18,51 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		checkoutPlanNo: "",
 		checkoutPlanVersion : "",
 		aql: "",
-		makeName : "",
+		makeName : localStorage.getItem("userName"),
 		makeTime: "",
-		entryName: "",
+		entryName: localStorage.getItem("userName"),
 		entryTime: ""
+
 	};
+
+	var time  = new Date();
+	// function toTime(date) {
+	// 	return date.toLocaleDateString().split('/').join('-');	
+	// }
+	// planAdd.makeTime = toTime(time);
+	// console.log(planAdd.makeTime);
+
+	//调整时间格式
+	Date.prototype.format = function() {
+   		var year = this.getFullYear().toString();
+   		var month = (this.getMonth()+1).toString();
+   		var day = this.getDate().toString();
+   		console.log(year);
+
+		if (month<10) {
+			month = "0" + month;
+		}
+
+		if (day<10) {
+			day = "0" + day;
+		}
+
+	 	return (year + "-" + month + "-" +day );
+	}
+
+	planAdd.makeTime = time.format();
+	planAdd.entryTime = time.format();
+
+
 
 	$scope.queryDicQCPType = function(){
 		$http({
+			url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
+			// url: "plan/queryDicQCPType.json",
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
-			url: "plan/queryDicQCPType.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
-				"sid": localStorage.getItem('sid'),
+				"sid": localStorage.getItem('sid')
 			}
 		})
 		.success(function(data){
@@ -62,8 +93,8 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		$http({
 			method: "POST",
 			// url: "account/joinCo/joinCo.json",
-			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-			url: "manage/engineer/material/queryMaterialsInfo.json",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+			// url: "manage/engineer/material/queryMaterialsInfo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -93,8 +124,8 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	$scope.queryMaterialVersionByMaterialNo = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-			url: "plan/queryMaterialVersionByMaterialNo.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
+			// url: "plan/queryMaterialVersionByMaterialNo.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -123,8 +154,8 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	$scope.queryMaterialShortName = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-			url: "plan/queryMaterialShortName.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialShortName",
+			// url: "plan/queryMaterialShortName.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -135,7 +166,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		.success(function(data){
             if (data.code == 'N01') {           	
             	planAdd.materialShortName = data.contents.materialShortName;
-            	planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo+"-"+planAdd.Selected.materialVersion ;
+            	planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo.materialNo+"-"+planAdd.Selected.materialVersion ;
 
             }
             else if(data.code=="E00"){
@@ -148,6 +179,60 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
         })
 	}
 
-		
 
+	/*********************************************************
+	*  
+	*/
+
+	$scope.addQCP = function(){
+		$http({
+			method: "POST",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCP",
+			// url: "plan/addQCP.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+	            "checkoutPlanNo":planAdd.checkoutPlanNo,
+	            "checkoutPlanVersion":planAdd.checkoutPlanVersion,
+	            "checkoutPlanTypeCode":planAdd.Selected.QCPType.code,
+	            "checkoutPlanType":planAdd.Selected.QCPType.name,
+	            "companySid":localStorage.getItem('cSid'),
+	            "companyShortName":localStorage.getItem('curCompanyName'),
+	            "materialSid":planAdd.Selected.materialNo.materialSid,
+	            "materialNo":planAdd.Selected.materialNo.materialNo,
+	            "materialVersion":planAdd.Selected.materialVersion,
+	            "materialShortName":planAdd.materialShortName,
+	            "aql":planAdd.aql,
+	            // "entrySid":planAdd. 1,
+	            "entryId":localStorage.getItem('email'),
+	            "entryJobNumber":localStorage.getItem('userJobNumber'),
+	            "entryName":planAdd.entryName,
+	            "entryTime":(new Date(planAdd.entryTime)).valueOf(),
+	            "makeJobNumber":localStorage.getItem('userJobNumber'),
+	            "makeName":planAdd.makeName,
+	            "makeTime":(new Date(planAdd.makeTime)).valueOf(),
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {           	
+		     	alert(data.message);
+		     	$location.path('account_index/planList');       	
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+
+	$scope.backQCP = function(){
+		var a = confirm("您确定要退出吗？退出将丢失填写数据!")
+		if (a) {
+			$location.path("account_index/planList");
+		}
+	}
+	
 }])

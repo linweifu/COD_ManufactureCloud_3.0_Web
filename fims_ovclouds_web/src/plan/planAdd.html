@@ -19,14 +19,14 @@
 		<div class="form-group">
 			<label class="control-label left">检验计划类型</label>
 			<div class="col-md-3">
-			<select class="form-control" name="QCPType" ng-model="planAdd.Selected.QCPType"  name="QCPType" ng-options="o as o.name for o in planAdd.dictionary.QCPType"  ng-selected="planAdd.dictionary.QCPType[0]">
+			<select class="form-control" name="QCPType" ng-model="planAdd.Selected.QCPType"  name="QCPType" ng-options="o as o.name for o in planAdd.dictionary.QCPType"  ng-selected="planAdd.dictionary.QCPType[0]" ng-change="planAdd.checkoutPlanNo ='';planAdd.Selected.materialVersion = ''">
 			</select>
 		</div>
 		</div>
 		<div class="form-group">
 			<label class="left control-label">待检物料编号</label>
 			<div class="col-md-3">
-				<select class="form-control" name="materialNo" ng-options="o.materialNo as o.materialNo for o in planAdd.dictionary.materialNo" ng-model="planAdd.Selected.materialNo" ng-change="queryMaterialVersionByMaterialNo()"></select>
+				<select class="form-control" name="materialNo" ng-options="o as o.materialNo for o in planAdd.dictionary.materialNo" ng-model="planAdd.Selected.materialNo" ng-change="queryMaterialVersionByMaterialNo()"></select>
 			</div>
 
 			<label class="left control-label">物料版本</label>
@@ -67,12 +67,12 @@
 		<div class="form-group">
 			<label class="left control-label">制作人</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="makeName" name="makeName" ng-model="planAdd.makeName" required>
+				<input type="text" class="form-control" id="makeName" name="makeName" ng-disabled="true" ng-model="planAdd.makeName" required>
 			</div>
 
 			<label class="left control-label">制作时间</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="makeTime" name="makeTime" ng-model="planAdd.makeTime" required>
+				<input type="date" class="form-control" id="makeTime" name="makeTime" ng-model="planAdd.makeTime" required>
 			</div>
 		</div>
 
@@ -84,13 +84,12 @@
 
 			<label class="left control-label">录入时间</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="entryTime" name="entryTime" ng-model="planAdd.entryTime" ng-disabled="true" required>
+				<input type="date" class="form-control" id="entryTime" name="entryTime" ng-model="planAdd.entryTime" ng-disabled="true"  required>
 			</div>
 		</div>
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="planAddForm.$invalid" ng-click="addQCP()">确认添加</button>
 
-		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="planAddForm" ng-click="planAdd.improveComInfo()">确认添加</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ui-sref="account_index.planAdd" >取消添加</button>
+		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="backQCP()">取消添加</button>
 	</form>
 
 <!-- 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>

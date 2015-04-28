@@ -87,6 +87,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("curCompanyName",data.contents.companyShortName);
                     localStorage.setItem("cSid",sid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
+                    localStorage.setItem("userJobNumber",data.contents.userJobNumber);
                     $location.path("account_index/chooseModule");
                 }
 

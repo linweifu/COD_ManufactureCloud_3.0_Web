@@ -1,12 +1,4 @@
-{
-            "sid":"123",
-            "checkoutPlanSid": 1,
-            "aql": 5,
-            "entryId": "1",
-            "entryJobNumber": "123",
-            "entryName": "123",
-            "entryTime": 123,
-            "makeName": "123",
-            "makeTime": 123,
-            "notes": "1"
+ {
+   "code":"N01",
+    "message": "更新成功"
 }

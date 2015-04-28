@@ -64,7 +64,7 @@
 
 			<label class="left control-label">制作时间</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="name" name="name" ng-model="planAdd.name" required>
+				<input type="date" class="form-control" id="makeTime" name="makeTime" ng-model="planAdd.makeTime" required>
 			</div>
 		</div>
 
@@ -75,8 +75,7 @@
 			</div>
 
 			<label class="left control-label">录入时间</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="name" name="name" ng-model="planAdd.name" required>
+			<input type="date" class="form-control" id="entryTime" name="entryTime" ng-model="planAdd.entryTime" ng-disabled="true" required>
 			</div>
 		</div>
 
