@@ -207,10 +207,10 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	            "entryId":localStorage.getItem('email'),
 	            "entryJobNumber":localStorage.getItem('userJobNumber'),
 	            "entryName":planAdd.entryName,
-	            "entryTime":(new Date(planAdd.entryTime)).valueOf(),
+	            "entryTime":((new Date(planAdd.entryTime)).valueOf())/1000,
 	            "makeJobNumber":localStorage.getItem('userJobNumber'),
 	            "makeName":planAdd.makeName,
-	            "makeTime":(new Date(planAdd.makeTime)).valueOf(),
+	            "makeTime":((new Date(planAdd.makeTime)).valueOf())/1000,
 			}
 		})
 		.success(function(data){

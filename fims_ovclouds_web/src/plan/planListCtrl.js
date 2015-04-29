@@ -35,10 +35,11 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		//  /api/2.0/bp/qcp/qcp
 
 		$scope.querySingleplanInfo =function(planSid,operateStatus){
-			localStorage.setItem("checkoutPlanSid",planSid);
 			if (operateStatus=="查看") {
+				localStorage.setItem("checkoutPlanSid",planSid);
 				$location.path("account_index/planCheck");
 			}else if(operateStatus=="修改") {
+				localStorage.setItem("checkoutPlanSid",planSid);
 				$location.path("account_index/planRevise");
 			}else {
 				alert("不是“查看/修改”状态");
@@ -93,8 +94,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryQCPByType = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
-				// url: "plan/queryQCPByType.json",
+				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
+				url: "plan/queryQCPByType.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),

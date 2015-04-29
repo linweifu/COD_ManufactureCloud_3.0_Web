@@ -1209,10 +1209,11 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		//  /api/2.0/bp/qcp/qcp
 
 		$scope.querySingleplanInfo =function(planSid,operateStatus){
-			localStorage.setItem("checkoutPlanSid",planSid);
 			if (operateStatus=="查看") {
+				localStorage.setItem("checkoutPlanSid",planSid);
 				$location.path("account_index/planCheck");
 			}else if(operateStatus=="修改") {
+				localStorage.setItem("checkoutPlanSid",planSid);
 				$location.path("account_index/planRevise");
 			}else {
 				alert("不是“查看/修改”状态");
@@ -1267,8 +1268,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryQCPByType = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
-				// url: "plan/queryQCPByType.json",
+				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
+				url: "plan/queryQCPByType.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -1681,39 +1682,6 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 	var planRevise = {
 
 		keyCheckoutPlan:{
-/*
-{
-            "sid":"123",
-            "checkoutPlanSid": 1,
-            "checkoutPlanNo": "20140420",
-            "checkoutPlanVersion": "A",
-            "checkoutPlanTypeCode": "A",
-            "checkoutPlanType": "A",
-            "companySid": 1,
-            "companyShortName": "极创",
-            "materialSid": 1,
-            "materialNo": "1",
-            "materialVersion": "A",
-            "materialShortName": "A",
-            "aql": 5,
-            "entrySid": 1,
-            "entrySidHash": 1,
-            "entryId": "1",
-            "entryJobNumber": "123",
-            "entryName": "123",
-            "entryTime": 123,
-            "makeJobNumber": "2014",
-            "makeName": "123",
-            "makeTime": 123,
-            "operateStatusCode": "1",
-            "operateStatus": "1",
-            "checkoutPlanStatusCode": "1",
-            "checkoutPlanStatus": "1",
-            "notes": "1",
-            "page":"2"
-
-}
-*/
                   sid:"",
                   checkoutPlanSid: 1,
                   checkoutPlanNo: "",
@@ -1732,10 +1700,10 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
                   entryId: "",
                   entryJobNumber: "",
                   entryName: "",
-                  entryTime: 123,
+                  entryTime: "2015-01-01",
                   makeJobNumber: "2014",
                   makeName: "123",
-                  makeTime: 123,
+                  makeTime: "2015-01-01",
                   operateStatusCode: "1",
                   operateStatus: "1",
                   checkoutPlanStatusCode: "1",
@@ -1745,39 +1713,6 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		},
 
 		auxCheckoutPlan:{
-/*
-{
-            "checkoutPlanSid": 1,
-            "checkoutPlanSidHash": 1,
-            "checkoutPlanNo": "20140420",
-            "checkoutPlanVersion": "A",
-            "checkoutPlanTypeCode": "A",
-            "checkoutPlanType": "A",
-            "companySid": 1,
-            "companySidHash": 1,
-            "companyShortName": "极创",
-            "materialSid": 1,
-            "materialSidHash": 1,
-            "materialNo": "1",
-            "materialVersion": "A",
-            "materialShortName": "A",
-            "aql": 5,
-            "entrySid": 1,
-            "entrySidHash": 1,
-            "entryId": "1",
-            "entryJobNumber": "123",
-            "entryName": "123",
-            "entryTime": 123,
-            "makeJobNumber": "2014",
-            "makeName": "123",
-            "makeTime": 123,
-            "operateStatusCode": "1",
-            "operateStatus": "1",
-            "checkoutPlanStatusCode": "1",
-            "checkoutPlanStatus": "1",
-            "notes": "1"
-}
-*/
                   checkoutPlanSid: 1,
                   checkoutPlanSidHash: 1,
                   checkoutPlanNo: "20140420",
@@ -2198,10 +2133,10 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	            "entryId":localStorage.getItem('email'),
 	            "entryJobNumber":localStorage.getItem('userJobNumber'),
 	            "entryName":planAdd.entryName,
-	            "entryTime":(new Date(planAdd.entryTime)).valueOf(),
+	            "entryTime":((new Date(planAdd.entryTime)).valueOf())/1000,
 	            "makeJobNumber":localStorage.getItem('userJobNumber'),
 	            "makeName":planAdd.makeName,
-	            "makeTime":(new Date(planAdd.makeTime)).valueOf(),
+	            "makeTime":((new Date(planAdd.makeTime)).valueOf())/1000,
 			}
 		})
 		.success(function(data){
