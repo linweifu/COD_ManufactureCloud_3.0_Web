@@ -1291,6 +1291,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                localStorage.clear();
 	                $location.path('login').replace();
 	            }else {
+	            	planlist.QCPSelected= [];  
 	                alert(data.message);
 	            }  
 	        })
@@ -1377,7 +1378,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                planlist.dictionary.materialVersion = [];
 	            	planlist.Selected.materialVersion = "";
 	                planlist.dictionary.materialVersion = data.contents;
-	                planlist.QCPSelected = data.contents;
+	                // planlist.QCPSelected = data.contents;
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
