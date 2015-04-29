@@ -94,8 +94,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		$scope.queryQCPByType = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
-				url: "plan/queryQCPByType.json",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
+				// url: "plan/queryQCPByType.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
