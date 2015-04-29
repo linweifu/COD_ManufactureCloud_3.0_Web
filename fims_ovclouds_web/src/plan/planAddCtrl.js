@@ -154,7 +154,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	$scope.queryMaterialShortName = function(){
 		$http({
 			method: "POST",
-			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialShortName",
+			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialShortName",
 			// url: "plan/queryMaterialShortName.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {

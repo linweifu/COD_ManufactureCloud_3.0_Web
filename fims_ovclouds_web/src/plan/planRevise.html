@@ -59,26 +59,27 @@
 		<div class="form-group">
 			<label class="left control-label">制作人</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="makeName" name="makeName" ng-model="planRevise.keyCheckoutPlan.makeName" required>
+				<input type="text" class="form-control" id="makeName" name="makeName" ng-disabled="true" ng-model="planRevise.makeName" required>
 			</div>
 
 			<label class="left control-label">制作时间</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="makeTime" name="makeTime" ng-model="planRevise.keyCheckoutPlan.makeTime" required>
+				<input type="date" class="form-control" id="makeTime" name="makeTime" ng-model="planRevise.makeTime" required>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="left control-label">录入人</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="entryName" name="entryName" ng-model="planRevise.keyCheckoutPlan.entryName" required>
+				<input type="text" class="form-control" id="entryName" name="entryName" ng-model="planRevise.entryName" ng-disabled="true" required>
 			</div>
 
 			<label class="left control-label">录入时间</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="entryTime" name="entryTime" ng-model="planRevise.keyCheckoutPlan.entryTime" required>
+				<input type="date" class="form-control" id="entryTime" name="entryTime" ng-model="planRevise.entryTime" ng-disabled="true"  required>
 			</div>
 		</div>
+		
 		<button class="btn btn-success" style="padding: .3em 1em;margin-right:0.5em;" ng-disabled="planReviseForm.$invalid||planReviseForm.$pristine" ng-click="planRevise.updateQCP()">修改 </button> 
 
 		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planList" >启用</button>
