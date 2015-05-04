@@ -90,6 +90,24 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 			
 		}
 
+		//时间戳格式转化
+		Date.prototype.format = function() {
+	   		var year = this.getFullYear().toString();
+	   		var month = (this.getMonth()+1).toString();
+	   		var day = this.getDate().toString();
+	   		// console.log(year);
+
+			if (month<10) {
+				month = "0" + month;
+			}
+
+			if (day<10) {
+				day = "0" + day;
+			}
+
+		 	return (year + "-" + month + "-" +day );
+		}
+
 		//根据检验计划类型获取检验计划
 		$scope.queryQCPByType = function(){
 			$http({
@@ -110,7 +128,16 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	            	planlist.Selected.materialName = {};
 	                planlist.display = "display:block"; 
 	 				localStorage.setItem('page',1);	
-	                planlist.QCPSelected = data.contents; 
+	                planlist.QCPSelected = data.contents;
+	                // console.log(planlist.QCPSelected.length);
+
+	                for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
+	                	(planlist.QCPSelected)[i].makeTime = (new Date((planlist.QCPSelected)[i].makeTime*1000)).format();
+	                	(planlist.QCPSelected)[i].entryTime = (new Date((planlist.QCPSelected)[i].entryTime*1000)).format();
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	                // console.log(planlist.QCPSelected);
+ 
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -206,6 +233,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                planlist.dictionary.materialVersion = [];
 	            	planlist.Selected.materialVersion = "";
 	                planlist.dictionary.materialVersion = data.contents;
+
 	                // planlist.QCPSelected = data.contents;
 	            }
 	            else if(data.code=="E00"){
