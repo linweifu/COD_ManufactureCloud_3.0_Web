@@ -239,6 +239,33 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
         });
 	}
 
+      planRevise.activateQCP = function(){
+           http({
+                  method: "POST",
+                  //url: config.HOST + "/api/2.0/bp/qcp/qcp/activateQCP",
+                  url: "plan/activateQCP.json",
+                  headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+                  data: {
+                        sid                             : localStorage.getItem('sid'),
+                        checkoutPlanSid                 : entry.checkoutPlanSid,
+                  }
+            })
+            .success(function(data){
+            if (data.code=="N01"){
+                  alert(data.message);
+                  $location.path('account_index.planList');
+            }
+            else if(data.code=="E00"){
+                  alert(data.message+"，请重新登录");
+                  localStorage.clear();
+                  $location.path('login');
+            }else {
+                  console.log(data.message);
+            }
+        }).error(function () {
+            console.log('updateQCP'+data.message);
+        });
+      }
 /*
 ***************************************************
 ***************************************************
