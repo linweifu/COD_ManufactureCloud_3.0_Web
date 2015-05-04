@@ -154,33 +154,7 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 
 	// 	// $scope.queryQCP();
 
-	// 	//获取物料字典
-	// 	$scope.queryMaterialsInfo = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			// url: "account/joinCo/joinCo.json",
-	// 			// url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-	// 			url: "manage/engineer/material/queryMaterialsInfo.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 				"companySid": localStorage.getItem('cSid')
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {
-	//             	planlist.dictionary.materialName = data.contents;
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-
+	
 	// $scope.queryMaterialsInfo();
 
 
@@ -282,21 +256,25 @@ queryQCPItems
 
 			o.sid		                = localStorage.getItem('sid');
 
-            o.checkoutPlanSid		    = planMetricList.viewSelectedCheckoutPlanSid;
+            o.checkoutPlanSid		    = localStorage.getItem('checkoutPlanSid');
+
+            // localStorage.removeItem("checkoutPlanSid");
+
+            console.log(localStorage.getItem('checkoutPlanSid'));
 
 			return o;
 		}
 
 		var entry = assemblyObj();
 
-		 alert("set11");
+		 // alert("set11");
         console.log(entry);
-	 	 alert("set11");
+	 	//  alert("set11");
 
 		//
 		$http({
 			method: "POST",
-			//url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
+			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
 			url: "plan/queryQCPItems.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
@@ -308,7 +286,7 @@ queryQCPItems
             if (data.code=="N01"){
             	//alert("检验计划信息更新成功");
             	//$location.path("account_index/chooseModule");
-
+            	console.log(data.contents);
             	//绑定数据
             	parseQueryData(data.contents);
 
@@ -323,6 +301,27 @@ queryQCPItems
         }).error(function () {
             console.log('queryQCPItems'+data.message);
         });
+	}
+
+	//将定性和定量分开保存
+	var parseQueryData = function(array){
+
+		var dx =[];
+		var dl =[];
+
+		// 肯定又数据的情况；
+		for (var i=0;i<array.length;i++){
+			checkoutMetrics = array[i];
+			if (checkoutMetrics.checkoutMetricTypeCode ==="DX")
+				dx.push(checkoutMetrics);
+			else if (checkoutMetrics.checkoutMetricTypeCode ==="DL")
+				dl.push(checkoutMetrics);
+			else
+				alert("检验指标类型既不非定性，也非定量")
+		}
+
+		planMetricList.DXCheckoutMetricList = dx;
+		planMetricList.DLCheckoutMetricList = dl;
 	}
 
 /*
@@ -529,11 +528,11 @@ qqand
 	$scope.planMetricList = planMetricList;
 
  	// alert("set");
- 	localStorage.setItem('checkoutPlanSid','111');
+ 	// localStorage.setItem('checkoutPlanSid','111');
  	// alert("get");
- 	planMetricList.viewSelectedCheckoutPlanSid = localStorage.getItem('checkoutPlanSid');
+ 	// planMetricList.viewSelectedCheckoutPlanSid = localStorage.getItem('checkoutPlanSid');
  	// alert("remove");
- 	localStorage.removeItem('checkoutPlanSid');
+ 	// localStorage.removeItem('checkoutPlanSid');
 
 	planMetricList.queryQCPItems();
 

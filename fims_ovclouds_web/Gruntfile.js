@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 				"src/manage/customer/customer/customerCtrl.js",'src/manage/customer/customer/customerlistCtrl.js',
 				"src/manage/vendor/vendor/vendorCtrl.js",'src/manage/vendor/vendor/vendorlistCtrl.js',
 				'src/plan/planListCtrl.js','src/plan/planCheckCtrl.js',"src/plan/planReviseCtrl.js",
-				"src/plan/planAddCtrl.js","src/plan/planMetricListCtrl.js"
+				"src/plan/planAddCtrl.js","src/plan/planMetricListCtrl.js","src/plan/planHistoryListCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"
 			},

@@ -34,15 +34,15 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 
 		//  /api/2.0/bp/qcp/qcp
 
-		$scope.querySingleplanInfo =function(planSid,operateStatus){
-			if (operateStatus=="查看") {
+		$scope.querySingleplanInfo =function(planSid,checkoutPlanStatusCode){
+			if (checkoutPlanStatusCode=="cps001") {
 				localStorage.setItem("checkoutPlanSid",planSid);
 				$location.path("account_index/planCheck");
-			}else if(operateStatus=="修改") {
+			}else if(checkoutPlanStatusCode=="cps002") {
 				localStorage.setItem("checkoutPlanSid",planSid);
 				$location.path("account_index/planRevise");
 			}else {
-				alert("不是“查看/修改”状态");
+				alert("不是“查看/修订”状态");
 			}
 		}
 		
@@ -118,6 +118,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                $location.path('login').replace();
 	            }else {
 	            	planlist.QCPSelected= [];  
+	            	planlist.dictionary.materialVersion = [];
+	            	planlist.Selected.materialName = {};
 	                alert(data.message);
 	            }  
 	        })
@@ -234,6 +236,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	            if (data.code == 'N01') {           	
 	 				localStorage.setItem('page',1);
 	                planlist.QCPSelected = data.contents;
+	            	// comsole.log()
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");

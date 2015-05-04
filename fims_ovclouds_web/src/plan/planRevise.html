@@ -19,12 +19,12 @@
 		<div class="form-group">
 			<label for="materialNo" class="left control-label">待检物料编号</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="materialNo" name="materialNo" ng-model="planRevise.keyCheckoutPlan.materialNo" required>
+				<input type="text" class="form-control" id="materialNo" name="materialNo" ng-model="planRevise.keyCheckoutPlan.materialNo" required ng-disabled="true">
 			</div>
 
 			<label for="materialVersion" class="left control-label">版本</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" id="materialVersion" name="materialVersion" ng-model="planRevise.keyCheckoutPlan.materialVersion" required>
+				<input type="text" class="form-control" id="materialVersion" name="materialVersion" ng-model="planRevise.keyCheckoutPlan.materialVersion" required ng-disabled="true">
 			</div>
 
 			<!-- <div class="col-sm-5">
@@ -34,7 +34,7 @@
 		<div class="form-group">
 			<label class="left control-label">待检物料简称</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="materialShortName" name="materialShortName" ng-model="planRevise.keyCheckoutPlan.materialShortName" required>
+				<input type="text" class="form-control" id="materialShortName" name="materialShortName" ng-model="planRevise.keyCheckoutPlan.materialShortName" required ng-disabled="true">
 			</div>
 		</div>
 

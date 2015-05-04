@@ -29,23 +29,19 @@
 	
 </style>
 
-<div id="container" class="container text-center" ng-controller="planListCtrl">
+<div id="container" class="container text-center" ng-controller="planHistoryListCtrl">
 <!-- <div id="container" class="container text-center"> -->
 	<div class="row">
 
-	<form class="form-horizontal" id="form-horizontal" name="companySetting" novalidate>
+	<form class="form-horizontal" id="form-horizontal" name="planHistoryListForm" novalidate>
 		<label class="left control-label" style="font-size:17px;">公司简称: {{companyShortName}}</label>
 		<label class="left control-label" style="margin-left:1.5em;">检验计划类型</label>
 		<div class="col-md-2">
-			<select class="form-control">
-			  <option>入库检验</option>
-			  <option>出库检验</option>
-			  <option>制程检验</option>
-			  <option>入库检验</option>
+			<select class="form-control" ng-model="planHistoryList.selQCPType"  ng-selected="planHistoryList.dicQCPType[0]" ng-options="o as o.name for o in planHistoryList.dicQCPType" ng-change="checkHistoryQCP()">
 			</select>
 		</div>
 		<div class="col-md-1">
-			<button class="btn btn-success">返回</button>
+			<button class="btn btn-success" ng-click="planHistoryListBack()">返回</button>
 			
 		</div>
 	</form>
@@ -74,47 +70,22 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<tr ng-repeat="list in listdata">
+		  	<tr ng-repeat="list in planHistoryList.QCP">
 		  		<td>{{$index+1}}</td>
-		  		<td ng-bind="list.planNo"></td>
-		  		<td ng-bind="list.planShortName"></td>
-		  		<td ng-bind="list.planFullName"></td>
-		  		<td ng-bind="list.zipCode"></td>
-		  		<td ng-bind="list.contactPhone"></td>
-		  		<td ng-bind="list.contactAddress"></td>
-		  		<td><a href="" ng-click="querySingleplanInfo(list.planSid)">修改</a></td>
-		  	</tr>
-		  	<tr>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td>启用</td>
-		  		<td><a ui-sref="account_index.planCheck">查看</a></td>
-		  		<td><a>复制</a></td>
-		  	</tr>
-		  	<tr>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td></td>
-		  		<td>修订</td>
-		  		<td><a ui-sref="account_index.planRevise">修改</a></td>
-		  		<td><a>复制</a></td>
+		  		<td ng-bind="list.checkoutPlanNo"></td>
+		  		<td ng-bind="list.checkoutPlanVersion"></td>
+		  		<td ng-bind="list.materialNo"></td>
+		  		<td ng-bind="list.materialVersion"></td>
+		  		<td ng-bind="list.materialShortName"></td>
+		  		<td ng-bind="list.aql"></td>
+		  		<td ng-bind="list.makeName"></td>
+		  		<td ng-bind="list.makeTime"></td>
+		  		<td ng-bind="list.entryName"></td>
+		  		<td ng-bind="list.entryTime"></td>
+		  		<td ng-bind="list.checkoutPlanStatus"></td>		  		
+		  		<td><a href="" ng-click="querySingleQCP(list.planSid)">查看</a></td>
+		  		<!-- <td><a href="" ng-click="">检验项目</a></td> -->
+		  		<td><a href="" ng-click="">复制</a></td>
 		  	</tr>
 		  </tbody>
 		</table>

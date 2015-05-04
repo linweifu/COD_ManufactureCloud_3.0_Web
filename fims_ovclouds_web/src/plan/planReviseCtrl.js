@@ -113,10 +113,28 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 ***************************************************
 ***************************************************
 */
+      //时间格式转换函数
+      Date.prototype.format = function() {
+            var year = this.getFullYear().toString();
+            var month = (this.getMonth()+1).toString();
+            var day = this.getDate().toString();
+            console.log(year);
+
+            if (month<10) {
+                  month = "0" + month;
+            }
+
+            if (day<10) {
+                  day = "0" + day;
+            }
+
+            return (year + "-" + month + "-" +day );
+      }
+
 	planRevise.querySingleQCP = function(){
 		$http({
 			method: "POST",
-			//url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
+			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
 			 url: "plan/querySingleQCP.json",
                    headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
@@ -131,6 +149,10 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	planRevise.auxCheckoutPlan = data.contents;
             	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
+                  var maketime = new Date(planRevise.auxCheckoutPlan.makeTime),
+                      entrytime = new Date(planRevise.auxCheckoutPlan.entryTime);
+                  planRevise.keyCheckoutPlan.makeTime = maketime.format();
+                  planRevise.keyCheckoutPlan.entryTime = entrytime.format();
 
             }
             else if(data.code=="E00"){
@@ -186,7 +208,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 			url: "plan/updateQCP.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
-					sid		                    : entry.sid,
+					sid		                    : localStorage.getItem('sid'),
 		            checkoutPlanSid		        : entry.checkoutPlanSid,
 		            aql		                    : entry.aql,
 		            entryId		                : entry.entryId,
