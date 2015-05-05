@@ -1493,8 +1493,8 @@ FIMS.controller('planCheckCtrl', ['$scope','$location','$http',function($scope,$
 	$scope.querySingleQCP = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
-			url: "plan/querySingleQCP.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
+			// url: "plan/querySingleQCP.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -1731,16 +1731,16 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
                   materialNo: "",
                   materialVersion: "",
                   materialShortName: "",
-                  aql: 5,
+                  aql: "",
                   entrySid: 1,
                   entrySidHash: 1,
                   entryId: "",
                   entryJobNumber: "",
                   entryName: "",
-                  entryTime: "2015-01-01",
-                  makeJobNumber: "2014",
-                  makeName: "123",
-                  makeTime: "2015-01-01",
+                  entryTime: "",
+                  makeJobNumber: "",
+                  makeName: "",
+                  makeTime: "",
                   operateStatusCode: "1",
                   operateStatus: "1",
                   checkoutPlanStatusCode: "1",
@@ -1856,7 +1856,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
                    headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
-				"checkoutPlanSid": planRevise.selectedCheckoutPlanSid
+				"checkoutPlanSid": localStorage.getItem('checkoutPlanSid')
 			}
 		})
 		.success(function(data){
@@ -1921,8 +1921,8 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		//
 		$http({
 			method: "POST",
-			//url: config.HOST + "/api/2.0/bp/qcp/qcp/updateQCP",
-			url: "plan/updateQCP.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/updateQCP",
+			// url: "plan/updateQCP.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 					sid		                    : localStorage.getItem('sid'),
@@ -1959,8 +1959,8 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
       planRevise.activateQCP = function(){
             $http({
                   method: "POST",
-                  //url: config.HOST + "/api/2.0/bp/qcp/qcp/activateQCP",
-                  url: "plan/activateQCP.json",
+                  url: config.HOST + "/api/2.0/bp/qcp/qcp/activateQCP",
+                  // url: "plan/activateQCP.json",
                   headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                   data: {
                         sid                             : localStorage.getItem('sid'),

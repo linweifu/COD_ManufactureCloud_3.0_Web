@@ -14,16 +14,16 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
                   materialNo: "",
                   materialVersion: "",
                   materialShortName: "",
-                  aql: 5,
+                  aql: "",
                   entrySid: 1,
                   entrySidHash: 1,
                   entryId: "",
                   entryJobNumber: "",
                   entryName: "",
-                  entryTime: "2015-01-01",
-                  makeJobNumber: "2014",
-                  makeName: "123",
-                  makeTime: "2015-01-01",
+                  entryTime: "",
+                  makeJobNumber: "",
+                  makeName: "",
+                  makeTime: "",
                   operateStatusCode: "1",
                   operateStatus: "1",
                   checkoutPlanStatusCode: "1",
@@ -139,7 +139,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
                    headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
-				"checkoutPlanSid": planRevise.selectedCheckoutPlanSid
+				"checkoutPlanSid": localStorage.getItem('checkoutPlanSid')
 			}
 		})
 		.success(function(data){
