@@ -32,11 +32,16 @@ FIMS.controller('planCheckCtrl', ['$scope','$location','$http',function($scope,$
 	// $scope.makeTime = time.format();
 	// $scope.entryTime = time.format();
 
+	$scope.planCheckBack = function(){
+		history.go(-1);
+
+	}
+
 	$scope.querySingleQCP = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
-			url: "plan/querySingleQCP.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
+			// url: "plan/querySingleQCP.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

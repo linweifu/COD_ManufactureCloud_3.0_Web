@@ -198,14 +198,14 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		var entry = assemblyObj();
 
 		 // alert("set11");
-   //      console.log(entry);
+        console.log(entry);
 	 	//  alert("set11");
 
 		//
 		$http({
 			method: "POST",
-			//url: config.HOST + "/api/2.0/bp/qcp/qcp/updateQCP",
-			url: "plan/updateQCP.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/updateQCP",
+			// url: "plan/updateQCP.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 					sid		                    : localStorage.getItem('sid'),
@@ -240,20 +240,20 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 	}
 
       planRevise.activateQCP = function(){
-           http({
+            $http({
                   method: "POST",
-                  //url: config.HOST + "/api/2.0/bp/qcp/qcp/activateQCP",
-                  url: "plan/activateQCP.json",
+                  url: config.HOST + "/api/2.0/bp/qcp/qcp/activateQCP",
+                  // url: "plan/activateQCP.json",
                   headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                   data: {
                         sid                             : localStorage.getItem('sid'),
-                        checkoutPlanSid                 : entry.checkoutPlanSid,
+                        checkoutPlanSid                 : localStorage.getItem("checkoutPlanSid")
                   }
             })
             .success(function(data){
             if (data.code=="N01"){
                   alert(data.message);
-                  $location.path('account_index.planList');
+                  $location.path('account_index/planList');
             }
             else if(data.code=="E00"){
                   alert(data.message+"，请重新登录");

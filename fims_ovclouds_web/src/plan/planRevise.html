@@ -83,7 +83,7 @@
 
 		<button class="btn btn-success" style="padding: .3em 1em;margin-right:0.5em;" ng-disabled="planReviseForm.$invalid||planReviseForm.$pristine" ng-click="planRevise.updateQCP()">修改 </button> 
 
-		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planList" >启用</button>
+		<button class="btn btn-default" style="padding: .3em .6em;" ng-click="planRevise.activateQCP()" >启用</button>
 
 		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planMetricList" >检验项目</button>
 

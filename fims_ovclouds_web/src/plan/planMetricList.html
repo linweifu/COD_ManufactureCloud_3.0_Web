@@ -22,6 +22,8 @@
 		margin-left: .2em;
 	}
 
+	.modal-content {padding:6px;}
+
 	.row {margin-bottom: 1em;}
 
 	.span {float: right;line-height: 1.5em;padding-top: .5em;padding-right: .6em;}
@@ -62,82 +64,51 @@
 		  		<td ng-bind="list.checkoutMetricDescription"></td>
 		  		<td ng-bind="list.checkoutToolName"></td>
 		  		<td ng-bind="list.processName"></td>
-
-	            <!-- checkoutMetricSid: "", -->
-<!-- 	            checkoutPlanSid: "",
-	            checkoutMetricName: "",
-	            checkoutMetricDescription: "",
-	            checkoutToolCode: "",
-	            checkoutToolName: "",
-	            checkoutMetricTypeCode: "",
-	            checkoutMetricType: "",
-	            checkoutMetricClassifyCode: "",
-	            checkoutMetricClassify: "",
-	            processName: "",
-	            metricUnit: "",
-	            referenceStandard: "",
-	            underTolerance: "",
-	            upTolerance: "",
-	            mapPosition: "",
-	            threeDimensionalRogramNo: "",
-	            fixtureId: "",
-	            checkoutMetricNo: ""
- -->
-		  		<td><a ui-sref="account_index.planRevise">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ui-sref="account_index.planRevise">删除</a></td>
+		  		<td><a ui-sref="#">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ui-sref="#">删除</a></td>
 		  	</tr>
 		  </tbody>
 		</table>
 	</div>
 	<div >
-         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">添加</button>  
+         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dxItem" data-whatever="@mdo">添加定性项目</button>  
 
-         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3>添加项目</h3>
-        <div class="modal-body">
-        <form >
-          <div class="form-group">
-            <label for="companyName" class="control-label left">编号</label>            
-            <input type="text" class="form-control" required >
-          </div>
-          <div class="form-group">
-            <label for="companyName" class="control-label left">分类</label>
-            <input type="text" class="form-control" required >
-          </div>
-          <div class="form-group">
-            <label for="companyName" class="control-label left">指标名称</label>
-           
-            <input type="text" class="form-control"  required >
-         
-          </div>
-          <div class="form-group">
-            <label for="companyName" class="control-label left">指标描述</label>
-           
-            <input type="text" class="form-control"  required >
-            
-          </div>
-          <div class="form-group">
-            <label for="companyName" class="control-label left">工具</label>
-           
-            <input type="text" class="form-control"  required >
-            
-          </div>
-          <div class="form-group">
-            <label for="companyName" class="control-label left">工序</label>
-          
-            <input type="text" class="form-control"  required >
-            
-          </div>
+         <div class="modal fade" id="dxItem" tabindex="-1" role="dialog" aria-labelledby="dxItemLabel" aria-hidden="true">
+  			<div class="modal-dialog">
+    			<div class="modal-content text-left">
+        			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        			<h3 class="text-center">添加定性检验项目</h3>
+        			<div class="modal-body">
+				        <form >
+				          <div class="form-group">
+				          		<label class="control-label">编号</label>            
+					            <input type="text" class="form-control" ng-model="planMetricList.addDX.materialNo"  required >
+				          </div>
+				          <div class="form-group">
+				            <label  class="control-label">分类</label>
+				            <input type="text" class="form-control" ng-model="planMetricList.addDX.checkoutMetricClassify"  required >
+				          </div>
+				          <div class="form-group">
+				            <label  class="control-label">指标名称</label>
+				            <input type="text" class="form-control"  ng-model="planMetricList.addDX.checkoutMetricName"  required >
+				          </div>
+				          <div class="form-group">
+				            <label  class="control-label">指标描述</label>
+				            <input type="text" class="form-control"  ng-model="planMetricList.addDX.checkoutMetricDescription"  required >				            
+				          </div>
+				          <div class="form-group">
+				            <label  class="control-label">工具</label>
+				            <input type="text" class="form-control"  ng-model="planMetricList.addDX.checkoutToolName"  required >
+				          </div>
+				          <div class="form-group">
+				            <label  class="control-label">工序</label>          
+				            <input type="text" class="form-control"  ng-model="planMetricList.addDX.processName"  required >
+				          </div>
+				        </form>
+      				</div>
+     	<div class="text-center">
+	        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addQCPItems('DX')">添加</button>
+      	</div>
 
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary"><a href="#">保存</a></button>
-      </div>
     </div>
   </div>
 
@@ -196,74 +167,73 @@
 	</div>
 	</div>
 <div >
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">添加</button>  
+     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">添加定量项目</button>  
 
      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
   	 <div class="modal-dialog">
 	
-		<div class="modal-content">
+		<div class="modal-content text-left">
       
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3>添加项目</h3>
+        <h3 class="text-center">添加定量检验项目</h3>
         <div class="modal-body">
         <form >
           <div class="form-group">
-            <label for="companyName" class="control-label left">编号</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">编号</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricNo"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">分类</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">分类</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricClassify"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">指标名称</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">指标名称</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricName"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">指标描述</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">指标描述</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricDescription"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">工具</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">工具</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutToolName"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">工序</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">工序</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.processName"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">单位</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">单位</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.metricUnit"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">参考标准</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">参考标准</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.referenceStandard"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">下公差</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">下公差</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.underTolerance"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">上公差</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">上公差</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.upTolerance"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">图位</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">图位</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.mapPosition"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">三坐标程序号</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">三坐标程序号</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.threeDimensionalRogramNo"  required >
           </div>
           <div class="form-group">
-            <label for="companyName" class="control-label left">夹具编号</label>
-            <input type="text" class="form-control"  required >
+            <label  class="control-label">夹具编号</label>
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.fixtureId"  required >
           </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary"><a href="#">保存</a></button>
+      <div class="text-center">
+        <button type="button"  data-dismiss="modal" class="btn btn-primary" ng-click="addQCPItems('DL')">添加</button>
       </div>
     </div>
   </div>

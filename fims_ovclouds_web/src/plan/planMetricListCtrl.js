@@ -10,26 +10,48 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 
 			DLCheckoutMetricList:[],
 
-			checkoutMetrics:{
-	            checkoutMetricSid: "",
-	            checkoutPlanSid: "",
-	            checkoutMetricName: "",
-	            checkoutMetricDescription: "",
-	            checkoutToolCode: "",
-	            checkoutToolName: "",
-	            checkoutMetricTypeCode: "",
-	            checkoutMetricType: "",
-	            checkoutMetricClassifyCode: "",
-	            checkoutMetricClassify: "",
-	            processName: "",
-	            metricUnit: "",
-	            referenceStandard: "",
-	            underTolerance: "",
-	            upTolerance: "",
-	            mapPosition: "",
-	            threeDimensionalRogramNo: "",
-	            fixtureId: "",
-	            checkoutMetricNo: ""
+			// checkoutMetrics:{
+	  //           checkoutMetricSid: "",
+	  //           checkoutPlanSid: "",
+	  //           checkoutMetricName: "",
+	  //           checkoutMetricDescription: "",
+	  //           checkoutToolCode: "",
+	  //           checkoutToolName: "",
+	  //           checkoutMetricTypeCode: "",
+	  //           checkoutMetricType: "",
+	  //           checkoutMetricClassifyCode: "",
+	  //           checkoutMetricClassify: "",
+	  //           processName: "",
+	  //           metricUnit: "",
+	  //           referenceStandard: "",
+	  //           underTolerance: "",
+	  //           upTolerance: "",
+	  //           mapPosition: "",
+	  //           threeDimensionalRogramNo: "",
+	  //           fixtureId: "",
+	  //           checkoutMetricNo: ""
+   //      	},
+
+        	addDX: {
+        		"checkoutMetricSid": "",
+	            "checkoutPlanSid": "",
+	            "checkoutMetricName": "",
+	            "checkoutMetricDescription": "",
+	            "checkoutToolCode": "",
+	            "checkoutToolName": "",
+	            "checkoutMetricTypeCode": "",
+	            "checkoutMetricType": "",
+	            "checkoutMetricClassifyCode": "",
+	            "checkoutMetricClassify": "",
+	            "processName": "",
+	            "metricUnit": "",
+	            "referenceStandard": "",
+	            "underTolerance": "",
+	            "upTolerance": "",
+	            "mapPosition": "",
+	            "threeDimensionalRogramNo": "",
+	            "fixtureId": "",
+	            "checkoutMetricNo": ""
         	}
 
 		};
@@ -324,18 +346,80 @@ queryQCPItems
 		planMetricList.DLCheckoutMetricList = dl;
 	}
 
-/*
-***************************************************
-***************************************************
-addQCPItems  (parseAddData)
-***************************************************
-***************************************************
-*/
 
-//
+// ***************************************************
+// ***************************************************
+// addQCPItems  (parseAddData)
+// ***************************************************
+// ***************************************************
 
 
+// //
 
+	$scope.addQCPItems = function(type){
+		$http({
+			method: "POST",
+			//url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCPItems",
+			url: "plan/addQCPItems.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+    			"checkoutMetrics": [{
+    				// "checkoutMetricSid": "",
+		            "checkoutPlanSid": "",
+		            "checkoutMetricName": "",
+		            "checkoutMetricDescription": "",
+		            "checkoutToolCode": "",
+		            "checkoutToolName": "",
+		            "checkoutMetricTypeCode": "",
+		            "checkoutMetricType": "",
+		            "checkoutMetricClassifyCode": "",
+		            "checkoutMetricClassify": "",
+		            "processName": "",
+		            "metricUnit": "",
+		            "referenceStandard": "",
+		            "underTolerance": "",
+		            "upTolerance": "",
+		            "mapPosition": "",
+		            "threeDimensionalRogramNo": "",
+		            "fixtureId": "",
+		            "checkoutMetricNo": "",
+
+					// checkoutMetricNo		       : planMetricList.addDX.checkoutMetricNo,
+		   //          checkoutMetricClassify		   : planMetricList.addDX.checkoutMetricClassify,
+		   //          checkoutMetricName             : planMetricList.addDX.checkoutMetricName,
+		   //          checkoutMetricDescription	   : planMetricList.addDX.checkoutMetricDescription,
+		   //          checkoutToolName		       : planMetricList.addDX.checkoutToolName,
+		   //          processName		               : planMetricList.addDX.processName,		           
+		   //          metricUnit                     : planMetricList.addDX.metricUnit,
+		  	//         referenceStandard              : planMetricList.addDX.referenceStandard ,
+		  	//         underTolerance                 : planMetricList.addDX.underTolerance,
+		  	//         upTolerance                    : planMetricList.addDX.upTolerance,
+		  	//         mapPosition                    : planMetricList.addDX.mapPosition,
+		  	//         threeDimensionalRogramNo       : planMetricList.addDX.threeDimensionalRogramNo,
+		  	//         fixtureId                      : planMetricList.addDX.fixtureId
+	  	        }]
+			}
+		})
+		.success(function(data){
+		
+            if (data.code=="N01"){
+            	alert("检验项目信息添加成功");
+            	planMetricList.queryQCPItems();
+          //  	//$location.path("account_index/chooseModule");
+
+            }
+            else if(data.code=="E00"){
+            	alert(data.message+"，请重新登录");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }
+        }).error(function () {
+            console.log('updateQCP'+data.message);
+        });
+	}
 /*planMetricList.addQCPItems = function(){
 
         // 准备参数
