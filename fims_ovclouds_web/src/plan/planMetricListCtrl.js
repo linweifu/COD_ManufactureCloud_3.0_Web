@@ -33,7 +33,6 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
    //      	},
 
         	addDX: {
-        		"checkoutMetricSid": "",
 	            "checkoutPlanSid": "",
 	            "checkoutMetricName": "",
 	            "checkoutMetricDescription": "",
@@ -296,8 +295,8 @@ queryQCPItems
 		//
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
-			url: "plan/queryQCPItems.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
+			// url: "plan/queryQCPItems.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 					sid		                    : entry.sid,

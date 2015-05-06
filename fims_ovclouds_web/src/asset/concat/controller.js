@@ -1866,8 +1866,8 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	planRevise.auxCheckoutPlan = data.contents;
             	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
-                  var maketime = new Date(planRevise.auxCheckoutPlan.makeTime),
-                      entrytime = new Date(planRevise.auxCheckoutPlan.entryTime);
+                  var maketime = new Date(planRevise.auxCheckoutPlan.makeTime*1000),
+                      entrytime = new Date(planRevise.auxCheckoutPlan.entryTime*1000);
                   planRevise.keyCheckoutPlan.makeTime = maketime.format();
                   planRevise.keyCheckoutPlan.entryTime = entrytime.format();
 
@@ -2283,7 +2283,6 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
    //      	},
 
         	addDX: {
-        		"checkoutMetricSid": "",
 	            "checkoutPlanSid": "",
 	            "checkoutMetricName": "",
 	            "checkoutMetricDescription": "",
@@ -2546,8 +2545,8 @@ queryQCPItems
 		//
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
-			url: "plan/queryQCPItems.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
+			// url: "plan/queryQCPItems.json",
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 					sid		                    : entry.sid,

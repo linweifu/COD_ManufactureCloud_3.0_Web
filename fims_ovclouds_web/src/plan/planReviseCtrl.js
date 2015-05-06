@@ -149,8 +149,8 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	planRevise.auxCheckoutPlan = data.contents;
             	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
-                  var maketime = new Date(planRevise.auxCheckoutPlan.makeTime),
-                      entrytime = new Date(planRevise.auxCheckoutPlan.entryTime);
+                  var maketime = new Date(planRevise.auxCheckoutPlan.makeTime*1000),
+                      entrytime = new Date(planRevise.auxCheckoutPlan.entryTime*1000);
                   planRevise.keyCheckoutPlan.makeTime = maketime.format();
                   planRevise.keyCheckoutPlan.entryTime = entrytime.format();
 
