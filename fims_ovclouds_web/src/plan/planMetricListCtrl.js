@@ -102,145 +102,6 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 	//         })
 	// 	}
 
-
-
-	// 	// 上一页
-	// 	$scope.previous = function(){
-	// 		if (planlist.page==1) {
-	// 			alert("当前是第1页...")
-	// 		} 
-			
-	// 	}
-
-	// 	//根据检验计划类型获取检验计划
-	// 	$scope.queryQCPByType = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
-	// 			url: "plan/queryQCPByType.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 				"companySid": localStorage.getItem('cSid'),
-	// 				"checkoutPlanTypeCode": planlist.Selected.QCPType.code,
-	// 				"page": localStorage.getItem('page')
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {
-	//             	planlist.dictionary.materialVersion = [];
-	//             	planlist.Selected.materialName = {};
-	//                 planlist.display = "display:block"; 
-	//  				localStorage.setItem('page',1);	
-	//                 planlist.QCPSelected = data.contents; 
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-		
-
-	// 	// 查询检验计划
-	// 	// $scope.queryQCP = function(){
-	// 	// 	$http({
-	// 	// 		method: "POST",
-	// 	// 		// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
-	// 	// 		url: "plan/queryQCP.json",
-	// 	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 	// 		data: {
-	// 	// 			"sid": localStorage.getItem('sid'),
-	// 	// 			"companySid": localStorage.getItem('cSid'),
-	// 	// 			"page": localStorage.getItem('page')
-	// 	// 		}
-	// 	// 	})
-	// 	// 	.success(function(data){
-	//  //            if (data.code == 'N01') {
-	//  //                // planlist.dictionary.materialName = data.contents;
-	//  //                planlist.QCPSelected = data.contents;          
-	//  //            }
-	//  //            else if(data.code=="E00"){
-	//  //                alert(data.message+",请重新登陆");
-	//  //                localStorage.clear();
-	//  //                $location.path('login').replace();
-	//  //            }else {
-	//  //                alert(data.message);
-	//  //            }  
-	//  //        })
-	// 	// }
-
-	// 	// $scope.queryQCP();
-
-	
-	// $scope.queryMaterialsInfo();
-
-
-
-
-	// 	//根据物料编号获取物料版本
-	// 	$scope.queryMaterialVersionByMaterialNo = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-	// 			url: "plan/queryMaterialVersionByMaterialNo.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 				"companySid": localStorage.getItem('cSid'),
-	// 				"materialNo": planlist.Selected.materialName.materialNo 
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {           	
-	//                 planlist.display = "display:none"; 
-	//                 planlist.dictionary.materialVersion = [];
-	//             	planlist.Selected.materialVersion = "";
-	//                 planlist.dictionary.materialVersion = data.contents;
-	//                 planlist.QCPSelected = data.contents;
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-
-	// 	//根据物料ID和物料版本获取检验计划
-	// 	$scope.queryQCPByMaterial = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByMaterial",
-	// 			url: "plan/queryQCPByMaterial.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 				"companySid": localStorage.getItem('cSid'),
-	// 				"materialNo": planlist.Selected.materialName.materialNo ,
-	// 				"materialVersion": planlist.Selected.materialVersion
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {           	
-	//  				localStorage.setItem('page',1);
-	//                 planlist.QCPSelected = data.contents;
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-
 /*
 ***************************************************
 ***************************************************
@@ -289,7 +150,7 @@ queryQCPItems
 		var entry = assemblyObj();
 
 		 // alert("set11");
-        console.log(entry);
+        // console.log(entry);
 	 	//  alert("set11");
 
 		//
@@ -352,10 +213,7 @@ queryQCPItems
 // ***************************************************
 // ***************************************************
 
-
-// //
-
-	$scope.addQCPItems = function(type){
+	$scope.addDXQCPItems = function(type){
 		$http({
 			method: "POST",
 			//url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCPItems",
@@ -365,24 +223,24 @@ queryQCPItems
 				"sid": localStorage.getItem('sid'),
     			"checkoutMetrics": [{
     				// "checkoutMetricSid": "",
-		            "checkoutPlanSid": "",
-		            "checkoutMetricName": "",
-		            "checkoutMetricDescription": "",
-		            "checkoutToolCode": "",
-		            "checkoutToolName": "",
-		            "checkoutMetricTypeCode": "",
-		            "checkoutMetricType": "",
-		            "checkoutMetricClassifyCode": "",
-		            "checkoutMetricClassify": "",
-		            "processName": "",
-		            "metricUnit": "",
-		            "referenceStandard": "",
-		            "underTolerance": "",
-		            "upTolerance": "",
-		            "mapPosition": "",
-		            "threeDimensionalRogramNo": "",
-		            "fixtureId": "",
-		            "checkoutMetricNo": "",
+		            "checkoutPlanSid":planMetricList.addDX.checkoutPlanSid,
+		            "checkoutMetricName":planMetricList.addDX.checkoutMetricName,
+		            "checkoutMetricDescription":planMetricList.addDX.checkoutMetricDescription,
+		            "checkoutToolCode":planMetricList.addDX.checkoutToolCode,
+		            "checkoutToolName":planMetricList.addDX.checkoutToolName,
+		            "checkoutMetricTypeCode":planMetricList.addDX.checkoutMetricTypeCode,
+		            "checkoutMetricType":planMetricList.addDX.checkoutMetricType,
+		            "checkoutMetricClassifyCode":planMetricList.addDX.checkoutMetricClassifyCode,
+		            "checkoutMetricClassify":planMetricList.addDX.checkoutMetricClassify,
+		            "processName":planMetricList.addDX.processName,
+		            "metricUnit":planMetricList.addDX.metricUnit,
+		            "referenceStandard":planMetricList.addDX.referenceStandard,
+		            "underTolerance":planMetricList.addDX.underTolerance,
+		            "upTolerance":planMetricList.addDX.upTolerance,
+		            "mapPosition":planMetricList.addDX.mapPosition,
+		            "threeDimensionalRogramNo":planMetricList.addDX.threeDimensionalRogramNo,
+		            "fixtureId":planMetricList.addDX.fixtureId,
+		            "checkoutMetricNo":planMetricList.addDX.checkoutMetricNo,
 
 					// checkoutMetricNo		       : planMetricList.addDX.checkoutMetricNo,
 		   //          checkoutMetricClassify		   : planMetricList.addDX.checkoutMetricClassify,
