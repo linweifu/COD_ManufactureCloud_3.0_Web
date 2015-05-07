@@ -32,7 +32,7 @@
 	<h3>Newthread加入申请</h3>
 	<div class="checkbox" ng-repeat="apply in applyInfo">
 		<label for="">
-			<input type="checkbox"  style="position: relative" ng-model="apply.userApplyStatus" ng-true-value="1" ng-false-value="0"><img src="common/img/waves.jpg" class="img-circle" alt="">{{apply.applyName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.applyJoinSid}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.remark}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning"  ng-click="refuseJoin($index,apply.applyJoinSid)">拒绝加入</button>
+			<input type="checkbox"  style="position: relative" ng-model="apply.userApplyStatus" ng-true-value="1" ng-false-value="0"><img src="common/img/waves.jpg" class="img-circle" alt="">{{apply.applicantName}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.applyJoinSid}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{apply.notes}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-warning"  ng-click="refuseJoin($index,apply.applyJoinSid)">拒绝加入</button>
 	    </label>
 	</div>
 
