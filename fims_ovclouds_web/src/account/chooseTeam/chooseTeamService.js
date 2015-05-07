@@ -70,7 +70,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             });
         }
        
-       chooseTeam.setWorkingCompany = function(sid){
+       chooseTeam.setWorkingCompany = function(cid,userApplyStatus){
+        console.log(cid);
+        console.log(userApplyStatus);
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/relation/setWorkingCompany',
@@ -79,16 +81,19 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 data: {
                     "sid": localStorage.getItem("sid"),
                     "contents": {
-                        "companySid": sid
+                        "companySid": cid
                     }
                 }
             }).success(function (data){
                 if (data.code == 'N01') {
+
                     localStorage.setItem("curCompanyName",data.contents.companyShortName);
-                    localStorage.setItem("cSid",sid);
+                    localStorage.setItem("cSid",cid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     localStorage.setItem("userJobNumber",data.contents.userJobNumber);
-                    $location.path("account_index/chooseModule");
+                    if(userApplyStatus!=="disabled") {
+                        $location.path("account_index/chooseModule");
+                    };
                 }
 
                 else if(data.code=="E00"){
