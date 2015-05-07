@@ -125,6 +125,11 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'plan/planMetricList.html'
 	})
+	.state('account_index.iqcRecord',{
+		url:'/iqcRecord',
+		// controller:'dataCountController',
+		templateUrl:'iqc/iqcRecord.html'
+	})
 	// .state('account_index.engineerlist',{
 	// 	url:'/engineerlist',
 	// 	// controller:'dataCountController',
