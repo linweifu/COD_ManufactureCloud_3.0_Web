@@ -80,7 +80,7 @@
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">分类</label>
-			            <input type="text" class="form-control" ng-model="planMetricList.addDX.checkoutMetricClassify"  required >
+			            <input type="text" class="form-control" ng-model="planMetricList.addDX.checkoutMetricType"  required ng-disabled="true">
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">指标名称</label>
@@ -92,7 +92,7 @@
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">工具</label>
-			            <input type="text" class="form-control"  ng-model="planMetricList.addDX.checkoutToolName"  required >
+						<select class="form-control" name="dxCheckoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.dxCheckoutTool" ng-model="planMetricList.Selected.dxCheckoutTool"></select>
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">工序</label>          

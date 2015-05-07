@@ -391,8 +391,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         }
        
        chooseTeam.setWorkingCompany = function(cid,userApplyStatus){
-        console.log(cid);
-        console.log(userApplyStatus);
+        // console.log(cid);
+        // console.log(userApplyStatus);
             $http({
                 method: 'POST',
                 url: config.HOST+'/api/2.0/bp/account/relation/setWorkingCompany',
@@ -406,7 +406,6 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 }
             }).success(function (data){
                 if (data.code == 'N01') {
-
                     localStorage.setItem("curCompanyName",data.contents.companyShortName);
                     localStorage.setItem("cSid",cid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);

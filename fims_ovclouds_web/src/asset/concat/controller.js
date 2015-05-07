@@ -2282,36 +2282,22 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 
 			DLCheckoutMetricList:[],
 
-			// checkoutMetrics:{
-	  //           checkoutMetricSid: "",
-	  //           checkoutPlanSid: "",
-	  //           checkoutMetricName: "",
-	  //           checkoutMetricDescription: "",
-	  //           checkoutToolCode: "",
-	  //           checkoutToolName: "",
-	  //           checkoutMetricTypeCode: "",
-	  //           checkoutMetricType: "",
-	  //           checkoutMetricClassifyCode: "",
-	  //           checkoutMetricClassify: "",
-	  //           processName: "",
-	  //           metricUnit: "",
-	  //           referenceStandard: "",
-	  //           underTolerance: "",
-	  //           upTolerance: "",
-	  //           mapPosition: "",
-	  //           threeDimensionalRogramNo: "",
-	  //           fixtureId: "",
-	  //           checkoutMetricNo: ""
-   //      	},
+			dictionary: {
+				dxCheckoutTool: []
+			},
+
+			Selected: {
+				dxCheckoutTool:{}
+			},
 
         	addDX: {
-	            "checkoutPlanSid": "",
+	            "checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
 	            "checkoutMetricName": "",
 	            "checkoutMetricDescription": "",
 	            "checkoutToolCode": "",
 	            "checkoutToolName": "",
-	            "checkoutMetricTypeCode": "",
-	            "checkoutMetricType": "",
+	            "checkoutMetricTypeCode": "DX",
+	            "checkoutMetricType": "定性检验",
 	            "checkoutMetricClassifyCode": "",
 	            "checkoutMetricClassify": "",
 	            "processName": "",
@@ -2334,7 +2320,35 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 */
 
 
-	// 	$scope.planlistBack = function(){
+	// 获取检验工具字典
+
+	$scope.queryDicCheckoutTool = function(){
+		$http({
+				method: "POST",
+				// url: config.HOST + "/api/2.0/bp/account/dic/queryDicCheckoutTool",
+				url: "plan/queryDicCheckoutTool.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	 				planMetricList.dictionary.dxCheckoutTool = data.contents;
+	 				// console.log(planMetricList.dictionary.checkoutTool);
+            		// planMetricList.Selected.CheckoutTool = (planMetricList.dictionary.CheckoutTool)[0];
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+	}
+
+	$scope.queryDicCheckoutTool();
+
+	// 	$scope.planMetricListBack = function(){
 	// 		// localStorage.removeItem('singleplan');
 	// 		$location.path('account_index/chooseModule').replace();
 	// 	}
@@ -2353,15 +2367,15 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 	// 		})
 	// 		.success(function(data){
 	//             if (data.code == 'N01') {
-	//  				planlist.dictionary.QCPType = [];
+	//  				planMetricList.dictionary.QCPType = [];
 	//                 for (var i=0; i < data.contents.length;i++) {
-	//                 	planlist.dictionary.QCPType.push({
+	//                 	planMetricList.dictionary.QCPType.push({
 	//                 		"name": data.contents[i].checkoutPlanType,
 	//                 		"code": data.contents[i].checkoutPlanTypeCode
 	//                 	});
 	//                 }
- //            		planlist.Selected.QCPType = (planlist.dictionary.QCPType)[0];
- //            		$scope.queryQCPByType(planlist.Selected.QCPType.code);
+ //            		planMetricList.Selected.QCPType = (planMetricList.dictionary.QCPType)[0];
+ //            		$scope.queryQCPByType(planMetricList.Selected.QCPType.code);
 
 	//             }
 	//             else if(data.code=="E00"){
@@ -2498,8 +2512,8 @@ queryQCPItems
 		            "checkoutPlanSid":planMetricList.addDX.checkoutPlanSid,
 		            "checkoutMetricName":planMetricList.addDX.checkoutMetricName,
 		            "checkoutMetricDescription":planMetricList.addDX.checkoutMetricDescription,
-		            "checkoutToolCode":planMetricList.addDX.checkoutToolCode,
-		            "checkoutToolName":planMetricList.addDX.checkoutToolName,
+		            "checkoutToolCode":planMetricList.Selected.dxCheckoutTool.checkoutToolCode,
+		            "checkoutToolName":planMetricList.Selected.dxCheckoutTool.checkoutToolName,
 		            "checkoutMetricTypeCode":planMetricList.addDX.checkoutMetricTypeCode,
 		            "checkoutMetricType":planMetricList.addDX.checkoutMetricType,
 		            "checkoutMetricClassifyCode":planMetricList.addDX.checkoutMetricClassifyCode,

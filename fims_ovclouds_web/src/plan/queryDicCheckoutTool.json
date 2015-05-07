@@ -1,0 +1,14 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": [
+        {
+            "checkoutToolCode": "C",
+            "checkoutToolName": "卡尺",
+            "display": "1"
+        },{
+            "checkoutToolCode": "CMM",
+            "checkoutToolName": "三坐标",
+            "display": "2"
+        }]
+}
