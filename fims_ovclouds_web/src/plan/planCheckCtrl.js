@@ -45,15 +45,16 @@ FIMS.controller('planCheckCtrl', ['$scope','$location','$http',function($scope,$
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
-				"checkoutPlanSid": $scope.selectedCheckoutPlanSid
+				"checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
+				"companySid": localStorage.getItem('companySid')
 			}
 		})
 		.success(function(data){
             if (data.code=="N01"){
             	$scope.planCheck = data.contents;
             	// console.log($scope.planCheck);
-            	var entrytime = new Date($scope.planCheck.entryTime),
-            		maketime = new Date($scope.planCheck.makeTime);		
+            	var entrytime = new Date($scope.planCheck.entryTime*1000),
+            		maketime = new Date($scope.planCheck.makeTime*1000);		
             	// console.log(entrytime);
               	$scope.planCheck.entryTime = entrytime.format();
               	$scope.planCheck.makeTime = maketime.format();
