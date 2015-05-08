@@ -73,14 +73,15 @@
     			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     			<h3 class="text-center">添加定性检验项目</h3>
     			<div class="modal-body">
-			        <form >
+			        <form name="addDXQCPItemsForm" novalidate>
 			          <div class="form-group">
 			          		<label class="control-label">编号</label>            
 				            <input type="text" class="form-control" ng-model="planMetricList.addDX.checkoutMetricNo"  required >
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">分类</label>
-			            <input type="text" class="form-control" ng-model="planMetricList.addDX.checkoutMetricType"  required ng-disabled="true">
+			            <!-- <input type="text" class="form-control" ng-model="planMetricList.addDX.checkoutMetricType"  required ng-disabled="true"> -->
+			            <select class="form-control" name="checkoutMetricClassify" ng-options="o as o.checkoutMetricClassify for o in planMetricList.dictionary.checkoutMetricClassify" ng-model="planMetricList.Selected.dxCheckoutMetricClassify"></select>
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">指标名称</label>
@@ -92,7 +93,7 @@
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">工具</label>
-						<select class="form-control" name="dxCheckoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.dxCheckoutTool" ng-model="planMetricList.Selected.dxCheckoutTool"></select>
+						<select class="form-control" name="checkoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.checkoutTool" ng-model="planMetricList.Selected.dxCheckoutTool"></select>
 			          </div>
 			          <div class="form-group">
 			            <label  class="control-label">工序</label>          
@@ -101,7 +102,7 @@
 			        </form>
   				</div>
 		     	<div class="text-center">
-			        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addDXQCPItems()">添加</button>
+			        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addDXQCPItems()" ng-disabled="addDXQCPItemsForm.$invalid|| addDXQCPItemsForm.checkoutMetricClassify.$pristine || addDXQCPItemsForm.checkoutTool.$pristine ">添加</button>
 		      	</div>
 	   	 	</div>
   		</div>
@@ -168,15 +169,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="text-center">添加定量检验项目</h3>
         <div class="modal-body">
-        <form >
+        <form name="addDLQCPItemsForm" novalidate>
           <div class="form-group">
             <label  class="control-label">编号</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricNo"  required >
+            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricNo" required >
           </div>
           <div class="form-group">
             <label  class="control-label">分类</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricClassify"  required >
-          </div>
+            <select class="form-control" name="checkoutMetricClassify" ng-options="o as o.checkoutMetricClassify for o in planMetricList.dictionary.checkoutMetricClassify" ng-model="planMetricList.Selected.dlCheckoutMetricClassify"></select>
+         </div>
           <div class="form-group">
             <label  class="control-label">指标名称</label>
             <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricName"  required >
@@ -187,7 +188,7 @@
           </div>
           <div class="form-group">
             <label  class="control-label">工具</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutToolName"  required >
+            <select class="form-control" name="checkoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.checkoutTool" ng-model="planMetricList.Selected.dlCheckoutTool"></select>
           </div>
           <div class="form-group">
             <label  class="control-label">工序</label>
@@ -224,7 +225,7 @@
         </form>
       </div>
       <div class="text-center">
-        <button type="button"  data-dismiss="modal" class="btn btn-primary" ng-click="addQCPItems('DL')">添加</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addDLQCPItems()" ng-disabled="addDLQCPItemsForm.$invalid|| addDLQCPItemsForm.checkoutMetricClassify.$pristine || addDLQCPItemsForm.checkoutTool.$pristine ">添加</button>
       </div>
     </div>
   </div>

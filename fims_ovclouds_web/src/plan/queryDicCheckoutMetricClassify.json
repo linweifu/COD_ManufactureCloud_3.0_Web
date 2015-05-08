@@ -1,0 +1,14 @@
+{
+    "code": "N01",
+    "message": "获取成功",
+    "contents": [
+        {
+            "checkoutMetricClassifyCode": "cmc001",
+            "checkoutMetricClassify": "外观",
+            "display": "1"
+        },{
+            "checkoutMetricClassifyCode": "cmc001",
+            "checkoutMetricClassify": "外观",
+            "display": "1"
+        }]
+}
