@@ -32,10 +32,14 @@
 		<div class="form-group">
 			<label class="left control-label">公司行业</label>
 			<div class="col-sm-5">
-				<select class="form-control" ng-model="comSetting.industry.iType" ng-options="o as o.name for o in comSetting.dictionary.iType" ng-change="comSetting.queryInfo()" name="s"></select>
+				<select class="form-control" ng-model="comSetting.iType"  ng-options="o as o.name for o in comSetting.dictionary.iType" ng-change="comSetting.queryInfo()" name="s"></select>
+
+				{{comSetting.industry.iType}}
 			</div>
 			<div class="col-sm-5">
-				<select class="form-control" ng-model="comSetting.industry.iInfo" ng-options="o as o.name for o in comSetting.dictionary.iInfo" name="s1"></select>
+				<select class="form-control" ng-model="comSetting.iInfo" ng-selected="comSetting.industry.iInfo" ng-options="o as o.name for o in comSetting.dictionary.iInfo" name="s1"></select>
+
+				{{comSetting.industry.iInfo}}
 			</div>
 		</div>
 		<div class="form-group">
@@ -46,16 +50,16 @@
 				</select>
 			</div>
 			<div class="col-sm-3">
-				<select class="form-control" ng-model="comSetting.address.province" ng-options="o as o.name for o in comSetting.dictionary.province" ng-change="comSetting.getCity()" name="s2"></select>
+				<select class="form-control" ng-model="comSetting.aPro" ng-options="o as o.provinceName for o in comSetting.dictionary.province" ng-change="comSetting.getCity()" name="s2"></select>
 			</div>
 			<div class="col-sm-3">
-				<select class="form-control" ng-model="comSetting.address.city" ng-options="o as o.name for o in comSetting.dictionary.city" name="s3"></select>
+				<select class="form-control" ng-model="comSetting.aCity" ng-options="o as o.name for o in comSetting.dictionary.city" name="s3"></select>
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="comCode" class="left control-label">公司邮编</label>
 			<div class="col-sm-4">
-				<input type="number" class="form-control" id="comCode" name="comCode" ng-model="comSetting.comCode" required>
+				<input type="text" class="form-control" id="comCode" name="comCode" ng-model="comSetting.comCode" required>
 			</div>
 		</div>
 		<div class="form-group">

@@ -42,7 +42,7 @@
 		<label class="left control-label">{{companyShortName}}</label>
 		<label class="left control-label">检验计划类型</label>
 		<div class="col-md-2">
-			<select class="form-control" ng-model="planlist.Selected.QCPType"  ng-selected="planlist.dictionary.QCPType[0]" ng-options="o as o.name for o in planlist.dictionary.QCPType" ng-change="queryQCPByType()">
+			<select class="form-control" ng-model="planlist.Selected.QCPType"  ng-selected="planlist.Selected.QCPType" ng-options="o as o.name for o in planlist.dictionary.QCPType" ng-change="queryQCPByType()">
 			</select>
 		</div>
 

@@ -345,12 +345,12 @@ queryQCPItems
 		            "checkoutPlanSid":planMetricList.addDL.checkoutPlanSid,
 		            "checkoutMetricName":planMetricList.addDL.checkoutMetricName,
 		            "checkoutMetricDescription":planMetricList.addDL.checkoutMetricDescription,
-	                "checkoutToolCode": planMetricList.Selected.dxCheckoutTool.checkoutToolCode,
-	           		"checkoutToolName": planMetricList.Selected.dxCheckoutTool.checkoutToolName,
-	            	"checkoutMetricTypeCode": "DX",
-	                "checkoutMetricType": "定性检验",
-	            	"checkoutMetricClassifyCode": planMetricList.Selected.dxCheckoutMetricClassify.checkoutMetricClassifyCode,
-	            	"checkoutMetricClassify": planMetricList.Selected.dxCheckoutMetricClassify.dxCheckoutMetricClassify,
+	                "checkoutToolCode": planMetricList.Selected.dlCheckoutTool.checkoutToolCode,
+	           		"checkoutToolName": planMetricList.Selected.dlCheckoutTool.checkoutToolName,
+	            	"checkoutMetricTypeCode": "DL",
+	                "checkoutMetricType": "定量检验",
+	            	"checkoutMetricClassifyCode": planMetricList.Selected.dlCheckoutMetricClassify.checkoutMetricClassifyCode,
+	            	"checkoutMetricClassify": planMetricList.Selected.dlCheckoutMetricClassify.dlCheckoutMetricClassify,
 		            "processName":planMetricList.addDL.processName,
 		            "metricUnit":planMetricList.addDL.metricUnit,
 		            "referenceStandard":planMetricList.addDL.referenceStandard,
@@ -365,10 +365,10 @@ queryQCPItems
 			}
 		})
 		.success(function(data){
-		console.log("ss");
             if (data.code=="N01"){
             	alert("检验项目信息添加成功");
             	planMetricList.queryQCPItems();
+
           //  	//$location.path("account_index/chooseModule");
 
             }
@@ -467,7 +467,7 @@ queryQCPItems
 }
 /*var parseQueryData = function(array){
 
-		var dx =[];
+		var dl =[];
 		var dl =[];
 
 		// 肯定又数据的情况；
