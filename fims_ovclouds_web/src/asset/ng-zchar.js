@@ -326,6 +326,13 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 		aCity: {},
 	};
 
+	$scope.back = function(){
+		var a = confirm("您确定要退出吗？退出将丢失填写数据!")
+		if (a) {
+			history.go(-1);
+		}
+	}
+
 	// 完善公司信息
 	comSetting.improveComInfo = function(){
 		$http({
@@ -418,7 +425,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 		.success(function(data){
             if (data.code=="N01"){
                 comSetting.dictionary.city = [];
-                comSetting.dictionary.city = data.contents;                
+                comSetting.dictionary.city = data.contents;
+                // comSetting.aCity = {};                
                 // for (var i=0;i < data.contents.length;i++){
                 //     comSetting.dictionary.city.push({
                 //         "name": data.contents[i].cityName,
@@ -453,6 +461,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 		.success(function(data){
             if (data.code=="N01"){
                 comSetting.dictionary.iInfo = [];
+                // comSetting.iInfo = {};
                 comSetting.dictionary.iInfo = data.contents;
                 // for (var i=0;i < data.contents.length;i++){
                 //     comSetting.dictionary.iInfo.push({
@@ -2606,9 +2615,9 @@ queryQCPItems
 	            	"checkoutMetricClassify": planMetricList.Selected.dxCheckoutMetricClassify.checkoutMetricClassify,
 		            "processName":planMetricList.addDX.processName,
 		            "metricUnit":planMetricList.addDX.metricUnit,
-		            "referenceStandard":planMetricList.addDX.referenceStandard,
-		            "underTolerance":planMetricList.addDX.underTolerance,
-		            "upTolerance":planMetricList.addDX.upTolerance,
+		            // "referenceStandard":planMetricList.addDX.referenceStandard,
+		            // "underTolerance":planMetricList.addDX.underTolerance,
+		            // "upTolerance":planMetricList.addDX.upTolerance,
 		            "mapPosition":planMetricList.addDX.mapPosition,
 		            "threeDimensionalRogramNo":planMetricList.addDX.threeDimensionalRogramNo,
 		            "fixtureId":planMetricList.addDX.fixtureId,
