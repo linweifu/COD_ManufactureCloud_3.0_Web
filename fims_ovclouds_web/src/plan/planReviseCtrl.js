@@ -266,6 +266,10 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             console.log('updateQCP'+data.message);
         });
       }
+
+      planRevise.back = function(){
+            history.go(-1);
+      }
 /*
 ***************************************************
 ***************************************************
@@ -274,21 +278,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 */
 
 	$scope.planRevise = planRevise;
-
- 	// alert("set");
- 	// localStorage.setItem('checkoutPlanSid','111');
- 	// // alert("get");
- 	// planRevise.selectedCheckoutPlanSid = localStorage.getItem('checkoutPlanSid');
- 	// // alert("remove");
- 	// localStorage.removeItem('checkoutPlanSid');
-
 	planRevise.querySingleQCP();
 
 }])
 
-/*
-***************************************************
-***************************************************
-***************************************************
-***************************************************
-*/

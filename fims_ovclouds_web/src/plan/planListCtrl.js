@@ -271,6 +271,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                localStorage.clear();
 	                $location.path('login').replace();
 	            }else {
+	            	planlist.QCPSelected = [];
 	                alert(data.message);
 	            }  
 	        })

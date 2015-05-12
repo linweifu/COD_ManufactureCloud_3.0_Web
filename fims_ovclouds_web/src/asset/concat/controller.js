@@ -370,38 +370,38 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
         });
 	}
 
-	// 获取省份
-	comSetting.getProvince = function(){
-		$http({
-			method: "POST",
-			url: config.HOST + "/api/2.0/bp/account/dic/queryDicProvince",
-			// url: "account/comSetting/Province.json",
-            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid')
-			}
-		})
-		.success(function(data){
-            if (data.code=="N01"){
-                comSetting.dictionary.province = data.contents;
-                // for (var i=0;i < data.contents.length;i++){
-                //     comSetting.dictionary.province.push({
-                //         "name": data.contents[i].provinceName,
-                //         "code" : data.contents[i].provinceCode
-                //     });
-                // }   
-            }
-            else if(data.code=="E00"){
-            	alert(data.message+"（获取省份）,请重新登陆");
-            	localStorage.clear();
-            	$location.path('login');
-            }else {
-            	console.log(data.message);
-            }
-        }).error(function () {
-            console.log('data.message');
-        });
-	}
+	// // 获取省份
+	// comSetting.getProvince = function(){
+	// 	$http({
+	// 		method: "POST",
+	// 		url: config.HOST + "/api/2.0/bp/account/dic/queryDicProvince",
+	// 		// url: "account/comSetting/Province.json",
+ //            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+	// 		data: {
+	// 			"sid": localStorage.getItem('sid')
+	// 		}
+	// 	})
+	// 	.success(function(data){
+ //            if (data.code=="N01"){
+ //                comSetting.dictionary.province = data.contents;
+ //                // for (var i=0;i < data.contents.length;i++){
+ //                //     comSetting.dictionary.province.push({
+ //                //         "name": data.contents[i].provinceName,
+ //                //         "code" : data.contents[i].provinceCode
+ //                //     });
+ //                // }   
+ //            }
+ //            else if(data.code=="E00"){
+ //            	alert(data.message+"（获取省份）,请重新登陆");
+ //            	localStorage.clear();
+ //            	$location.path('login');
+ //            }else {
+ //            	console.log(data.message);
+ //            }
+ //        }).error(function () {
+ //            console.log('data.message');
+ //        });
+	// }
 
 
 	comSetting.getCity = function(){
@@ -412,7 +412,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
-				"provinceCode": comSetting.aPro.code
+				"provinceCode": comSetting.aPro.provinceCode
 			}
 		})
 		.success(function(data){
@@ -447,7 +447,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
-				"companyIndustryCode": comSetting.iType.code
+				"companyIndustryCode": comSetting.iType.companyIndustryCode
 			}
 		})
 		.success(function(data){
@@ -491,7 +491,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 		})
 		.success(function(data){
             if (data.code=="N01"){
-                // comSetting.dictionary.province = data.contents;
+                comSetting.dictionary.province = data.contents;
                 deferred.resolve(data.contents);
             }
             else if(data.code=="E00"){
@@ -523,7 +523,7 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
             if (data.code=="N01"){
                 // comSetting.dictionary.iType = [];
                 deferred.resolve(data.contents);
-                // comSetting.dictionary.iType = data.contents;
+                comSetting.dictionary.iType = data.contents;
             }
             else {
                 console.log(data.message);
@@ -546,8 +546,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 	promises.push(dicType);
 
 	$q.all(promises).then(function(prodata){
-        comSetting.dictionary.province = prodata[0];
-        comSetting.dictionary.iType = prodata[1];
+        // comSetting.dictionary.province = prodata[0];
+        // comSetting.dictionary.iType = prodata[1];
 
 		$http({
 			method: "POST",
@@ -563,8 +563,12 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
             if (data.code=="N01"){
             	comSetting.shortName = data.contents.companyShortName ;
 		        comSetting.name = data.contents.companyFullName;
-		        comSetting.aPro = prodata[0][7];
-
+		        comSetting.dictionary.city = data.contents.companyCityDic;
+		        comSetting.aCity = (comSetting.dictionary.city)[data.contents.companyCityDisplay];
+		        comSetting.aPro = prodata[0][data.contents.companyProvinceDisplay];
+		        comSetting.iType = prodata[1][data.contents.industryTypeDisplay];
+		        comSetting.dictionary.iInfo = data.contents.industryDic;
+		        comSetting.iInfo = comSetting.dictionary.iInfo[data.contents.industryDisplay];
 
 		     //    comSetting.aPro.provinceCode = data.contents.coxczampanyProvinceCode;
 			    // comSetting.aPro.provinceName = data.contents.companyProvince;
@@ -1506,6 +1510,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                localStorage.clear();
 	                $location.path('login').replace();
 	            }else {
+	            	planlist.QCPSelected = [];
 	                alert(data.message);
 	            }  
 	        })
@@ -2045,6 +2050,10 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             console.log('updateQCP'+data.message);
         });
       }
+
+      planRevise.back = function(){
+            history.go(-1);
+      }
 /*
 ***************************************************
 ***************************************************
@@ -2053,24 +2062,10 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 */
 
 	$scope.planRevise = planRevise;
-
- 	// alert("set");
- 	// localStorage.setItem('checkoutPlanSid','111');
- 	// // alert("get");
- 	// planRevise.selectedCheckoutPlanSid = localStorage.getItem('checkoutPlanSid');
- 	// // alert("remove");
- 	// localStorage.removeItem('checkoutPlanSid');
-
 	planRevise.querySingleQCP();
 
 }])
 
-/*
-***************************************************
-***************************************************
-***************************************************
-***************************************************
-*/
 
 FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
 	var planAdd = {
@@ -2608,7 +2603,7 @@ queryQCPItems
 	            	"checkoutMetricTypeCode": "DX",
 	                "checkoutMetricType": "定性检验",
 	            	"checkoutMetricClassifyCode": planMetricList.Selected.dxCheckoutMetricClassify.checkoutMetricClassifyCode,
-	            	"checkoutMetricClassify": planMetricList.Selected.dxCheckoutMetricClassify.dxCheckoutMetricClassify,
+	            	"checkoutMetricClassify": planMetricList.Selected.dxCheckoutMetricClassify.checkoutMetricClassify,
 		            "processName":planMetricList.addDX.processName,
 		            "metricUnit":planMetricList.addDX.metricUnit,
 		            "referenceStandard":planMetricList.addDX.referenceStandard,
@@ -2662,7 +2657,7 @@ queryQCPItems
 	            	"checkoutMetricTypeCode": "DL",
 	                "checkoutMetricType": "定量检验",
 	            	"checkoutMetricClassifyCode": planMetricList.Selected.dlCheckoutMetricClassify.checkoutMetricClassifyCode,
-	            	"checkoutMetricClassify": planMetricList.Selected.dlCheckoutMetricClassify.dlCheckoutMetricClassify,
+	            	"checkoutMetricClassify": planMetricList.Selected.dlCheckoutMetricClassify.checkoutMetricClassify,
 		            "processName":planMetricList.addDL.processName,
 		            "metricUnit":planMetricList.addDL.metricUnit,
 		            "referenceStandard":planMetricList.addDL.referenceStandard,
