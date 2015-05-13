@@ -19,7 +19,11 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 				dxCheckoutTool:{},
 				dxCheckoutMetricClassify:{},
 				dlCheckoutTool:{},
-				dlCheckoutMetricClassify:{}
+				dlCheckoutMetricClassify:{},
+				dxReviseTool: {},
+				dlReviseTool: {},	
+				dxReviseClassify: {},
+				dlReviseClassify: {}			
 			},
 
         	addDX: {
@@ -43,6 +47,28 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 	            "checkoutMetricNo": ""
         	},
 
+        	reviseDX: {
+	            "checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
+	            "checkoutMetricName": "",
+	            "checkoutMetricDescription": "",
+	            "checkoutToolCode": "",
+	            "checkoutToolName": "",
+	            "checkoutMetricTypeCode": "DX",
+	            "checkoutMetricType": "定性检验",
+	            "checkoutMetricClassifyCode": "",
+	            "checkoutMetricClassify": "",
+	            "processName": "",
+	            "metricUnit": "",
+	            "referenceStandard": "",
+	            "underTolerance": "",
+	            "upTolerance": "",
+	            "mapPosition": "",
+	            "threeDimensionalRogramNo": "",
+	            "fixtureId": "",
+	            "checkoutMetricNo": "",
+	            "checkoutToolDisplay":""
+        	},
+
         	addDL: {
 	            "checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
 	            "checkoutMetricName": "",
@@ -62,17 +88,172 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 	            "threeDimensionalRogramNo": "",
 	            "fixtureId": "",
 	            "checkoutMetricNo": ""
+        	},
+
+        	reviseDL: {
+	            "checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
+	            "checkoutMetricName": "",
+	            "checkoutMetricDescription": "",
+	            "checkoutToolCode": "",
+	            "checkoutToolName": "",
+	            "checkoutMetricTypeCode": "DL",
+	            "checkoutMetricType": "定量检验",
+	            "checkoutMetricClassifyCode": "",
+	            "checkoutMetricClassify": "",
+	            "processName": "",
+	            "metricUnit": "",
+	            "referenceStandard": "",
+	            "underTolerance": "",
+	            "upTolerance": "",
+	            "mapPosition": "",
+	            "threeDimensionalRogramNo": "",
+	            "fixtureId": "",
+	            "checkoutMetricNo": "",
+	            "checkoutToolDisplay": ""
+
         	}
 
-		};
-/*
-***************************************************
-***************************************************
-***************************************************
-***************************************************
-*/
-	// 获取检验工具字典
+	};
+	// 获取要修改的定量检验项目
+	$scope.reviseDLItem = function(obj){
+        planMetricList.reviseDL.checkoutPlanSid = localStorage.getItem('checkoutPlanSid'),
+        planMetricList.reviseDL.checkoutMetricSid = obj.checkoutMetricSid;
+        planMetricList.reviseDL.checkoutMetricName = obj.checkoutMetricName;
+        planMetricList.reviseDL.checkoutMetricDescription =  obj.checkoutMetricDescription;
 
+		planMetricList.reviseDL.checkoutToolDisplay = obj.checkoutToolDisplay;
+        planMetricList.reviseDL.checkoutMetricClassifyDisplay = obj.checkoutMetricClassifyDisplay;
+
+        planMetricList.Selected.dlReviseTool =  planMetricList.dictionary.checkoutTool[planMetricList.reviseDL.checkoutToolDisplay];
+        planMetricList.Selected.dlReviseClassify =  planMetricList.dictionary.checkoutMetricClassify[planMetricList.reviseDL.checkoutMetricClassifyDisplay];
+        
+        planMetricList.reviseDL.processName =  obj.processName;
+        planMetricList.reviseDL.metricUnit = obj.metricUnit;
+        planMetricList.reviseDL.referenceStandard = obj.referenceStandard ;
+        planMetricList.reviseDL.underTolerance = obj.underTolerance ;
+        planMetricList.reviseDL.upTolerance = obj.upTolerance ;
+        planMetricList.reviseDL.mapPosition = obj.mapPosition ;
+        planMetricList.reviseDL.threeDimensionalRogramNo = obj.threeDimensionalRogramNo ;
+        planMetricList.reviseDL.fixtureId = obj.fixtureId;
+        planMetricList.reviseDL.checkoutMetricNo =  obj.checkoutMetricNo;
+
+	}
+	// 提交修改的定量检验项目
+	$scope.updateDLItem = function(){
+		console.log('ss');
+		$http({
+			method: "POST",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/updateQCPItems",
+			// url: "plan/updateQCPItems.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"checkoutMetrics": [{
+					'checkoutPlanSid': localStorage.getItem('checkoutPlanSid'),
+					'checkoutMetricSid': planMetricList.reviseDL.checkoutMetricSid,
+			       	'checkoutMetricName': planMetricList.reviseDL.checkoutMetricName,
+			       	'checkoutMetricDescription':  planMetricList.reviseDL.checkoutMetricDescription,
+			       	'checkoutToolCode': planMetricList.Selected.dlReviseTool.checkoutToolCode,
+			       	'checkoutToolName': planMetricList.Selected.dlReviseTool.checkoutToolName,
+			       	"checkoutMetricType": "定量检验",
+			       	"checkoutMetricTypeCode": "DL",
+	            	"checkoutMetricClassifyCode": planMetricList.Selected.dlReviseClassify.checkoutMetricClassifyCode,
+		            "checkoutMetricClassify": planMetricList.Selected.dlReviseClassify.checkoutMetricClassify,
+			       	'processName':  planMetricList.reviseDL.processName,
+		       	  	"metricUnit": planMetricList.reviseDL.metricUnit,
+		            "referenceStandard": planMetricList.reviseDL.referenceStandard,
+		            "underTolerance": planMetricList.reviseDL.underTolerance,
+		            "upTolerance": planMetricList.reviseDL.upTolerance,
+		            "mapPosition": planMetricList.reviseDL.mapPosition,
+		            "threeDimensionalRogramNo": planMetricList.reviseDL.threeDimensionalRogramNo,
+		            "fixtureId": planMetricList.reviseDL.fixtureId,
+			       	'checkoutMetricNo':  planMetricList.reviseDL.checkoutMetricNo
+				}]
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {
+ 				alert("定量项目更新成功");
+ 				planMetricList.queryQCPItems();
+ 				// console.log(planMetricList.dictionary.checkoutTool);
+        		// planMetricList.Selected.CheckoutTool = (planMetricList.dictionary.CheckoutTool)[0];
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+
+
+
+
+
+	// 获取修改检验项目
+	$scope.reviseDXItem = function(obj){
+        planMetricList.reviseDX.checkoutPlanSid = localStorage.getItem('checkoutPlanSid'),
+        planMetricList.reviseDX.checkoutMetricSid = obj.checkoutMetricSid;
+        planMetricList.reviseDX.checkoutMetricName = obj.checkoutMetricName;
+        planMetricList.reviseDX.checkoutMetricDescription =  obj.checkoutMetricDescription;
+
+        planMetricList.reviseDX.checkoutToolDisplay = obj.checkoutToolDisplay;
+        planMetricList.reviseDX.checkoutMetricClassifyDisplay = obj.checkoutMetricClassifyDisplay;
+
+
+        planMetricList.Selected.dxReviseTool =  planMetricList.dictionary.checkoutTool[planMetricList.reviseDX.checkoutToolDisplay];
+        planMetricList.Selected.dxReviseClassify =  planMetricList.dictionary.checkoutMetricClassify[planMetricList.reviseDX.checkoutMetricClassifyDisplay];
+        planMetricList.reviseDX.processName =  obj.processName;
+        planMetricList.reviseDX.checkoutMetricNo =  obj.checkoutMetricNo;
+	}
+
+	//提交定性检验项目
+	$scope.updateDXItem = function(){
+		console.log('ss');
+		$http({
+			method: "POST",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/updateQCPItems",
+			// url: "plan/updateQCPItems.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"checkoutMetrics": [{
+					'checkoutPlanSid': localStorage.getItem('checkoutPlanSid'),
+					'checkoutMetricSid': planMetricList.reviseDX.checkoutMetricSid,
+			       	'checkoutMetricName': planMetricList.reviseDX.checkoutMetricName,
+			       	'checkoutMetricDescription':  planMetricList.reviseDX.checkoutMetricDescription,
+			       	'checkoutToolCode': planMetricList.Selected.dxReviseTool.checkoutToolCode,
+			       	'checkoutToolName': planMetricList.Selected.dxReviseTool.checkoutToolName,
+			       	"checkoutMetricType": "定性检验",
+			       	"checkoutMetricTypeCode": "DX",
+	            	"checkoutMetricClassifyCode": planMetricList.Selected.dxReviseClassify.checkoutMetricClassifyCode,
+		            "checkoutMetricClassify": planMetricList.Selected.dxReviseClassify.checkoutMetricClassify,
+			       	'processName':  planMetricList.reviseDX.processName,
+			       	'checkoutMetricNo':  planMetricList.reviseDX.checkoutMetricNo
+				}]
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {
+ 				alert("更新成功");
+ 				planMetricList.queryQCPItems();
+ 				// console.log(planMetricList.dictionary.checkoutTool);
+        		// planMetricList.Selected.CheckoutTool = (planMetricList.dictionary.CheckoutTool)[0];
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+
+
+	// 获取检验工具字典
 	$scope.queryDicCheckoutMetricClassify = function(){
 		$http({
 				method: "POST",
@@ -103,7 +284,6 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 
 
 	// 获取检验工具字典
-
 	$scope.queryDicCheckoutTool = function(){
 		$http({
 				method: "POST",
@@ -132,10 +312,6 @@ FIMS.controller('planMetricListCtrl', ['$scope', '$location', '$http',
 
 	$scope.queryDicCheckoutTool();
 
-	// 	$scope.planMetricListBack = function(){
-	// 		// localStorage.removeItem('singleplan');
-	// 		$location.path('account_index/chooseModule').replace();
-	// 	}
 
 	// 	//  /api/2.0/bp/qcp/qcp
 		
@@ -212,7 +388,7 @@ queryQCPItems
 
             // localStorage.removeItem("checkoutPlanSid");
 
-            console.log(localStorage.getItem('checkoutPlanSid'));
+            // console.log(localStorage.getItem('checkoutPlanSid'));
 
 			return o;
 		}
@@ -232,7 +408,7 @@ queryQCPItems
             if (data.code=="N01"){
             	//alert("检验计划信息更新成功");
             	//$location.path("account_index/chooseModule");
-            	console.log(data.contents);
+            	// console.log(data.contents);
             	//绑定数据
             	parseQueryData(data.contents);
 
@@ -278,7 +454,6 @@ queryQCPItems
 // ***************************************************
 
 	$scope.addDXQCPItems = function(type){
-		console.log('s');
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCPItems",
@@ -311,7 +486,6 @@ queryQCPItems
 			}
 		})
 		.success(function(data){
-		console.log("ss");
             if (data.code=="N01"){
             	alert("检验项目信息添加成功");
             	planMetricList.queryQCPItems();
@@ -332,7 +506,6 @@ queryQCPItems
 
 
 	$scope.addDLQCPItems = function(type){
-		console.log('s');
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCPItems",
@@ -368,9 +541,6 @@ queryQCPItems
             if (data.code=="N01"){
             	alert("检验项目信息添加成功");
             	planMetricList.queryQCPItems();
-
-          //  	//$location.path("account_index/chooseModule");
-
             }
             else if(data.code=="E00"){
             	alert(data.message+"，请重新登录");
@@ -384,7 +554,47 @@ queryQCPItems
         });
 	}
 
-	
+	$scope.removeItem = function(cmSid){
+		var a = confirm("您确定要删除吗？删除后数据不可恢复!")
+		if (a) {
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/deleteQCPItems",
+				// url: "plan/addDLQCPItems.json",
+	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+	    			"checkoutMetrics": [{
+						"checkoutMetricSid": cmSid
+		  	        }]
+				}
+			})
+			.success(function(data){
+	            if (data.code=="N01"){
+	            	alert("删除定性检验项目成功!");
+	            	// DXCheckoutMetricList.splice(index, 1);
+	            	planMetricList.queryQCPItems();
+	            }
+	            else if(data.code=="E00"){
+	            	alert(data.message+"，请重新登录");
+	            	localStorage.clear();
+	            	$location.path('login');
+	            }else {
+	            	console.log(data.message);
+	            }
+	        }).error(function () {
+	            console.log('updateQCP'+data.message);
+	        });
+    	}
+	}
+
+	// $scope.backto = function(){
+	// 	// localStorage.removeItem('singleplan');
+	// 	// history.go(-1);
+	// 	console.log('s');
+	// }
+
+
 
 /*planMetricList.addQCPItems = function(){
 

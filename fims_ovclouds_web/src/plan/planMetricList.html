@@ -61,12 +61,14 @@
 		  		<td ng-bind="list.checkoutMetricDescription"></td>
 		  		<td ng-bind="list.checkoutToolName"></td>
 		  		<td ng-bind="list.processName"></td>
-		  		<td><a ui-sref="#">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ui-sref="#">删除</a></td>
+		  		<td><a data-toggle="modal" data-target="#reviseDXItem" data-whatever="@mdo" ng-click="reviseDXItem(list)">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ng-click="removeItem(list.checkoutMetricSid)">删除</a></td>
 		  	</tr>
 		  </tbody>
 		</table>
 	</div>
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#dxItem" data-whatever="@mdo">添加定性项目</button>  
+
+    <!-- <button type="button" class="btn btn-default" ng-click＝"back()">返回</button>   -->
     <div class="modal fade" id="dxItem" tabindex="-1" role="dialog" aria-labelledby="dxItemLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content text-left">
@@ -107,6 +109,48 @@
 	   	 	</div>
   		</div>
 	</div>
+
+    <div class="modal fade" id="reviseDXItem" tabindex="-1" role="dialog" aria-labelledby="dxItemLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content text-left">
+    			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    			<h3 class="text-center">修改定性检验项目</h3>
+    			<div class="modal-body">
+			        <form name="reviseDXQCPItemsForm" novalidate>
+			          <div class="form-group">
+			          		<label class="control-label">编号</label>            
+				            <input type="text" class="form-control" ng-model="planMetricList.reviseDX.checkoutMetricNo"  required >
+			          </div>
+			          <div class="form-group">
+			            <label  class="control-label">分类</label>
+			            <!-- <input type="text" class="form-control" ng-model="planMetricList.reviseDX.checkoutMetricType"  required ng-disabled="true"> -->
+			            <select class="form-control" name="checkoutMetricClassify" ng-options="o as o.checkoutMetricClassify for o in planMetricList.dictionary.checkoutMetricClassify" ng-model="planMetricList.Selected.dxReviseClassify"></select>
+			          </div>
+			          <div class="form-group">
+			            <label  class="control-label">指标名称</label>
+			            <input type="text" class="form-control"  ng-model="planMetricList.reviseDX.checkoutMetricName"  required >
+			          </div>
+			          <div class="form-group">
+			            <label  class="control-label">指标描述</label>
+			            <input type="text" class="form-control"  ng-model="planMetricList.reviseDX.checkoutMetricDescription"  required >				            
+			          </div>
+			          <div class="form-group">
+			            <label  class="control-label">工具</label>
+						<select class="form-control" name="checkoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.checkoutTool" ng-model="planMetricList.Selected.dxReviseTool"></select>
+			          </div>
+			          <div class="form-group">
+			            <label  class="control-label">工序</label>          
+			            <input type="text" class="form-control"  ng-model="planMetricList.reviseDX.processName"  required >
+			          </div>
+			        </form>
+  				</div>
+		     	<div class="text-center">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="reviseDXQCPItemsForm.$invalid|| reviseDXQCPItemsForm.$pristine" ng-click="updateDXItem()">修改定性项目</button>
+		      	</div>
+	   	 	</div>
+  		</div>
+	</div>
+
 	</div>
 </div>
 
@@ -151,84 +195,164 @@
 		  		<td ng-bind="list.mapPosition"></td>
 		  		<td ng-bind="list.threeDimensionalRogramNo"></td>
 		  		<td ng-bind="list.fixtureId"></td>
-		  		<td><a ui-sref="account_index.planRevise">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ui-sref="account_index.planRevise">删除</a></td>
+		  		<td><a data-toggle="modal" data-target="#reviseDLItem" data-whatever="@mdo" ng-click="reviseDLItem(list)">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ng-click="removeItem(list.checkoutMetricSid)">删除</a></td>
 		  	</tr>
 		  </tbody>
 
 		</table>
 	</div>
 	</div>
-<div>
-     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">添加定量项目</button>  
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">添加定量项目</button>  
+  
+    <!-- <button type="button" class="btn btn-default" ng-click＝"planMetricList.back()">返回</button>   -->
 
      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-  	 <div class="modal-dialog">
-	
+  	 	<div class="modal-dialog">
 		<div class="modal-content text-left">
-      
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="text-center">添加定量检验项目</h3>
-        <div class="modal-body">
-        <form name="addDLQCPItemsForm" novalidate>
-          <div class="form-group">
-            <label  class="control-label">编号</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricNo" required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">分类</label>
-            <select class="form-control" name="checkoutMetricClassify" ng-options="o as o.checkoutMetricClassify for o in planMetricList.dictionary.checkoutMetricClassify" ng-model="planMetricList.Selected.dlCheckoutMetricClassify"></select>
-         </div>
-          <div class="form-group">
-            <label  class="control-label">指标名称</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricName"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">指标描述</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricDescription"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">工具</label>
-            <select class="form-control" name="checkoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.checkoutTool" ng-model="planMetricList.Selected.dlCheckoutTool"></select>
-          </div>
-          <div class="form-group">
-            <label  class="control-label">工序</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.processName"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">单位</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.metricUnit"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">参考标准</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.referenceStandard"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">下公差</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.underTolerance"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">上公差</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.upTolerance"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">图位</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.mapPosition"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">三坐标程序号</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.threeDimensionalRogramNo"  required >
-          </div>
-          <div class="form-group">
-            <label  class="control-label">夹具编号</label>
-            <input type="text" class="form-control"  ng-model="planMetricList.addDL.fixtureId"  required >
-          </div>
-        </form>
-      </div>
-      <div class="text-center">
-        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addDLQCPItems()" ng-disabled="addDLQCPItemsForm.$invalid|| addDLQCPItemsForm.checkoutMetricClassify.$pristine || addDLQCPItemsForm.checkoutTool.$pristine ">添加</button>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-</div>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="text-center">添加定量检验项目</h3>
+	        <div class="modal-body">
+		        <form name="addDLQCPItemsForm" novalidate>
+		          <div class="form-group">
+		            <label  class="control-label">编号</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricNo" required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">分类</label>
+		            <select class="form-control" name="checkoutMetricClassify" ng-options="o as o.checkoutMetricClassify for o in planMetricList.dictionary.checkoutMetricClassify" ng-model="planMetricList.Selected.dlCheckoutMetricClassify"></select>
+		         </div>
+		          <div class="form-group">
+		            <label  class="control-label">指标名称</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricName"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">指标描述</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.checkoutMetricDescription"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">工具</label>
+		            <select class="form-control" name="checkoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.checkoutTool" ng-model="planMetricList.Selected.dlCheckoutTool"></select>
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">工序</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.processName"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">单位</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.metricUnit"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">参考标准(要求数字)</label>
+		            <input type="number" class="form-control"  ng-model="planMetricList.addDL.referenceStandard"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">下公差（要求数字）</label>
+		            <input type="number" class="form-control"  ng-model="planMetricList.addDL.underTolerance"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">上公差（要求数字）</label>
+		            <input type="number" class="form-control"  ng-model="planMetricList.addDL.upTolerance"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">图位</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.mapPosition"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">三坐标程序号</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.threeDimensionalRogramNo"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">夹具编号</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.addDL.fixtureId"  required >
+		          </div>
+		        </form>
+	      	</div>
+	        <div class="text-center">
+	        	<button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addDLQCPItems()" ng-disabled="addDLQCPItemsForm.$invalid|| addDLQCPItemsForm.checkoutMetricClassify.$pristine || addDLQCPItemsForm.checkoutTool.$pristine ">添加</button>
+	        </div>
+    	</div>
+  		</div>
+	</div>
+
+	<div class="modal fade" id="reviseDLItem" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  	 	<div class="modal-dialog">
+		<div class="modal-content text-left">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h3 class="text-center">修改定量检验项目</h3>
+	        <div class="modal-body">
+		        <form name="reviseDLQCPItemsForm" novalidate>
+		          <div class="form-group">
+		            <label  class="control-label">编号</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.checkoutMetricNo" required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">分类</label>
+		            <select class="form-control" name="checkoutMetricClassify" ng-options="o as o.checkoutMetricClassify for o in planMetricList.dictionary.checkoutMetricClassify" ng-model="planMetricList.Selected.dlReviseClassify"></select>
+		         </div>
+		          <div class="form-group">
+		            <label  class="control-label">指标名称</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.checkoutMetricName"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">指标描述</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.checkoutMetricDescription"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">工具</label>
+		            <select class="form-control" name="checkoutTool" ng-options="o as o.checkoutToolName for o in planMetricList.dictionary.checkoutTool" ng-model="planMetricList.Selected.dlReviseTool"></select>
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">工序</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.processName"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">单位</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.metricUnit"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">参考标准(要求数字)</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.referenceStandard"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">下公差(要求数字)</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.underTolerance"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">上公差（要求数字）</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.upTolerance"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">图位</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.mapPosition"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">三坐标程序号</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.threeDimensionalRogramNo"  required >
+		          </div>
+		          <div class="form-group">
+		            <label  class="control-label">夹具编号</label>
+		            <input type="text" class="form-control"  ng-model="planMetricList.reviseDL.fixtureId"  required >
+		          </div>
+		        </form>
+	      	</div>
+	        <div class="text-center">
+	        	<button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="reviseDLQCPItemsForm.$invalid||reviseDLQCPItemsForm.$pristine" ng-click="updateDLItem()">修改定量项目</button>
+	        </div>
+    	</div>
+  		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
