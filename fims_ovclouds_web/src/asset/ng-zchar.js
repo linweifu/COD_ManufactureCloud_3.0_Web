@@ -1911,7 +1911,6 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             var year = this.getFullYear().toString();
             var month = (this.getMonth()+1).toString();
             var day = this.getDate().toString();
-            console.log(year);
 
             if (month<10) {
                   month = "0" + month;
@@ -1991,7 +1990,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		var entry = assemblyObj();
 
 		 // alert("set11");
-        console.log(entry);
+        // console.log(entry);
 	 	//  alert("set11");
 
 		//
@@ -2002,17 +2001,14 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 					sid		                    : localStorage.getItem('sid'),
-		            checkoutPlanSid		        : entry.checkoutPlanSid,
+		            checkoutPlanSid		        : localStorage.getItem("checkoutPlanSid"),
 		            aql		                    : entry.aql,
-		            entryId		                : entry.entryId,
-		            entryJobNumber		        : entry.entryJobNumber,
-		            entryName		            : entry.entryName,
-		            entryTime		            : entry.entryTime,
-		            makeJobNumber		        : entry.makeJobNumber,
+		            entryId		                : localStorage.getItem("email"),
+		            entryJobNumber		        : localStorage.getItem("userJobNumber"),
+		            entryName		            : localStorage.getItem("userName"),
+		            entryTime		            : parseInt((new Date().valueOf())/1000),
 		            makeName		            : entry.makeName,
-		            makeTime		            : entry.makeTime,
-		            notes		                : entry.notes
-
+		            makeTime		            : parseInt((new Date(entry.makeTime)).valueOf()/1000),
 			}
 		})
 		.success(function(data){
