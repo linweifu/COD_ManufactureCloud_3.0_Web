@@ -59,7 +59,7 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function (
                 localStorage.clear();
                 $location.path('login').replace();
             }else {
-                console.log(data.message);
+                alert(data.message);
             }  
 		})
 	}
