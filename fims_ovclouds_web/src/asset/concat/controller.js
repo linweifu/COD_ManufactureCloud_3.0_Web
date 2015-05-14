@@ -3125,8 +3125,8 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 		$scope.checkHistoryQCP = function(){
 			$http({
 				method: "POST",
-				// url: config.HOST + "/api/2.0/bp/qcp/qcp/checkHistoryQCP",
-				url: "plan/checkHistoryQCP.json",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/checkHistoryQCP",
+				// url: "plan/checkHistoryQCP.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
