@@ -2801,6 +2801,29 @@ queryQCPItems
             if (data.code=="N01"){
             	alert("检验项目信息添加成功");
             	planMetricList.queryQCPItems();
+            	planMetricList.addDX = {
+		            "checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
+		            "checkoutMetricName": "",
+		            "checkoutMetricDescription": "",
+		            "checkoutToolCode": "",
+		            "checkoutToolName": "",
+		            "checkoutMetricTypeCode": "DX",
+		            "checkoutMetricType": "定性检验",
+		            "checkoutMetricClassifyCode": "",
+		            "checkoutMetricClassify": "",
+		            "processName": "",
+		            "metricUnit": "",
+		            "referenceStandard": "",
+		            "underTolerance": "",
+		            "upTolerance": "",
+		            "mapPosition": "",
+		            "threeDimensionalRogramNo": "",
+		            "fixtureId": "",
+		            "checkoutMetricNo": ""
+        		};
+        		planMetricList.Selected.dxCheckoutTool = {};
+	        	planMetricList.Selected.dxCheckoutMetricClassify = {};
+
           //  	//$location.path("account_index/chooseModule");
 
             }
@@ -2853,6 +2876,31 @@ queryQCPItems
             if (data.code=="N01"){
             	alert("检验项目信息添加成功");
             	planMetricList.queryQCPItems();
+
+	        	planMetricList.addDL = {
+		            "checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
+		            "checkoutMetricName": "",
+		            "checkoutMetricDescription": "",
+		            "checkoutToolCode": "",
+		            "checkoutToolName": "",
+		            "checkoutMetricTypeCode": "DL",
+		            "checkoutMetricType": "定量检验",
+		            "checkoutMetricClassifyCode": "",
+		            "checkoutMetricClassify": "",
+		            "processName": "",
+		            "metricUnit": "",
+		            "referenceStandard": "",
+		            "underTolerance": "",
+		            "upTolerance": "",
+		            "mapPosition": "",
+		            "threeDimensionalRogramNo": "",
+		            "fixtureId": "",
+		            "checkoutMetricNo": ""
+	        	};
+
+	        	planMetricList.Selected.dlCheckoutTool = {};
+	        	planMetricList.Selected.dlCheckoutMetricClassify = {};
+
             }
             else if(data.code=="E00"){
             	alert(data.message+"，请重新登录");
