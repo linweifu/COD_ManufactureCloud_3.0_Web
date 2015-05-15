@@ -272,19 +272,6 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 		        comSetting.iType = prodata[1][data.contents.industryTypeDisplay];
 		        comSetting.dictionary.iInfo = data.contents.industryDic;
 		        comSetting.iInfo = comSetting.dictionary.iInfo[data.contents.industryDisplay];
-
-		     //    comSetting.aPro.provinceCode = data.contents.coxczampanyProvinceCode;
-			    // comSetting.aPro.provinceName = data.contents.companyProvince;
-			    // comSetting.aCity.cityCode =data.contents.companyProvinceCode;
-			    // comSetting.aCity.cityName = data.contents.companyProvince;
-
-			 //    comSetting.iInfo.companyIndustryCode = data.contents.companyIndustryCode;
-			 //    comSetting.iInfo.companyIndustry = data.contents.companyIndustry;
-				// comSetting.iType.code = data.contents.companyIndustryCode;
-			 //    comSetting.iType.name = data.contents.companyIndustry;
-
-			    // comSetting.iInfo =  comSetting.dictionary.iInfo[0];
-			    // console.log(comSetting.dictionary.iInfo[0]);
 			    comSetting.comCode = data.contents.companyZipCode;
 			    comSetting.comTel = data.contents.companyPhone;
 			    comSetting.comWeb = data.contents.companyWebsite;
