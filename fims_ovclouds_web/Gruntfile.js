@@ -20,7 +20,10 @@ module.exports = function(grunt) {
 				"src/manage/customer/customer/customerCtrl.js",'src/manage/customer/customer/customerlistCtrl.js',
 				"src/manage/vendor/vendor/vendorCtrl.js",'src/manage/vendor/vendor/vendorlistCtrl.js',
 				'src/plan/planListCtrl.js','src/plan/planCheckCtrl.js',"src/plan/planReviseCtrl.js",
-				"src/plan/planAddCtrl.js","src/plan/planMetricListCtrl.js","src/plan/planHistoryListCtrl.js"
+				"src/plan/planAddCtrl.js","src/plan/planMetricListCtrl.js","src/plan/planHistoryListCtrl.js",
+				"src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/iqcAddCtrl.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
+				"src/iqc/iqc_record/iqcRecordCtrl.js","src/iqc/iqc_add/iqcComplexDLAddCtrl.js","src/iqc/iqc_add/iqcComplexDXAddCtrl.js",
+				"src/iqc/iqc_add/iqcSimpleDLAddCtrl.js","src/iqc/iqc_add/iqcSimpleDXAddCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"
 			},
@@ -83,7 +86,8 @@ module.exports = function(grunt) {
 			"src/account/applyApproval/*.js","src/account/company_index/*.js","src/account/joinCo/*.js",
 			"src/account/comSetting/*.js",'src/manage/engineer/material/*.js',
 			"src/manage/customer/customer/*.js",'src/manage/vendor/vendor/*.js',
-			"src/plan/*.js"
+			"src/plan/*.js","src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/*.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
+			"src/iqc/iqc_record/*.js"
 			],
         	// tasks: ['concat','less', 'cssmin', 'uglify']
         	tasks: ['concat', 'uglify']

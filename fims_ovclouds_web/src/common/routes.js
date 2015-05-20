@@ -125,88 +125,51 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'plan/planMetricList.html'
 	})
+	.state('account_index.iqcIndex',{
+		url:'/iqcIndex',
+		controller:'iqcIndexCtrl',
+		templateUrl:'iqc/iqc_index/iqcIndex.html'
+	})
 	.state('account_index.iqcRecord',{
 		url:'/iqcRecord',
-		// controller:'dataCountController',
-		templateUrl:'iqc/iqcRecord.html'
+		controller:'iqcRecordCtrl',
+		templateUrl:'iqc/iqc_record/iqcRecord.html'
 	})
-	// .state('account_index.engineerlist',{
-	// 	url:'/engineerlist',
-	// 	// controller:'dataCountController',
-	// 	templateUrl:'manage/engineering/engineerlist.html'
+	.state('account_index.iqcAdd',{
+		url:'/iqcAdd',
+		// controller:'iqcAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcAdd.html'
+	})
+	.state('account_index.iqcAddCheck',{
+		url:'/iqcAddCheck',
+		// controller:'iqcAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcAddCheck.html'
+	})
+	// .state('account_index.iqcDataCount',{
+	// 	url:'/iqcDataCount',
+	// 	controller:'iqcRecordCtrl',
+	// 	templateUrl:'iqc/iqc_dataCount/iqcDataCount.html'
 	// })
-	// .state('dashboard.dataCount.dataCountTab1',{
-	// 	url:'/dataCountTab1',
-	// 	controller:'dataCountController',
-	// 	templateUrl:'view/dashboard/dataCountTab1.html'
-	// })
-	// .state('dashboard.dataCount.dataCountTab2',{
-	// 	url:'/dataCountTab2',
-	// 	controller:'dataCountController',
-	// 	templateUrl:'view/dashboard/dataCountTab2.html'
-	// })
-	// .state('dashboard.dataCount.dataCountTab3',{
-	// 	url:'/dataCountTab3',
-	// 	controller:'dataCountController',
-	// 	templateUrl:'view/dashboard/dataCountTab3.html'
-	// })
-	// .state('dashboard.dataCount.dataCountTab31',{
-	// 	url:'/dataCountTab31',
-	// 	controller:'dataCountController',
-	// 	templateUrl:'view/dashboard/dataCountTab31.html'
-	// })
-	// .state('dashboard.dataCount.dataCountTab4',{
-	// 	url:'/dataCountTab4',
-	// 	controller:'dataCountController',
-	// 	templateUrl:'view/dashboard/dataCountTab4.html'
-	// })
-	// .state('dashboard.dataCount.dataCountTab5',{
-	// 	url:'/dataCountTab5',
-	// 	controller:'dataCountController',
-	// 	templateUrl:'view/dashboard/dataCountTab5.html'
-	// })
-	// .state('dashboard.subNav', {
-	// 	abstract: true,
-	// 	url: '/subNav',
-	// 	controller: 'newAddController',
-	// 	templateUrl: 'view/dashboard/subNav.html'
-	// })
-	// .state('dashboard.subNav.home', {
-	// 	url: '/home',
-	// 	controller: 'newAddController',
-	// 	templateUrl: 'view/dashboard/home.html'
-	// })
-	// .state('dashboard.subNav.dxjy', {
-	// 	url: '/dxjy',
-	// 	templateUrl: 'view/dashboard/dxjy.html'
-	// })
-	// .state('dashboard.subNav.dljc', {
-	// 	url: '/dljc',
-	// 	// controller: dljcController,
-	// 	templateUrl: 'view/dashboard/dljc.html'
-	// })
-	// .state('login',{
-	// 	url:'/login',
-	// 	controller:'loginController',
-	// 	templateUrl:'view/login/login.html'
-	// })
-	// .state('login.email',{
-	// 	url:'/email',
-	// 	controller:'loginController',
-	// 	templateUrl:'view/login/email.html'
-	// })
-	// .state('login.choice',{
-	// 	url:'/choice',
-	// 	controller:'loginController',
-	// 	templateUrl:'view/login/choice.html'
-	// })
-	// .state('login.choice2',{
-	// 	url:'/choice2',
-	// 	controller:'loginController',
-	// 	templateUrl:'view/login/choice2.html'
-	// });
-		 // $urlRouterProvider.otherwise('');
-
+	.state('account_index.iqcComplexDLAdd',{
+		url:'/iqcComplexDLAdd',
+		// controller:'iqcComplexDLAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcComplexDLAdd.html'
+	})
+	.state('account_index.iqcComplexDXAdd',{
+		url:'/iqcComplexDXAdd',
+		// controller:'iqcComplexDXAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcComplexDXAdd.html'
+	})
+	.state('account_index.iqcSimpleDLAdd',{
+		url:'/iqcSimpleDLAdd',
+		// controller:'iqcSimpleDLAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcSimpleDLAdd.html'
+	})
+	.state('account_index.iqcSimpleDXAdd',{
+		url:'/iqcSimpleDXAdd',
+		// controller:'iqcSimpleDXAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcSimpleDXAdd.html'
+	})
 }]);
 
 

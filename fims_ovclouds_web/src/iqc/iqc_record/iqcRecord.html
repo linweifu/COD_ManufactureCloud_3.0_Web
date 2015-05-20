@@ -1,0 +1,81 @@
+<style type="text/css">
+	#container {
+		background-color: #fefefe;
+		border: 1px solid #ececec;
+		border-radius: 5px;
+		padding: 10px 25px;
+	}	
+	
+	h3 {margin-top: .5em;margin-bottom: .8em;}
+	
+	.table th{text-align: center;}
+
+	.btn-newMem {
+		padding: .4em 4.5em ;
+		margin: .5em  auto .6em auto;
+		font-size: 16px;
+	}
+
+	.table a {color: rgb(29,124,244);}
+
+	.img-circle {
+		width: 55px;
+		height: 55px;
+		float: left;
+		margin-left: .2em;
+	}
+
+	.row {margin-bottom: 1em;}
+	.span {float: right;line-height: 1.5em;padding-top: .5em;padding-right: .6em;}
+	.name {font-size: 14px;}
+	.author {color: #f68539;font-size: 12px;}
+	.top {margin-top: 1.8em;}
+	
+</style>
+
+<div id="container" class="container text-center">
+	<h3>{{companyShortName}} (入库检验记录列表)</h3>
+	
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover ">
+			<thead>
+		    <tr>
+		      <th>#</th>
+		      <th>记录编号</th>
+		      <th>物料编号</th>
+		      <th>物料版本</th>
+		      <th>物料名称</th>
+		      <th>批次</th>
+		      <th>供应商</th>
+		      <th>送检数量</th>
+		      <th>抽样数量</th>
+		      <th>记录状态</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<tr ng-repeat="list in listdata">
+		  		<td>{{$index+1}}</td>
+		  		<td ng-bind="list.customerNo"></td>
+		  		<td ng-bind="list.customerShortName"></td>
+		  		<td ng-bind="list.customerFullName"></td>
+		  		<td ng-bind="list.zipCode"></td>
+		  		<td ng-bind="list.contactPhone"></td>
+		  		<td ng-bind="list.contactAddress"></td>
+		  		<td ng-bind="list.contactAddress"></td>
+		  		<td ng-bind="list.contactAddress"></td>
+		  		<td><a ng-click="querySingleplanInfo(list.checkoutPlanSid,list.checkoutPlanStatusCode)">{{list.operateStatusWeb}}</a></td>
+		  	</tr>
+		  </tbody>
+		</table>
+		<nav>
+		  <ul class="pager">
+		    <li><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+		    <li><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+		  </ul>
+		</nav>
+	</div>
+
+	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;" ui-sref="account_index.iqcAdd">新增检验记录</button>
+	<button class="btn btn-default btn-newMem" ui-sref="account_index.iqcIndex">返回管理面板</button>
+</div>
