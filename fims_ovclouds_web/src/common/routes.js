@@ -170,6 +170,11 @@ FIMS.config([
 		// controller:'iqcSimpleDXAddCtrl',
 		templateUrl:'iqc/iqc_add/iqcSimpleDXAdd.html'
 	})
+	.state('account_index.qrCode',{
+		url:'/qrCode',
+		controller:'qrCodeCtrl',
+		templateUrl:'tool/qrCode/qrCode.html'
+	})
 }]);
 
 
