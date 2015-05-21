@@ -18,34 +18,25 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label">物料编号</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" name="materialId" ng-model="qrCode.materialId" nrequired>
+				<select class="form-control" ng-options="o as o.materialNo for o in qrCode.materialNameDic" ng-model="qrCode.materialNameSelected" ng-change="queryMaterialVersionByMaterialNo()"></select>
 			</div>
 		</div>
+
 		<div class="form-group">
 			<label for="name" class="col-sm-3 control-label">物料版本</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="materialVersion" ng-model="qrCode.materialVersion" required >
+				<select class="form-control" ng-options="o as o.materialVersion for o in qrCode.materialVersionDic" ng-model="qrCode.materialVersionSelected"></select>
 			</div>
 		</div>
+
 		<div class="form-group">
-			<label for="contactPhone" class="col-sm-3 control-label">物料名称</label>
+			<label for="name" class="col-sm-3 control-label">供应商名称</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="materialName" ng-model="qrCode.materialName" required>
+				<select class="form-control" ng-options="o as o.vendorShortName for o in qrCode.vendorDic" ng-model="qrCode.vendorSelected"></select>
 			</div>
 		</div>
-		<div class="form-group">
-			<label class="col-sm-3 control-label">供应商编号</label>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" name="vendorId" ng-model="qrCode.vendorId" required>
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-3 control-label">供应商名称</label>
-			<div class="col-sm-8">
-				<input type="text" class="form-control" name="vendorShortName" ng-model="qrCode.vendorShortName" required>
-			</div>
-		</div>
-		<button class="btn btn-success" style="padding: .3em .6em;margin-right: 1em;"  ng-click="genCode();" ng-disabled="qrCodeForm.$invalid">生成二维码</button>
+
+		<button class="btn btn-success" style="padding: .3em .6em;margin-right: 1em;"  ng-click="genCode();">生成二维码</button>
 		<button class="btn btn-default" style="padding: .3em .6em;;margin-right: 1em;"  ng-click="clearCode();">清空数据</button>
 		<button class="btn btn-default" style="padding: .3em .6em;"  ng-click="back();">返回管理面板</button>
 	</form>
@@ -56,4 +47,8 @@
 
 </div>
 
-<div id="container" class="container text-center" style="word-break:break-all;padding: 10px;margin-top:1em;font-size: 16px;"><p>输入参数为：</p>{{qrCode}}</div>
+<div id="container" class="container text-center" style="word-break:break-all;padding: 10px;margin-top:1em;font-size: 16px;"><p>选定的物料信息：</p>{{qrCode.materialNameSelected}}</div>
+
+<!-- <div id="container" class="container text-center" style="word-break:break-all;padding: 10px;margin-top:1em;font-size: 16px;"><p>选定的物料版本信息：</p>{{qrCode.materialVersionSelected.materialVersion}}</div> -->
+
+<div id="container" class="container text-center" style="word-break:break-all;padding: 10px;margin-top:1em;font-size: 16px;"><p>选定的供应商信息：</p>{{qrCode.vendorSelected}}</div>
