@@ -3578,7 +3578,8 @@ FIMS.controller('qrCodeCtrl',['$scope','$http',function($scope,$http){
         "materialVersion": "",
         "materialName": "",
         "vendorId": "",
-        "vendorShortName": ""         	
+        "vendorShortName": "" ,
+        "companySid": localStorage.getItem("cSid")    	
 	};
 	var resource = "resource/";
 
@@ -3611,7 +3612,14 @@ FIMS.controller('qrCodeCtrl',['$scope','$http',function($scope,$http){
         qrCode.materialName =  "";           
         $("#qrcode").attr("src",'');
 	}
-	
+
+	$scope.back = function(){
+		var a = confirm("您确定要退出吗？退出将丢失填写数据!")
+		if (a) {
+			history.go(-1);
+		}
+	}
+
 	$scope.qrCode = qrCode;
 }]);
 
