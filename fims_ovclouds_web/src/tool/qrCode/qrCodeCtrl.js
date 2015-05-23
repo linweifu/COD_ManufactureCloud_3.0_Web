@@ -95,30 +95,26 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
     queryVendorInfo();
 
 	$scope.genCode = function(){
-		if (qrCode.materialId!="" && qrCode.materialVersion!="" && qrCode.materialName!="" && qrCode.vendorId!="" && qrCode.vendorShortName!=""){
-			$http({
-                method: 'POST',
-                url: config.HOST+'/api/2.0/ll/tools/tdcode/resolveTDCode',
-                data: {
-                    "materialNo": qrCode.materialNameSelected.materialNo,
-                    "materialName": qrCode.materialNameSelected.materialShortName,
-                    "materialVersion": qrCode.materialVersionSelected.materialVersion,
-                    "vendorNo": qrCode.vendorSelected.vendorNo,
-                    "vendorShortName": qrCode.vendorSelected.vendorShortName
-                }
-            })
-            .success(function(data){
-                if (data.code === "E01") {
-                    console.log(data.message)
-                }else{
-                    resource += data.filename;
-                    $("#qrcode").attr("src",resource);
-                    resource = "resource/";
-                }
-            });
-		}else {
-			alert("请完善信息!");
-		}
+		$http({
+            method: 'POST',
+            url: config.HOST+'/api/2.0/ll/tools/tdcode/resolveTDCode',
+            data: {
+                "materialNo": qrCode.materialNameSelected.materialNo,
+                "materialName": qrCode.materialNameSelected.materialShortName,
+                "materialVersion": qrCode.materialVersionSelected.materialVersion,
+                "vendorNo": qrCode.vendorSelected.vendorNo,
+                "vendorShortName": qrCode.vendorSelected.vendorShortName
+            }
+        })
+        .success(function(data){
+            if (data.code === "E01") {
+                console.log(data.message)
+            }else{
+                resource += data.filename;
+                $("#qrcode").attr("src",resource);
+                resource = "resource/";
+            }
+        });
 	}
 
 	$scope.clearCode = function(){
