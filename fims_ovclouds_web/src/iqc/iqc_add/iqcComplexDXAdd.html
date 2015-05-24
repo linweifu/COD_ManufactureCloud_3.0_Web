@@ -59,31 +59,43 @@
 	<h3>检验项目:{{}}&nbsp;&nbsp;&nbsp;&nbsp;检验方式:{{}}</h3>
 	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
-			<label class="left control-label">抽样不良数量</label>
-			<div class="col-sm-4">
-				<input type="text" name="checkoutPlanNo" class="form-control" id="checkoutPlanNo" name="checkoutPlanNo" ng-model="planAdd.checkoutPlanNo" required >
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
 			</div>
-
-			<label class="left control-label">抽样良品数量</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planAdd.checkoutPlanVersion" ng-disabled="true" required >
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
 			</div>
 		</div>
-	</form>
-</div>
-
-<div id="container" class="container">
-	<h3>检验项目:{{}}&nbsp;&nbsp;&nbsp;&nbsp;检验方式:{{}}</h3>
-	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
-			<label class="left control-label">抽样不良数量</label>
-			<div class="col-sm-4">
-				<input type="text" name="checkoutPlanNo" class="form-control" id="checkoutPlanNo" name="checkoutPlanNo" ng-model="planAdd.checkoutPlanNo" required >
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
 			</div>
-
-			<label class="left control-label">抽样良品数量</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planAdd.checkoutPlanVersion" ng-disabled="true" required >
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			</div>
+			<div class="col-md-2">
+				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
 			</div>
 		</div>
 	</form>
@@ -94,5 +106,5 @@
 
 	<button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="addQCP()">保存</button>
 
-	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcSimpleDLAdd">下一步</button>
+	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcComplexDLAdd">下一步</button>
 </div>

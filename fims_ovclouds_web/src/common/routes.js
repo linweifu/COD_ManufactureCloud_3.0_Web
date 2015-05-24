@@ -137,7 +137,7 @@ FIMS.config([
 	})
 	.state('account_index.iqcAdd',{
 		url:'/iqcAdd',
-		// controller:'iqcAddCtrl',
+		controller:'iqcAddCtrl',
 		templateUrl:'iqc/iqc_add/iqcAdd.html'
 	})
 	.state('account_index.iqcAddCheck',{

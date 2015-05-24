@@ -1,0 +1,26 @@
+{
+    "code":"N01",
+    "message": "成功",
+    "contents":{
+            "checkoutPlanSid": 1,
+            "checkoutPlanNo": "20140420",
+            "checkoutPlanVersion": "A",
+            "materialSid": 1,
+            "materialNo": "1",
+            "materialVersion": "A",
+            "materialShortName": "A",
+            "aql": 5,
+            "entrySid": 1,
+            "entryId": "1",
+            "entryJobNumber": "123",
+            "entryName": "123",
+            "entryTime": 123,
+            "makeJobNumber": "2014",
+            "makeName": "123",
+            "makeTime": 123,
+            "operateStatusWeb": "1",
+            "checkoutPlanStatusCode": "1",
+            "checkoutPlanStatus": "1",
+            "notes": "1"
+    }
+}

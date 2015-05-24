@@ -14,25 +14,22 @@
 
 </style>
 
-<h3 class="text-center">帖 (入库检验基本信息)</h3>
+<h3 class="text-center">{{iqcAdd.companyShortName}} (入库检验基本信息)</h3>
 <div id="container" class="container">
-	<!-- <h3>{{companyShortName}} (新增入库检验记录)</h3> -->
-	<form class="form-horizontal" id="form-horizontal" novalidate>
+	<form class="form-horizontal" id="form-horizontal" name="queryQCPForm" novalidate>
 	<div class="form-group">
 		<label class="left control-label">物料名称</label>
 		<div class="col-md-3">
-			<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			<select class="form-control" name="materialName" ng-options="o as o.materialShortName for o in iqcAdd.dictionary.materialName" ng-model="iqcAdd.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
 		</div>
 
 		<label class="left control-label">物料版本</label>
 		<div class="col-md-3">
-			<select class="form-control" ng-options="o.materialVersion as o.materialVersion for o in planlist.dictionary.materialVersion" ng-model="planlist.Selected.materialVersion" ng-change="queryQCPByMaterial()"></select>
+			<select class="form-control" name="materialVersion" ng-options="o as o.materialVersion for o in iqcAdd.dictionary.materialVersion" ng-model="iqcAdd.Selected.materialVersion"></select>
 		</div>
 
-		<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ui-sref="account_index.iqcAdd">确定</button>
+		<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-disabled=" queryQCPForm.materialVersion.$pristine || queryQCPForm.materialName.$pristine" ng-click="queryActivateQCPByMaterial()">确定</button>
 	</div>
-
-	
 	</form>
 </div>
 
@@ -41,80 +38,75 @@
 	<div class="form-group">
 		<label class="left control-label">物料编号</label>
 		<div class="col-sm-3">
-			<input type="text" name="checkoutPlanNo" class="form-control" id="checkoutPlanNo" name="checkoutPlanNo" ng-model="planAdd.checkoutPlanNo" required ng-disabled="true" >
+			<input type="text" name="materialNo" class="form-control"ng-model="iqcAdd.plan.materialNo" required ng-disabled="true" >
 		</div>
 
-		<label class="left control-label">物料名称</label>
+		<label class="left control-label">物料简称</label>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planAdd.checkoutPlanVersion" required  ng-disabled="true">
+			<input type="text" class="form-control" name="materialShortName" ng-model="iqcAdd.plan.materialShortName" required  ng-disabled="true">
 		</div>
 
 		<label class="left control-label">物料版本</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planAdd.checkoutPlanVersion" required ng-disabled="true">
+			<input type="text" class="form-control" name="materialVersion" ng-model="iqcAdd.plan.materialVersion" required ng-disabled="true">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="left control-label">计划编号</label>
 		<div class="col-sm-3">
-			<input type="text" name="checkoutPlanNo" class="form-control" id="checkoutPlanNo" name="checkoutPlanNo" ng-model="planAdd.checkoutPlanNo" required ng-disabled="true" >
+			<input type="text" class="form-control" name="checkoutPlanNo" ng-model="iqcAdd.plan.checkoutPlanNo" required ng-disabled="true" >
 		</div>
 
 		<label class="left control-label">计划版本</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planAdd.checkoutPlanVersion" required ng-disabled="true">
+			<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="iqcAdd.plan.checkoutPlanVersion" required ng-disabled="true">
 		</div>
 	</div>
-
 </form>
 </div>
 
 <div id="container" class="container">
 	<h3>入库检验记录基本信息</h3>
-	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
+	<form class="form-horizontal" id="form-horizontal" name="iqcAddForm" novalidate>
 		<div class="form-group">
 			<label class="left control-label">检验记录编号</label>
 			<div class="col-sm-4">
-				<input type="text" name="checkoutPlanNo" class="form-control" id="checkoutPlanNo" name="checkoutPlanNo" ng-model="planAdd.checkoutPlanNo" required >
+				<input type="text" name="checkoutRecordId" class="form-control" ng-model="iqcAdd.checkoutRecordId" required >
 			</div>
 
 			<label class="left control-label">物料内部批次</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planAdd.checkoutPlanVersion" required >
+				<input type="text" class="form-control" name="batchNo" ng-model="iqcAdd.batchNo" required >
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="left control-label" style="margin-right:2em;">检验时间</label>
 			<div class="col-sm-4">
-				<input type="date" class="form-control" id="makeTime" name="makeTime" ng-model="planAdd.makeTime" required>
+				<input type="date" class="form-control" name="giveCheckoutTime" ng-model="iqcAdd.giveCheckoutTime" required>
 			</div>
 
 			<label class="left control-label" style="margin-right: 1em;">供应商简称</label>
 			<div class="col-md-4">
-				<select class="form-control" name="materialVersion" ng-options="o.materialVersion as o.materialVersion for o in planAdd.dictionary.materialVersion" ng-model="planAdd.Selected.materialVersion" ng-change="queryMaterialShortName()"></select>
+				<select class="form-control" name="vendor" ng-options="o. as o.vendorShortName for o in iqcAdd.dictionary.vendor" ng-model="iqcAdd.Selected.vendor"></select>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="left control-label" style="margin-right:2em;">送检数量</label>
 			<div class="col-sm-4">
-				<input type="text" name="checkoutPlanNo" class="form-control" id="checkoutPlanNo" name="checkoutPlanNo" ng-model="planAdd.checkoutPlanNo" required >
+				<input type="text" name="giveCheckoutAmount" class="form-control" ng-model="iqcAdd.giveCheckoutAmount" required >
 			</div>
 
 			<label class="left control-label" style="margin-right:2em;">抽样数量</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planAdd.checkoutPlanVersion" required >
+				<input type="text" class="form-control" name="sampleAmount" ng-model="iqcAdd.sampleAmount" required >
 			</div>
 		</div>
 
-		<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="addQCP()">确认添加</button>
+		<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-disabled="iqcAddForm.$invalid" ng-click="saveBaseIQCRecord()">确认添加</button>
 
 		<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="backQCP()">取消添加</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcSimpleDXAdd">下一步</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcComplexDXAdd">下一步</button>
 	</form>
 </div>
