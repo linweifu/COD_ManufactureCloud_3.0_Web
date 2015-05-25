@@ -413,6 +413,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("cSid",cid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     localStorage.setItem("userJobNumber",data.contents.userJobNumber);
+                    localStorage.setItem("input_way_code","CE");
                     $location.path("account_index/chooseModule");
                 }
 

@@ -23,7 +23,8 @@ module.exports = function(grunt) {
 				"src/plan/planAddCtrl.js","src/plan/planMetricListCtrl.js","src/plan/planHistoryListCtrl.js",
 				"src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/iqcAddCtrl.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
 				"src/iqc/iqc_record/iqcRecordCtrl.js","src/iqc/iqc_add/iqcComplexDLAddCtrl.js","src/iqc/iqc_add/iqcComplexDXAddCtrl.js",
-				"src/iqc/iqc_add/iqcSimpleDLAddCtrl.js","src/iqc/iqc_add/iqcSimpleDXAddCtrl.js","src/tool/qrCode/qrCodeCtrl.js"
+				"src/iqc/iqc_add/iqcSimpleDLAddCtrl.js","src/iqc/iqc_add/iqcSimpleDXAddCtrl.js","src/tool/qrCode/qrCodeCtrl.js",
+				"src/iqc/iqc_add/iqcAddCheckCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"
 			},

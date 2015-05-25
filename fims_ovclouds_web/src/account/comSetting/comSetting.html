@@ -13,7 +13,7 @@
 
 </style>
 
-<div id="container" class="container" ng-controller="comSettingCtrl">
+<div id="container" class="container" >
 	<h3>公司信息设置</h3>
 	<form class="form-horizontal" id="form-horizontal" name="companySetting" novalidate>
 		<div class="form-group">
@@ -76,9 +76,53 @@
 
 		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="back()" >返回</button>
 	</form>
+</div>
 
-<!-- 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>
-	<p style="color: #555;font-size: 14px;">将下面的公共邀请链接通过QQ，微信等任何方式发给同事，即可点击申请加入公司。（申请需团队管理员审核并分配访问权限）</p>
-	<span class="label label-success" id="label">https://ovclouds.com/join?t=59a1817fd9ea087dabb6c9ebd123ece0</span><button class="btn btn-default" style="padding: .3em .5em;margin-left: .2em;">复制</button>
-	<p style="color: #666;font-size: 14px;margin-top: 8px;">注意：任何看到邀请链接的人，都可以申请加入团队。意外泄漏请 <a style="color: #555">重新生成邀请链接</a></p> -->
+<div id="container" class="container" style="margin-top: 1em;">
+	<h3>公司环境设置</h3>
+	<form class="form-horizontal" id="form-horizontal" name="companyEnvirSettingForm" novalidate>
+		<div class="form-group">
+			<label class="left control-label">录入方式:</label>
+			<div class="col-sm-5">
+				<select class="form-control" ng-model="comSetting.iType"  ng-options="o as o.companyIndustry for o in comSetting.dictionary.iType" ng-change="comSetting.queryInfo()" name="s" required></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="left control-label">公司地址</label>
+			<div class="col-sm-3">
+				<select class="form-control" ng-disabled="true">
+				  <option>中国</option>
+				</select>
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" ng-model="comSetting.aPro" ng-options="o as o.provinceName for o in comSetting.dictionary.province" ng-change="comSetting.getCity()" name="s2" ng-required></select>
+			</div>
+			<div class="col-sm-3">
+				<select class="form-control" ng-model="comSetting.aCity" ng-options="o as o.cityName for o in comSetting.dictionary.city" name="s3" ng-required></select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comCode" class="left control-label">公司邮编</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="comCode" name="comCode" ng-model="comSetting.comCode" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comTel" class="left control-label">公司电话</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" id="comTel" name="comTel" ng-model="comSetting.comTel" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="comWeb" class="left control-label">公司网址</label>
+			<div class="col-sm-6">
+				<input type="text" class="form-control" id="comWeb" name="comWeb" ng-model="comSetting.comWeb" required>
+			</div>
+		</div>
+		
+
+		<button class="btn btn-success" style="padding: .3em .6em;" ng-disabled="companySetting.$invalid||  companySetting.$pristine" ng-click="comSetting.improveComInfo()">完善信息</button>
+
+		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="back()" >返回</button>
+	</form>
 </div>

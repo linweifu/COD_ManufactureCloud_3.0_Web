@@ -1,18 +1,17 @@
-FIMS.controller('iqcSimpleDXAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
-	var iqcSimpleDXAdd = {		
+FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+	var iqcAddCheck = {		
 		materialNo: "",
 		materialShortName: "",
 		materialVersion: "",
 		checkoutPlanNo: "",
 		checkoutPlanVersion: "",
-		sampleAmount: "",
-		
 
 		checkoutRecordId: "",
 		batchNo: "",
 		giveCheckoutTime: "",
 		vendor: "",
 		giveCheckoutAmount: "",
+		sampleAmount: "",
 
 		companyShortName :localStorage.getItem('curCompanyName')
 		// makeName : localStorage.getItem("userName"),
@@ -21,7 +20,7 @@ FIMS.controller('iqcSimpleDXAddCtrl', ['$scope','$location','$http',function($sc
 		// entryTime: ""
 	};
 
-	$scope.iqcSimpleDXAdd = iqcSimpleDXAdd;
+	$scope.iqcAddCheck = iqcAddCheck;
 
 	// var time  = new Date();
 
@@ -58,28 +57,38 @@ FIMS.controller('iqcSimpleDXAddCtrl', ['$scope','$location','$http',function($sc
 		}
 	}
 
-	// iqcSimpleDXAdd.makeTime = time.format();
-	// iqcSimpleDXAdd.entryTime = time.format();
+	// iqcAddCheck.makeTime = time.format();
+	// iqcAddCheck.entryTime = time.format();
 
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
 		var singleIQC = JSON.parse(localStorage.getItem("SingleIQCRecord"));
-		iqcSimpleDXAdd.materialNo = singleIQC.checkoutRecord.materialNo;
-		iqcSimpleDXAdd.materialShortName = singleIQC.checkoutRecord.materialShortName;
-		iqcSimpleDXAdd.materialVersion = singleIQC.checkoutRecord.materialVersion;
-		iqcSimpleDXAdd.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
-		iqcSimpleDXAdd.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
+		iqcAddCheck.materialNo = singleIQC.checkoutRecord.materialNo;
+		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
+		iqcAddCheck.materialVersion = singleIQC.checkoutRecord.materialVersion;
+		iqcAddCheck.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
+		iqcAddCheck.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
 
-		iqcSimpleDXAdd.checkoutRecordId = singleIQC.checkoutRecord.checkoutRecordId;
-		iqcSimpleDXAdd.batchNo = singleIQC.checkoutRecord.batchNo;
-		iqcSimpleDXAdd.materialShortName = singleIQC.checkoutRecord.materialShortName;
-		iqcSimpleDXAdd.giveCheckoutTime = (new Date(singleIQC.checkoutRecord.giveCheckoutTime*1000)).format();
-		iqcSimpleDXAdd.vendor = singleIQC.checkoutRecord.vendorShortName;
-		iqcSimpleDXAdd.giveCheckoutAmount = singleIQC.checkoutRecord.giveCheckoutAmount;
-		iqcSimpleDXAdd.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
+		iqcAddCheck.checkoutRecordId = singleIQC.checkoutRecord.checkoutRecordId;
+		iqcAddCheck.batchNo = singleIQC.checkoutRecord.batchNo;
+		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
+		iqcAddCheck.giveCheckoutTime = (new Date(singleIQC.checkoutRecord.giveCheckoutTime*1000)).format();
+		iqcAddCheck.vendor = singleIQC.checkoutRecord.vendorShortName;
+		iqcAddCheck.giveCheckoutAmount = singleIQC.checkoutRecord.giveCheckoutAmount;
+		iqcAddCheck.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
 	}
 	querySingleIQCRecord();
 	
+	// 下一步按钮
+	$scope.next = function() {
+		if (localStorage.getItem('input_way_code') == "SE") {
+        	$location.path('account_index/iqcSimpleDXAdd');
+        }else if (localStorage.getItem('input_way_code') == "CE") {
+        	$location.path("account_index/iqcComplexDXAdd");
+        }else {
+        	alert("您还没设置录入方式!");
+        }
+	}
 
 	// 供应商字典
     // var queryVendorInfo = function(){
@@ -95,7 +104,7 @@ FIMS.controller('iqcSimpleDXAddCtrl', ['$scope','$location','$http',function($sc
     //     })
     //     .success(function(data){
     //         if (data.code == 'N01') {
-    //            iqcSimpleDXAdd.dictionary.vendor = data.contents;
+    //            iqcAddCheck.dictionary.vendor = data.contents;
     //         }
     //         else if(data.code=="E00"){
     //             alert(data.message+",请重新登陆");

@@ -379,40 +379,6 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
         });
 	}
 
-	// // 获取省份
-	// comSetting.getProvince = function(){
-	// 	$http({
-	// 		method: "POST",
-	// 		url: config.HOST + "/api/2.0/bp/account/dic/queryDicProvince",
-	// 		// url: "account/comSetting/Province.json",
- //            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 		data: {
-	// 			"sid": localStorage.getItem('sid')
-	// 		}
-	// 	})
-	// 	.success(function(data){
- //            if (data.code=="N01"){
- //                comSetting.dictionary.province = data.contents;
- //                // for (var i=0;i < data.contents.length;i++){
- //                //     comSetting.dictionary.province.push({
- //                //         "name": data.contents[i].provinceName,
- //                //         "code" : data.contents[i].provinceCode
- //                //     });
- //                // }   
- //            }
- //            else if(data.code=="E00"){
- //            	alert(data.message+"（获取省份）,请重新登陆");
- //            	localStorage.clear();
- //            	$location.path('login');
- //            }else {
- //            	console.log(data.message);
- //            }
- //        }).error(function () {
- //            console.log('data.message');
- //        });
-	// }
-
-
 	comSetting.getCity = function(){
 		$http({
 			method: "POST",
@@ -428,13 +394,6 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
             if (data.code=="N01"){
                 comSetting.dictionary.city = [];
                 comSetting.dictionary.city = data.contents;
-                // comSetting.aCity = {};                
-                // for (var i=0;i < data.contents.length;i++){
-                //     comSetting.dictionary.city.push({
-                //         "name": data.contents[i].cityName,
-                //         "code" : data.contents[i].cityCode
-                //     });
-                // }   
             }
          	else if(data.code=="E00"){
             	alert(data.message+",请重新登陆");
@@ -3612,6 +3571,35 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
         })
 	}
 
+	// 查询单个检验记录
+	var querySingleIQCRecord = function(){
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
+			url: "iqc/iqc_add/querySingleIQCRecord.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid')				
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {           	
+                localStorage.setItem("SingleIQCRecord",JSON.stringify(data.contents));
+                console.log(data.contents);
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+
+	// 有问题
 	$scope.saveBaseIQCRecord = function(){
 		$http({
 			method: "POST",
@@ -3641,8 +3629,15 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
             if (data.code == 'N01') {           	
                 alert(data.message);
                 localStorage.setItem("checkoutRecordSid",data.contents.checkoutRecordSid);
-                localStorage.setItem("activePlan", iqcAdd.plan);
-                $location.path('account_index/iqcSimpleDXAdd');
+                // localStorage.setItem("activePlan", JSON.stringify(iqcAdd.plan));
+                querySingleIQCRecord();
+                if (localStorage.getItem('input_way_code') == "SE") {
+                	$location.path('account_index/iqcSimpleDXAdd');
+                }else if (localStorage.getItem('input_way_code') == "CE") {
+                	$location.path("account_index/iqcComplexDXAdd");
+                }else {
+                	alert("您还没设置录入方式!");
+                }
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -3862,9 +3857,194 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	
 }])
 
+FIMS.controller('iqcComplexDXAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+	var iqcComplexDXAdd = {		
+		materialNo: "",
+		materialShortName: "",
+		materialVersion: "",
+		checkoutPlanNo: "",
+		checkoutPlanVersion: "",
+		sampleAmount: "",
 
+		companyShortName :localStorage.getItem('curCompanyName')
+		// makeName : localStorage.getItem("userName"),
+		// makeTime: "",
+		// entryName: localStorage.getItem("userName"),
+		// entryTime: ""
+	};
 
+	$scope.iqcComplexDXAdd = iqcComplexDXAdd;
 
+	// var time  = new Date();
+
+	//调整时间格式
+	Date.prototype.format = function() {
+   		var year = this.getFullYear().toString();
+   		var month = (this.getMonth()+1).toString();
+   		var day = this.getDate().toString();
+   		console.log(year);
+
+		if (month<10) {
+			month = "0" + month;
+		}
+
+		if (day<10) {
+			day = "0" + day;
+		}
+
+	 	return (year + "-" + month + "-" +day );
+	}
+
+	// 各种弹出框
+	var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
+	window.onbeforeunload=function(event){
+	      event=event || window.event;
+	      event.returnValue=msg;
+	      return msg;
+	}
+
+	// iqcComplexDXAdd.makeTime = time.format();
+	// iqcComplexDXAdd.entryTime = time.format();
+
+	// 获取基本信息部分
+	var queryCheckoutRecord = function(){
+		var singleIQC = JSON.parse(localStorage.getItem("SingleIQCRecord"));
+		iqcComplexDXAdd.materialNo = singleIQC.checkoutRecord.materialNo;
+		iqcComplexDXAdd.materialShortName = singleIQC.checkoutRecord.materialShortName;
+		iqcComplexDXAdd.materialVersion = singleIQC.checkoutRecord.materialVersion;
+		iqcComplexDXAdd.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
+		iqcComplexDXAdd.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
+		iqcComplexDXAdd.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
+		
+		console.log(iqcComplexDXAdd);
+	}
+
+	queryCheckoutRecord();
+	
+	// 下一步按钮
+	// $scope.next = function() {
+	// 	if (localStorage.getItem('input_way_code') == "SE") {
+ //        	$location.path('account_index/iqcSimpleDXAdd');
+ //        }else if (localStorage.getItem('input_way_code') == "CE") {
+ //        	$location.path("account_index/iqcComplexDXAdd");
+ //        }else {
+ //        	alert("您还没设置录入方式!");
+ //        }
+	// }	
+}])
+
+FIMS.controller('iqcSimpleDXAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+	var iqcSimpleDXAdd = {		
+		materialNo: "",
+		materialShortName: "",
+		materialVersion: "",
+		checkoutPlanNo: "",
+		checkoutPlanVersion: "",
+		sampleAmount: "",
+		
+
+		checkoutRecordId: "",
+		batchNo: "",
+		giveCheckoutTime: "",
+		vendor: "",
+		giveCheckoutAmount: "",
+
+		companyShortName :localStorage.getItem('curCompanyName')
+		// makeName : localStorage.getItem("userName"),
+		// makeTime: "",
+		// entryName: localStorage.getItem("userName"),
+		// entryTime: ""
+	};
+
+	$scope.iqcSimpleDXAdd = iqcSimpleDXAdd;
+
+	// var time  = new Date();
+
+	//调整时间格式
+	Date.prototype.format = function() {
+   		var year = this.getFullYear().toString();
+   		var month = (this.getMonth()+1).toString();
+   		var day = this.getDate().toString();
+   		console.log(year);
+
+		if (month<10) {
+			month = "0" + month;
+		}
+
+		if (day<10) {
+			day = "0" + day;
+		}
+
+	 	return (year + "-" + month + "-" +day );
+	}
+
+	// 各种弹出框
+	var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
+	window.onbeforeunload=function(event){
+	      event=event || window.event;
+	      event.returnValue=msg;
+	      return msg;
+	}
+
+	$scope.back = function(){
+		var a = confirm("您确定要退出吗？退出将可能丢失填写数据!")
+		if (a) {
+			$location.path("account_index/iqcIndex");
+		}
+	}
+
+	// iqcSimpleDXAdd.makeTime = time.format();
+	// iqcSimpleDXAdd.entryTime = time.format();
+
+	// 获取基本信息部分
+	var querySingleIQCRecord = function(){
+		var singleIQC = JSON.parse(localStorage.getItem("SingleIQCRecord"));
+		iqcSimpleDXAdd.materialNo = singleIQC.checkoutRecord.materialNo;
+		iqcSimpleDXAdd.materialShortName = singleIQC.checkoutRecord.materialShortName;
+		iqcSimpleDXAdd.materialVersion = singleIQC.checkoutRecord.materialVersion;
+		iqcSimpleDXAdd.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
+		iqcSimpleDXAdd.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
+
+		iqcSimpleDXAdd.checkoutRecordId = singleIQC.checkoutRecord.checkoutRecordId;
+		iqcSimpleDXAdd.batchNo = singleIQC.checkoutRecord.batchNo;
+		iqcSimpleDXAdd.materialShortName = singleIQC.checkoutRecord.materialShortName;
+		iqcSimpleDXAdd.giveCheckoutTime = (new Date(singleIQC.checkoutRecord.giveCheckoutTime*1000)).format();
+		iqcSimpleDXAdd.vendor = singleIQC.checkoutRecord.vendorShortName;
+		iqcSimpleDXAdd.giveCheckoutAmount = singleIQC.checkoutRecord.giveCheckoutAmount;
+		iqcSimpleDXAdd.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
+	}
+	querySingleIQCRecord();
+	
+
+	// 供应商字典
+    // var queryVendorInfo = function(){
+    //     $http({
+    //         method: "POST",
+    //         url: config.HOST + "/api/2.0/bp/vendor/vendor/queryVendorInfo",
+    //         // url: "manage/vendor/vendor/queryVendorInfo.json",
+    //         header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+    //         data: {
+    //             "sid": localStorage.getItem('sid'),
+    //             "companySid": localStorage.getItem('cSid')
+    //         }
+    //     })
+    //     .success(function(data){
+    //         if (data.code == 'N01') {
+    //            iqcSimpleDXAdd.dictionary.vendor = data.contents;
+    //         }
+    //         else if(data.code=="E00"){
+    //             alert(data.message+",请重新登陆");
+    //             localStorage.clear();
+    //             $location.path('login').replace();
+    //         }else {
+    //             alert(data.message);
+    //         }  
+    //     })
+    // }
+    // queryVendorInfo();
+
+	
+}])
 FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$http,$location){
 	var qrCode = {    
         "companySid": localStorage.getItem("cSid"),
@@ -4004,6 +4184,127 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
 	$scope.qrCode = qrCode;
 }]);
 
+FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+	var iqcAddCheck = {		
+		materialNo: "",
+		materialShortName: "",
+		materialVersion: "",
+		checkoutPlanNo: "",
+		checkoutPlanVersion: "",
+
+		checkoutRecordId: "",
+		batchNo: "",
+		giveCheckoutTime: "",
+		vendor: "",
+		giveCheckoutAmount: "",
+		sampleAmount: "",
+
+		companyShortName :localStorage.getItem('curCompanyName')
+		// makeName : localStorage.getItem("userName"),
+		// makeTime: "",
+		// entryName: localStorage.getItem("userName"),
+		// entryTime: ""
+	};
+
+	$scope.iqcAddCheck = iqcAddCheck;
+
+	// var time  = new Date();
+
+	//调整时间格式
+	Date.prototype.format = function() {
+   		var year = this.getFullYear().toString();
+   		var month = (this.getMonth()+1).toString();
+   		var day = this.getDate().toString();
+   		console.log(year);
+
+		if (month<10) {
+			month = "0" + month;
+		}
+
+		if (day<10) {
+			day = "0" + day;
+		}
+
+	 	return (year + "-" + month + "-" +day );
+	}
+
+	// 各种弹出框
+	var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
+	window.onbeforeunload=function(event){
+	      event=event || window.event;
+	      event.returnValue=msg;
+	      return msg;
+	}
+
+	$scope.back = function(){
+		var a = confirm("您确定要退出吗？退出将可能丢失填写数据!")
+		if (a) {
+			$location.path("account_index/iqcIndex");
+		}
+	}
+
+	// iqcAddCheck.makeTime = time.format();
+	// iqcAddCheck.entryTime = time.format();
+
+	// 获取基本信息部分
+	var querySingleIQCRecord = function(){
+		var singleIQC = JSON.parse(localStorage.getItem("SingleIQCRecord"));
+		iqcAddCheck.materialNo = singleIQC.checkoutRecord.materialNo;
+		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
+		iqcAddCheck.materialVersion = singleIQC.checkoutRecord.materialVersion;
+		iqcAddCheck.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
+		iqcAddCheck.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
+
+		iqcAddCheck.checkoutRecordId = singleIQC.checkoutRecord.checkoutRecordId;
+		iqcAddCheck.batchNo = singleIQC.checkoutRecord.batchNo;
+		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
+		iqcAddCheck.giveCheckoutTime = (new Date(singleIQC.checkoutRecord.giveCheckoutTime*1000)).format();
+		iqcAddCheck.vendor = singleIQC.checkoutRecord.vendorShortName;
+		iqcAddCheck.giveCheckoutAmount = singleIQC.checkoutRecord.giveCheckoutAmount;
+		iqcAddCheck.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
+	}
+	querySingleIQCRecord();
+	
+	// 下一步按钮
+	$scope.next = function() {
+		if (localStorage.getItem('input_way_code') == "SE") {
+        	$location.path('account_index/iqcSimpleDXAdd');
+        }else if (localStorage.getItem('input_way_code') == "CE") {
+        	$location.path("account_index/iqcComplexDXAdd");
+        }else {
+        	alert("您还没设置录入方式!");
+        }
+	}
+
+	// 供应商字典
+    // var queryVendorInfo = function(){
+    //     $http({
+    //         method: "POST",
+    //         url: config.HOST + "/api/2.0/bp/vendor/vendor/queryVendorInfo",
+    //         // url: "manage/vendor/vendor/queryVendorInfo.json",
+    //         header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+    //         data: {
+    //             "sid": localStorage.getItem('sid'),
+    //             "companySid": localStorage.getItem('cSid')
+    //         }
+    //     })
+    //     .success(function(data){
+    //         if (data.code == 'N01') {
+    //            iqcAddCheck.dictionary.vendor = data.contents;
+    //         }
+    //         else if(data.code=="E00"){
+    //             alert(data.message+",请重新登陆");
+    //             localStorage.clear();
+    //             $location.path('login').replace();
+    //         }else {
+    //             alert(data.message);
+    //         }  
+    //     })
+    // }
+    // queryVendorInfo();
+
+	
+}])
 FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
     var login = {};
 
@@ -4419,6 +4720,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("cSid",cid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     localStorage.setItem("userJobNumber",data.contents.userJobNumber);
+                    localStorage.setItem("input_way_code","CE");
                     $location.path("account_index/chooseModule");
                 }
 

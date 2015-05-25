@@ -71,40 +71,6 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
         });
 	}
 
-	// // 获取省份
-	// comSetting.getProvince = function(){
-	// 	$http({
-	// 		method: "POST",
-	// 		url: config.HOST + "/api/2.0/bp/account/dic/queryDicProvince",
-	// 		// url: "account/comSetting/Province.json",
- //            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 		data: {
-	// 			"sid": localStorage.getItem('sid')
-	// 		}
-	// 	})
-	// 	.success(function(data){
- //            if (data.code=="N01"){
- //                comSetting.dictionary.province = data.contents;
- //                // for (var i=0;i < data.contents.length;i++){
- //                //     comSetting.dictionary.province.push({
- //                //         "name": data.contents[i].provinceName,
- //                //         "code" : data.contents[i].provinceCode
- //                //     });
- //                // }   
- //            }
- //            else if(data.code=="E00"){
- //            	alert(data.message+"（获取省份）,请重新登陆");
- //            	localStorage.clear();
- //            	$location.path('login');
- //            }else {
- //            	console.log(data.message);
- //            }
- //        }).error(function () {
- //            console.log('data.message');
- //        });
-	// }
-
-
 	comSetting.getCity = function(){
 		$http({
 			method: "POST",
@@ -120,13 +86,6 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
             if (data.code=="N01"){
                 comSetting.dictionary.city = [];
                 comSetting.dictionary.city = data.contents;
-                // comSetting.aCity = {};                
-                // for (var i=0;i < data.contents.length;i++){
-                //     comSetting.dictionary.city.push({
-                //         "name": data.contents[i].cityName,
-                //         "code" : data.contents[i].cityCode
-                //     });
-                // }   
             }
          	else if(data.code=="E00"){
             	alert(data.message+",请重新登陆");

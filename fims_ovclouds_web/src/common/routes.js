@@ -62,7 +62,7 @@ FIMS.config([
 	})
 	.state('account_index.comSetting',{
 		url:'/comSetting',
-		// controller:'userSettingController',
+		controller:'comSettingCtrl',
 		templateUrl:"account/comSetting/comSetting.html"
 	})
 	.state('account_index.materiallist',{
@@ -142,7 +142,7 @@ FIMS.config([
 	})
 	.state('account_index.iqcAddCheck',{
 		url:'/iqcAddCheck',
-		// controller:'iqcAddCtrl',
+		controller:'iqcAddCheckCtrl',
 		templateUrl:'iqc/iqc_add/iqcAddCheck.html'
 	})
 	// .state('account_index.iqcDataCount',{
@@ -157,7 +157,7 @@ FIMS.config([
 	})
 	.state('account_index.iqcComplexDXAdd',{
 		url:'/iqcComplexDXAdd',
-		// controller:'iqcComplexDXAddCtrl',
+		controller:'iqcComplexDXAddCtrl',
 		templateUrl:'iqc/iqc_add/iqcComplexDXAdd.html'
 	})
 	.state('account_index.iqcSimpleDLAdd',{

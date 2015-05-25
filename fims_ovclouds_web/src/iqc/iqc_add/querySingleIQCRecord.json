@@ -1,0 +1,88 @@
+{
+    "code": "N01",
+    "message": "成功",
+    "contents": {
+        "checkoutRecord": {
+            "checkoutPlanNo": "检验计划编号",
+            "checkoutPlanVersion": "检验计划版本",
+            "checkoutRecordId": "检验记录ID",
+            "materialNo": "物料编号",
+            "materialVersion": "物料版本",
+            "materialShortName": "物料简称",
+            "batchNo": "内部批次",
+            "vendorSid": "供应商Sid",
+            "vendorShortName": "供应商简称",
+            "entrySid": "录入人Sid",
+            "entryId": "mixmore@qq.com",
+            "entryJobNumber": "002",
+            "entryName": "杜旻翔",
+            "entryTime": "14432555678",
+            "giveCheckoutAmount": "20",
+            "giveCheckoutTime": "1234532431",
+            "sampleAmount": "3",
+            "nspectorJobNumber": "001",
+            "nspectorName": "Mex",
+            "checkoutTime": "1432412138"
+        },
+        "DX": [
+            {
+                "checkoutMetricSid": "1",
+                "checkoutMetricName": "",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "否"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "是"
+                    }
+                ]
+            },
+            {
+                "checkoutMetricSid": "2",
+                "checkoutMetricName": "",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "否"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "是"
+                    }
+                ]
+            }
+        ],
+        "DL": [
+            {
+                "checkoutMetricSid": "3",
+                "checkoutMetricName": "",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "1"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "3"
+                    }
+                ]
+            },
+            {
+                "checkoutMetricSid": "4",
+                "checkoutMetricName": "",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "1"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "4"
+                    }
+                ]
+            }
+        ]
+    }
+}

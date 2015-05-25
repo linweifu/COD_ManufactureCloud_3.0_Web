@@ -170,6 +170,35 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
         })
 	}
 
+	// 查询单个检验记录
+	var querySingleIQCRecord = function(){
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
+			url: "iqc/iqc_add/querySingleIQCRecord.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid')				
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {           	
+                localStorage.setItem("SingleIQCRecord",JSON.stringify(data.contents));
+                console.log(data.contents);
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+
+	// 有问题
 	$scope.saveBaseIQCRecord = function(){
 		$http({
 			method: "POST",
@@ -199,8 +228,15 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
             if (data.code == 'N01') {           	
                 alert(data.message);
                 localStorage.setItem("checkoutRecordSid",data.contents.checkoutRecordSid);
-                localStorage.setItem("activePlan", iqcAdd.plan);
-                $location.path('account_index/iqcSimpleDXAdd');
+                // localStorage.setItem("activePlan", JSON.stringify(iqcAdd.plan));
+                querySingleIQCRecord();
+                if (localStorage.getItem('input_way_code') == "SE") {
+                	$location.path('account_index/iqcSimpleDXAdd');
+                }else if (localStorage.getItem('input_way_code') == "CE") {
+                	$location.path("account_index/iqcComplexDXAdd");
+                }else {
+                	alert("您还没设置录入方式!");
+                }
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
