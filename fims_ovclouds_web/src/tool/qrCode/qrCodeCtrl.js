@@ -6,7 +6,8 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
         "vendorDic":[],
         "materialNameSelected": {},
         "materialVersionSelected": {},
-        "vendorSelected": {}
+        "vendorSelected": {},
+        "curCom": localStorage.getItem('curCompanyName') + "(IPC二维码生成器)"
 	};
 
 	var resource = "resource/";

@@ -1,0 +1,31 @@
+<style>
+	.chooseA {display:block;background-color: #f8f8f8;display: inline-block; width: 265px;height: 238px;marigin-right: 25px;vertical-align: top;cursor: pointer;}
+	.col-md-3 p {clear: both;font-size: 17px;margin-top: 10px;}
+	#container {max-width: 930px;}
+	.img-responsive {width: 85%;}
+	.row {margin-top: 1.5em;}
+	#h2 {margin-top: 0;margin-bottom: 0;}
+
+</style>
+<h2 class="text-center" id="h2">{{curCompanyName}}</h2>
+<div class="container text-center"  id="container">
+	<div class="row">
+		<a class="col-md-3" ui-sref="account_index.qrCode">
+			<img src="common/img/iqcModule.png" alt="" class="center-block img-responsive ">
+			<p>入库质量检验</p>
+		</a>
+		<a class="col-md-3">
+			<img src="common/img/IPQC.png" alt="" class="center-block img-responsive ">
+			<p>制程质量检验</p>
+		</a>
+		<a class="col-md-3">
+			<img src="common/img/FQC.png" alt="" class="center-block img-responsive ">
+			<p>成品质量检验</p>
+		</a>
+		<a class="col-md-3">
+			<img src="common/img/OQC.png" alt="" class="center-block img-responsive ">
+			<p>出库质量检验</p>
+		</a>
+	</div>
+	<button class="btn btn-default" ui-sref="account_index.chooseModule" style="margin-top:1.5em">返回管理面板</button>
+</div>

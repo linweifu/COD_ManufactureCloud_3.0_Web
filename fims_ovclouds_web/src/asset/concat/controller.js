@@ -318,8 +318,20 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 			province: [],
 			city: [],
 			iType: [],
-			iInfo: []
+			iInfo: [],
+			input_way: [
+				{
+					input_way_code: "CE",
+					input_way_name: "复杂录入"
+				},
+				{
+					input_way_code: "SE",
+					input_way_name: "简单录入"
+				}
+			]
 		},
+
+		input_way: {},
 		
 		iType: {},
 		iInfo: {},
@@ -334,6 +346,8 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 			history.go(-1);
 		}
 	}
+
+
 
 	// 完善公司信息
 	comSetting.improveComInfo = function(){
@@ -556,10 +570,67 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 
 	});
 
+	var queryCompanySite = function() {
+		var i = (localStorage.getItem("input_way_code")=="CE")?0:1;
+        comSetting.input_way = comSetting.dictionary.input_way[i];
+		// $http({
+		// 	method: "POST",
+		// 	// url: config.HOST + "/api/2.0/bp/account/company/queryCompanySite",
+		// 	url: "account/comSetting/queryCompanySite.json",
+  //           headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+		// 	data: {
+		// 		"sid": localStorage.getItem('sid'),
+		// 		"companySid": localStorage.getItem('cSid')
+		// 	}
+		// })
+		// .success(function(data){
+  //           if (data.code=="N01"){
+  //               var i = (data.contents.checkoutRecordInputWayCode=="CE")?0:1;
+  //               comSetting.input_way = comSetting.dictionary.input_way[i];
+  //           }
+  //           else if(data.code=="E00"){
+  //           	alert(data.message+",请重新登陆");
+  //           	localStorage.clear();
+  //           	$location.path('login');
+  //           }else {
+  //           	console.log(data.message);
+  //           }        
+            
+  //       }).error(function () {
+  //           console.log('error');
+  //       });
+	}
+	queryCompanySite();
 
-
-	// comSetting.queryCompanyExtendInfo();
-
+	$scope.updateCompanySite = function() {
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/account/company/updateCompanySite",
+			url: "account/comSetting/updateCompanySite.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companySid": localStorage.getItem('cSid'),
+				"checkoutRecordInputWayCode": comSetting.input_way.input_way_code
+			}
+		})
+		.success(function(data){
+            if (data.code=="N01"){
+                localStorage.setItem("input_way_code",comSetting.input_way.input_way_code);
+                alert(data.message);
+            }
+            else if(data.code=="E00"){
+            	alert(data.message+",请重新登陆");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }        
+            
+        }).error(function () {
+            console.log('error');
+        });
+	}
 	$scope.comSetting = comSetting;
 
 
@@ -4053,7 +4124,8 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
         "vendorDic":[],
         "materialNameSelected": {},
         "materialVersionSelected": {},
-        "vendorSelected": {}
+        "vendorSelected": {},
+        "curCom": localStorage.getItem('curCompanyName') + "(IPC二维码生成器)"
 	};
 
 	var resource = "resource/";
@@ -4304,4 +4376,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
     // queryVendorInfo();
 
 	
+}])
+FIMS.controller('tool_indexCtrl', ['$scope','$location','$http','$q',function($scope,$location,$http,$q){
+	$scope.curCompanyName = localStorage.getItem("curCompanyName");
 }])
