@@ -3481,10 +3481,12 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 		Selected : {
 			materialName : {},
 			materialVersion: {},
-			vendor: {},
+			vendor: {}
 		},
 		
 		plan: {},
+
+		externalReceiptNo: "",
 
 		checkoutRecordId: "",
 		batchNo: "",
@@ -3643,11 +3645,15 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 	}
 
 	// 查询单个检验记录
-	var querySingleIQCRecord = function(){
+	var querySingleIQCRecord = function(input_way_code){
+		// var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+		var http_url = "iqc/iqc_add/" ;
+		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
 		$http({
 			method: "POST",
 			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
-			url: "iqc/iqc_add/querySingleIQCRecord.json",
+			url: http_url,
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -3657,8 +3663,9 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 		})
 		.success(function(data){
             if (data.code == 'N01') {           	
-                localStorage.setItem("SingleIQCRecord",JSON.stringify(data.contents));
-                console.log(data.contents);
+                localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+                localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+                localStorage.setItem("DL",JSON.stringify(data.contents.DL));
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -3670,29 +3677,42 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
         })
 	}
 
-	// 有问题
-	$scope.saveBaseIQCRecord = function(){
+	// 确定添加
+	$scope.submitBaseIQCRecord = function(){
 		$http({
 			method: "POST",
 			// url: config.HOST + "/api/2.0/bp/qc/iqc/saveBaseIQCRecord",
-			url: "iqc/iqc_add/saveBaseIQCRecord.json",
+			url: "iqc/iqc_add/submitBaseIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"checkoutPlanSid": iqcAdd.plan.checkoutPlanSid,
 				"companySid": localStorage.getItem('cSid'),
 			    "batchNo": iqcAdd.batchNo,
-			    // "externalReceiptNo":"",
-			    // "entrySid": "1",
-			    // "entryId": "mixmore@qq.com",
-			    // "entryJobNumber": "002",
-			    // "entryName": "杜旻翔",
-			    // "entryTime": "14432555678",
+
+			    "externalReceiptNo": iqcAdd.externalReceiptNo,
+			    
+			    "entryId": localStorage.getItem('email'),
+			    "entryJobNumber": localStorage.getItem('userJobNumber'),
+			    "entryName": localStorage.getItem('userName'),
+			    "entryTime": parseInt((new Date()).valueOf()/1000),
+
+				"nspectorJobNumber": localStorage.getItem('userJobNumber'),
+			    "nspectorName": localStorage.getItem('userName'),
+			    "checkoutTime": parseInt((new Date()).valueOf()/1000),
+			    
 			    "giveCheckoutAmount": iqcAdd.giveCheckoutAmount,
 			    "giveCheckoutTime": ((new Date(iqcAdd.giveCheckoutTime)).valueOf())/1000,
 			    "sampleAmount": iqcAdd.sampleAmount,
-			    // "nspectorJobNumber":"001",
-			    // "nspectorName":"Mex",
-			    // "checkoutTime"："1432412138" ,
+
+			    "vendorSid": iqcAdd.Selected.vendor.vendorSid,
+			    "vendorNo": iqcAdd.Selected.vendor.vendorNo,
+			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
+
+			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
+			    "checkoutRecordInputWay":"阿杜",
+			    "operate_status_code":"TJ",
+			    "operate_status":"提交状态",  
+
 				"sid": localStorage.getItem('sid'),
 			}
 		})
@@ -3701,10 +3721,11 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
                 alert(data.message);
                 localStorage.setItem("checkoutRecordSid",data.contents.checkoutRecordSid);
                 // localStorage.setItem("activePlan", JSON.stringify(iqcAdd.plan));
-                querySingleIQCRecord();
-                if (localStorage.getItem('input_way_code') == "SE") {
+                var input_way_code = localStorage.getItem('input_way_code');
+                querySingleIQCRecord(input_way_code);
+                if ( input_way_code== "SE") {
                 	$location.path('account_index/iqcSimpleDXAdd');
-                }else if (localStorage.getItem('input_way_code') == "CE") {
+                }else if (input_way_code == "CE") {
                 	$location.path("account_index/iqcComplexDXAdd");
                 }else {
                 	alert("您还没设置录入方式!");
@@ -3720,6 +3741,12 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
         })
 	}
 
+	$scope.back = function(){
+		var a = confirm("您确定要退出吗？退出将丢失填写数据!")
+		if (a) {
+			$location.path("account_index/iqcIndex");
+		}
+	}
 
 
 	// $scope.queryActivateQCPByMaterial = function(){
@@ -3928,25 +3955,36 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	
 }])
 
-FIMS.controller('iqcComplexDXAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
-	var iqcComplexDXAdd = {		
+FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http',function($rootScope,$scope,$location,$http){
+	var iqcComplexDXAdd = {	
 		materialNo: "",
 		materialShortName: "",
 		materialVersion: "",
 		checkoutPlanNo: "",
 		checkoutPlanVersion: "",
 		sampleAmount: "",
+		companyShortName: localStorage.getItem('curCompanyName'),
 
-		companyShortName :localStorage.getItem('curCompanyName')
-		// makeName : localStorage.getItem("userName"),
-		// makeTime: "",
-		// entryName: localStorage.getItem("userName"),
-		// entryTime: ""
+		// $rootScope.DX: [],
+		itemDic: [
+			{
+				"value": "",
+				"sampleCheckoutValue": "NULL"
+			},
+			{
+				"value": "是",
+				"sampleCheckoutValue": "是"
+			},
+			{
+				// "sampleNo": "",
+				"value": "否",
+				"sampleCheckoutValue": "否"
+			}
+		],
+		sampleSel: []
 	};
 
 	$scope.iqcComplexDXAdd = iqcComplexDXAdd;
-
-	// var time  = new Date();
 
 	//调整时间格式
 	Date.prototype.format = function() {
@@ -3967,41 +4005,90 @@ FIMS.controller('iqcComplexDXAddCtrl', ['$scope','$location','$http',function($s
 	}
 
 	// 各种弹出框
-	var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
-	window.onbeforeunload=function(event){
-	      event=event || window.event;
-	      event.returnValue=msg;
-	      return msg;
-	}
+	// var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
+	// window.onbeforeunload=function(event){
+	//       event=event || window.event;
+	//       event.returnValue=msg;
+	//       return msg;
+	// }
 
 	// iqcComplexDXAdd.makeTime = time.format();
 	// iqcComplexDXAdd.entryTime = time.format();
 
 	// 获取基本信息部分
 	var queryCheckoutRecord = function(){
-		var singleIQC = JSON.parse(localStorage.getItem("SingleIQCRecord"));
-		iqcComplexDXAdd.materialNo = singleIQC.checkoutRecord.materialNo;
-		iqcComplexDXAdd.materialShortName = singleIQC.checkoutRecord.materialShortName;
-		iqcComplexDXAdd.materialVersion = singleIQC.checkoutRecord.materialVersion;
-		iqcComplexDXAdd.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
-		iqcComplexDXAdd.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
-		iqcComplexDXAdd.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
-		
-		console.log(iqcComplexDXAdd);
-	}
+		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+		iqcComplexDXAdd.materialNo = checkoutRecord.materialNo;
+		iqcComplexDXAdd.materialShortName = checkoutRecord.materialShortName;
+		iqcComplexDXAdd.materialVersion = checkoutRecord.materialVersion;
+		iqcComplexDXAdd.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
+		iqcComplexDXAdd.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
+		iqcComplexDXAdd.sampleAmount = checkoutRecord.sampleAmount;
 
+		// 绑定定性部分
+		$rootScope.DX = JSON.parse(localStorage.getItem("DX"));
+
+		//下拉数据绑定
+		// iqcComplexDXAdd.sampleSel = $rootScope.DX.sample;
+		// console.log(iqcComplexDXAdd.sampleSel);
+		for (var i=0,len=$rootScope.DX.length;i<len;i++){
+			iqcComplexDXAdd.sampleSel.push($rootScope.DX[i].sample);
+		}
+
+		for (var i=0,len=iqcComplexDXAdd.sampleSel.length;i<len;i++) {
+			for (var j=0,lenj=iqcComplexDXAdd.sampleSel[i];j<len;j++) {
+				var item = iqcComplexDXAdd.sampleSel[i][j];
+				if (item.sampleCheckoutValue=="NULL") {
+					iqcComplexDXAdd.sampleSel[i][j] = iqcComplexDXAdd.itemDic[0];
+				}if (item.sampleCheckoutValue=="是") {
+					iqcComplexDXAdd.sampleSel[i][j] = iqcComplexDXAdd.itemDic[1];
+				}else if (item.sampleCheckoutValue=="否"){
+					iqcComplexDXAdd.sampleSel[i][j] = iqcComplexDXAdd.itemDic[2];
+				}
+			}
+		}
+	}
 	queryCheckoutRecord();
+
+	$scope.updateComplexIQCRecord = function() {
+		for (var i=0,len=$rootScope.DX.length;i<len;i++) {
+			for (var j=0,lenj=$rootScope.DX[i].sample.length;j<lenj;j++) {
+				// console.log(($rootScope.DX[i].sample)[j].sampleNo);
+				($rootScope.DX[i].sample)[j].sampleNo = i+1;
+				console.log($rootScope.DX[i].sample[j].sampleNo);
+			}
+		}
+		console.log($rootScope.DX);
+
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/qcp/qcp/updateComplexIQCRecord",
+			url: "iqc/iqc_add/updateComplexIQCRecord.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companySid": localStorage.getItem('cSid'),
+				"checkoutRecord": localStorage.getItem("checkoutRecord"),
+				"DX": $rootScope.DX,
+				"DL": $rootScope.DL || localStorage.getItem("DL")
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {
+            	localStorage.setItem("DX",JSON.stringify($rootScope.DX));           	
+                alert(data.message);
+                // $location.path("account_index/iqcRecord");
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
 	
-	// 下一步按钮
-	// $scope.next = function() {
-	// 	if (localStorage.getItem('input_way_code') == "SE") {
- //        	$location.path('account_index/iqcSimpleDXAdd');
- //        }else if (localStorage.getItem('input_way_code') == "CE") {
- //        	$location.path("account_index/iqcComplexDXAdd");
- //        }else {
- //        	alert("您还没设置录入方式!");
- //        }
-	// }	
 }])
 
 FIMS.controller('iqcSimpleDXAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
@@ -4264,6 +4351,8 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 		checkoutPlanNo: "",
 		checkoutPlanVersion: "",
 
+		externalReceiptNo: "",
+
 		checkoutRecordId: "",
 		batchNo: "",
 		giveCheckoutTime: "",
@@ -4301,12 +4390,12 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	}
 
 	// 各种弹出框
-	var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
-	window.onbeforeunload=function(event){
-	      event=event || window.event;
-	      event.returnValue=msg;
-	      return msg;
-	}
+	// var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
+	// window.onbeforeunload=function(event){
+	//       event=event || window.event;
+	//       event.returnValue=msg;
+	//       return msg;
+	// }
 
 	$scope.back = function(){
 		var a = confirm("您确定要退出吗？退出将可能丢失填写数据!")
@@ -4318,22 +4407,59 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// iqcAddCheck.makeTime = time.format();
 	// iqcAddCheck.entryTime = time.format();
 
+	// 查询单个检验记录
+	var querySingleIQCRecord = function(){
+		// var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+		var input_way_code = localStorage.getItem("input_way_code");
+		var http_url = "iqc/iqc_add/" ;
+		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
+			url: http_url,
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid')				
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {           	
+                localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+                localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+                localStorage.setItem("DL",JSON.stringify(data.contents.DL));
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+	querySingleIQCRecord();
+
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
-		var singleIQC = JSON.parse(localStorage.getItem("SingleIQCRecord"));
-		iqcAddCheck.materialNo = singleIQC.checkoutRecord.materialNo;
-		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
-		iqcAddCheck.materialVersion = singleIQC.checkoutRecord.materialVersion;
-		iqcAddCheck.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
-		iqcAddCheck.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
+		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+		iqcAddCheck.materialNo = checkoutRecord.materialNo;
+		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
+		iqcAddCheck.materialVersion = checkoutRecord.materialVersion;
+		iqcAddCheck.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
+		iqcAddCheck.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
 
-		iqcAddCheck.checkoutRecordId = singleIQC.checkoutRecord.checkoutRecordId;
-		iqcAddCheck.batchNo = singleIQC.checkoutRecord.batchNo;
-		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
-		iqcAddCheck.giveCheckoutTime = (new Date(singleIQC.checkoutRecord.giveCheckoutTime*1000)).format();
-		iqcAddCheck.vendor = singleIQC.checkoutRecord.vendorShortName;
-		iqcAddCheck.giveCheckoutAmount = singleIQC.checkoutRecord.giveCheckoutAmount;
-		iqcAddCheck.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
+		iqcAddCheck.externalReceiptNo  = checkoutRecord.externalReceiptNo;
+
+		iqcAddCheck.checkoutRecordId = checkoutRecord.checkoutRecordId;
+		iqcAddCheck.batchNo = checkoutRecord.batchNo;
+		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
+		iqcAddCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();
+		iqcAddCheck.vendor = checkoutRecord.vendorShortName;
+		iqcAddCheck.giveCheckoutAmount = checkoutRecord.giveCheckoutAmount;
+		iqcAddCheck.sampleAmount = checkoutRecord.sampleAmount;
 	}
 	querySingleIQCRecord();
 	
@@ -4795,7 +4921,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("cSid",cid);
                     localStorage.setItem("applyJoinCompanyNumber",data.contents.applyJoinCompanyNumber);
                     localStorage.setItem("userJobNumber",data.contents.userJobNumber);
-                    localStorage.setItem("input_way_code","CE");
+                    localStorage.setItem("input_way_code",data.contents.checkoutRecordInputWayCode);
                     $location.path("account_index/chooseModule");
                 }
 

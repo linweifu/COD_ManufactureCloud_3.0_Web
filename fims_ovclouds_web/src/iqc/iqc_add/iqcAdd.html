@@ -89,7 +89,7 @@
 
 			<label class="left control-label" style="margin-right: 1em;">供应商简称</label>
 			<div class="col-md-4">
-				<select class="form-control" name="vendor" ng-options="o. as o.vendorShortName for o in iqcAdd.dictionary.vendor" ng-model="iqcAdd.Selected.vendor"></select>
+				<select class="form-control" name="vendor" ng-options="o as o.vendorShortName for o in iqcAdd.dictionary.vendor" ng-model="iqcAdd.Selected.vendor"></select>
 			</div>
 		</div>
 
@@ -105,8 +105,16 @@
 			</div>
 		</div>
 
-		<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-disabled="iqcAddForm.$invalid" ng-click="saveBaseIQCRecord()">确认添加</button>
+		<div class="form-group">
+			<label class="left control-label">外部入库单号</label>
+			<div class="col-sm-4">
+				<input type="text" name="externalReceiptNo" class="form-control" ng-model="iqcAdd.externalReceiptNo" required >
+			</div>
+		</div>
 
-		<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="backQCP()">取消添加</button>
+
+		<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-disabled="iqcAddForm.$invalid" ng-click="submitBaseIQCRecord()">确认添加</button>
+
+		<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="back()">取消添加</button>
 	</form>
 </div>

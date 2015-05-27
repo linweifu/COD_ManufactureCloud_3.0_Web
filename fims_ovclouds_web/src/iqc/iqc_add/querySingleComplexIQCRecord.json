@@ -1,0 +1,109 @@
+{
+    "code": "N01",
+    "message": "成功",
+    "contents": {
+        "checkoutRecord": {
+            "checkoutPlanNo":"checkoutPlanNo",
+            "checkoutPlanVersion":"checkoutPlanVersion",
+            "checkoutRecordId":"checkoutRecordId",
+            "materialNo":"materialNo",
+            "materialVersion":"materialVersion",
+            "materialShortName":"materialShortName",
+            "batchNo":"batchNo",
+            "vendorSid":"vendorSid",
+            "externalReceiptNo": "externalReceiptNo",
+            "vendorShortName":"vendorShortName",
+            "entrySid": "1",
+            "entryId": "mixmore@qq.com",
+            "entryJobNumber": "002",
+            "entryName": "杜旻翔",
+            "entryTime": "14432555678",
+            "giveCheckoutAmount": "20",
+            "giveCheckoutTime": "1234532431",
+            "sampleAmount": "3",
+            "nspectorJobNumber": "001",
+            "nspectorName": "Mex",
+            "checkoutTime": "1432412138"
+        },
+        "DX": [
+            {
+                "checkoutMetricSid": "1",
+                "checkoutMetricName": "checkoutMetricName",
+                "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "否"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "是"
+                    }
+                ]
+            },
+            {
+                "checkoutMetricSid": "2",
+                "checkoutMetricName": "checkoutMetricName",
+                "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "否"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "是"
+                    }
+                ]
+            }
+        ],
+        "DL": [
+            {
+                "checkoutMetricSid": "3",
+                "checkoutMetricName": "checkoutMetricName",
+                "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
+"referenceStandard":"referenceStandard",
+"upTolerance":"upTolerance",
+"underTolerance":"underTolerance",
+"threeDimensionalRogram_no":"threeDimensionalRogram_no",
+"metricUnit":"metricUnit",
+"fixtureId":"fixtureId",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "1"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "3"
+                    }
+                ]
+            },
+            {
+                "checkoutMetricSid": "4",
+                "checkoutMetricName": "checkoutMetricName",
+                "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
+"referenceStandard":"referenceStandard",
+"upTolerance":"upTolerance",
+"underTolerance":"underTolerance",
+"threeDimensionalRogram_no":"threeDimensionalRogram_no",
+"metricUnit":"metricUnit",
+"fixtureId":"fixtureId",
+                "sample": [
+                    {
+                        "sampleNo": "1",
+                        "sampleCheckoutValue": "1"
+                    },
+                    {
+                        "sampleNo": "2",
+                        "sampleCheckoutValue": "4"
+                    }
+                ]
+            }
+        ]
+    }
+}

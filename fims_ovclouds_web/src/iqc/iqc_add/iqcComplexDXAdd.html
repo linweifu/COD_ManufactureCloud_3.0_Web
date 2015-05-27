@@ -11,10 +11,11 @@
 	#form-horizontal {margin-top: 1.5em;color: #333}
 	.link {text-align: left !important; color: rgb(79,159,207)} 
 	.left{text-align: left !important;float: left;padding-left: 15px;padding-top: 7px;padding-right: 5px;}
+	.form-group .col-md-2{margin-bottom: 1em;}
 
 </style>
 
-<h3 class="text-center">帖 (入库定性复杂录入)</h3>
+<h3 class="text-center">{{iqcComplexDXAdd.companyShortName}} (入库定性复杂录入)</h3>
 
 <div id="container" class="container">
 <form class="form-horizontal" id="form-horizontal" novalidate>
@@ -54,56 +55,36 @@
 </form>
 </div>
 
-<div id="container" class="container">
-	<h3>检验项目:{{}}&nbsp;&nbsp;&nbsp;&nbsp;检验方式:{{}}</h3>
-	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
+<div id="container" class="container" ng-repeat="list in DX">
+	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			<label class="left control-label">检验项目</label>
+			<div class="col-sm-3">
+				<input type="text" name="checkoutMetricName" class="form-control"ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+
+			<label class="left control-label">检验方式</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.checkoutToolName" required  ng-disabled="true">
 			</div>
 		</div>
+	</form>
+	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
-			</div>
-			<div class="col-md-2">
-				<select class="form-control" ng-options="o as o.materialShortName for o in planlist.dictionary.materialName" ng-model="planlist.Selected.materialName"  ng-change="queryMaterialVersionByMaterialNo()"></select>
+			<div style="display: none;" ng-bind="mark=$index"></div>
+			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
+				<select class="form-control" ng-options="o as o.value for o in iqcComplexDXAdd.itemDic" ng-model="iqcComplexDXAdd.sampleSel[mark][$index]"></select>
 			</div>
 		</div>
 	</form>
 </div>
 
-<div class="text-center" style="margin: 2em auto;">
+{{DX}}
+
+<div class="text-center" style="margin: .5em auto;">
 	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcAddCheck">上一步</button>
 
-	<button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="addQCP()">保存</button>
+	<button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="updateComplexIQCRecord()">保存</button>
 
 	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcComplexDLAdd">下一步</button>
 </div>

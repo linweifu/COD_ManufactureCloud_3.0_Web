@@ -3,16 +3,16 @@
     "message": "成功",
     "contents": {
         "checkoutRecord": {
-            "checkoutPlanNo": "检验计划编号",
-            "checkoutPlanVersion": "检验计划版本",
-            "checkoutRecordId": "检验记录ID",
-            "materialNo": "物料编号",
-            "materialVersion": "物料版本",
-            "materialShortName": "物料简称",
-            "batchNo": "内部批次",
-            "vendorSid": "供应商Sid",
-            "vendorShortName": "供应商简称",
-            "entrySid": "录入人Sid",
+ "checkoutPlanNo":"checkoutPlanNo",
+                "checkoutPlanVersion":"checkoutPlanVersion",
+            "checkoutRecordId":"checkoutRecordId",
+            "materialNo":"materialNo",
+            "materialVersion":"materialVersion",
+            "materialShortName":"materialShortName",
+            "batchNo":"batchNo",
+            "vendorSid":"vendorSid",
+            "vendorShortName":"vendorShortName",
+            "entrySid": "1",
             "entryId": "mixmore@qq.com",
             "entryJobNumber": "002",
             "entryName": "杜旻翔",
@@ -27,7 +27,9 @@
         "DX": [
             {
                 "checkoutMetricSid": "1",
-                "checkoutMetricName": "",
+                "checkoutMetricName": "checkoutMetricName",
+             "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
                 "sample": [
                     {
                         "sampleNo": "1",
@@ -41,7 +43,9 @@
             },
             {
                 "checkoutMetricSid": "2",
-                "checkoutMetricName": "",
+                "checkoutMetricName": "checkoutMetricName",
+             "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
                 "sample": [
                     {
                         "sampleNo": "1",
@@ -57,7 +61,15 @@
         "DL": [
             {
                 "checkoutMetricSid": "3",
-                "checkoutMetricName": "",
+                "checkoutMetricName": "checkoutMetricName",
+             "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
+"referenceStandard":"referenceStandard",
+"upTolerance":"upTolerance",
+"underTolerance":"underTolerance",
+"threeDimensionalRogram_no":"threeDimensionalRogram_no",
+"metricUnit":"metricUnit",
+"fixtureId":"fixtureId",
                 "sample": [
                     {
                         "sampleNo": "1",
@@ -71,7 +83,15 @@
             },
             {
                 "checkoutMetricSid": "4",
-                "checkoutMetricName": "",
+                "checkoutMetricName": "checkoutMetricName",
+             "checkoutMetricClassify":"checkoutMetricClassify",
+"checkoutToolName":"checkoutToolName",
+"referenceStandard":"referenceStandard",
+"upTolerance":"upTolerance",
+"underTolerance":"underTolerance",
+"threeDimensionalRogram_no":"threeDimensionalRogram_no",
+"metricUnit":"metricUnit",
+"fixtureId":"fixtureId",
                 "sample": [
                     {
                         "sampleNo": "1",

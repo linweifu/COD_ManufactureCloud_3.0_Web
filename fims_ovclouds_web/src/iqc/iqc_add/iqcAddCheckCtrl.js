@@ -6,6 +6,8 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 		checkoutPlanNo: "",
 		checkoutPlanVersion: "",
 
+		externalReceiptNo: "",
+
 		checkoutRecordId: "",
 		batchNo: "",
 		giveCheckoutTime: "",
@@ -43,12 +45,12 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	}
 
 	// 各种弹出框
-	var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
-	window.onbeforeunload=function(event){
-	      event=event || window.event;
-	      event.returnValue=msg;
-	      return msg;
-	}
+	// var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
+	// window.onbeforeunload=function(event){
+	//       event=event || window.event;
+	//       event.returnValue=msg;
+	//       return msg;
+	// }
 
 	$scope.back = function(){
 		var a = confirm("您确定要退出吗？退出将可能丢失填写数据!")
@@ -60,22 +62,59 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// iqcAddCheck.makeTime = time.format();
 	// iqcAddCheck.entryTime = time.format();
 
+	// 查询单个检验记录
+	var querySingleIQCRecord = function(){
+		// var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+		var input_way_code = localStorage.getItem("input_way_code");
+		var http_url = "iqc/iqc_add/" ;
+		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+		$http({
+			method: "POST",
+			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
+			url: http_url,
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid')				
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {           	
+                localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+                localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+                localStorage.setItem("DL",JSON.stringify(data.contents.DL));
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+	querySingleIQCRecord();
+
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
-		var singleIQC = JSON.parse(localStorage.getItem("SingleIQCRecord"));
-		iqcAddCheck.materialNo = singleIQC.checkoutRecord.materialNo;
-		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
-		iqcAddCheck.materialVersion = singleIQC.checkoutRecord.materialVersion;
-		iqcAddCheck.checkoutPlanNo = singleIQC.checkoutRecord.checkoutPlanNo;
-		iqcAddCheck.checkoutPlanVersion = singleIQC.checkoutRecord.checkoutPlanVersion;
+		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+		iqcAddCheck.materialNo = checkoutRecord.materialNo;
+		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
+		iqcAddCheck.materialVersion = checkoutRecord.materialVersion;
+		iqcAddCheck.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
+		iqcAddCheck.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
 
-		iqcAddCheck.checkoutRecordId = singleIQC.checkoutRecord.checkoutRecordId;
-		iqcAddCheck.batchNo = singleIQC.checkoutRecord.batchNo;
-		iqcAddCheck.materialShortName = singleIQC.checkoutRecord.materialShortName;
-		iqcAddCheck.giveCheckoutTime = (new Date(singleIQC.checkoutRecord.giveCheckoutTime*1000)).format();
-		iqcAddCheck.vendor = singleIQC.checkoutRecord.vendorShortName;
-		iqcAddCheck.giveCheckoutAmount = singleIQC.checkoutRecord.giveCheckoutAmount;
-		iqcAddCheck.sampleAmount = singleIQC.checkoutRecord.sampleAmount;
+		iqcAddCheck.externalReceiptNo  = checkoutRecord.externalReceiptNo;
+
+		iqcAddCheck.checkoutRecordId = checkoutRecord.checkoutRecordId;
+		iqcAddCheck.batchNo = checkoutRecord.batchNo;
+		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
+		iqcAddCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();
+		iqcAddCheck.vendor = checkoutRecord.vendorShortName;
+		iqcAddCheck.giveCheckoutAmount = checkoutRecord.giveCheckoutAmount;
+		iqcAddCheck.sampleAmount = checkoutRecord.sampleAmount;
 	}
 	querySingleIQCRecord();
 	
