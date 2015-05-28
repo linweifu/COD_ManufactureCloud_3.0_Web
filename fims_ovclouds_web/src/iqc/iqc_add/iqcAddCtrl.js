@@ -147,8 +147,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 	$scope.queryActivateQCPByMaterial = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryActivateQCPByMaterial",
-			url: "iqc/iqc_add/queryActivateQCPByMaterial.json",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryActivateQCPByMaterial",
+			// url: "iqc/iqc_add/queryActivateQCPByMaterial.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
