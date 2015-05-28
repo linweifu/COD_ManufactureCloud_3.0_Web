@@ -8,7 +8,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 
 		externalReceiptNo: "",
 
-		checkoutRecordId: "",
+		checkoutRecordNo: "",
 		batchNo: "",
 		giveCheckoutTime: "",
 		vendor: "",
@@ -108,7 +108,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 
 		iqcAddCheck.externalReceiptNo  = checkoutRecord.externalReceiptNo;
 
-		iqcAddCheck.checkoutRecordId = checkoutRecord.checkoutRecordId;
+		iqcAddCheck.checkoutRecordNo = checkoutRecord.checkoutRecordNo;
 		iqcAddCheck.batchNo = checkoutRecord.batchNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
 		iqcAddCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();

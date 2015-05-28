@@ -3493,7 +3493,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 
 		externalReceiptNo: "",
 
-		checkoutRecordId: "",
+		checkoutRecordNo: "",
 		batchNo: "",
 		giveCheckoutTime: "",
 		giveCheckoutAmount: "",
@@ -3690,7 +3690,9 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 			// url: "iqc/iqc_add/submitBaseIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
+				"sid": localStorage.getItem('sid'),
 				"checkoutPlanSid": iqcAdd.plan.checkoutPlanSid,
+				"checkoutRecordNo": iqcAdd.checkoutRecordNo,
 				"companySid": localStorage.getItem('cSid'),
 			    "batchNo": iqcAdd.batchNo,
 
@@ -3714,11 +3716,9 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
-			    "checkoutRecordInputWay":"阿杜",
-			    "operate_status_code":"TJ",
-			    "operate_status":"提交状态",  
-
-				"sid": localStorage.getItem('sid'),
+			    "checkoutRecordInputWay":"阿杜"
+			    // "operate_status_code":"TJ",
+			    // "operate_status":"提交状态"
 			}
 		})
 		.success(function(data){
@@ -4363,7 +4363,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 
 		externalReceiptNo: "",
 
-		checkoutRecordId: "",
+		checkoutRecordNo: "",
 		batchNo: "",
 		giveCheckoutTime: "",
 		vendor: "",
@@ -4463,7 +4463,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 
 		iqcAddCheck.externalReceiptNo  = checkoutRecord.externalReceiptNo;
 
-		iqcAddCheck.checkoutRecordId = checkoutRecord.checkoutRecordId;
+		iqcAddCheck.checkoutRecordNo = checkoutRecord.checkoutRecordNo;
 		iqcAddCheck.batchNo = checkoutRecord.batchNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
 		iqcAddCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();
