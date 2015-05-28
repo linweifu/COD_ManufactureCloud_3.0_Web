@@ -13,83 +13,74 @@
 
 </style>
 
-<div id="container" class="container" ng-controller="planReviseCtrl">
-	<h3>修改检验计划</h3>
-	<form class="form-horizontal" id="form-horizontal" name="planReviseForm" novalidate>
+<div class="container" id="container" ng-controller="planReviseCtrl">
+<h3>修改检验计划</h3>
+<form class="form-horizontal" id="form-horizontal" name="planCheckForm" novalidate>
 		<div class="form-group">
-			<label for="materialNo" class="left control-label">待检物料编号</label>
+			<label class="left control-label">待检物料编号</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control" id="materialNo" name="materialNo" ng-model="planRevise.keyCheckoutPlan.materialNo" required ng-disabled="true">
+				<input type="text" class="form-control" name="materialNo" ng-model="planRevise.keyCheckoutPlan.materialNo" required ng-disabled="true">
 			</div>
-
-			<label for="materialVersion" class="left control-label">版本</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="materialVersion" name="materialVersion" ng-model="planRevise.keyCheckoutPlan.materialVersion" required ng-disabled="true">
-			</div>
-
-			<!-- <div class="col-sm-5">
-				<select class="form-control" ng-model="planRevise.industry.iType" ng-options="o as o.name for o in planRevise.dictionary.iType" ng-change="planRevise.queryInfo()" name="s"></select>
-			</div> -->
+            <label class="left control-label" style="margin-right:55px">版本</label>
+            <div class="col-sm-3">
+            	<input type="text" class="form-control" name="materialVersion" ng-model="planRevise.keyCheckoutPlan.materialVersion" required ng-disabled="true">
+            </div>
 		</div>
-		<div class="form-group">
-			<label class="left control-label">待检物料简称</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" id="materialShortName" name="materialShortName" ng-model="planRevise.keyCheckoutPlan.materialShortName" required ng-disabled="true">
-			</div>
-		</div>
+        <div class="form-group">
+        	<label class="left control-label">待检物料简称</label>
+        	<div class="col-sm-5">
+        	<input type="text" class="form-control" name="materialShortName" ng-model="planRevise.keyCheckoutPlan.materialShortName" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+        	<label class="left control-label">检验计划编号</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="form-control" name="checkoutPlanNo" ng-model="planRevise.keyCheckoutPlan.checkoutPlanNo" required ng-disabled="true">
+        	</div>
+        	<label class="left control-label"style="margin-right:55px">版本</label>
+            <div class="col-sm-3">
+            	<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="planRevise.keyCheckoutPlan.checkoutPlanVersion" required  ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+        	<label class="left control-label" style="margin-right:53px">AQL</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="left form-control" name="aql" ng-model="planRevise.keyCheckoutPlan.aql" required >
+        	</div>
+        	<label class="left control-label"style="margin-right:15px">制作人工号</label>
+            <div class="col-sm-3">
+            	<input type="text" class="form-control" name="makeJobNumber" ng-model="planRevise.keyCheckoutPlan.makeJobNumber" required >
+            </div>
+        </div>
+        <div class="form-group">
+        	<label class="left control-label" style="margin-right:40px">制作人</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="form-control" name="makeName" ng-model="planRevise.keyCheckoutPlan.makeName" required  >
+        	</div>
+        	<label class="left control-label" style="margin-right:30px">制作时间</label>
+        	<div class="col-sm-3">
+        		<input type="text" class="form-control" name="makeTime" ng-model="planRevise.keyCheckoutPlan.makeTime" required  >
+        	</div>
+        </div>
+         <div class="form-group">
+        	<label class="left control-label" style="margin-right:40px">录入人</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="form-control" name="entryName" ng-model="planRevise.keyCheckoutPlan.entryName" required ng-disabled="true" >
+        	</div>
+        	<label class="left control-label" style="margin-right:30px">录入时间</label>
+        	<div class="col-sm-3">
+        		<input type="text" class="form-control" name="entryTime" ng-model="planRevise.keyCheckoutPlan.entryTime" required ng-disabled="true" >
+        	</div>
+        </div>
 
-		<div class="form-group">
-			<label class="left control-label">检验计划编号</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control" id="checkoutPlanNo" name="checkoutPlanNo" ng-model="planRevise.keyCheckoutPlan.checkoutPlanNo" ng-disabled="true" required>
-			</div>
+        <button class="btn btn-success" style="padding:.3em .6em; margin-top:20px; margin-right:20px;" ng-disabled="planReviseForm.$invalid||planReviseForm.$pristine" ng-click="planRevise.updateQCP()">修改</button>
 
-			<label class="left control-label">版本</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" id="checkoutPlanVersion" name="checkoutPlanVersion" ng-model="planRevise.keyCheckoutPlan.checkoutPlanVersion"  ng-disabled="true" required>
-			</div>
-		</div>
+        <button class="btn btn-info" style="padding:.3em .6em; margin-top:20px; margin-right:20px;" ng-click="planRevise.activateQCP()">启用</button>
 
-		<div class="form-group">
-			<label class="left control-label" style="margin-right: 1em">AQL</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control" id="aql" name="aql" ng-model="planRevise.keyCheckoutPlan.aql" required>
-			</div>
-		</div>
+        <button class="btn btn-success" style="padding:.3em .6em; margin-top:20px;" ui-sref="account_index.planHistoryList">查看历史版本</button>
 
-		<div class="form-group">
-			<label class="left control-label">制作人</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" id="makeName" name="makeName"  ng-model="planRevise.keyCheckoutPlan.makeName" required>
-			</div>
+        <button class="btn btn-info" style="padding:.3em .6em; margin-top:20px; margin-left:20px;" ui-sref="account_index.planMetricList">检验项目</button>
 
-			<label class="left control-label">制作时间</label>
-			<div class="col-sm-3">
-				<input type="date" class="form-control" id="makeTime" name="makeTime" ng-model="planRevise.keyCheckoutPlan.makeTime" required>
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="left control-label">录入人</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" id="entryName" name="entryName" ng-model="planRevise.keyCheckoutPlan.entryName" ng-disabled="true" required>
-			</div>
-
-			<label class="left control-label">录入时间</label>
-			<div class="col-sm-3">
-				<input type="date" class="form-control" id="entryTime" name="entryTime" ng-model="planRevise.keyCheckoutPlan.entryTime" ng-disabled="true"  required>
-			</div>
-		</div>
-
-		<button class="btn btn-success" style="padding: `.3em 1em;margin-right:0.5em;" ng-disabled="planReviseForm.$invalid||planReviseForm.$pristine" ng-click="planRevise.updateQCP()">修改 </button> 
-
-		<button class="btn btn-default" style="padding: .3em .6em;" ng-click="planRevise.activateQCP()" >启用</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planMetricList" >检验项目</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planHistoryList">查看历史版本</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em;" ng-click="planRevise.back()" >返回</button>
+         <button class="btn btn-primary" style="padding:.3em .6em; margin-top:20px; margin-left:20px;" ng-click="planRevise.back()">返回</button>
 	</form>
-
 </div>

@@ -1,0 +1,20 @@
+{
+    "code": "N01",
+    "message": "查询成功",
+    "contents": {
+        "checkoutRecordSid": "3",
+        "checkoutRecordId": "IQC-20130730-0003",
+        "materialSid": "JT-RM-900303",
+        "materialNo": "物料编号",
+        "materialVersion": "A",
+        "materialShortName": "铜接头",
+        "batchNo": "201411060001",
+        "vendorNo": "VEN-60002",
+        "vendorShortName": "飞特",
+        "giveCheckoutAmount": 20,
+        "sampleAmount": 3,
+        "operateStatus": "提交",
+        "operateStatusCode": "TJ",
+        "operateStatusWeb": "查看"
+    }
+}

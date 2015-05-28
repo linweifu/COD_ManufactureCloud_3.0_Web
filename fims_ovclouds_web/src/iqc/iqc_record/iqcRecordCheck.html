@@ -1,0 +1,77 @@
+<style type="text/css">
+	#container {
+		max-width: 768px;
+		background-color: #f8f8f8;
+		border: 1px solid #ececec;
+		border-radius: 5px;
+		padding: 0 25px 0 25px;
+		margin-bottom: 1em;
+	}	
+	h3 {color: #000;}
+	#form-horizontal {margin-top: 1.5em;color: #333}
+	.link {text-align: left !important; color: rgb(79,159,207)} 
+	.left{text-align: left !important;float: left;padding-left: 15px;padding-top: 7px;padding-right: 5px;}
+
+</style>
+
+<h3 class="text-center">帖 (入库检验记录列表)</h3>
+
+<div id="container" class="container">
+<form class="form-horizontal" id="form-horizontal" name="iqcRecordCheckForm" novalidate>
+	<div class="form-group">
+		<label class="left control-label">记录编号</label>
+		<div class="col-sm-4">
+			<input type="text" name="checkoutRecordId" class="form-control"ng-model="iqcRecordCheck.checkoutRecordId" required ng-disabled="true" >
+		</div>
+
+		<label class="left control-label" style="margin-left:15px;">物料编号</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" style="margin-left:12px;"name="materialNo" ng-model="iqcRecordCheck.materialNo" required  ng-disabled="true">
+		</div>
+
+	
+	</div>
+
+	<div class="form-group">
+		<label class="left control-label">物料版本</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" name="materialVersion" ng-model="iqcRecordCheck.materialVersion" required ng-disabled="true">
+		</div>
+		<label class="left control-label" style="margin-left:15px;">物料简称</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" style="margin-left:12px;" name="materialShortName" ng-model="iqcRecordCheck.materialShortName" required ng-disabled="true">
+		</div>
+	</div>
+      <div class="form-group">
+			<label class="left control-label" style="margin-right:2em;">批次</label>
+			<div class="col-sm-4">
+				<input type="text" name="batchNo" class="form-control" ng-model="iqcRecordCheck.batchNo" required ng-disabled="true" >
+			</div>
+
+			<label class="left control-label" style="margin-left:15px;">供应商</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" style="margin-left:26px;" name="vendorShortName" ng-model="iqcRecordCheck.vendorShortName" required ng-disabled="true" >
+			</div>
+		</div>
+
+       <div class="form-group">
+			<label class="left control-label" style="margin-right:2em;">送检数量</label>
+			<div class="col-sm-4">
+				<input type="text" name="giveCheckoutAmount" style="margin-left:-26px;" class="form-control" ng-model="iqcRecordCheck.giveCheckoutAmount" required ng-disabled="true" >
+			</div>
+
+			<label class="left control-label" style="margin-left:-12px;">抽样数量</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" style="margin-left:12px;" name="sampleAmount" ng-model="iqcRecordCheck.sampleAmount" required ng-disabled="true" >
+			</div>
+		</div>
+
+
+         <button class="btn btn-primary" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="back()">返回IQC面板</button>
+
+    
+</form>
+</div>
+
+		
+		

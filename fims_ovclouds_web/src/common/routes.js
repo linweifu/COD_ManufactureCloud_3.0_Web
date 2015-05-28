@@ -125,6 +125,40 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'plan/planMetricList.html'
 	})
+
+    .state('account_index.planHistoryListCheck',{
+		url:'/planHistoryListCheck',
+		templateUrl:'plan/planHistoryListCheck.html'
+	})
+	.state('account_index.planHistoryMetricList',{
+		url:'/planHistoryMetricList',
+		templateUrl:'plan/planHistoryMetricList.html'
+	})
+
+	.state('account_index.planHistoryListCopy',{
+		url:'/planHistoryListCopy',
+		templateUrl:'plan/planHistoryListCopy.html'
+	})
+
+    .state('account_index.iqcRecordCheck',{
+		url:'/iqcRecordCheck',
+		controller:'iqcRecordCheckCtrl',
+		templateUrl:'iqc/iqc_record/iqcRecordCheck.html'
+	})
+
+
+    .state('account_index.iqcRecordRevise',{
+		url:'/iqcRecordRevise',
+		controller:'iqcRecordReviseCtrl',
+		templateUrl:'iqc/iqc_record/iqcRecordRevise.html'
+	})
+
+
+
+
+
+
+
 	.state('account_index.iqcIndex',{
 		url:'/iqcIndex',
 		controller:'iqcIndexCtrl',

@@ -1,0 +1,82 @@
+<style type="text/css">
+    #container {
+        max-width: 768px;
+        background-color: #f8f8f8;
+        border: 1px solid #ececec;
+        border-radius: 5px;
+        padding: 0 25px 20px 25px;
+    }   
+    h3 {color: #000;}
+    #form-horizontal {margin-top: 1.5em;color: #333}
+    .link {text-align: left !important; color: rgb(79,159,207)} 
+    .left{text-align: left !important;float: left;padding-left: 15px;padding-top: 7px;padding-right: 5px;}
+
+</style>
+
+<div class="container" id="container" ng-controller="planHistoryListCheckCtrl">
+    <form class="form-horizontal" id="form-horizontal" name="planHistoryListCheckForm" novalidate>
+        <div class="form-group">
+            <label class="left control-label">检验物料编号</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="materialNo" ng-model="planHistoryListCheck.materialNo" required ng-disabled="true">
+            </div>
+            <label class="left control-label" style="margin-right:15px">物料版本</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="materialVersion" ng-model="planHistoryListCheck.materialVersion" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label">检验物料简称</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" name="materialShortName" ng-model="planHistoryListCheck.materialShortName" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label">检验计划编号</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="checkoutPlanNo" ng-model="planHistoryListCheck.checkoutPlanNo" required ng-disabled="true">
+            </div>
+            <label class="left control-label"style="margin-right:15px">计划版本</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="checkoutPlanVersion" ng-model="planHistoryListCheck.checkoutPlanVersion" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label" style="margin-right:53px">AQL</label>
+            <div class="col-sm-5">
+                <input type="text" class="left form-control" name="aql" ng-model="planHistoryListCheck.aql" required ng-disabled="true">
+            </div>
+            <label class="left control-label"style="margin-right:5px">制作人工号</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="makeJobNumber" ng-model="planHistoryListCheck.makeJobNumber" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label" style="margin-right:40px">制作人</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="makeName" ng-model="planHistoryListCheck.makeName" required ng-disabled="true" >
+            </div>
+            <label class="left control-label"style="margin-right:18px">制作时间</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="makeTime" ng-model="planHistoryListCheck.makeTime" required ng-disabled="true" >
+            </div>
+        </div>
+         <div class="form-group">
+            <label class="left control-label" style="margin-right:40px">录入人</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="entryName" ng-model="planHistoryListCheck.entryName" required ng-disabled="true" >
+            </div>
+            <label class="left control-label" style="margin-right:18px">录入时间</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="entryTime" ng-model="planHistoryListCheck.entryTime" required ng-disabled="true" >
+            </div>
+        </div>
+
+        
+
+        <button class="btn btn-info" style="padding:.3em .6em; margin-top:20px; margin-left:20px;" ui-sref="account_index.planHistoryMetricList">检验项目</button>
+
+         <button class="btn btn-primary" style="padding:.3em .6em; margin-top:20px; margin-left:20px;" ng-click="planHistoryListCheckBack()">返回</button>
+    </form>
+
+</div>

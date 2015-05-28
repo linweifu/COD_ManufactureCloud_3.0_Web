@@ -41,7 +41,7 @@
 			</select>
 		</div>
 		<div class="col-md-1">
-			<button class="btn btn-success" ng-click="planHistoryListBack()">返回</button>
+			<button class="btn btn-primary" ng-click="planHistoryListBack()">返回</button>
 			
 		</div>
 	</form>
@@ -60,6 +60,7 @@
 		      <th>物料版本</th>
 		      <th>物料简称</th>
 		      <th>AQL</th>
+		      <th>制作人工号</th>
 		      <th>制作人</th>
 		      <th>制作时间</th>
 		      <th>导入人</th>
@@ -78,14 +79,15 @@
 		  		<td ng-bind="list.materialVersion"></td>
 		  		<td ng-bind="list.materialShortName"></td>
 		  		<td ng-bind="list.aql"></td>
+		  		<td ng-bind="list.makeJobNumber"></td>
 		  		<td ng-bind="list.makeName"></td>
 		  		<td ng-bind="list.makeTime"></td>
 		  		<td ng-bind="list.entryName"></td>
 		  		<td ng-bind="list.entryTime"></td>
-		  		<td ng-bind="list.checkoutPlanStatus"></td>		  		
-		  		<td><a href="" ng-click="querySingleQCP(list.planSid)">查看</a></td>
+		  		<td ng-bind="list.checkoutPlanStatus"></td>	  		
+		  		<td><a ng-click="querySingleQCPInfo(list.checkoutPlanSid,list.checkoutPlanStatusCode)">查看</a></td>
 		  		<!-- <td><a href="" ng-click="">检验项目</a></td> -->
-		  		<td><a href="" ng-click="">复制</a></td>
+		  		<td><a ng-click="querySingCopyInfo(list.checkoutPlanSid,list.checkoutPlanStatusCode)"  >复制</a></td>
 		  	</tr>
 		  </tbody>
 		</table>
