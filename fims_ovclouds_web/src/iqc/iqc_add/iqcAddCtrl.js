@@ -174,10 +174,10 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 
 	// 查询单个检验记录
 	var querySingleIQCRecord = function(input_way_code){
-		// var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
-		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
-		var http_url = "iqc/iqc_add/" ;
-		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+		var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+		// var http_url = "iqc/iqc_add/" ;
+		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
 		$http({
 			method: "POST",
 			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
@@ -209,8 +209,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 	$scope.submitBaseIQCRecord = function(){
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qc/iqc/saveBaseIQCRecord",
-			url: "iqc/iqc_add/submitBaseIQCRecord.json",
+			url: config.HOST + "/api/2.0/bp/qc/iqc/submitBaseIQCRecord",
+			// url: "iqc/iqc_add/submitBaseIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"checkoutPlanSid": iqcAdd.plan.checkoutPlanSid,
