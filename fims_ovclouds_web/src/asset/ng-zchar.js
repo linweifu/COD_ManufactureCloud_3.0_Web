@@ -3468,6 +3468,11 @@ FIMS.controller('iqcIndexCtrl',['$scope','$location',"$http",
 	function($scope,$location,$http) {
 		$scope.curCompanyName = localStorage.getItem("curCompanyName");
 		$scope.applyJoinCompanyNumber = localStorage.getItem("applyJoinCompanyNumber");
+		
+		localStorage.removeItem("DX");
+		localStorage.removeItem("DL");
+		localStorage.removeItem("checkoutRecord");
+
 }])
 
 FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
@@ -3965,6 +3970,8 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 		sampleAmount: "",
 		companyShortName: localStorage.getItem('curCompanyName'),
 
+		checkoutRecordSid: "",
+
 		// $rootScope.DX: [],
 		itemDic: [
 			{
@@ -4025,40 +4032,43 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 		iqcComplexDXAdd.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
 		iqcComplexDXAdd.sampleAmount = checkoutRecord.sampleAmount;
 
+		iqcComplexDXAdd.checkoutRecordSid = checkoutRecord.checkoutRecordSid;
+
 		// 绑定定性部分
 		$rootScope.DX = JSON.parse(localStorage.getItem("DX"));
+		console.log($rootScope.DX);
 
 		//下拉数据绑定
-		// iqcComplexDXAdd.sampleSel = $rootScope.DX.sample;
-		// console.log(iqcComplexDXAdd.sampleSel);
-		for (var i=0,len=$rootScope.DX.length;i<len;i++){
-			iqcComplexDXAdd.sampleSel.push($rootScope.DX[i].sample);
-		}
+		// $rootScope.DX = $rootScope.DX.sample;
+		// console.log($rootScope.DX);
+		// for (var i=0,len=$rootScope.DX.length;i<len;i++){
+		// 	$rootScope.DX.push($rootScope.DX[i].sample);
+		// }
+		// console.log($rootScope.DX);
 
-		for (var i=0,len=iqcComplexDXAdd.sampleSel.length;i<len;i++) {
-			for (var j=0,lenj=iqcComplexDXAdd.sampleSel[i];j<len;j++) {
-				var item = iqcComplexDXAdd.sampleSel[i][j];
-				if (item.sampleCheckoutValue=="NULL") {
-					iqcComplexDXAdd.sampleSel[i][j] = iqcComplexDXAdd.itemDic[0];
-				}if (item.sampleCheckoutValue=="是") {
-					iqcComplexDXAdd.sampleSel[i][j] = iqcComplexDXAdd.itemDic[1];
+		for (var i=0,len=$rootScope.DX.length;i<len;i++) {
+			for (var j=0,lenj=$rootScope.DX[i].sample.length;j<lenj;j++) {
+				var item = $rootScope.DX[i].sample[j];
+				if (item.sampleCheckoutValue=="是") {
+					$rootScope.DX[i].sample[j].sampleCheckoutValue = iqcComplexDXAdd.itemDic[1].sampleCheckoutValue;
 				}else if (item.sampleCheckoutValue=="否"){
-					iqcComplexDXAdd.sampleSel[i][j] = iqcComplexDXAdd.itemDic[2];
+					$rootScope.DX[i].sample[j].sampleCheckoutValue = iqcComplexDXAdd.itemDic[2].sampleCheckoutValue;
+				}else {
+					$rootScope.DX[i].sample[j].sampleCheckoutValue = iqcComplexDXAdd.itemDic[0].sampleCheckoutValue;
 				}
 			}
 		}
 	}
 	queryCheckoutRecord();
 
+	$scope.next = function() {
+		localStorage.setItem("DX",JSON.stringify($rootScope.DX));
+		$location.path("account_index/iqcComplexDLAdd");
+	}
+
 	$scope.updateComplexIQCRecord = function() {
-		for (var i=0,len=$rootScope.DX.length;i<len;i++) {
-			for (var j=0,lenj=$rootScope.DX[i].sample.length;j<lenj;j++) {
-				// console.log(($rootScope.DX[i].sample)[j].sampleNo);
-				($rootScope.DX[i].sample)[j].sampleNo = i+1;
-				console.log($rootScope.DX[i].sample[j].sampleNo);
-			}
-		}
-		console.log($rootScope.DX);
+		// console.log($rootScope.DX);
+		// var keyDX
 
 		$http({
 			method: "POST",
@@ -4067,10 +4077,10 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
-				"companySid": localStorage.getItem('cSid'),
-				"checkoutRecord": localStorage.getItem("checkoutRecord"),
+				// "companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": iqcComplexDXAdd.checkoutRecordSid,
 				"DX": $rootScope.DX,
-				"DL": $rootScope.DL || localStorage.getItem("DL")
+				"DL": $rootScope.DL || JSON.parse(localStorage.getItem("DL"))
 			}
 		})
 		.success(function(data){

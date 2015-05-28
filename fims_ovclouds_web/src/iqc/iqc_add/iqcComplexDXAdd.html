@@ -73,18 +73,21 @@
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
-				<select class="form-control" ng-options="o as o.value for o in iqcComplexDXAdd.itemDic" ng-model="iqcComplexDXAdd.sampleSel[mark][$index]"></select>
+				<!-- <select class="form-control" ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDXAdd.itemDic" ng-model="iqcComplexDXAdd.sampleSel[mark][$index].sampleCheckoutValue"></select> -->
+				<select class="form-control" ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDXAdd.itemDic" ng-model="DX[mark].sample[$index].sampleCheckoutValue"></select>
 			</div>
 		</div>
 	</form>
 </div>
 
-{{DX}}
+<p ng-repeat="list in DX" class="text-center">
+	{{list.sample}}
+</p>
 
 <div class="text-center" style="margin: .5em auto;">
 	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcAddCheck">上一步</button>
 
 	<button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="updateComplexIQCRecord()">保存</button>
 
-	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcComplexDLAdd">下一步</button>
+	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="next()">下一步</button>
 </div>
