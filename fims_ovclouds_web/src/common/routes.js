@@ -180,6 +180,40 @@ FIMS.config([
 		controller:'qrCodeCtrl',
 		templateUrl:'tool/qrCode/qrCode.html'
 	})
+	.state('account_index.iqcDataCount',{
+		url:'/iqcDataCount',
+		templateUrl:'iqc/iqc_dataCount/chooseCount.html'
+	})
+	.state('account_index.dailyDetails',{
+		url:'/dailyDetails',
+		controller: 'dailyDetailsCtrl',
+		templateUrl:'iqc/iqc_dataCount/dailyDetails.html'
+	})
+	.state('account_index.monthlyDetails',{
+		url:'/monthlyDetails',
+		controller: 'monthlyDetailsCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlyDetails.html'
+	})
+	.state('account_index.monthlyStatistics_material',{
+		url:'/monthlyStatistics_material',
+		// controller: 'monthlyStatistics_materialCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_material.html'
+	})
+	.state('account_index.monthlyStatistics_vendor',{
+		url:'/monthlyStatistics_vendor',
+		// controller: 'monthlyStatistics_vendorCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_vendor.html'
+	})
+	.state('account_index.monthlyChart_vendor',{
+		url:'/monthlyChart_vendor',
+		controller: 'monthlyChart_vendorCtrl',
+		templateUrl: 'iqc/iqc_dataCount/monthlyChart_vendor.html'
+	})
+	.state('account_index.monthlyChart_material',{
+		url:'/monthlyChart_material',
+		controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'iqc/iqc_dataCount/monthlyChart_material.html'
+	})
 }]);
 
 

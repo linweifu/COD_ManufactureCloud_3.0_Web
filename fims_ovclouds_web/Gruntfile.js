@@ -24,7 +24,8 @@ module.exports = function(grunt) {
 				"src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/iqcAddCtrl.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
 				"src/iqc/iqc_record/iqcRecordCtrl.js","src/iqc/iqc_add/iqcComplexDLAddCtrl.js","src/iqc/iqc_add/iqcComplexDXAddCtrl.js",
 				"src/iqc/iqc_add/iqcSimpleDLAddCtrl.js","src/iqc/iqc_add/iqcSimpleDXAddCtrl.js","src/tool/qrCode/qrCodeCtrl.js",
-				"src/iqc/iqc_add/iqcAddCheckCtrl.js","src/tool/tool_index/tool_indexCtrl.js"
+				"src/iqc/iqc_add/iqcAddCheckCtrl.js","src/tool/tool_index/tool_indexCtrl.js",
+				"src/iqc/iqc_dataCount/dailyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyChart_vendorCtrl.js","src/iqc/iqc_dataCount/monthlyChart_materialCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"
 			},
@@ -88,7 +89,7 @@ module.exports = function(grunt) {
 			"src/account/comSetting/*.js",'src/manage/engineer/material/*.js',
 			"src/manage/customer/customer/*.js",'src/manage/vendor/vendor/*.js',
 			"src/plan/*.js","src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/*.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
-			"src/iqc/iqc_record/*.js","src/tool/qrCode/*.js","src/tool/tool_index/*.js"
+			"src/iqc/iqc_record/*.js","src/tool/qrCode/*.js","src/tool/tool_index/*.js","src/iqc/iqc_dataCount/*.js"
 			],
         	// tasks: ['concat','less', 'cssmin', 'uglify']
         	tasks: ['concat', 'uglify']
