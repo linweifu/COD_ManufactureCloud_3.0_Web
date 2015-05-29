@@ -7,6 +7,24 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.companyShortName = localStorage.getItem("curCompanyName");	
 		$scope.dailyDetails = dailyDetails;
 
+		//调整时间格式
+		Date.prototype.format = function() {
+	   		var year = this.getFullYear().toString();
+	   		var month = (this.getMonth()+1).toString();
+	   		var day = this.getDate().toString();
+	   		console.log(year);
+
+			if (month<10) {
+				month = "0" + month;
+			}
+
+			if (day<10) {
+				day = "0" + day;
+			}
+
+		 	return (year + "-" + month + "-" +day );
+		}
+
 		$scope.dailyDetailsBack = function(){
 			// localStorage.removeItem('singleplan');
 			$location.path('account_index/iqcDataCount').replace();
@@ -15,11 +33,11 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-				// url: "manage/engineer/material/queryMaterialsInfo.json",
+				//url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
+				url: "iqc/iqc_dataCount/A102DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
-					"sid": localStorage.getItem('sid'),
+					"checkoutTime": ((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 				}
 			})
