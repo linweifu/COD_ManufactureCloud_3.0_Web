@@ -1,0 +1,12 @@
+{
+    "code": "N01",
+    "message": "OK",
+    "contents": [
+        {
+            "materialShortName": "FIRST",
+            "sampercent": 0.67,
+            "batchpercent": 1,
+            "PPMpercent": 330000
+        }
+    ]
+}

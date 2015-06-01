@@ -230,12 +230,12 @@ FIMS.config([
 	})
 	.state('account_index.monthlyStatistics_material',{
 		url:'/monthlyStatistics_material',
-		// controller: 'monthlyStatistics_materialCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_material.html'
 	})
 	.state('account_index.monthlyStatistics_vendor',{
 		url:'/monthlyStatistics_vendor',
-		// controller: 'monthlyStatistics_vendorCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_vendor.html'
 	})
 	.state('account_index.monthlyChart_vendor',{

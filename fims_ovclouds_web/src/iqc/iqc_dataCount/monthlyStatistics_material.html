@@ -18,7 +18,7 @@
 		<form class="form-horizontal" id="form-horizontal" name="monthlyStatisticsform" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
 			<input type="month" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlyStatistics.checkoutTime" required>		
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getMonthStatics()">查询</button>				
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getMonthStatics1()">查询</button>				
 		</form>
 	</div>
 	<div class="row">
@@ -44,11 +44,11 @@
 					    <th>平均抽样不合格率%</th>
 					    <th>整体抽样不合格率%</th>
 					    <th>整体抽样不合格率PPM</th>
-					    <th>批次格率%</th>
+					    <th>批次合格率%</th>
 					    <th>送检数量</th>
 					    <th>抽样数量</th>
 					    <th>抽样合格品数量</th>
-					    <th>抽样不合格数量</th>
+					    <th>抽样不合格品数量</th>
 					    <th>批次内抽样不良现象总计</th>
 					    <th>抽样合格率%</th>
 					    <th>抽样不合格率%</th>
@@ -61,18 +61,35 @@
 			  <tbody>		 
 			  	<tr ng-repeat="list in monthlyStatistics.dateSelected">
 			  		<td>{{$index+1}}</td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialNo"></td>
-			  		<td ng-bind="list.materialShortName"></td>
-			  		<td ng-bind="list.materialVersion"></td>
-			  		<td ng-bind="list.materialFullName"></td>
-			  		<td ng-bind="list.materialBarcode"></td>
-			  		<td ng-bind="list.notes"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.checkoutTime"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.checkoutRecordNo"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.batchNo"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.materialBarcode"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.materialNo"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.vendorNo"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.vendorShortName"></td>	  		
+			  		<td ng-bind="list.iqcQualityDailyList.giveCheckoutAmount"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.sampleAmount"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedAmount"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.sampleUnqualifiedAmount"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.sampleDefectiveAmountTotal"></td>
+			  		<td ng-bind="list.averageSampleQualifiedRate"></td>
+			  		<td ng-bind="list.overallSampleQualifiedRate"></td>
+			  		<td ng-bind="list.averageSampleUnqualifiedRate"></td>
+			  		<td ng-bind="list.overallSampleUnqualifiedRate"></td>
+			  		<td ng-bind="list.overallSampleUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.batchQualifiedRate"></td>
+			  		<td ng-bind="list.submitCheckoutAmountTotal"></td>
+			  		<td ng-bind="list.sampleAmountTotal"></td>
+			  		<td ng-bind="list.sampleQualifiedAmountTotal"></td>
+			  		<td ng-bind="list.sampleUnqualifiedAmountTotal"></td>
+			  		<td ng-bind="list.inbatchSampleBadPhenomenonTotalTotal"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedRate"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedRate"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.sampleUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.aql"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.determinationResults"></td>
+			  		<td ng-bind="list.iqcQualityDailyList.nspectorName"></td>
 			  	</tr>
 			  </tbody>
 			</table>

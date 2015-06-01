@@ -4,7 +4,7 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			dictionary: {
 				materialName: []
 			},
-			selected: {
+			Selected: {
 				materialName : {}
 			},
 			checkoutTime: ""
@@ -28,7 +28,14 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
-	            	monthlyChart.dictionary.materialName = data.contents;
+	            	monthlyChart.dictionary.materialName = [];
+	            	for (var i=0; i < data.contents.length;i++) {
+	                	monthlyChart.dictionary.materialName.push({
+	                		"name": data.contents[i].materialShortName,
+	                		"materialSid": data.contents[i].materialSid
+	                	});
+	                }
+	                monthlyChart.Selected.materialName = (monthlyChart.dictionary.materialName)[0];
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -74,32 +81,31 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 		$scope.getSingleMaterial = function(){
 			$http({
 				method: 'POST',
-				//url: HOST+'/api/1.0/evaluate-manager/A1081MonthlyReport',
-				url: "iqc/iqc_dataCount/queryIQCRecords.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
 	                //"materialid": dataCount.dataCountInputs.dataCountTab4.materialid,
 	                "sid": localStorage.getItem('sid'),
-	                "page":"1",
+	                "date": monthlyChart.checkoutTime+"-01T23:00:10Z",
+	                "materialSid": monthlyChart.Selected.materialName.materialSid,
 					"companySid": localStorage.getItem('cSid')
 
 	            }
 			})
 			.success(function(data){
-				if (data.contents.length === 0) {
-					alert("暂无数据");
-				}else{
+				if (data.code == "N01") {
 					var xAxisData = [];
 				 	var sampercentArr = [];
 				 	var batchpercentArr = [];
 				 	var PPMpercentArr = [];
 
 			 		for(var i=0;i<data.contents.length;i++) {
-				 		xAxisData.push(data.contents[i].materialShortName);
-				 		sampercentArr.push(data.contents[i].sampleAmount);
-				 		batchpercentArr.push(data.contents[i].sampleAmount);
-				 		PPMpercentArr.push(data.contents[i].sampleAmount);
+				 		xAxisData.push(data.contents[i].vendorShortName);
+				 		sampercentArr.push(data.contents[i].sampercent*100);
+				 		batchpercentArr.push(data.contents[i].batchpercent*100);
+				 		PPMpercentArr.push(data.contents[i].PPMpercent);
 				 	}
 
 					var option1 = {
@@ -119,7 +125,7 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			                {
 			                    type : 'value',
 			                    name : '抽样合格率%',
-			                   // max : 100
+			                   max : 100
 
 			                }
 			            ],
@@ -152,7 +158,7 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			                {
 			                    type : 'value',
 			                    name : '批次合格率%',
-			                   // max : 100
+			                   max : 100
 
 			                }
 			            ],
@@ -196,7 +202,13 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 					echarts(option1,"main1");
 					echarts(option2,"main2");
 					echarts(option3,"main3");
-				}
+				}else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
 			}).error(function(){
                 console.log('接口报错');
             });
