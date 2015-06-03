@@ -25,7 +25,10 @@ module.exports = function(grunt) {
 				"src/iqc/iqc_record/iqcRecordCtrl.js","src/iqc/iqc_add/iqcComplexDLAddCtrl.js","src/iqc/iqc_add/iqcComplexDXAddCtrl.js",
 				"src/iqc/iqc_add/iqcSimpleDLAddCtrl.js","src/iqc/iqc_add/iqcSimpleDXAddCtrl.js","src/tool/qrCode/qrCodeCtrl.js",
 				"src/iqc/iqc_add/iqcAddCheckCtrl.js","src/tool/tool_index/tool_indexCtrl.js",
-				"src/iqc/iqc_dataCount/dailyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyChart_vendorCtrl.js","src/iqc/iqc_dataCount/monthlyChart_materialCtrl.js"
+				"src/iqc/iqc_dataCount/dailyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyChart_vendorCtrl.js","src/iqc/iqc_dataCount/monthlyChart_materialCtrl.js","src/iqc/iqc_dataCount/monthlyStatisticsCtrl.js",
+				"src/plan/planHistoryListCheckCtrl.js","src/plan/planHistoryMetricListCtrl.js","src/plan/planHistoryListCopyCtrl.js",
+				"src/iqc/iqc_record/iqcRecordCheckCtrl.js","src/iqc/iqc_record/iqcRecordReviseCtrl.js","src/iqc/iqc_record/iqcComplexDLCheckCtrl.js","src/iqc/iqc_record/iqcComplexDXCheckCtrl.js",
+				"src/iqc/iqc_record/iqcSimpleDLCheckCtrl.js","src/iqc/iqc_record/iqcSimpleDXCheckCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"
 			},

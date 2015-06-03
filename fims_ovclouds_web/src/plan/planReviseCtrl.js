@@ -263,8 +263,8 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
         });
       }
 
-      planRevise.back = function(){
-            history.go(-1);
+     planRevise.back = function(){
+            $location.path("account_index/planList");
       }
 /*
 ***************************************************

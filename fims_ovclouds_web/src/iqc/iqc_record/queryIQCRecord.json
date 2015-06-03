@@ -27,11 +27,13 @@
             "materialShortName": "铜接头",
             "batchNo": "201411060001",
             "vendorNo": "VEN -60002",
+            "giveCheckoutAmount": 20,
             "vendorShortName": "网酷",
             "submitCheckoutAmount": 20,
             "sampleAmount": 3,
             "operateStatus": "提交",
-            "operateStatusCode": "TJ"
+            "operateStatusCode": "XD",
+            "operateStatusWeb": "修订"
         }
     ],
     "page": "1"

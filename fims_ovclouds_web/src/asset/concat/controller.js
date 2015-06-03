@@ -2075,8 +2075,8 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
         });
       }
 
-      planRevise.back = function(){
-            history.go(-1);
+     planRevise.back = function(){
+            $location.path("account_index/planList");
       }
 /*
 ***************************************************
@@ -2967,193 +2967,7 @@ queryQCPItems
     	}
 	}
 
-	// $scope.backto = function(){
-	// 	// localStorage.removeItem('singleplan');
-	// 	// history.go(-1);
-	// 	console.log('s');
-	// }
-
-
-
-/*planMetricList.addQCPItems = function(){
-
-        // 准备参数
-		var addData = function(){
-			//var o = {};
-			var a = {};
-
-		    planMetricList.checkoutMetrics.checkoutMetricNo             =  a.checkoutMetricNo,
-
-          	planMetricList.checkoutMetrics.checkoutMetricClassify       =  a.checkoutMetricClassify,
-
-            planMetricList.checkoutMetrics.checkoutMetricName           = a.checkoutMetricName,
-
-            planMetricList.checkoutMetrics.checkoutMetricDescription    = a.checkoutMetricDescription,
-
-            planMetricList.checkoutMetrics.checkoutToolName             = a.checkoutToolName,
-
-            planMetricList.checkoutMetrics.processName                  = a.processName ,
-
-
-            planMetricList.checkoutMetrics.metricUnit                   =a.metricUnit   ,
-		  	planMetricList.checkoutMetrics.referenceStandard            =a.referenceStandard  ,
-		  	planMetricList.checkoutMetrics.underTolerance               =a.underTolerance ,
-		  	planMetricList.checkoutMetrics.upTolerance                  =a.upTolerance   ,
-		  	planMetricList.checkoutMetrics.mapPosition                  =a.mapPosition ,
-		  	planMetricList.checkoutMetrics.threeDimensionalRogramNo     =a.threeDimensionalRogramNo  ,
-		  	planMetricList.checkoutMetrics.fixtureId                    =a.fixtureId  ,
-
-			return a ;
-		}
-      
-    
-      var entry = addData  {};
-
-		$http({
-			method: "POST",
-			//url: config.HOST + "/api/2.0/bp/qcp/qcp/updateQCP",
-			url: "plan/addQCPItems.json",
-            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-					checkoutMetricNo		       : entry.checkoutMetricNo,
-		            checkoutMetricClassify		   : entry.checkoutMetricClassify,
-		            checkoutMetricName             : entry.checkoutMetricName,
-		            checkoutMetricDescription	   : entry.checkoutMetricDescription,
-		            checkoutToolName		       : entry.checkoutToolName,
-		            processName		               : entry.processName,
-		           
-
-		            metricUnit                     : entry.metricUnit,
-		  	        referenceStandard              : entry.referenceStandard ,
-		  	        underTolerance                 : entry.underTolerance,
-		  	        upTolerance                    : entry.upTolerance,
-		  	        mapPosition                    : entry.mapPosition,
-		  	        threeDimensionalRogramNo       : entry.threeDimensionalRogramNo,
-		  	        fixtureId                      : entry.fixtureId,
-
-			}
-		})
-		.success(function(data){
-		
-            if (data.code=="N01"){
-            	alert("检验项目信息添加成功");
-          //  	//$location.path("account_index/chooseModule");
-
-            }
-            else if(data.code=="E00"){
-            	alert(data.message+"，请重新登录");
-            	localStorage.clear();
-            	$location.path('login');
-            }else {
-            	console.log(data.message);
-            }
-        }).error(function () {
-            console.log('updateQCP'+data.message);
-        });
-
-
-
-}
-/*var parseQueryData = function(array){
-
-		var dl =[];
-		var dl =[];
-
-		// 肯定又数据的情况；
-		for (var i=0;i<array.length;i++){
-			checkoutMetrics = array[i];
-			if (checkoutMetrics.checkoutMetricTypeCode ==="DX")
-				dx.push(checkoutMetrics);
-			else if (checkoutMetrics.checkoutMetricTypeCode ==="DL")
-				dl.push(checkoutMetrics);
-			else
-				alert("检验指标类型既不非定性，也非定量")
-		}
-
-		planMetricList.DXCheckoutMetricList = dx;
-		planMetricList.DLCheckoutMetricList = dl;
-	}
-
-
-
-/*
-***************************************************
-***************************************************
-qqand
-***************************************************
-***************************************************
-*/
-/*var parseAddData = function(array){
-
-		var add =[];
-		//var adl =[];
-
-		// 肯定又数据的情况；
-		for (var i=0;i<array.length;i++){
-			  add[i]= array[i];
-			if (checkoutMetrics.checkoutMetricTypeCode ==="DX")
-				dx.push(checkoutMetrics);
-			else if (checkoutMetrics.checkoutMetricTypeCode ==="DL")
-				dl.push(checkoutMetrics);
-			else
-				alert("检验指标类型既不非定性，也非定量")
-		}
-
-		planMetricList.DXCheckoutMetricList = dx;
-		planMetricList.DLCheckoutMetricList = dl;
-	}
-
-	planMetricList.queryQCPItems = function(){
-
-		// 准备参数
-		var assemblyObj = function(){
-			var o = {};
-
-			o.sid		                = localStorage.getItem('sid');
-
-            o.checkoutPlanSid		    = planMetricList.viewSelectedCheckoutPlanSid;
-
-			return o;
-		}
-
-		var entry = assemblyObj();
-
-		 alert("set11");
-        console.log(entry);
-	 	 alert("set11");
-
-		//
-		$http({
-			method: "POST",
-			//url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
-			url: "plan/queryQCPItems.json",
-            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-					sid		                    : entry.sid,
-		            checkoutPlanSid		        : entry.checkoutPlanSid,
-			}
-		})
-		.success(function(data){
-            if (data.code=="N01"){
-            	//alert("检验计划信息更新成功");
-            	//$location.path("account_index/chooseModule");
-
-            	//绑定数据
-            	parseQueryData(data.contents);
-
-            }
-            else if(data.code=="E00"){
-            	alert(data.message+"，请重新登录");
-            	localStorage.clear();
-            	$location.path('login');
-            }else {
-            	console.log(data.message);
-            }
-        }).error(function () {
-            console.log('queryQCPItems'+data.message);
-        });
-	}
-
+	
 	
 
 /*
@@ -3162,7 +2976,10 @@ qqand
 ***************************************************
 ***************************************************
 */
+      $scope.planMetricListBack = function() {
 
+   	       history.go(-1);
+   }
 
 	$scope.planMetricList = planMetricList;
 
@@ -3182,10 +2999,29 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 			// display: "",
 			// page: 1
 		};
+         
+         //时间戳格式转化
+		Date.prototype.format = function() {
+	   		var year = this.getFullYear().toString();
+	   		var month = (this.getMonth()+1).toString();
+	   		var day = this.getDate().toString();
+	   		// console.log(year);
+
+			if (month<10) {
+				month = "0" + month;
+			}
+
+			if (day<10) {
+				day = "0" + day;
+			}
+
+		 	return (year + "-" + month + "-" +day );
+		}
+
 
 		$scope.planHistoryListBack = function(){
 			// $location.path('account_index/chooseModule').replace();
-			history.go(-1);
+			 $location.path("account_index/planRevise");
 		}
 
 		//根据检验计划类型获取检验计划
@@ -3210,7 +3046,27 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 	                // planHistoryList.display = "display:block"; 
 	 				// localStorage.setItem('page',1);	
 	                planHistoryList.QCP = data.contents;
-	                console.log(planHistoryList.QCP); 
+
+	             //      var entrytime = new Date(planHistoryList.QCP.entryTime*1000),
+              //             maketime = new Date(planHistoryList.QCP.makeTime*1000);   
+              // // console.log(entrytime);
+              //   planHistoryList.QCP.entryTime = entrytime.format();
+              //   planHistoryList.QCP.makeTime = maketime.format();
+
+	                //console.log(planHistoryList.QCP); 
+	                // planHistoryList.QCP.makeTime = time.format();
+	                // planHistoryList.QCP.entryTime = time.format();
+	                  for(var i=0,len=(planHistoryList.QCP).length;i<len;i++){
+	                  	(planHistoryList.QCP)[i].makeTime = (new Date((planHistoryList.QCP)[i].makeTime*1000)).format();
+	                  	(planHistoryList.QCP)[i].entryTime = (new Date((planHistoryList.QCP)[i].entryTime*1000)).format();
+	                // // 	// console.log((planlist.QCPSelected)[i])
+	                 }
+
+
+	                   // localStorage.setItem("materialSid");
+	                   // localStorage.setItem("materialSid",data.contents.materialSid);
+	                   // localStorage.setItem("materialSid",planHistoryList.QCP.materialSid);
+
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -3225,18 +3081,6 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 	        })
 		}
 
-
-		// $scope.querySingleplanInfo =function(planSid,checkoutPlanStatusCode){
-		// 	if (checkoutPlanStatusCode=="cps001") {
-		// 		localStorage.setItem("checkoutPlanSid",planSid);
-		// 		$location.path("account_index/planCheck");
-		// 	}else if(checkoutPlanStatusCode=="cps002") {
-		// 		localStorage.setItem("checkoutPlanSid",planSid);
-		// 		$location.path("account_index/planRevise");
-		// 	}else {
-		// 		alert("不是“查看/修订”状态");
-		// 	}
-		// }
 		
 		$scope.queryDicQCPType = function(){
 			$http({
@@ -3258,8 +3102,9 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 	                	});
 	                }
             		planHistoryList.selQCPType = (planHistoryList.dicQCPType)[0];
-            		$scope.checkHistoryQCP();
-            		console.log(data);
+            		$scope.checkHistoryQCP(planHistoryList.selQCPType.code);
+            		//console.log(data);
+
 
 	            }
 	            else if(data.code=="E00"){
@@ -3279,190 +3124,23 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 
 		
 	// 	//  /api/2.0/bp/qcp/qcp
-
-		$scope.querySingleQCP =function(planSid,checkoutPlanStatusCode){
-			// if (checkoutPlanStatusCode=="cps001") {
-			// 	localStorage.setItem("checkoutHistoryPlanSid",planSid);
-			// 	$location.path("account_index.planCheck");
-			// }else if(checkoutPlanStatusCode=="cps002") {
-			// 	localStorage.setItem("checkoutPlanSid",planSid);
-			// 	$location.path("account_index/planRevise");
-			// }else {
-			// 	alert("不是“查看/修订”状态");
-			// }
-			localStorage.setItem("checkoutHistoryPlanSid",planSid);
-			$location.path("account_index/planCheck");
-		}
-		
-	// 	$scope.queryDicQCPType = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			url: config.HOST + "/api/2.0/bp/account/dic/queryDicQCPType",
-	// 			// url: "plan/queryDicQCPType.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {
-	//  				planHistoryList.dictionary.QCPType = [];
-	//                 for (var i=0; i < data.contents.length;i++) {
-	//                 	planHistoryList.dictionary.QCPType.push({
-	//                 		"name": data.contents[i].checkoutPlanType,
-	//                 		"code": data.contents[i].checkoutPlanTypeCode
-	//                 	});
-	//                 }
- //            		planHistoryList.Selected.QCPType = (planHistoryList.dictionary.QCPType)[0];
- //            		$scope.queryQCPByType(planHistoryList.Selected.QCPType.code);
-
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-
-	// 	$scope.queryDicQCPType();
-
-
-	// 	// 上一页
-	// 	$scope.previous = function(){
-	// 		if (planHistoryList.page==1) {
-	// 			alert("当前是第1页...")
-	// 		} 
-			
-	// 	}
-
 	
+
+		$scope.querySingleQCPInfo =function(planSid,checkoutPlanStatusCode){
+
 		
+			localStorage.setItem("checkoutHistoryPlanSid",planSid);
+			$location.path("account_index/planHistoryListCheck");
 
-	// 	// 查询检验计划
-	// 	// $scope.queryQCP = function(){
-	// 	// 	$http({
-	// 	// 		method: "POST",
-	// 	// 		// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCP",
-	// 	// 		url: "plan/queryQCP.json",
-	// 	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 	// 		data: {
-	// 	// 			"sid": localStorage.getItem('sid'),
-	// 	// 			"companySid": localStorage.getItem('cSid'),
-	// 	// 			"page": localStorage.getItem('page')
-	// 	// 		}
-	// 	// 	})
-	// 	// 	.success(function(data){
-	//  //            if (data.code == 'N01') {
-	//  //                // planHistoryList.dictionary.materialName = data.contents;
-	//  //                planHistoryList.QCPSelected = data.contents;          
-	//  //            }
-	//  //            else if(data.code=="E00"){
-	//  //                alert(data.message+",请重新登陆");
-	//  //                localStorage.clear();
-	//  //                $location.path('login').replace();
-	//  //            }else {
-	//  //                alert(data.message);
-	//  //            }  
-	//  //        })
-	// 	// }
+		}
 
-	// 	// $scope.queryQCP();
+	    $scope.querySingCopyInfo = function(planSid,checkoutPlanStatusCode) {
+	    	localStorage.setItem("checkoutHistoryCopySid",planSid);
+			$location.path("account_index/planHistoryListCopy");
 
-	// 	//获取物料字典
-	// 	$scope.queryMaterialsInfo = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-	// 			// url: "manage/engineer/material/queryMaterialsInfo.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 				"companySid": localStorage.getItem('cSid')
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {
-	//             	planHistoryList.dictionary.materialName = data.contents;
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-
-	// $scope.queryMaterialsInfo();
-
-
-
-
-	// 	//根据物料编号获取物料版本
-	// 	$scope.queryMaterialVersionByMaterialNo = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryMaterialVersionByMaterialNo",
-	// 			// url: "plan/queryMaterialVersionByMaterialNo.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 				"companySid": localStorage.getItem('cSid'),
-	// 				"materialNo": planHistoryList.Selected.materialName.materialNo 
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {           	
-	//                 planHistoryList.display = "display:none"; 
-	//                 planHistoryList.dictionary.materialVersion = [];
-	//             	planHistoryList.Selected.materialVersion = "";
-	//                 planHistoryList.dictionary.materialVersion = data.contents;
-	//                 // planHistoryList.QCPSelected = data.contents;
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-
-	// 	//根据物料ID和物料版本获取检验计划
-	// 	$scope.queryQCPByMaterial = function(){
-	// 		$http({
-	// 			method: "POST",
-	// 			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByMaterial",
-	// 			// url: "plan/queryQCPByMaterial.json",
-	// 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 			data: {
-	// 				"sid": localStorage.getItem('sid'),
-	// 				"companySid": localStorage.getItem('cSid'),
-	// 				"materialNo": planHistoryList.Selected.materialName.materialNo ,
-	// 				"materialVersion": planHistoryList.Selected.materialVersion
-	// 			}
-	// 		})
-	// 		.success(function(data){
-	//             if (data.code == 'N01') {           	
-	//  				localStorage.setItem('page',1);
-	//                 planHistoryList.QCPSelected = data.contents;
-	//             	// comsole.log()
-	//             }
-	//             else if(data.code=="E00"){
-	//                 alert(data.message+",请重新登陆");
-	//                 localStorage.clear();
-	//                 $location.path('login').replace();
-	//             }else {
-	//                 alert(data.message);
-	//             }  
-	//         })
-	// 	}
-
+	    }
+		
+	
 }])
 FIMS.controller('iqcIndexCtrl',['$scope','$location',"$http",
 	function($scope,$location,$http) {
@@ -3883,17 +3561,17 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 
 	//  /api/2.0/bp/qcp/qcp
 
-	// $scope.querySingleIQCRecord =function(recordSid,operateStatusCode){
-	// 	if (operateStatusCode=="TJ") {
-	// 		localStorage.setItem("checkoutrecordSid",recordSid);
-	// 		$location.path("account_index/recordCheck");
-	// 	}else if(operateStatusCode=="cps002") {
-	// 		localStorage.setItem("checkoutrecordSid",recordSid);
-	// 		$location.path("account_index/recordRevise");
-	// 	}else {
-	// 		alert("不是“查看/修订”状态");
-	// 	}
-	// }
+	 $scope.querySingleIQCRecordInfo =function(recordSid,operateStatusCode){
+	 	if (operateStatusCode=="TJ") {
+	 		localStorage.setItem("checkoutRecordSid",recordSid);
+	 		$location.path("account_index/iqcRecordCheck");
+	 	}else if(operateStatusCode=="XD") {
+	 		localStorage.setItem("checkoutRecordSid",recordSid);
+	 		$location.path("account_index/iqcRecordRevise");
+	 	}else {
+	 		alert("不是“查看/修订”状态");
+	 	}
+	 }
 
 
 	// 上一页
@@ -3923,7 +3601,7 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	}
 
 	//根据检验计划类型获取检验计划
-	var queryIQCRecord = function() {
+	$scope.queryIQCRecord = function() {
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
@@ -3938,7 +3616,7 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 		.success(function(data){
             if (data.code == 'N01') {
             	$scope.iqcRecord = data.contents;
-                console.log($scope.iqcRecord);
+               // console.log($scope.iqcRecord);
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -3950,7 +3628,8 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
         })
 	}
 
-	queryIQCRecord();
+	//queryIQCRecord();
+	$scope.queryIQCRecord();
 	
 	
 }])
@@ -4520,6 +4199,24 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.companyShortName = localStorage.getItem("curCompanyName");	
 		$scope.dailyDetails = dailyDetails;
 
+		//调整时间格式
+		Date.prototype.format = function() {
+	   		var year = this.getFullYear().toString();
+	   		var month = (this.getMonth()+1).toString();
+	   		var day = this.getDate().toString();
+	   		console.log(year);
+
+			if (month<10) {
+				month = "0" + month;
+			}
+
+			if (day<10) {
+				day = "0" + day;
+			}
+
+		 	return (year + "-" + month + "-" +day );
+		}
+
 		$scope.dailyDetailsBack = function(){
 			// localStorage.removeItem('singleplan');
 			$location.path('account_index/iqcDataCount').replace();
@@ -4528,18 +4225,59 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialsInfo",
-				// url: "manage/engineer/material/queryMaterialsInfo.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
+				//url: "iqc/iqc_dataCount/A102DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
+					"checkoutTime": dailyDetails.checkoutTime+"T07:30:00Z",
 					"companySid": localStorage.getItem('cSid')
+					
 				}
 			})
-			.success(function(data){
-	            if (data.code == 'N01') {
+			.success(function(data){				
+	            if(data.code == "N01") {
+	            	//假数据
+	            	data.contents = [{
+						"iqcQualityDailyListSid":1,
+						"checkoutRecordNo":"WK-IQC-20150421-0001",
+						"batchNo":"null",
+						"companySid":1,
+						"companyShortName":"网库有限公司",
+						"materialSid":1,
+						"materialNo":"WK-RM-900303.A",
+						"materialVersion":"A",
+						"materialShortName":"铜接头",
+						"materialBarcode":"物料条形码",
+						"vendorSid":1,
+						"vendorNo":"v001",
+						"vendorShortName":"飞特",
+						"externalReceiptNo":"",
+						"aql":0.35,
+						"determinationResults":"Y",
+						"giveCheckoutAmount":20.0,
+						"sampleAmount":3.0,
+						"sampleQualifiedAmount":2.0,
+						"sampleUnqualifiedAmount":1.0,
+						"sampleDefectiveAmountTotal":0.0,
+						"sampleQualifiedRate":0.67,
+						"sampleUnqualifiedRate":0.33,
+						"sampleUnqualifiedRatePpm":330000.0,
+						"nspectorJobNumber":"10066038",
+						"nspectorName":"黄某",
+						"checkoutTime":1427891400,
+						"updateTimestamp":1432728739,
+						"notes":"null"
+					}]
 	            	dailyDetails.dateSelected = data.contents;
+	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
+	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
 	            }
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");
+	            // }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
@@ -4552,11 +4290,67 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 }])
 FIMS.controller('monthlyDetailsCtrl',['$scope','$location',"$http",
 	function($scope,$location,$http) {
+		var monthlyDetails = {
+			checkoutTime: "",
+			dateSelected: []
+		}
+
 		$scope.companyShortName = localStorage.getItem("curCompanyName");
+		$scope.monthlyDetails = monthlyDetails;
+
+		//调整时间格式
+		Date.prototype.format = function() {
+	   		var year = this.getFullYear().toString();
+	   		var month = (this.getMonth()+1).toString();
+	   		var day = this.getDate().toString();
+	   		console.log(year);
+
+			if (month<10) {
+				month = "0" + month;
+			}
+
+			if (day<10) {
+				day = "0" + day;
+			}
+
+		 	return (year + "-" + month + "-" +day );
+		}
 		
 		$scope.monthlyDetailsBack = function(){
 			// localStorage.removeItem('singleplan');
 			$location.path('account_index/iqcDataCount').replace();
+		}
+
+		$scope.getMonthDetails = function(){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
+				//url: "iqc/iqc_dataCount/A103MonthlyReport.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"checkoutTime": monthlyDetails.checkoutTime+"-01T07:30:00Z",
+					"companySid": localStorage.getItem('cSid')					
+				}
+			})
+			.success(function(data){				
+	            if(data.code == "N01"&&data.message !== "获取数据为空") {
+	            	monthlyDetails.dateSelected = data.contents;
+	           		for(var i=0,len=(monthlyDetails.dateSelected).length;i<len;i++){
+	                (monthlyDetails.dateSelected)[i].checkoutTime = (new Date((monthlyDetails.dateSelected)[i].checkoutTime*1000)).format(); 
+	                     	
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	            }else if (data.message === "获取数据为空") {
+	            	alert("暂无数据");
+	            }else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
 		}
 }])
 FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
@@ -4565,7 +4359,7 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			dictionary: {
 				materialName: []
 			},
-			selected: {
+			Selected: {
 				materialName : {}
 			},
 			checkoutTime: ""
@@ -4589,7 +4383,14 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
-	            	monthlyChart.dictionary.materialName = data.contents;
+	            	monthlyChart.dictionary.materialName = [];
+	            	for (var i=0; i < data.contents.length;i++) {
+	                	monthlyChart.dictionary.materialName.push({
+	                		"name": data.contents[i].materialShortName,
+	                		"materialSid": data.contents[i].materialSid
+	                	});
+	                }
+	                monthlyChart.Selected.materialName = (monthlyChart.dictionary.materialName)[0];
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -4635,32 +4436,31 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 		$scope.getSingleMaterial = function(){
 			$http({
 				method: 'POST',
-				//url: HOST+'/api/1.0/evaluate-manager/A1081MonthlyReport',
-				url: "iqc/iqc_dataCount/queryIQCRecords.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
 	                //"materialid": dataCount.dataCountInputs.dataCountTab4.materialid,
 	                "sid": localStorage.getItem('sid'),
-	                "page":"1",
+	                "date": monthlyChart.checkoutTime+"-01T23:00:10Z",
+	                "materialSid": monthlyChart.Selected.materialName.materialSid,
 					"companySid": localStorage.getItem('cSid')
 
 	            }
 			})
 			.success(function(data){
-				if (data.contents.length === 0) {
-					alert("暂无数据");
-				}else{
+				if (data.code == "N01") {
 					var xAxisData = [];
 				 	var sampercentArr = [];
 				 	var batchpercentArr = [];
 				 	var PPMpercentArr = [];
 
 			 		for(var i=0;i<data.contents.length;i++) {
-				 		xAxisData.push(data.contents[i].materialShortName);
-				 		sampercentArr.push(data.contents[i].sampleAmount);
-				 		batchpercentArr.push(data.contents[i].sampleAmount);
-				 		PPMpercentArr.push(data.contents[i].sampleAmount);
+				 		xAxisData.push(data.contents[i].vendorShortName);
+				 		sampercentArr.push(data.contents[i].sampercent*100);
+				 		batchpercentArr.push(data.contents[i].batchpercent*100);
+				 		PPMpercentArr.push(data.contents[i].PPMpercent);
 				 	}
 
 					var option1 = {
@@ -4680,7 +4480,7 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			                {
 			                    type : 'value',
 			                    name : '抽样合格率%',
-			                   // max : 100
+			                   max : 100
 
 			                }
 			            ],
@@ -4713,7 +4513,7 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			                {
 			                    type : 'value',
 			                    name : '批次合格率%',
-			                   // max : 100
+			                   max : 100
 
 			                }
 			            ],
@@ -4757,7 +4557,13 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 					echarts(option1,"main1");
 					echarts(option2,"main2");
 					echarts(option3,"main3");
-				}
+				}else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
 			}).error(function(){
                 console.log('接口报错');
             });
@@ -4769,10 +4575,10 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 			dictionary: {
 				vendorName: []
 			},
-			selected: {
-				vendorName : {}
+			Selected: {
+				vendorName: {}
 			},
-			checkoutTime: ""
+			checkoutTime: ""			
 		}
 		$scope.companyShortName = localStorage.getItem("curCompanyName");
 		$scope.monthlyChart = monthlyChart;
@@ -4793,7 +4599,15 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
-	            	monthlyChart.dictionary.vendorName = data.contents;
+	            	monthlyChart.dictionary.vendorName = [];
+	            	for (var i=0; i < data.contents.length;i++) {
+	                	monthlyChart.dictionary.vendorName.push({
+	                		"name": data.contents[i].vendorShortName,
+	                		"vendorSid": data.contents[i].vendorSid
+	                	});
+	                }
+            		monthlyChart.Selected.vendorName = (monthlyChart.dictionary.vendorName)[0];
+            		//$scope.queryVendorInfo(monthlyChart.Selected.vendorName.vendorSid);
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -4839,22 +4653,21 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 		$scope.getSingleVendor = function(){
 			$http({
 				method: 'POST',
-				//url: HOST+'/api/1.0/evaluate-manager/A1081MonthlyReport',
-				url: "iqc/iqc_dataCount/queryIQCRecords.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1091MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1091MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
 	                //"materialid": dataCount.dataCountInputs.dataCountTab4.materialid,
 	                "sid": localStorage.getItem('sid'),
-	                "page":"1",
+	                "date": monthlyChart.checkoutTime+"-01T23:00:10Z",
+	                "vendorSid": monthlyChart.Selected.vendorName.vendorSid,
 					"companySid": localStorage.getItem('cSid')
 
 	            }
 			})
 			.success(function(data){
-				if (data.contents.length === 0) {
-					alert("暂无数据");
-				}else{
+				if (data.code == "N01") {
 					var xAxisData = [];
 				 	var sampercentArr = [];
 				 	var batchpercentArr = [];
@@ -4862,9 +4675,9 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 
 			 		for(var i=0;i<data.contents.length;i++) {
 				 		xAxisData.push(data.contents[i].materialShortName);
-				 		sampercentArr.push(data.contents[i].sampleAmount);
-				 		batchpercentArr.push(data.contents[i].sampleAmount);
-				 		PPMpercentArr.push(data.contents[i].sampleAmount);
+				 		sampercentArr.push(data.contents[i].sampercent*100);
+				 		batchpercentArr.push(data.contents[i].batchpercent*100);
+				 		PPMpercentArr.push(data.contents[i].PPMpercent);
 				 	}
 
 					var option1 = {
@@ -4884,7 +4697,7 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 			                {
 			                    type : 'value',
 			                    name : '抽样合格率%',
-			                   // max : 100
+			                   max : 100
 
 			                }
 			            ],
@@ -4917,7 +4730,7 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 			                {
 			                    type : 'value',
 			                    name : '批次合格率%',
-			                   // max : 100
+			                   max : 100
 
 			                }
 			            ],
@@ -4961,9 +4774,725 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 					echarts(option1,"main1");
 					echarts(option2,"main2");
 					echarts(option3,"main3");
-				}
+				}else if(data.code == "E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
 			}).error(function(){
                 console.log('接口报错');
             });
 		}
 }])
+FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
+	function($scope,$location,$http) {
+		var monthlyStatistics = {
+			checkoutTime: "",
+			dateSelected: []
+		}
+
+		$scope.companyShortName = localStorage.getItem("curCompanyName");
+		$scope.monthlyStatistics = monthlyStatistics;
+
+		Date.prototype.format = function() {
+	   		var year = this.getFullYear().toString();
+	   		var month = (this.getMonth()+1).toString();
+	   		var day = this.getDate().toString();
+	   		console.log(year);
+
+			if (month<10) {
+				month = "0" + month;
+			}
+
+			if (day<10) {
+				day = "0" + day;
+			}
+
+		 	return (year + "-" + month + "-" +day );
+		}
+		
+		$scope.monthlyStatisticsBack = function(){
+			// localStorage.removeItem('singleplan');
+			$location.path('account_index/iqcDataCount').replace();
+		}
+
+		$scope.getMonthStatics0 = function(){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"checkoutTime": monthlyStatistics.checkoutTime+"-01T07:30:00Z",
+					"companySid": localStorage.getItem('cSid'),
+					"sign": 0
+				}
+			})
+			.success(function(data){
+	            if(data.code == "N01"&&data.contents.length !== 0) {
+	            	monthlyStatistics.dateSelected = data.contents;
+	           		for(var i=0,len=(monthlyStatistics.dateSelected).length;i<len;i++){
+	                (monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime = (new Date((monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime*1000)).format();      	
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	            }else if (data.contents.length === 0) {
+	            	alert("暂无数据");
+	            }else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+
+		$scope.getMonthStatics1 = function(){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"checkoutTime": monthlyStatistics.checkoutTime+"-01T07:30:00Z",
+					"companySid": localStorage.getItem('cSid'),
+					"sign": 1
+				}
+			})
+			.success(function(data){
+	            if(data.code == "N01"&&data.contents.length !== 0) {
+	            	monthlyStatistics.dateSelected = data.contents;
+	           		for(var i=0,len=(monthlyStatistics.dateSelected).length;i<len;i++){
+	                (monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime = (new Date((monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime*1000)).format();      	
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	            }else if (data.contents.length === 0) {
+	            	alert("暂无数据");
+	            }else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+}])
+FIMS.controller('planHistoryListCheckCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+	var planHistoryListCheck = {
+		
+	};
+
+		//调整时间格式
+	Date.prototype.format = function() {
+   		var year = this.getFullYear().toString();
+   		var month = (this.getMonth()+1).toString();
+   		var day = this.getDate().toString();
+   		// console.log(year);
+
+		if (month<10) {
+
+			month = "0" + month;
+		}
+
+		if (day<10) {
+
+			day = "0" + day;
+		}
+
+	 	return (year + "-" + month + "-" +day );
+	}
+
+	// 自执行函数，删除相关本地存储
+	function init(){
+		localStorage.removeItem('materialSid');
+	}
+
+	init();
+
+	
+
+	// $scope.makeTime = time.format();
+	// $scope.entryTime = time.format();
+
+	$scope.planHistoryListCheckBack = function(){
+		$location.path("account_index/planHistoryList");
+		//history.go(account_index/planHistoryList);
+
+	}
+
+	$scope.querySingleQCP = function(){
+		$http({
+			method: "POST",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"checkoutPlanSid": localStorage.getItem('checkoutHistoryPlanSid'),
+				"companySid": localStorage.getItem('cSid')
+			}
+		})
+		.success(function(data){
+            if (data.code=="N01"){
+            	$scope.planHistoryListCheck = data.contents;
+            	var entrytime = new Date($scope.planHistoryListCheck.entryTime*1000),
+            		maketime = new Date($scope.planHistoryListCheck.makeTime*1000);		
+            	// console.log(entrytime);
+              	$scope.planHistoryListCheck.entryTime = entrytime.format();
+              	$scope.planHistoryListCheck.makeTime = maketime.format();
+              	localStorage.setItem("materialSid",$scope.planHistoryListCheck.materialSid);
+              	// console.log($scope.planCheck.entryTime)
+
+            }
+            else if(data.code=="E00"){
+            	alert(data.message+"，请重新登录");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }
+        }).error(function () {
+            console.log('querySingleQCP'+data.message);
+        });
+	}
+
+	$scope.querySingleQCP();
+
+   // $scope.planHistoryListCheck = planHistoryListCheck;
+
+	var time  = new Date();
+	
+	
+}])
+FIMS.controller('planHistoryMetricListCtrl', ['$scope', '$location', '$http', 
+	function($scope,$location,$http){
+		var planHistoryMetricList = {
+			
+		
+
+			DXCheckoutMetricList:[],
+
+			DLCheckoutMetricList:[],
+
+
+        	
+	};
+ 
+$scope.planHistoryMetricListBack = function() {
+
+	history.go(-1);
+}
+
+//将定性和定量分开保存
+	var parseQueryData = function(array){
+
+		var dx =[];
+		var dl =[];
+
+		// 肯定又数据的情况；
+		for (var i=0;i<array.length;i++){
+			checkoutMetrics = array[i];
+			if (checkoutMetrics.checkoutMetricTypeCode ==="DX")
+				dx.push(checkoutMetrics);
+			else if (checkoutMetrics.checkoutMetricTypeCode ==="DL")
+				dl.push(checkoutMetrics);
+			else
+				alert("检验指标类型既不非定性，也非定量")
+		}
+
+		planHistoryMetricList.DXCheckoutMetricList = dx;
+		planHistoryMetricList.DLCheckoutMetricList = dl;
+	}
+
+
+
+
+/*
+***************************************************
+***************************************************
+queryQCPItems获取检验项目
+***************************************************
+***************************************************
+*/
+
+planHistoryMetricList.queryQCPItems = function(){
+
+		// // 准备参数
+		// var assemblyObj = function(){
+		// 	var o = {};
+
+		// 	o.sid		                = localStorage.getItem('sid');
+
+  //           o.checkoutPlanSid		    = localStorage.getItem('checkoutPlanSid');
+
+  //           // localStorage.removeItem("checkoutPlanSid");
+
+  //           // console.log(localStorage.getItem('checkoutPlanSid'));
+
+		// 	return o;
+		// }
+
+		// var entry = assemblyObj();
+		$http({
+			method: "POST",
+			url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPItems",
+			// url: "plan/queryQCPItems.json",
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+					 "sid": localStorage.getItem('sid'),
+                     "checkoutPlanSid": localStorage.getItem('checkoutPlanSid')
+			}
+		})
+		.success(function(data){
+            if (data.code=="N01"){
+            	//alert("检验计划信息更新成功");
+            	//$location.path("account_index/chooseModule");
+            	// console.log(data.contents);
+            	//绑定数据
+            	parseQueryData(data.contents);
+
+            }
+            else if(data.code=="E00"){
+            	alert(data.message+"，请重新登录");
+            	localStorage.clear();
+            	$location.path('login');
+            }else {
+            	console.log(data.message);
+            }
+        }).error(function () {
+            console.log('queryQCPItems'+data.message);
+        });
+	}
+
+	
+  
+
+
+
+
+	$scope.planHistoryMetricList = planHistoryMetricList;
+
+	planHistoryMetricList.queryQCPItems();
+
+
+}])
+
+
+FIMS.controller('planHistoryListCopyCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+      var planHistoryListCopy = {
+          singleQCP: {
+
+            // QCPType: {},
+            // materialNo : {}   
+          }
+
+          
+            };
+/*
+***************************************************
+***************************************************
+***************************************************
+***************************************************
+*/
+     
+    var time  = new Date();
+  
+
+  //调整时间格式
+  Date.prototype.format = function() {
+      var year = this.getFullYear().toString();
+      var month = (this.getMonth()+1).toString();
+      var day = this.getDate().toString();
+      // console.log(year);
+
+    if (month<10) {
+      month = "0" + month;
+    }
+
+    if (day<10) {
+      day = "0" + day;
+    }
+
+    return (year + "-" + month + "-" +day );
+  }
+
+  // planHistoryListCopy.singleQCP.makeTime = time.format();
+  // planHistoryListCopy.singleQCP.entryTime = time.format();
+/*
+***************************************************
+***************************************************
+***************************************************
+***************************************************
+*/      
+
+    planHistoryListCopy.querySingleQCP = function(){
+            $http({
+                  method: "POST",
+                  url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleQCP",
+                   // url: "plan/querySingleQCP.json",
+                   headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+                  data: {
+                        "sid": localStorage.getItem('sid'),
+                        "checkoutPlanSid": localStorage.getItem('checkoutHistoryCopySid'),
+                        "companySid": localStorage.getItem('cSid')
+                  }
+            })
+            .success(function(data){
+            if (data.code=="N01"){
+                
+                  planHistoryListCopy.singleQCP =data.contents;
+                var entrytime = new Date(planHistoryListCopy.singleQCP.entryTime*1000),
+                maketime = new Date(planHistoryListCopy.singleQCP.makeTime*1000);   
+              // console.log(entrytime);
+                planHistoryListCopy.singleQCP.entryTime = entrytime.format();
+                 planHistoryListCopy.singleQCP.makeTime = maketime.format();
+                 localStorage.setItem("materialSid",planHistoryListCopy.singleQCP.materialSid);
+                //   var entrytime = new Date(planHistoryListCopy.singleQCP.entryTime*1000),
+                // maketime = new Date(planHistoryListCopy.singleQCP.makeTime*1000);   
+              // console.log(entrytime);
+                //planHistoryListCopy.singleQCP.makeTime = time.format();
+                //planHistoryListCopy.singleQCP.entryTime = time.format();
+                  //console.log(planHistoryListCopy.singleQCP);
+                
+            }
+            else if(data.code=="E00"){
+                  alert(data.message+"，请重新登录");
+                  localStorage.clear();
+                  $location.path('login');
+            }else {
+                  console.log(data.message);
+            }
+        }).error(function () {
+            console.log('querySingleQCP'+data.message);
+        });
+      }
+// $scope.querySingleQCP();
+/*
+***************************************************
+***************************************************
+addQCP
+***************************************************
+***************************************************
+*/
+ $scope.addQCP = function(){
+
+     $http({
+       method: "POST",
+       url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCP",
+       // url: "plan/addQCP.json",
+       header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+       data: {
+               "sid": localStorage.getItem('sid'),
+              "checkoutPlanNo":planHistoryListCopy.singleQCP.checkoutPlanNo,
+              "checkoutPlanVersion":planHistoryListCopy.singleQCP.checkoutPlanVersion,
+              "checkoutPlanTypeCode":planHistoryListCopy.singleQCP.checkoutPlanTypeCode,
+              "checkoutPlanType":planHistoryListCopy.singleQCP.checkoutPlanType,
+              "companySid":localStorage.getItem('cSid'),
+              "companyShortName":localStorage.getItem('curCompanyName'),
+              "materialSid":planHistoryListCopy.singleQCP.materialSid,
+              "materialNo":planHistoryListCopy.singleQCP.materialNo,
+              "materialVersion":planHistoryListCopy.singleQCP.materialVersion,
+              "materialShortName":planHistoryListCopy.singleQCP.materialShortName,
+              "aql":planHistoryListCopy.singleQCP.aql,
+              // "entrySid":planHistoryListCopy.singleQCP. 1,
+              "entryId":localStorage.getItem('email'),
+              "entryJobNumber":localStorage.getItem('userJobNumber'),
+              "entryName":planHistoryListCopy.singleQCP.entryName,
+              "entryTime":((new Date(planHistoryListCopy.singleQCP.entryTime)).valueOf())/1000,
+              "makeJobNumber":planHistoryListCopy.singleQCP.makeJobNumber,
+              // "makeJobNumber":localStorage.getItem('makeJobNumber'),
+              "makeName":planHistoryListCopy.singleQCP.makeName,
+              "makeTime":((new Date(planHistoryListCopy.singleQCP.makeTime)).valueOf())/1000,
+
+
+
+
+
+
+              //  "checkoutPlanNo":planHistoryListCopy.checkoutPlanNo,
+              //  "checkoutPlanVersion":planHistoryListCopy.checkoutPlanVersion,
+              //  //"checkoutPlanTypeCode":planHistoryListCopy.singleQCP.Selected.QCPType.code,
+              //  //"checkoutPlanType":planHistoryListCopy.singleQCP.Selected.QCPType.name,
+              //  //"companySid":localStorage.getItem('cSid'),
+              //  //"companyShortName":localStorage.getItem('curCompanyName'),
+              //  //"materialSid":planHistoryListCopy.singleQCP.Selected.materialNo.materialSid,
+              //  "materialNo":planHistoryListCopy.materialNo,
+              //  "materialVersion":planHistoryListCopy.materialVersion,
+              //  "materialShortName":planHistoryListCopy.materialShortName,
+              //  "aql":planHistoryListCopy.aql,
+              // //  "entrySid":planHistoryListCopy. 1,
+              // // "entryId":localStorage.getItem('email'),
+              // // "entryJobNumber":localStorage.getItem('userJobNumber'),
+              //  "entryName":planHistoryListCopy.entryName,
+              // "entryTime":((new Date(planHistoryListCopy.entryTime)).valueOf())/1000,
+              //  "makeJobNumber":planHistoryListCopy.makeJobNumber,
+              //  // "makeJobNumber":localStorage.getItem('makeJobNumber'),
+              //  "makeName":planHistoryListCopy.makeName,
+              //  "makeTime":((new Date(planHistoryListCopy.makeTime)).valueOf())/1000,
+       }
+     })
+     .success(function(data){
+             if (data.code == 'N01') {             
+           alert(data.message);
+           $location.path('account_index/planHistoryList');         
+             }
+             else if(data.code=="E00"){
+                 alert(data.message+",请重新登陆");
+                 localStorage.clear();
+                 $location.path('login').replace();
+             }else {
+                 alert(data.message);
+             }  
+         })
+   }
+
+/*
+***************************************************
+***************************************************
+***************************************************
+***************************************************
+*/
+
+      $scope.HistoryListCopyback = function(){
+            var a = confirm("您确定要退出吗？退出将丢失填写数据!")
+            if (a) {
+                  $location.path("account_index/planHistoryList");
+            }
+      }
+/*
+***************************************************
+***************************************************
+***************************************************
+***************************************************
+*/
+
+    $scope.planHistoryListCopy =planHistoryListCopy;
+     planHistoryListCopy.querySingleQCP();
+
+}])
+
+
+FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($scope,$location,$http){
+
+    var iqcRecordCheck = {
+
+    };
+   
+   //自执行函数，删除相关本地存储
+  function init(){
+        localStorage.removeItem('materialSid');
+    }
+
+    init();
+
+
+ $scope.querySingleIQCRecord = function() {
+        $http({
+
+            method: "POST",
+            // url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecord",
+            url: "iqc/iqc_record/querySingleIQCRecord.json",
+            header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
+                "companySid": localStorage.getItem('cSid'),
+                 //"page": localStorage.getItem('page')
+            }
+        })
+
+        .success(function(data){
+            if (data.code == 'N01') {
+                $scope.iqcRecordCheck = data.contents;
+                // localStorage.setItem();
+                localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
+               // console.log($scope.iqcRecordCheck);
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+        // .error(function () {
+        //     console.log('querySingleIQCRecord'+data.message);
+        // });
+    }
+
+      $scope.querySingleIQCRecord();
+
+
+
+    $scope.back = function(){
+
+        history.go(-1);
+
+    }
+
+}])
+FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($scope,$location,$http){
+
+	var iqcRecordRevise = {
+
+         singleRecord:{
+
+        }
+
+	};
+   
+   //自执行函数，删除相关本地存储
+  function init(){
+		localStorage.removeItem('materialSid');
+	}
+
+	init();
+
+
+ $scope.querySingleIQCRecord = function() {
+    	$http({
+
+            method: "POST",
+			// url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecord",
+			url: "iqc/iqc_record/querySingleIQCRecord.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				"checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
+				"companySid": localStorage.getItem('cSid'),
+				 //"page": localStorage.getItem('page')
+			}
+    	})
+
+    	.success(function(data){
+            if (data.code == 'N01') {
+            	$scope.iqcRecordCheck = data.contents;
+                // localStorage.setItem();
+                localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
+               // console.log($scope.iqcRecordCheck);
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+        // .error(function () {
+        //     console.log('querySingleIQCRecord'+data.message);
+        // });
+    }
+
+      $scope.querySingleIQCRecord();
+
+
+
+	$scope.back = function(){
+
+		history.go(-1);
+
+	}
+
+}])
+
+FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$http',function($rootScope,$scope,$location,$http){
+    var iqcComplexDXCheck = { 
+      
+    };
+
+  //自执行函数，删除相关本地存储
+  function init(){
+        localStorage.removeItem('materialSid');
+    }
+
+    init();
+
+  //调整时间格式
+    // Date.prototype.format = function() {
+    //     var year = this.getFullYear().toString();
+    //     var month = (this.getMonth()+1).toString();
+    //     var day = this.getDate().toString();
+    //     // console.log(year);
+
+    //     if (month<10) {
+    //         month = "0" + month;
+    //     }
+
+    //     if (day<10) {
+    //         day = "0" + day;
+    //     }
+
+    //     return (year + "-" + month + "-" +day );
+    // }
+
+    // var time  = new Date();
+
+
+ $scope.querySingleComplexIQCRecord = function() {
+        $http({
+
+            method: "POST",
+             url: config.HOST + "/api/2.0/bp/qc/iqc/querySingleComplexIQCRecord",
+            //url: "iqc/iqc_record/querySingleComplexIQCRecord.json",
+            header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
+                "companySid": localStorage.getItem('cSid'),
+                 //"page": localStorage.getItem('page')
+            }
+        })
+
+        .success(function(data){
+            if (data.code == 'N01') {
+                $scope.iqcComplexDXCheck = data.contents;
+               // var giveCheckouttime = new Date($scope.iqcComplexDXCheck.giveCheckoutTime*1000);
+                   // maketime = new Date($scope.iqcComplexDXCheck.makeTime*1000);        
+                // console.log(entrytime);
+               // $scope.iqcComplexDXCheck.giveCheckoutTime = giveCheckouttime.format();
+                //$scope.iqcComplexDXCheck.makeTime = maketime.format();
+
+                // localStorage.setItem();
+                localStorage.setItem("materialSid",$scope.iqcComplexDXCheck.materialSid);
+               // console.log($scope.iqcComplexDXCheck);
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+        // .error(function () {
+        //     console.log('querySingleComplexIQCRecord'+data.message);
+        // });
+    }
+
+      $scope.querySingleComplexIQCRecord();
+
+
+
+    // $scope.back = function(){
+
+    //     $location.path("account_index/iqcRecord");
+
+    // }
+
+
+
+
+    $scope.back = function(){
+
+        $location.path("account_index/iqcRecord");
+
+    }
+
+}])
+

@@ -55,18 +55,24 @@
 			  <tbody>		 
 			  	<tr ng-repeat="list in dailyDetails.dateSelected">
 			  		<td>{{$index+1}}</td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialNo"></td>
-			  		<td ng-bind="list.materialShortName"></td>
-			  		<td ng-bind="list.materialVersion"></td>
-			  		<td ng-bind="list.materialFullName"></td>
+			  		<td ng-bind="list.checkoutTime"></td>
+			  		<td ng-bind="list.checkoutRecordNo"></td>
+			  		<td ng-bind="list.batchNo"></td>
 			  		<td ng-bind="list.materialBarcode"></td>
-			  		<td ng-bind="list.notes"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
-			  		<td ng-bind="list.materialSid"></td>
+			  		<td ng-bind="list.materialNo"></td>
+			  		<td ng-bind="list.vendorNo"></td>
+			  		<td ng-bind="list.vendorShortName"></td>
+			  		<td ng-bind="list.giveCheckoutAmount"></td>
+			  		<td ng-bind="list.sampleAmount"></td>
+			  		<td ng-bind="list.sampleQualifiedAmount"></td>
+			  		<td ng-bind="list.sampleUnqualifiedAmount"></td>
+			  		<td ng-bind="list.sampleDefectiveAmountTotal"></td>
+			  		<td ng-bind="list.sampleQualifiedRate"></td>
+			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
+			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.aql"></td>
+			  		<td ng-bind="list.determinationResults"></td>
+			  		<td ng-bind="list.nspectorName"></td>
 			  	</tr>
 			  </tbody>
 			</table>

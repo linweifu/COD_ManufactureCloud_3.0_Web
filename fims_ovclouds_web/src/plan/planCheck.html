@@ -13,84 +13,70 @@
 
 </style>
 
-<div id="container" class="container" ng-controller="planCheckCtrl">
+<div class="container" id="container" ng-controller="planCheckCtrl">
 	<form class="form-horizontal" id="form-horizontal" name="planCheckForm" novalidate>
 		<div class="form-group">
 			<label class="left control-label">待检物料编号</label>
 			<div class="col-sm-5">
-				<input type="text" class="form-control"  name="materialNo" ng-model="planCheck.materialNo" required ng-disabled="true">
+				<input type="text" class="form-control" name="materialNo" ng-model="planCheck.materialNo" required ng-disabled="true">
 			</div>
-
-			<label for="name" class="left control-label">版本</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control"  name="materialVersion" ng-model="planCheck.materialVersion" required ng-disabled="true">
-			</div>
-
-			<!-- <div class="col-sm-5">
-				<select class="form-control" ng-model="planCheck.industry.iType" ng-options="o as o.name for o in dictionary.iType" ng-change="queryInfo()" name="s"></select>
-			</div> -->
+            <label class="left control-label" style="margin-right:45px">版本</label>
+            <div class="col-sm-3">
+            	<input type="text" class="form-control" name="materialVersion" ng-model="planCheck.materialVersion" required ng-disabled="true">
+            </div>
 		</div>
-		<div class="form-group">
-			<label class="left control-label">待检物料简称</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control"  name="materialShortName" ng-model="planCheck.materialShortName" required ng-disabled="true">
-			</div>
-		</div>
+        <div class="form-group">
+        	<label class="left control-label">待检物料简称</label>
+        	<div class="col-sm-5">
+        	<input type="text" class="form-control" name="materialShortName" ng-model="planCheck.materialShortName" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+        	<label class="left control-label">检验计划编号</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="form-control" name="checkoutPlanNo" ng-model="planCheck.checkoutPlanNo" required ng-disabled="true">
+        	</div>
+        	<label class="left control-label"style="margin-right:45px">版本</label>
+            <div class="col-sm-3">
+            	<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="planCheck.checkoutPlanVersion" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+        	<label class="left control-label" style="margin-right:53px">AQL</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="left form-control" name="aql" ng-model="planCheck.aql" required ng-disabled="true">
+        	</div>
+        	<label class="left control-label"style="margin-right:7px">制作人工号</label>
+            <div class="col-sm-3">
+            	<input type="text" class="form-control" name="makeJobNumber" ng-model="planCheck.makeJobNumber" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+        	<label class="left control-label" style="margin-right:40px">制作人</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="form-control" name="makeName" ng-model="planCheck.makeName" required ng-disabled="true" >
+        	</div>
+        	<label class="left control-label" style="margin-right:20px">制作时间</label>
+        	<div class="col-sm-3">
+        		<input type="text" class="form-control" name="makeTime" ng-model="planCheck.makeTime" required ng-disabled="true" >
+        	</div>
+        </div>
+         <div class="form-group">
+        	<label class="left control-label" style="margin-right:40px">录入人</label>
+        	<div class="col-sm-5">
+        		<input type="text" class="form-control" name="entryName" ng-model="planCheck.entryName" required ng-disabled="true" >
+        	</div>
+        	<label class="left control-label" style="margin-right:20px">录入时间</label>
+        	<div class="col-sm-3">
+        		<input type="text" class="form-control" name="entryTime" ng-model="planCheck.entryTime" required ng-disabled="true" >
+        	</div>
+        </div>
 
-		<div class="form-group">
-			<label class="left control-label">检验计划编号</label>
-			<div class="col-sm-5">
-				<input type="text" class="form-control"  name="checkoutPlanNo" ng-model="planCheck.checkoutPlanNo" required ng-disabled="true">
-			</div>
+        <button class="btn btn-success" style="padding:.3em .6em; margin-top:20px;" ui-sref="account_index.planHistoryList">查看历史版本</button>
 
-			<label class="left control-label">版本</label>
-			<div class="col-sm-2">
-				<input type="text" class="form-control"  name="checkoutPlanVersion" ng-model="planCheck.checkoutPlanVersion" required ng-disabled="true">
-			</div>
-		</div>
+        <button class="btn btn-info" style="padding:.3em .6em; margin-top:20px; margin-left:20px;" ui-sref="account_index.planMetricList">检验项目</button>
 
-		<div class="form-group">
-			<label class="left control-label" style="margin-right: 1em">AQL</label>
-			<div class="col-sm-3">
-				<input type="text" class="form-control"  name="aql" ng-model="planCheck.aql" required ng-disabled="true">
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="left control-label">制作人</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control"  name="makeName" ng-model="planCheck.makeName" required ng-disabled="true">
-			</div>
-
-			<label class="left control-label">制作时间</label>
-			<div class="col-sm-3">
-				<input type="date" class="form-control" id="makeTime" name="makeTime" ng-model="planCheck.makeTime" required ng-disabled="true">
-			</div>
-		</div>
-
-		<div class="form-group">
-			<label class="left control-label">录入人</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control"  name="entryName" ng-model="planCheck.entryName" required ng-disabled="true">
-			</div>
-
-			<label class="left control-label">录入时间</label>
-			<div class="col-sm-3">
-			<input type="date" class="form-control" id="entryTime" name="entryTime" ng-model="planCheck.entryTime" ng-disabled="true" required ng-disabled="true">
-			</div>
-		</div>
-
-		<!-- <button class="btn btn-default" style="padding: .3em .6em;" ng-disabled="companySetting.$invalid||companySetting.s.$pristine||companySetting.s1.$pristine||companySetting.s2.$pristine||companySetting.s3.$pristine||companySetting.s4.$pristine">查看历史版本</button> -->
-
-		<button class="btn btn-default" style="padding: .3em .6em;" ui-sref="account_index.planHistoryList">查看历史版本</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ui-sref="account_index.planMetricList" >检验项目</button>
-
-		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="planCheckBack()" >返回</button>
+         <button class="btn btn-primary" style="padding:.3em .6em; margin-top:20px; margin-left:20px;" ng-click="planCheckBack()">返回</button>
 	</form>
 
-<!-- 	<p style="color: #333;font-size: 16px;">通过公开链接，快速邀请</p>
-	<p style="color: #555;font-size: 14px;">将下面的公共邀请链接通过QQ，微信等任何方式发给同事，即可点击申请加入公司。（申请需团队管理员审核并分配访问权限）</p>
-	<span class="label label-success" id="label">https://ovclouds.com/join?t=59a1817fd9ea087dabb6c9ebd123ece0</span><button class="btn btn-default" style="padding: .3em .5em;margin-left: .2em;">复制</button>
-	<p style="color: #666;font-size: 14px;margin-top: 8px;">注意：任何看到邀请链接的人，都可以申请加入团队。意外泄漏请 <a style="color: #555">重新生成邀请链接</a></p> -->
 </div>

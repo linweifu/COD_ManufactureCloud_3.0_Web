@@ -125,6 +125,65 @@ FIMS.config([
 		// controller:'dataCountController',
 		templateUrl:'plan/planMetricList.html'
 	})
+
+    .state('account_index.planHistoryListCheck',{
+		url:'/planHistoryListCheck',
+		templateUrl:'plan/planHistoryListCheck.html'
+	})
+	.state('account_index.planHistoryMetricList',{
+		url:'/planHistoryMetricList',
+		templateUrl:'plan/planHistoryMetricList.html'
+	})
+
+	.state('account_index.planHistoryListCopy',{
+		url:'/planHistoryListCopy',
+		templateUrl:'plan/planHistoryListCopy.html'
+	})
+
+    .state('account_index.iqcRecordCheck',{
+		url:'/iqcRecordCheck',
+		controller:'iqcRecordCheckCtrl',
+		templateUrl:'iqc/iqc_record/iqcRecordCheck.html'
+	})
+
+
+    .state('account_index.iqcRecordRevise',{
+		url:'/iqcRecordRevise',
+		controller:'iqcRecordReviseCtrl',
+		templateUrl:'iqc/iqc_record/iqcRecordRevise.html'
+	})
+
+
+
+    .state('account_index.iqcComplexDLCheck',{
+		url:'/iqcComplexDLCheck',
+		controller:'iqcComplexDLCheck',
+		templateUrl:'iqc/iqc_record/iqcComplexDLCheck.html'
+	})
+    
+    .state('account_index.iqcComplexDXCheck',{
+		url:'/iqcComplexDXCheck',
+		controller:'iqcComplexDXCheck',
+		templateUrl:'iqc/iqc_record/iqcComplexDXCheck.html'
+	})
+
+    .state('account_index.iqcSimpleDLCheck',{
+		url:'/iqcSimpleDLCheck',
+		controller:'iqcSimpleDLCheck',
+		templateUrl:'iqc/iqc_record/iqcSimpleDLCheck.html'
+	})
+    
+     .state('account_index.iqcSimpleDXCheck',{
+		url:'/iqcSimpleDXCheck',
+		controller:'iqcSimpleDXCheck',
+		templateUrl:'iqc/iqc_record/iqcSimpleDXCheck.html'
+	})
+
+
+
+
+
+
 	.state('account_index.iqcIndex',{
 		url:'/iqcIndex',
 		controller:'iqcIndexCtrl',
@@ -196,12 +255,12 @@ FIMS.config([
 	})
 	.state('account_index.monthlyStatistics_material',{
 		url:'/monthlyStatistics_material',
-		// controller: 'monthlyStatistics_materialCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_material.html'
 	})
 	.state('account_index.monthlyStatistics_vendor',{
 		url:'/monthlyStatistics_vendor',
-		// controller: 'monthlyStatistics_vendorCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_vendor.html'
 	})
 	.state('account_index.monthlyChart_vendor',{

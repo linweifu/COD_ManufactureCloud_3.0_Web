@@ -13,17 +13,17 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 
 	//  /api/2.0/bp/qcp/qcp
 
-	// $scope.querySingleIQCRecord =function(recordSid,operateStatusCode){
-	// 	if (operateStatusCode=="TJ") {
-	// 		localStorage.setItem("checkoutrecordSid",recordSid);
-	// 		$location.path("account_index/recordCheck");
-	// 	}else if(operateStatusCode=="cps002") {
-	// 		localStorage.setItem("checkoutrecordSid",recordSid);
-	// 		$location.path("account_index/recordRevise");
-	// 	}else {
-	// 		alert("不是“查看/修订”状态");
-	// 	}
-	// }
+	 $scope.querySingleIQCRecordInfo =function(recordSid,operateStatusCode){
+	 	if (operateStatusCode=="TJ") {
+	 		localStorage.setItem("checkoutRecordSid",recordSid);
+	 		$location.path("account_index/iqcRecordCheck");
+	 	}else if(operateStatusCode=="XD") {
+	 		localStorage.setItem("checkoutRecordSid",recordSid);
+	 		$location.path("account_index/iqcRecordRevise");
+	 	}else {
+	 		alert("不是“查看/修订”状态");
+	 	}
+	 }
 
 
 	// 上一页
@@ -53,7 +53,7 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	}
 
 	//根据检验计划类型获取检验计划
-	var queryIQCRecord = function() {
+	$scope.queryIQCRecord = function() {
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
@@ -68,7 +68,7 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 		.success(function(data){
             if (data.code == 'N01') {
             	$scope.iqcRecord = data.contents;
-                console.log($scope.iqcRecord);
+               // console.log($scope.iqcRecord);
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -80,7 +80,8 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
         })
 	}
 
-	queryIQCRecord();
+	//queryIQCRecord();
+	$scope.queryIQCRecord();
 	
 	
 }])

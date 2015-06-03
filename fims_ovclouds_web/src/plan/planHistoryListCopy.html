@@ -1,0 +1,90 @@
+<style type="text/css">
+    #container {
+        max-width: 768px;
+        background-color: #f8f8f8;
+        border: 1px solid #ececec;
+        border-radius: 5px;
+        padding: 0 25px 20px 25px;
+    }   
+    h3 {color: #000;}
+    #form-horizontal {margin-top: 1.5em;color: #333}
+    .link {text-align: left !important; color: rgb(79,159,207)} 
+    .left{text-align: left !important;float: left;padding-left: 15px;padding-top: 7px;padding-right: 5px;}
+
+</style>
+
+<div class="container" id="container" ng-controller="planHistoryListCopyCtrl">
+<h3>复制检验计划</h3>
+<form class="form-horizontal" id="form-horizontal" name="planHistoryListCopyForm" novalidate>
+     <div class="form-group">
+            <label class="left control-label">检物计划类型</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="checkoutPlanType" ng-model="planHistoryListCopy.singleQCP.checkoutPlanType" required ng-disabled="true">
+            </div>
+     </div>
+        <div class="form-group">
+            <label class="left control-label">待检物料编号</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="materialNo" ng-model="planHistoryListCopy.singleQCP.materialNo" required ng-disabled="true">
+            </div>
+            <label class="left control-label" style="margin-right:45px">版本</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="materialVersion" ng-model="planHistoryListCopy.singleQCP.materialVersion" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label">待检物料简称</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control" name="materialShortName" ng-model="planHistoryListCopy.singleQCP.materialShortName" required ng-disabled="true">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label">检验计划编号</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="checkoutPlanNo" ng-model="planHistoryListCopy.singleQCP.checkoutPlanNo" required >
+            </div>
+            <label class="left control-label"style="margin-right:45px">版本</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="checkoutPlanVersion" ng-model="planHistoryListCopy.singleQCP.checkoutPlanVersion" required >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label" style="margin-right:53px">AQL</label>
+            <div class="col-sm-5">
+                <input type="text" class="left form-control" name="aql" ng-model="planHistoryListCopy.singleQCP.aql" required >
+            </div>
+            <label class="left control-label"style="margin-right:5px">制作人工号</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="makeJobNumber" ng-model="planHistoryListCopy.singleQCP.makeJobNumber" required >
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="left control-label" style="margin-right:40px">制作人</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="makeName" ng-model="planHistoryListCopy.singleQCP.makeName" required  >
+            </div>
+            <label class="left control-label" style="margin-right:18px">制作时间</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" name="makeTime" ng-model="planHistoryListCopy.singleQCP.makeTime" required  >
+            </div>
+        </div>
+         <div class="form-group">
+            <label class="left control-label" style="margin-right:40px">录入人</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" name="entryName" ng-model="planHistoryListCopy.singleQCP.entryName" required ng-disabled="true" >
+            </div>
+            <label class="left control-label" style="margin-right:18px">录入时间</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="entryTime" ng-model="planHistoryListCopy.singleQCP.entryTime" required ng-disabled="true" >
+            </div>
+        </div>
+
+        <button class="btn btn-success" style="padding:.3em .6em; margin-top:20px; margin-right:20px;" ng-disabled="planHistoryListCopyForm.$invalid" ng-click="addQCP()">确定添加</button>
+
+       <!--  <button class="btn btn-info" style="padding:.3em .6em; margin-top:20px; margin-right:20px;" ng-click="planHistoryListCopy.activateQCP()">启用</button>
+ -->
+       
+
+         <button class="btn btn-primary" style="padding:.3em .6em; margin-top:20px; margin-left:20px;" ng-click="HistoryListCopyback()">取消添加</button>
+    </form>
+</div>
