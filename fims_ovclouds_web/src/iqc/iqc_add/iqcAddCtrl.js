@@ -239,9 +239,9 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
-			    "checkoutRecordInputWay":"阿杜"
-			    // "operate_status_code":"TJ",
-			    // "operate_status":"提交状态"
+			    "checkoutRecordInputWay":"阿杜",
+			    "operate_status_code":"TJ",
+			    "operate_status":"提交状态"
 			}
 		})
 		.success(function(data){
