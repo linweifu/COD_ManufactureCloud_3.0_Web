@@ -240,8 +240,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
 			    "checkoutRecordInputWay":"阿杜",
-			    "operate_status_code":"TJ",
-			    "operate_status":"提交状态"
+			    "operateStatusCode":"TJ",
+			    "operateStatus":"提交状态"
 			}
 		})
 		.success(function(data){
