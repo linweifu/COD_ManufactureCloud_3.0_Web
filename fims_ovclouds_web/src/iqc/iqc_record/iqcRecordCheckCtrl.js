@@ -1,35 +1,35 @@
 FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($scope,$location,$http){
 
-	var iqcRecordCheck = {
+    var iqcRecordCheck = {
 
-	};
+    };
    
    //自执行函数，删除相关本地存储
   function init(){
-		localStorage.removeItem('materialSid');
-	}
+        localStorage.removeItem('materialSid');
+    }
 
-	init();
+    init();
 
 
  $scope.querySingleIQCRecord = function() {
-    	$http({
+        $http({
 
             method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecord",
-			url: "iqc/iqc_record/querySingleIQCRecord.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
-				"companySid": localStorage.getItem('cSid'),
-				 //"page": localStorage.getItem('page')
-			}
-    	})
+            // url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecord",
+            url: "iqc/iqc_record/querySingleIQCRecord.json",
+            header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
+                "companySid": localStorage.getItem('cSid'),
+                 //"page": localStorage.getItem('page')
+            }
+        })
 
-    	.success(function(data){
+        .success(function(data){
             if (data.code == 'N01') {
-            	$scope.iqcRecordCheck = data.contents;
+                $scope.iqcRecordCheck = data.contents;
                 // localStorage.setItem();
                 localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
                // console.log($scope.iqcRecordCheck);
@@ -51,10 +51,10 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
 
 
 
-	$scope.back = function(){
+    $scope.back = function(){
 
-		history.go(-1);
+        history.go(-1);
 
-	}
+    }
 
 }])

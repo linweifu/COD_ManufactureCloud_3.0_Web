@@ -155,6 +155,31 @@ FIMS.config([
 
 
 
+    .state('account_index.iqcComplexDLCheck',{
+		url:'/iqcComplexDLCheck',
+		controller:'iqcComplexDLCheck',
+		templateUrl:'iqc/iqc_record/iqcComplexDLCheck.html'
+	})
+    
+    .state('account_index.iqcComplexDXCheck',{
+		url:'/iqcComplexDXCheck',
+		controller:'iqcComplexDXCheck',
+		templateUrl:'iqc/iqc_record/iqcComplexDXCheck.html'
+	})
+
+    .state('account_index.iqcSimpleDLCheck',{
+		url:'/iqcSimpleDLCheck',
+		controller:'iqcSimpleDLCheck',
+		templateUrl:'iqc/iqc_record/iqcSimpleDLCheck.html'
+	})
+    
+     .state('account_index.iqcSimpleDXCheck',{
+		url:'/iqcSimpleDXCheck',
+		controller:'iqcSimpleDXCheck',
+		templateUrl:'iqc/iqc_record/iqcSimpleDXCheck.html'
+	})
+
+
 
 
 
