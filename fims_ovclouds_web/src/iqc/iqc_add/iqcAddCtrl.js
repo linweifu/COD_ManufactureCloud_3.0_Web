@@ -160,7 +160,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 		.success(function(data){
             if (data.code == 'N01') {           	
                 iqcAdd.plan = data.contents;
-                console.log(data.contents)
+                // console.log(data.contents)
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
