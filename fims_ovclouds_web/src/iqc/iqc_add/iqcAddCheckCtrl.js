@@ -65,6 +65,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// 查询单个检验记录
 	var querySingleIQCRecord = function(){
 		var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+		var input_way_code = localStorage.getItem("input_way_code");
 		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
 		
 		// var input_way_code = localStorage.getItem("input_way_code");
