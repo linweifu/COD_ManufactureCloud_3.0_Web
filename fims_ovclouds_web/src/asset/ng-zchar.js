@@ -3153,7 +3153,7 @@ FIMS.controller('iqcIndexCtrl',['$scope','$location',"$http",
 
 }])
 
-FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope,$location,$http,$q){
 	var iqcAdd = {
 		dictionary: {
 			materialName: [],
@@ -3329,6 +3329,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 
 	// 查询单个检验记录
 	var querySingleIQCRecord = function(input_way_code){
+		var deffered = $q.defer();
+
 		var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
 		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
 		// var http_url = "iqc/iqc_add/" ;
@@ -3345,7 +3347,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 			}
 		})
 		.success(function(data){
-            if (data.code == 'N01') {           	
+            if (data.code == 'N01') {
+            	deffered.resolve(data.contents);           	
                 localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
                 localStorage.setItem("DX",JSON.stringify(data.contents.DX));
                 localStorage.setItem("DL",JSON.stringify(data.contents.DL));
@@ -3358,6 +3361,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
                 alert(data.message);
             }  
         })
+
+        return deffered.promise;
 	}
 
 	// 确定添加
@@ -3405,14 +3410,20 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
                 localStorage.setItem("checkoutRecordSid",data.contents.checkoutRecordSid);
                 // localStorage.setItem("activePlan", JSON.stringify(iqcAdd.plan));
                 var input_way_code = localStorage.getItem('input_way_code');
-                querySingleIQCRecord(input_way_code);
-                if ( input_way_code== "SE") {
-                	$location.path('account_index/iqcSimpleDXAdd');
-                }else if (input_way_code == "CE") {
-                	$location.path("account_index/iqcComplexDXAdd");
-                }else {
-                	alert("您还没设置录入方式!");
-                }
+                var promise = querySingleIQCRecord(input_way_code);
+                promise.then(function(data){
+					console.log("s");
+                	if ( localStorage.getItem('input_way_code') === "SE") {
+                		$location.path('account_index/iqcSimpleDXAdd');
+                	}	
+                	else if (localStorage.getItem('input_way_code') === "CE") {
+                			$location.path("account_index/iqcComplexDXAdd");
+                		 }
+                		 else {
+                			alert("您还没设置录入方式!");
+                		}
+                	}
+                )
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -4095,6 +4106,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// 查询单个检验记录
 	var querySingleIQCRecord = function(){
 		var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+		var input_way_code = localStorage.getItem("input_way_code");
 		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
 		
 		// var input_way_code = localStorage.getItem("input_way_code");
@@ -4131,6 +4143,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+		console.log(checkoutRecord);
 		iqcAddCheck.materialNo = checkoutRecord.materialNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
 		iqcAddCheck.materialVersion = checkoutRecord.materialVersion;

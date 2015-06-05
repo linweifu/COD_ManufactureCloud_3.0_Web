@@ -102,6 +102,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+		console.log(checkoutRecord);
 		iqcAddCheck.materialNo = checkoutRecord.materialNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
 		iqcAddCheck.materialVersion = checkoutRecord.materialVersion;
