@@ -3700,6 +3700,7 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 	var queryCheckoutRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
 		iqcComplexDXAdd.materialNo = checkoutRecord.materialNo;
+		// console.log(checkoutRecord);
 		iqcComplexDXAdd.materialShortName = checkoutRecord.materialShortName;
 		iqcComplexDXAdd.materialVersion = checkoutRecord.materialVersion;
 		iqcComplexDXAdd.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
@@ -3710,7 +3711,7 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 
 		// 绑定定性部分
 		$rootScope.DX = JSON.parse(localStorage.getItem("DX"));
-		console.log($rootScope.DX);
+		// console.log($rootScope.DX);
 
 		//下拉数据绑定
 		// $rootScope.DX = $rootScope.DX.sample;
