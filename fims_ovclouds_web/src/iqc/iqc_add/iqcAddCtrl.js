@@ -174,6 +174,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 
 	// 查询单个检验记录
 	var querySingleIQCRecord = function(input_way_code){
+		var deffered = $q.defer();
+
 		var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
 		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
 		// var http_url = "iqc/iqc_add/" ;
@@ -190,7 +192,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 			}
 		})
 		.success(function(data){
-            if (data.code == 'N01') {           	
+            if (data.code == 'N01') {
+            	deffered.resolve(data.contents);           	
                 localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
                 localStorage.setItem("DX",JSON.stringify(data.contents.DX));
                 localStorage.setItem("DL",JSON.stringify(data.contents.DL));
@@ -203,6 +206,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
                 alert(data.message);
             }  
         })
+
+        return deffered.promise;
 	}
 
 	// 确定添加
@@ -210,7 +215,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/qc/iqc/submitBaseIQCRecord",
-			// url: "iqc/iqc_add/submitBaseIQCRecord.json",
+			//url: "iqc/iqc_add/submitBaseIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -240,8 +245,8 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
 			    "checkoutRecordInputWay":"阿杜"
-			    // "operate_status_code":"TJ",
-			    // "operate_status":"提交状态"
+			     // "operate_status_code":"TJ",
+			     // "operate_status":"提交状态"
 			}
 		})
 		.success(function(data){

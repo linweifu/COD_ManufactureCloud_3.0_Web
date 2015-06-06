@@ -5,8 +5,8 @@
         "checkoutRecord": {
             "checkoutPlanNo":"checkoutPlanNo",
             "checkoutPlanVersion":"checkoutPlanVersion",
-            "checkoutRecordSid":"3",
-            "materialNo":"11111111",
+            "checkoutRecordSid":"checkoutRecordSid",
+            "materialNo":"materialNo",
             "materialVersion":"materialVersion",
             "materialShortName":"materialShortName",
             "batchNo":"batchNo",

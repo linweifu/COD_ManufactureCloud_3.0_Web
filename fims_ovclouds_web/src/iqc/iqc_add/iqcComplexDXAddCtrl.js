@@ -74,7 +74,7 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 
 		// 绑定定性部分
 		$rootScope.DX = JSON.parse(localStorage.getItem("DX"));
-		console.log($rootScope.DX);
+		//console.log($rootScope.DX);
 
 		//下拉数据绑定
 		// $rootScope.DX = $rootScope.DX.sample;

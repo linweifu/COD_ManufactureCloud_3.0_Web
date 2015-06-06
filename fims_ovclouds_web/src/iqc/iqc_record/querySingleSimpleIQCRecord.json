@@ -3,15 +3,14 @@
     "message": "成功",
     "contents": {
         "checkoutRecord": {
-            "checkoutPlanNo":"checkoutPlanNo",
-            "checkoutPlanVersion":"checkoutPlanVersion",
-            "checkoutRecordSid":"3",
-            "materialNo":"11111111",
+ "checkoutPlanNo":"checkoutPlanNo",
+                "checkoutPlanVersion":"checkoutPlanVersion",
+            "checkoutRecordId":"checkoutRecordId",
+            "materialNo":"materialNo",
             "materialVersion":"materialVersion",
             "materialShortName":"materialShortName",
             "batchNo":"batchNo",
             "vendorSid":"vendorSid",
-            "externalReceiptNo": "externalReceiptNo",
             "vendorShortName":"vendorShortName",
             "entrySid": "1",
             "entryId": "mixmore@qq.com",
@@ -29,16 +28,15 @@
             {
                 "checkoutMetricSid": "1",
                 "checkoutMetricName": "checkoutMetricName",
-                "checkoutMetricClassify":"checkoutMetricClassify",
+             "checkoutMetricClassify":"checkoutMetricClassify",
 "checkoutToolName":"checkoutToolName",
-                "checkoutRowSid": "1",
                 "sample": [
                     {
-                        "sampleSid": "1",
+                        "sampleNo": "1",
                         "sampleCheckoutValue": "否"
                     },
                     {
-                        "sampleSid": "2",
+                        "sampleNo": "2",
                         "sampleCheckoutValue": "是"
                     }
                 ]
@@ -46,17 +44,15 @@
             {
                 "checkoutMetricSid": "2",
                 "checkoutMetricName": "checkoutMetricName",
-                "checkoutMetricClassify":"checkoutMetricClassify",
+             "checkoutMetricClassify":"checkoutMetricClassify",
 "checkoutToolName":"checkoutToolName",
-                "checkoutRowSid": "2",
-
                 "sample": [
                     {
-                        "sampleSid": "1",
+                        "sampleNo": "1",
                         "sampleCheckoutValue": "否"
                     },
                     {
-                        "sampleSid": "2",
+                        "sampleNo": "2",
                         "sampleCheckoutValue": "是"
                     }
                 ]
@@ -66,7 +62,7 @@
             {
                 "checkoutMetricSid": "3",
                 "checkoutMetricName": "checkoutMetricName",
-                "checkoutMetricClassify":"checkoutMetricClassify",
+             "checkoutMetricClassify":"checkoutMetricClassify",
 "checkoutToolName":"checkoutToolName",
 "referenceStandard":"referenceStandard",
 "upTolerance":"upTolerance",
@@ -74,15 +70,13 @@
 "threeDimensionalRogram_no":"threeDimensionalRogram_no",
 "metricUnit":"metricUnit",
 "fixtureId":"fixtureId",
-                "checkoutRowSid": "3",
-
                 "sample": [
                     {
-                        "sampleSid": "1",
+                        "sampleNo": "1",
                         "sampleCheckoutValue": "1"
                     },
                     {
-                        "sampleSid": "2",
+                        "sampleNo": "2",
                         "sampleCheckoutValue": "3"
                     }
                 ]
@@ -90,7 +84,7 @@
             {
                 "checkoutMetricSid": "4",
                 "checkoutMetricName": "checkoutMetricName",
-                "checkoutMetricClassify":"checkoutMetricClassify",
+             "checkoutMetricClassify":"checkoutMetricClassify",
 "checkoutToolName":"checkoutToolName",
 "referenceStandard":"referenceStandard",
 "upTolerance":"upTolerance",
@@ -98,14 +92,13 @@
 "threeDimensionalRogram_no":"threeDimensionalRogram_no",
 "metricUnit":"metricUnit",
 "fixtureId":"fixtureId",
-                "checkoutRowSid": "4",
                 "sample": [
                     {
-                        "sampleSid": "1",
+                        "sampleNo": "1",
                         "sampleCheckoutValue": "1"
                     },
                     {
-                        "sampleSid": "2",
+                        "sampleNo": "2",
                         "sampleCheckoutValue": "4"
                     }
                 ]

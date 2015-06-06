@@ -15,103 +15,113 @@
 
 </style>
 
-<h3 class="text-center">入库定性复杂录入查询</h3>
+<h3 class="text-center">{{iqcComplexDLCheck.companyShortName}} (入库定性复杂录入查询)</h3>
 
 <div id="container" class="container">
 <form class="form-horizontal" id="form-horizontal" novalidate>
 	<div class="form-group">
 		<label class="left control-label">物料编号</label>
 		<div class="col-sm-3">
-			<input type="text" name="materialNo" class="form-control"ng-model="iqcComplexDXCheck.materialNo" required ng-disabled="true" >
+			<input type="text" name="materialNo" class="form-control"ng-model="iqcComplexDLCheck.materialNo" required ng-disabled="true" >
 		</div>
 
 		<label class="left control-label">物料简称</label>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" name="materialShortName" ng-model="iqcComplexDXCheck.materialShortName" required  ng-disabled="true">
+			<input type="text" class="form-control" name="materialShortName" ng-model="iqcComplexDLCheck.materialShortName" required  ng-disabled="true">
 		</div>
 
 		<label class="left control-label">物料版本</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" name="materialVersion" ng-model="iqcComplexDXCheck.materialVersion" required ng-disabled="true">
+			<input type="text" class="form-control" name="materialVersion" ng-model="iqcComplexDLCheck.materialVersion" required ng-disabled="true">
 		</div>
 	</div>
 
 	<div class="form-group">
 		<label class="left control-label">计划编号</label>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" name="checkoutPlanNo" ng-model="iqcComplexDXCheck.checkoutPlanNo" required ng-disabled="true" >
+			<input type="text" class="form-control" name="checkoutPlanNo" ng-model="iqcComplexDLCheck.checkoutPlanNo" required ng-disabled="true" >
 		</div>
 
 		<label class="left control-label">计划版本</label>
 		<div class="col-sm-3">
-			<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="iqcComplexDXCheck.checkoutPlanVersion" required ng-disabled="true">
+			<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="iqcComplexDLCheck.checkoutPlanVersion" required ng-disabled="true">
 		</div>
 
 		<label class="left control-label">抽样数量</label>
 		<div class="col-sm-2">
-			<input type="text" class="form-control" name="sampleAmount" ng-model="iqcComplexDXCheck.sampleAmount" required ng-disabled="true">
+			<input type="text" class="form-control" name="sampleAmount" ng-model="iqcComplexDLCheck.sampleAmount" required ng-disabled="true">
 		</div>
 	</div>
-</form>
 </div>
 
-<div id="container" class="container">
+
+<div id="container" class="container" ng-repeat="list in DL">
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<label class="left control-label">检验项目</label>
-			<div class="col-sm-3">
-				<input type="text" name="checkoutMetricName" class="form-control"ng-model="iqcComplexDXCheck.checkoutMetricName" required ng-disabled="true" >
+			<label class="left control-label"style="margin-left:-11px;">检验项目</label>
+			<div class="col-sm-5">
+				<input type="text" name="checkoutMetricName" class="form-control"ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div>
-
-			<label class="left control-label">检验方式</label>
+			<label class="left control-label"style="margin-left:5px;">检验方式</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
+			</div>
+		</div>	
+       
+		<div class="form-group" style="margin-top:50px;">
+		<label class="left control-label" style="margin-left:-11px;">三坐标</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" name="checkoutToolName" ng-model="iqcComplexDXCheck.checkoutToolName" required  ng-disabled="true">
+				<input type="text" class="form-control" style="margin-left:16px;" name="checkoutToolName" ng-model="list.threeDimensionalRogramNo" required ng-disabled="true">
+			</div>
+			<label class="left control-label" style="margin-left:18px;">标准值</label>	
+			<div class="col-sm-3">
+				<input type="text" class="form-control" style="margin-left:18px;"name="checkoutToolName" ng-model="list.list.referenceStandard" required ng-disabled="true">				
+			</div>
+			<label class="left control-label" style="margin-left:25px;" >夹具</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" style="margin-left:28px;" name="checkoutToolName" ng-model="list.fixtureId" required ng-disabled="true">				
+			</div>
+	  </div>  
+
+       <div class="form-group" style="margin-top:100px;">							
+			<label class="left control-label" style="margin-left:-10px;">上限</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" style="margin-left:28px;" name="checkoutToolName" ng-model="list.upTolerance" required ng-disabled="true">				
+			</div>
+			<label class="left control-label" style="margin-left:30px;">下限</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" style="margin-left:33px;" name="checkoutToolName" ng-model="list.underTolerance" required ng-disabled="true">				
+			</div>
+			<label class="left control-label" style="margin-left:42px;">单位</label>	
+			<div class="col-sm-2">
+				<input type="text" class="form-control" style="margin-left:28px;"name="checkoutToolName" ng-model="list.metricUnit" required ng-disabled="true">				
+			</div>			
+		</div>
+
+	</form>	
+
+
+</div>
+
+
+
+
+
+	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
+		<div class="form-group">
+			
+			<div style="display: none;" ng-bind="mark=$index"></div>
+			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
+				<input type="text" class="form-control" ng-model="DL[mark].sample[$index].sampleCheckoutValue" placeholder="填入数值">
 			</div>
 		</div>
 	</form>
-	<form class="form-horizontal" id="form-horizontal" name="iqcComplexDXCheckForm" novalidate>
-		<div class="form-group">
-			<div class="col-sm-2">
-				<input type="text" class="form-control" name="Name" ng-model="iqcComplexDXCheck.Name" required  ng-disabled="true">
-			</div>
-
-			<div class="col-sm-2">
-				<input type="text" class="form-control" name="lName" ng-model="iqcComplexDXCheck.lName" required  ng-disabled="true">
-			</div>
-
-			<div class="col-sm-2">
-				<input type="text" class="form-control" name="lName" ng-model="iqcComplexDXCheck.lName" required  ng-disabled="true">
-			</div>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" name="lName" ng-model="iqcComplexDXCheck.lName" required  ng-disabled="true">
-			</div>
-			<div class="col-sm-2">
-				<input type="text" class="form-control" name="lName" ng-model="iqcComplexDXCheck.lName" required  ng-disabled="true">
-			</div>
-
-            <div class="col-sm-2">
-				<input type="text" class="form-control" name="lName" ng-model="iqcComplexDXCheck.lName" required  ng-disabled="true">
-			</div>
-
-
-
-		</div>
-	</form>	
 </div>
 
-
-
-
-<!-- <p ng-repeat="list in DX" class="text-center">
-	{{list.sample}}
-</p> -->
-
 <div class="text-center" style="margin: .5em auto;">
-	<button class="btn btn-primary" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="back()">上一步</button>
+	<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcComplexDXCheck">上一步</button>
 
-	<!-- <button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="updateComplexIQCRecord()">保存</button> -->
+	
 
-	 <button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;"  ui-sref="account_index.iqcRecord">返回</button>
-	 
-
+	<button class="btn btn-primary" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="next()">返回</button>
 </div>

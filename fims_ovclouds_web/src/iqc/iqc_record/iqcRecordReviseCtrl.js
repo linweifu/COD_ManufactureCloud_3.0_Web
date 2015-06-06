@@ -15,7 +15,7 @@ FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($sc
 
 	init();
 
-
+$scope.iqcRecordRevise = iqcRecordRevise;
  $scope.querySingleIQCRecord = function() {
     	$http({
 
@@ -33,10 +33,10 @@ FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($sc
 
     	.success(function(data){
             if (data.code == 'N01') {
-            	$scope.iqcRecordCheck = data.contents;
+            	iqcRecordRevise.singleRecord = data.contents;
                 // localStorage.setItem();
-                localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
-               // console.log($scope.iqcRecordCheck);
+                localStorage.setItem("materialSid",$scope.iqcRecordRevise.materialSid);
+               // console.log($scope.iqcRecordRevise);
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
