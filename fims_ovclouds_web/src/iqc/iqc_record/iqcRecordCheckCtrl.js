@@ -1,4 +1,4 @@
-FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($scope,$location,$http){
+FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($scope,$location,$http,$q){
 
     var iqcRecordCheck = {
 
@@ -40,7 +40,7 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
 
 
                 // localStorage.setItem();
-                localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
+                //localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
                // console.log($scope.iqcRecordCheck);
             }
             else if(data.code=="E00"){
@@ -62,19 +62,19 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
 
 
 
-//查询单个检验记录
-    var querySingleIQCRecord1 = function(input_way_code){
-        // var deffered = $q.defer();
 
-        var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
-        http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
-        // var http_url = "iqc/iqc_add/" ;
-        // http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+    // 查询单个检验记录
+    var querySingleIQCRecord1 = function(input_way_code){
+        //var deffered = $q.defer();
+
+       // var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+        //http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+         var http_url = "iqc/iqc_add/" ;
+         http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
         $http({
             method: "POST",
             // url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
-            //url: http_url,
-            url: "iqc/iqc_add/querySingleComplexIQCRecord.json",
+            url: http_url,
             header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),
@@ -84,7 +84,7 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
         })
         .success(function(data){
             if (data.code == 'N01') {
-              deffered.resolve(data.contents);               
+               // deffered.resolve(data.contents);            
                 localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
                 localStorage.setItem("DX",JSON.stringify(data.contents.DX));
                 localStorage.setItem("DL",JSON.stringify(data.contents.DL));
@@ -100,6 +100,7 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
 
        // return deffered.promise;
     }
+
     querySingleIQCRecord1();
  
    

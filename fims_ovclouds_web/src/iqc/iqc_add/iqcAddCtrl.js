@@ -244,15 +244,13 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
-<<<<<<< HEAD
+
 			    "checkoutRecordInputWay":"阿杜"
 			     // "operate_status_code":"TJ",
 			     // "operate_status":"提交状态"
-=======
-			    "checkoutRecordInputWay":"阿杜",
-			    "operateStatusCode":"TJ",
-			    "operateStatus":"提交状态"
->>>>>>> 650cbca210066977b5720699a8737587eb5f3b4d
+			    //"checkoutRecordInputWay":"阿杜",
+			    // "operateStatusCode":"TJ",
+			    // "operateStatus":"提交状态"
 			}
 		})
 		.success(function(data){
