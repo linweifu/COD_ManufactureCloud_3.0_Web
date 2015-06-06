@@ -6,11 +6,6 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	$scope.companyShortName = localStorage.getItem('curCompanyName');
 	$scope.iqcRecord = [];
 
-	//页面初始化
-	(function(){
-		// localStorage.removeItem("checkoutPlanSid");
-	})()
-
 	// $scope.iqcRecordBack = function(){
 	// 	// localStorage.removeItem('singleplan');
 	// 	$location.path('account_index/chooseModule').replace();
@@ -63,8 +58,13 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	$scope.queryIQCRecord = function() {
 		$http({
 			method: "POST",
+<<<<<<< HEAD
 			//url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
 			url: "iqc/iqc_record/queryIQCRecord.json",
+=======
+			url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
+			// url: "iqc/iqc_record/queryIQCRecord.json",
+>>>>>>> 650cbca210066977b5720699a8737587eb5f3b4d
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

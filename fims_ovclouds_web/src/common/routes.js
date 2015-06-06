@@ -211,7 +211,7 @@ FIMS.config([
 	// })
 	.state('account_index.iqcComplexDLAdd',{
 		url:'/iqcComplexDLAdd',
-		// controller:'iqcComplexDLAddCtrl',
+		controller:'iqcComplexDLAddCtrl',
 		templateUrl:'iqc/iqc_add/iqcComplexDLAdd.html'
 	})
 	.state('account_index.iqcComplexDXAdd',{

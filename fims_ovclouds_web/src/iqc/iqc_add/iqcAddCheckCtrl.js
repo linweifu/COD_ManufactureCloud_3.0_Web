@@ -64,11 +64,13 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 
 	// 查询单个检验记录
 	var querySingleIQCRecord = function(){
-		// var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
-		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+		var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
 		var input_way_code = localStorage.getItem("input_way_code");
-		var http_url = "iqc/iqc_add/" ;
-		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+		
+		// var input_way_code = localStorage.getItem("input_way_code");
+		// var http_url = "iqc/iqc_add/" ;
+		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
 		$http({
 			method: "POST",
 			// url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
@@ -100,6 +102,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+		console.log(checkoutRecord);
 		iqcAddCheck.materialNo = checkoutRecord.materialNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
 		iqcAddCheck.materialVersion = checkoutRecord.materialVersion;

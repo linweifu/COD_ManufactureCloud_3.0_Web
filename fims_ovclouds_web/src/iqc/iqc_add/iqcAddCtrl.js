@@ -1,4 +1,4 @@
-FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$location,$http){
+FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope,$location,$http,$q){
 	var iqcAdd = {
 		dictionary: {
 			materialName: [],
@@ -160,7 +160,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 		.success(function(data){
             if (data.code == 'N01') {           	
                 iqcAdd.plan = data.contents;
-                console.log(data.contents)
+                // console.log(data.contents)
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -244,9 +244,15 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
+<<<<<<< HEAD
 			    "checkoutRecordInputWay":"阿杜"
 			     // "operate_status_code":"TJ",
 			     // "operate_status":"提交状态"
+=======
+			    "checkoutRecordInputWay":"阿杜",
+			    "operateStatusCode":"TJ",
+			    "operateStatus":"提交状态"
+>>>>>>> 650cbca210066977b5720699a8737587eb5f3b4d
 			}
 		})
 		.success(function(data){
@@ -255,14 +261,20 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http',function($scope,$loc
                 localStorage.setItem("checkoutRecordSid",data.contents.checkoutRecordSid);
                 // localStorage.setItem("activePlan", JSON.stringify(iqcAdd.plan));
                 var input_way_code = localStorage.getItem('input_way_code');
-                querySingleIQCRecord(input_way_code);
-                if ( input_way_code== "SE") {
-                	$location.path('account_index/iqcSimpleDXAdd');
-                }else if (input_way_code == "CE") {
-                	$location.path("account_index/iqcComplexDXAdd");
-                }else {
-                	alert("您还没设置录入方式!");
-                }
+                var promise = querySingleIQCRecord(input_way_code);
+                promise.then(function(data){
+					console.log("s");
+                	if ( localStorage.getItem('input_way_code') === "SE") {
+                		$location.path('account_index/iqcSimpleDXAdd');
+                	}	
+                	else if (localStorage.getItem('input_way_code') === "CE") {
+                			$location.path("account_index/iqcComplexDXAdd");
+                		 }
+                		 else {
+                			alert("您还没设置录入方式!");
+                		}
+                	}
+                )
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
