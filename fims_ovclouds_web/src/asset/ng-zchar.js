@@ -3370,7 +3370,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/qc/iqc/submitBaseIQCRecord",
-			//url: "iqc/iqc_add/submitBaseIQCRecord.json",
+			// url: "iqc/iqc_add/submitBaseIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -3399,13 +3399,9 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
-
-			    "checkoutRecordInputWay":"阿杜"
-			     // "operate_status_code":"TJ",
-			     // "operate_status":"提交状态"
-			    //"checkoutRecordInputWay":"阿杜",
-			    // "operateStatusCode":"TJ",
-			    // "operateStatus":"提交状态"
+			    "checkoutRecordInputWay":"阿杜",
+			    "operateStatusCode":"TJ",
+			    "operateStatus":"提交状态"
 			}
 		})
 		.success(function(data){
@@ -3447,118 +3443,6 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 	}
 
 
-	// $scope.queryActivateQCPByMaterial = function(){
-	// 	$http({
-	// 		method: "POST",
-	// 		// url: config.HOST + "/api/2.0/bp/qcp/qcp/queryActivateQCPByMaterial",
-	// 		url: "iqc/iqc_add/queryActivateQCPByMaterial.json",
-	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 		data: {
-	// 			"sid": localStorage.getItem('sid'),
-	// 			"companySid": localStorage.getItem('cSid'),
-	// 			"materialNo": iqcAdd.Selected.materialName.materialNo,
-	// 			"materialVersion": iqcAdd.Selected.materialVersion.materialVersion 
-	// 		}
-	// 	})
-	// 	.success(function(data){
- //            if (data.code == 'N01') {           	
- //                iqcAdd.plan = data.contents;
- //                console.log(data.contents)
- //            }
- //            else if(data.code=="E00"){
- //                alert(data.message+",请重新登陆");
- //                localStorage.clear();
- //                $location.path('login').replace();
- //            }else {
- //                alert(data.message);
- //            }  
- //        })
-	// }
-
-	// //获取物料简称
-	// $scope.queryMaterialShortName = function(){
-	// 	$http({
-	// 		method: "POST",
-	// 		url: config.HOST + "/api/2.0/bp/engineering/materials/queryMaterialShortName",
-	// 		// url: "plan/queryMaterialShortName.json",
-	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 		data: {
-	// 			"sid": localStorage.getItem('sid'),
-	// 			"materialNo": iqcAdd.Selected.materialNo.materialNo,
-	// 			"materialVersion": iqcAdd.Selected.materialVersion 
-	// 		}
-	// 	})
-	// 	.success(function(data){
- //            if (data.code == 'N01') {           	
- //            	iqcAdd.materialShortName = data.contents.materialShortName;
- //            	iqcAdd.checkoutPlanNo = iqcAdd.Selected.QCPType.code+"-"+iqcAdd.Selected.materialNo.materialNo+"-"+iqcAdd.Selected.materialVersion ;
-
- //            }
- //            else if(data.code=="E00"){
- //                alert(data.message+",请重新登陆");
- //                localStorage.clear();
- //                $location.path('login').replace();
- //            }else {
- //                alert(data.message);
- //            }  
- //        })			
-	// }
-
-
-	// /*********************************************************
-	// *  
-	// */
-
-	// $scope.addQCP = function(){
-	// 	$http({
-	// 		method: "POST",
-	// 		url: config.HOST + "/api/2.0/bp/qcp/qcp/addQCP",
-	// 		// url: "plan/addQCP.json",
-	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 		data: {
-	// 			"sid": localStorage.getItem('sid'),
-	//             "checkoutPlanNo":iqcAdd.checkoutPlanNo,
-	//             "checkoutPlanVersion":iqcAdd.checkoutPlanVersion,
-	//             "checkoutPlanTypeCode":iqcAdd.Selected.QCPType.code,
-	//             "checkoutPlanType":iqcAdd.Selected.QCPType.name,
-	//             "companySid":localStorage.getItem('cSid'),
-	//             "companyShortName":localStorage.getItem('curCompanyName'),
-	//             "materialSid":iqcAdd.Selected.materialNo.materialSid,
-	//             "materialNo":iqcAdd.Selected.materialNo.materialNo,
-	//             "materialVersion":iqcAdd.Selected.materialVersion,
-	//             "materialShortName":iqcAdd.materialShortName,
-	//             "aql":iqcAdd.aql,
-	//             // "entrySid":iqcAdd. 1,
-	//             "entryId":localStorage.getItem('email'),
-	//             "entryJobNumber":localStorage.getItem('userJobNumber'),
-	//             "entryName":iqcAdd.entryName,
-	//             "entryTime":((new Date(iqcAdd.entryTime)).valueOf())/1000,
-	//             "makeJobNumber":localStorage.getItem('userJobNumber'),
-	//             "makeName":iqcAdd.makeName,
-	//             "makeTime":((new Date(iqcAdd.makeTime)).valueOf())/1000,
-	// 		}
-	// 	})
-	// 	.success(function(data){
- //            if (data.code == 'N01') {           	
-	// 	     	alert(data.message);
-	// 	     	$location.path('account_index/planList');       	
- //            }
- //            else if(data.code=="E00"){
- //                alert(data.message+",请重新登陆");
- //                localStorage.clear();
- //                $location.path('login').replace();
- //            }else {
- //                alert(data.message);
- //            }  
- //        })
-	// }
-
-	// $scope.backQCP = function(){
-	// 	var a = confirm("您确定要退出吗？退出将丢失填写数据!")
-	// 	if (a) {
-	// 		$location.path("account_index/planList");
-	// 	}
-	// }
 	
 }])
 FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scope,$location,$http){
