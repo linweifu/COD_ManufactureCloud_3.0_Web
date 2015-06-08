@@ -140,6 +140,18 @@ FIMS.config([
 		templateUrl:'plan/planHistoryListCopy.html'
 	})
 
+   .state('account_index.planMetricListCheck',{
+		url:'/planMetricListCheck',
+		templateUrl:'plan/planMetricListCheck.html'
+	})
+
+
+
+
+
+
+
+
     .state('account_index.iqcRecordCheck',{
 		url:'/iqcRecordCheck',
 		controller:'iqcRecordCheckCtrl',

@@ -1,0 +1,144 @@
+<style type="text/css">
+	.container-MetricList {
+		background-color: #fefefe;
+		border: 1px solid #ececec;
+		border-radius: 5px;
+		padding: 0 25px 10px 25px;
+	}	
+	#form-horizontal {margin: .8em auto 0 auto;color: #555}
+	
+	.left{text-align: left !important;float: left;padding-left: 15px;padding-top: 7px;padding-right: 5px;}
+
+	.table th{text-align: center;}
+
+	.table a {color: rgb(29,124,244);}
+
+	.add {padding: 8px 40px;}
+
+	.img-circle {
+		width: 55px;
+		height: 55px;
+		float: left;
+		margin-left: .2em;
+	}
+
+	.modal-content {padding:6px;}
+
+	.row {margin-bottom: 1em;}
+
+	.span {float: right;line-height: 1.5em;padding-top: .5em;padding-right: .6em;}
+	.name {font-size: 14px;}
+	.author {color: #f68539;font-size: 12px;}
+	.top {margin-top: 1.8em;}
+	
+</style>
+<div >
+<div ng-controller="planMetricListCheckCtrl">
+	
+
+<div class="container text-center container-MetricList" >
+	<h3>定性检验项目列表</h3>
+	<div class="row">
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover ">
+			<thead>
+		    <tr>
+		      <th>#</th>
+		      <th>编号</th>
+		      <th>分类</th>
+		      <th>指标名称</th>
+		      <th>指标描述</th>
+		      <th>工具</th>
+		      <th>工序</th>
+		     <!--  <th>操作</th> -->
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<tr ng-repeat="list in  planMetricListCheck.DXCheckoutMetricList">
+		  		<td>{{$index+1}}</td>
+		  		<td ng-bind="list.checkoutMetricNo"></td>
+		  		<td ng-bind="list.checkoutMetricClassify"></td>
+		  		<td ng-bind="list.checkoutMetricName"></td>
+		  		<td ng-bind="list.checkoutMetricDescription"></td>
+		  		<td ng-bind="list.checkoutToolName"></td>
+		  		<td ng-bind="list.processName"></td>
+		  		<!-- <td><a data-toggle="modal" data-target="#reviseDXItem" data-whatever="@mdo" ng-click="reviseDXItem(list)">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ng-click="removeItem(list.checkoutMetricSid)">删除</a></td> -->
+		  	</tr>
+		  </tbody>
+		</table>
+	</div>
+	</div>
+</div>
+
+
+<div class="container text-center container-MetricList"  style="margin-top: 2em;">
+	<h3>定量检验项目列表</h3>
+	<div class="row">
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered table-hover ">
+			<thead>
+		    <tr>
+		      <th>#</th>
+		      <th>编号</th>
+		      <th>分类</th>
+		      <th>指标名称</th>
+		      <th>指标描述</th>
+		      <th>工具</th>
+		      <th>工序</th>
+		      <th>单位</th>
+		      <th>参考标准</th>
+		      <th>下公差</th>
+		      <th>上公差</th>
+		      <th>图位</th>
+		      <th>三坐标程序号</th>
+		      <th>夹具编号</th>
+		     <!--  <th>操作</th> -->
+		    </tr>
+		    </thead>
+		    <tbody>
+		  	<tr ng-repeat="list in  planMetricListCheck.DLCheckoutMetricList">
+		  		<td>{{$index+1}}</td>
+		  		<td ng-bind="list.checkoutMetricNo"></td>
+		  		<td ng-bind="list.checkoutMetricClassify"></td>
+		  		<td ng-bind="list.checkoutMetricName"></td>
+		  		<td ng-bind="list.checkoutMetricDescription"></td>
+		  		<td ng-bind="list.checkoutToolName"></td>
+		  		<td ng-bind="list.processName"></td>
+		  		<td ng-bind="list.metricUnit"></td>
+		  		<td ng-bind="list.referenceStandard"></td>
+		  		<td ng-bind="list.underTolerance"></td>
+		  		<td ng-bind="list.upTolerance"></td>
+		  		<td ng-bind="list.mapPosition"></td>
+		  		<td ng-bind="list.threeDimensionalRogramNo"></td>
+		  		<td ng-bind="list.fixtureId"></td>
+		  		<!-- <td><a data-toggle="modal" data-target="#reviseDLItem" data-whatever="@mdo" ng-click="reviseDLItem(list)">修改</a>&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;<a ng-click="removeItem(list.checkoutMetricSid)">删除</a></td> -->
+		  	</tr>
+		  </tbody>
+        
+		</table>
+		  <button class="btn btn-primary" ng-click=" planMetricListCheckBack()">返回</button>
+	</div>
+	</div>
+</div>
+</div>
+
+
+</div>
+  
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
