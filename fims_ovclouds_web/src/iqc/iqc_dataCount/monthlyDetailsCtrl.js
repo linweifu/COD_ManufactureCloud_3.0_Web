@@ -34,8 +34,8 @@ FIMS.controller('monthlyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getMonthDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
-				//url: "iqc/iqc_dataCount/A103MonthlyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
+				url: "iqc/iqc_dataCount/A103MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),

@@ -4,61 +4,62 @@
 	.control-label {font-size: 16px;margin-bottom: 5px;}
 	.modal-header {border-bottom: 0;}
 	.modal-footer {border-top: 0;}
-	.table {text-align: center;}
+	.table {text-align: center; border-top: none;}
 	a:hover{text-decoration: none;}
 </style>
 <div>
 <div class="container" id="container">
 	<div>
-		<h3 class="left" style="font-weight: 700;">日报明细</h3>
+		<h3 class="left" style="font-weight: 700;">日报列表</h3>
 		<div class="row " style="margin-left: 5em;margin-right: 5em;">
 			<table class="table table-bordered table-hover ">
 			  <tbody>		 
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyStatistics_vendor">日报统计_供应商</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyStatistics_material">日报统计_物料</a></td>
+			  		
 			  	</tr>
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyStatistics_venmat">日报统计_供应商物料</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyStatistics_matven">日报统计_物料供应商</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"></td>
 			  	</tr>
 			  </tbody>
 			</table>			    
 		</div>
 		<div>
-		<h3 class="left" style="font-weight: 700;">月报明细</h3>
+		<h3 class="left" style="font-weight: 700;">月报列表</h3>
 		<div class="row " style="margin-left: 5em;margin-right: 5em;">
 			<table class="table table-bordered table-hover ">
 			  <tbody>		 
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">月报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.monthlyDetails">月报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.monthlyStatistics">月报统计</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.monthlyStatistics_material">月报统计_供应商</a></td>
 			  	</tr>
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.monthlyStatistics_vendor">月报统计_物料</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.monthlyStatistics_venmat">月报统计_供应商物料</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.monthlyStatistics_matven">月报统计_物料供应商</a></td>  
 			  	</tr>
 			  </tbody>
 			</table>			    
 		</div>
 		<div>
-		<h3 class="left" style="font-weight: 700;">月报统计</h3>
+		<h3 class="left" style="font-weight: 700;">月报汇总</h3>
 		<div class="row " style="margin-left: 5em;margin-right: 5em;">
 			<table class="table table-bordered table-hover ">
 			  <tbody>		 
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.monthlySumStatistics">月报汇总统计</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
 			  	</tr>
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
 			  	</tr>
 			  </tbody>
 			</table>			    
@@ -69,14 +70,14 @@
 			<table class="table table-bordered table-hover ">
 			  <tbody>		 
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" href="" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" href="" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" href="" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
 			  	</tr>
 			  	<tr>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" href="" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" href="" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
-			  		<div class="col-md-3 col-sm-3"><td><a style="font-weight: 600;" href="" ui-sref="account_index.dailyDetails">日报明细</a></td></div>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
+			  		<td class="col-md-3 col-sm-3 col-xs-3"><a style="font-weight: 600;" ui-sref="account_index.dailyDetails">日报明细</a></td>
 			  	</tr>
 			  </tbody>
 			</table>			    

@@ -36,8 +36,14 @@
 			      <th>批次编号</th>
 			      <th>条形码编号</th>
 			      <th>物料编号</th>
+			      <th>物料版本</th>
+			      <th>物料简称</th>
 			      <th>供应商编号</th>
 			      <th>供应商简称</th>
+			      <th>外部入库单号</th>
+			      <th>检验员工号</th>
+			      <th>检验员姓名</th>
+			      <th>AQL</th>
 			      <th>送检数量</th>
 			      <th>抽样数量</th>
 			      <th>抽样合格品数量</th>
@@ -46,9 +52,9 @@
 			      <th>抽样合格率 %</th>
 			      <th>抽样不合格率 %</th>
 			      <th>抽样不合格率PPM</th>
-			      <th>AQL</th>
+			      
 			      <th>判定结果</th>
-			      <th>检验员姓名</th>
+			      
 			    </tr>
 			  </thead>
 			  <tbody>		 
@@ -59,8 +65,14 @@
 			  		<td ng-bind="list.batchNo"></td>
 			  		<td ng-bind="list.materialBarcode"></td>
 			  		<td ng-bind="list.materialNo"></td>
+			  		<td ng-bind="list.materialVersion"></td>
+			  		<td ng-bind="list.materialShortName"></td>
 			  		<td ng-bind="list.vendorNo"></td>
 			  		<td ng-bind="list.vendorShortName"></td>
+					<td ng-bind="list.externalReceiptNo"></td>
+					<td ng-bind="list.nspectorJobNumber"></td>
+			  		<td ng-bind="list.nspectorName"></td>
+			  		<td ng-bind="list.aql"></td>
 			  		<td ng-bind="list.giveCheckoutAmount"></td>
 			  		<td ng-bind="list.sampleAmount"></td>
 			  		<td ng-bind="list.sampleUnqualifiedAmount"></td>
@@ -69,9 +81,9 @@
 			  		<td ng-bind="list.sampleQualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
-			  		<td ng-bind="list.aql"></td>
+			  		
 			  		<td ng-bind="list.determinationResults"></td>
-			  		<td ng-bind="list.nspectorName"></td>
+			  		
 			  	</tr>
 			  </tbody>
 			</table>

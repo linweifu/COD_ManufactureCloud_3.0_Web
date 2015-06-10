@@ -16,7 +16,7 @@
 </style>
 
 <div id="container" class="container text-center">
-	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验质量状况日报明细</h3>
+	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验质量状况日报统计_供应商物料</h3>
 	<div class="form-group" style="margin-top: 1.5em;">
 		<form class="form-horizontal" id="form-horizontal" name="dailyDetailForm" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
@@ -42,8 +42,18 @@
 			      <th>供应商编号</th>
 			      <th>供应商简称</th>
 			      <th>外部入库单号</th>
-			      <th>AQL</th>
+			      <th>检验员工号</th>
 			      <th>检验员姓名</th>
+			      <th>送检数量总计</th>
+			      <th>抽样数量总计</th>
+			      <th>抽样合格品数量总计</th>
+			      <th>批次内抽样不良现象总计</th>
+			      <th>平均抽样合格率</th>
+			      <th>整体抽样合格率</th>
+			      <th>平均抽样不合格率</th>
+			      <th>整体抽样不合格率</th>
+			      <th>整体抽样不合格率PPM</th>
+			      <th>批次合格率</th>			      
 			      <th>送检数量</th>
 			      <th>抽样数量</th>
 			      <th>抽样合格品数量</th>
@@ -52,6 +62,7 @@
 			      <th>抽样合格率 %</th>
 			      <th>抽样不合格率 %</th>
 			      <th>抽样不合格率PPM</th>
+			      <th>AQL</th> 
 			      
 			    </tr>
 			  </thead>
@@ -68,8 +79,19 @@
 			  		<td ng-bind="list.vendorNo"></td>
 			  		<td ng-bind="list.vendorShortName"></td>
 			  		<td ng-bind="list.externalReceiptNo"></td>
-			  		<td ng-bind="list.aql"></td>
-			  		<td ng-bind="list.nspectorName"></td>
+			  		<!-- <th>检验员工号</th>
+			      <th>检验员姓名</th>
+			      <th>送检数量总计</th>
+			      <th>抽样数量总计</th>
+			      <th>抽样合格品数量总计</th>
+			      <th>批次内抽样不良现象总计</th>
+			      <th>平均抽样合格率</th>
+			      <th>整体抽样合格率</th>
+			      <th>平均抽样不合格率</th>
+			      <th>整体抽样不合格率</th>
+			      <th>整体抽样不合格率PPM</th>
+			      <th>批次合格率</th>
+			       -->
 			  		<td ng-bind="list.giveCheckoutAmount"></td>
 			  		<td ng-bind="list.sampleAmount"></td>
 			  		<td ng-bind="list.sampleQualifiedAmount"></td>
@@ -77,7 +99,9 @@
 			  		<td ng-bind="list.sampleDefectiveAmountTotal"></td>
 			  		<td ng-bind="list.sampleQualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
-			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>			  		
+			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.aql"></td>
+			  					  		
 			  	</tr>
 			  </tbody>
 			</table>

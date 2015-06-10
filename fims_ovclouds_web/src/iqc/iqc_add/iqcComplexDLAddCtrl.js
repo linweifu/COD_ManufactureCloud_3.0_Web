@@ -74,10 +74,10 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 		// 
 	queryCheckoutRecord();
 
-	$scope.addComplexDL = function() {
-		localStorage.setItem("DL",JSON.stringify($rootScope.DL));
-		alert("保存成功");
-	}
+	// $scope.addComplexDL = function() {
+	// 	localStorage.setItem("DL",JSON.stringify($rootScope.DL));
+	// 	alert("保存成功");
+	// }
 
 	$scope.updateComplexIQCRecord = function() {
 		// console.log($rootScope.DX);
@@ -85,7 +85,7 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 
 		$http({
 			method: "POST",
-			 url: config.HOST + "/api/2.0/bp/qcp/qcp/updateComplexIQCRecord",
+			 url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
 			//url: "iqc/iqc_add/updateComplexIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {

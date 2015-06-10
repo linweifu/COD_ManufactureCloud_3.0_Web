@@ -112,8 +112,8 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/updateComplexIQCRecord",
-			url: "iqc/iqc_add/updateComplexIQCRecord.json",
+			url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
+			// url: "iqc/iqc_add/updateComplexIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),

@@ -260,10 +260,45 @@ FIMS.config([
 		controller: 'dailyDetailsCtrl',
 		templateUrl:'iqc/iqc_dataCount/dailyDetails.html'
 	})
+	.state('account_index.dailyStatistics_venmat',{
+		url:'/dailyStatistics0',
+		// controller: 'dailyStatistics',
+		templateUrl:'iqc/iqc_dataCount/dailyStatistics_venmat.html'
+	})
+	.state('account_index.dailyStatistics_matven',{
+		url:'/dailyStatistics1',
+		// controller: 'dailyStatistics',
+		templateUrl:'iqc/iqc_dataCount/dailyStatistics_matven.html'
+	})
+	.state('account_index.dailyStatistics_vendor',{
+		url:'/dailyStatistics_vendor',
+		// controller: 'dailyStatistics',
+		templateUrl:'iqc/iqc_dataCount/dailyStatistics_vendor.html'
+	})
+	.state('account_index.dailyStatistics_material',{
+		url:'/dailyStatistics_material',
+		// controller: 'dailyStatistics',
+		templateUrl:'iqc/iqc_dataCount/dailyStatistics_material.html'
+	})
 	.state('account_index.monthlyDetails',{
 		url:'/monthlyDetails',
 		controller: 'monthlyDetailsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyDetails.html'
+	})
+	.state('account_index.monthlyStatistics',{
+		url:'/monthlyStatistics',
+		//controller: 'monthlyStatisticsCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlyStatistics.html'
+	})
+	.state('account_index.monthlyStatistics_venmat',{
+		url:'/monthlyStatistics_venmat',
+		//controller: 'monthlyStatisticsCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_venmat.html'
+	})
+	.state('account_index.monthlyStatistics_matven',{
+		url:'/monthlyStatistics_matven',
+		controller: 'monthlyStatisticsCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_matven.html'
 	})
 	.state('account_index.monthlyStatistics_material',{
 		url:'/monthlyStatistics_material',
@@ -274,6 +309,11 @@ FIMS.config([
 		url:'/monthlyStatistics_vendor',
 		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_vendor.html'
+	})
+	.state('account_index.monthlySumStatistics',{
+		url:'/monthlySumStatistics',
+		controller: 'monthlyStatisticsCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlySumStatistics.html'
 	})
 	.state('account_index.monthlyChart_vendor',{
 		url:'/monthlyChart_vendor',

@@ -27,18 +27,7 @@
 				<thead>
 				    <tr>
 					  <th>序号</th>
-			          <th>检验日期</th>
-				      <th>进货检验记录编号</th>
-				      <th>批次编号</th>
-				      <th>条形码编号</th>
-				      <th>物料编号</th>
-				      <th>物料版本</th>
-				      <th>物料简称</th>
-				      <th>供应商编号</th>
-				      <th>供应商简称</th>
-				      <th>外部入库单号</th>
-				      <th>检验员工号</th>
-				      <th>检验员姓名</th>
+			          <th>日期</th>
 				      <th>送检数量总计</th>
 				      <th>抽样数量总计</th>
 				      <th>抽样合格品数量总计</th>
@@ -50,32 +39,13 @@
 				      <th>整体抽样不合格率</th>
 				      <th>整体抽样不合格率PPM</th>
 				      <th>批次合格率</th>
-				      <th>送检数量</th>
-				      <th>抽样数量</th>
-				      <th>抽样合格品数量</th>
-				      <th>抽样不合格品数量</th>
-				      <th>批次内抽样不良现象总计</th>
-				      <th>抽样合格率 %</th>
-				      <th>抽样不合格率 %</th>
-				      <th>抽样不合格率PPM</th>
-				      <th>AQL</th>
+				      <th>进货批次数量</th>
+				      <th>合格批次数量</th>
 				    </tr>
 			    </thead>
-			  <tbody>		 
+			  <!-- <tbody>		 
 			  	<tr ng-repeat="list in monthlyStatistics.dateSelected">
-			  		<td>{{$index+1}}</td>
-			  		<td ng-bind="list.iqcQualityDailyList.checkoutTime"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.checkoutRecordNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.batchNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialBarcode"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialVersion"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialShortName"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.vendorNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.vendorShortName"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.externalReceiptNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.nspectorJobNumber"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.nspectorName"></td>	  		
+			  		<td>{{$index+1}}</td>  		
 			  		<td ng-bind="list.iqcQualityDailyList.giveCheckoutAmount"></td>
 			  		<td ng-bind="list.iqcQualityDailyList.sampleAmount"></td>
 			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedAmount"></td>
@@ -96,10 +66,9 @@
 			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedRate"></td>
 			  		<td ng-bind="list.iqcQualityDailyList.sampleUnqualifiedRatePpm"></td>
 			  		<td ng-bind="list.iqcQualityDailyList.aql"></td>
-			  		<!-- <td ng-bind="list.iqcQualityDailyList.determinationResults"></td> -->
-			  		
+			  		<td ng-bind="list.iqcQualityDailyList.determinationResults"></td>	  		
 			  	</tr>
-			  </tbody>
+			  </tbody> --> 
 			</table>
 		</div>
 		<button class="btn btn-success btn-newMem" ng-click="monthlyStatisticsBack()">返回管理面板</button>
