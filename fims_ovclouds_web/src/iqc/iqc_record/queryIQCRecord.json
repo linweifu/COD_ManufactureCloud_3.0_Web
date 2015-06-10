@@ -16,7 +16,7 @@
             "sampleAmount": 3,
             "operateStatus": "提交",
             "operateStatusCode": "TJ",
-            "operateStatusWeb": "查看"
+           "operateStatusWeb": "查看"
         },
         {
             "checkoutRecordSid": "3",
@@ -32,8 +32,8 @@
             "submitCheckoutAmount": 20,
             "sampleAmount": 3,
             "operateStatus": "提交",
-            "operateStatusCode": "XD",
-            "operateStatusWeb": "修订"
+            "operateStatusCode": "BC",
+           "operateStatusWeb": "修订"
         }
     ],
     "page": "1"

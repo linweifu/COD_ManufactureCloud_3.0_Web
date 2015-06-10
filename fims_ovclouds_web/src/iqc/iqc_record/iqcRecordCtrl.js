@@ -1,26 +1,22 @@
 FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scope,$location,$http){
-	// var iqcRecord = {
-	// 	iqcRecords: []
-	// };
 
 	$scope.companyShortName = localStorage.getItem('curCompanyName');
 	$scope.iqcRecord = [];
 
-	// $scope.iqcRecordBack = function(){
-	// 	// localStorage.removeItem('singleplan');
-	// 	$location.path('account_index/chooseModule').replace();
-	// }
+	
 
-	//  /api/2.0/bp/qcp/qcp
+	//判断是查看还是修订状态
 
 	 $scope.querySingleIQCRecordInfo =function(recordSid,operateStatusCode){
 	 	if (operateStatusCode=="TJ") {
+            
+
 	 		localStorage.setItem("checkoutRecordSid",recordSid);
-	 		//list.operateStatusWeb 
+	 		
 	 		$location.path("account_index/iqcRecordCheck");
-	 	}else if(operateStatusCode=="XD") {
+	 	}else if(operateStatusCode=="BC") {
 	 		localStorage.setItem("checkoutRecordSid",recordSid);
-	 		//console.log("修订");
+	 	
 	 		$location.path("account_index/iqcRecordRevise");
 	 	}else {
 	 		alert("不是“查看/修订”状态");
@@ -53,15 +49,19 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 
 	 	return (year + "-" + month + "-" +day );
 	}
-
-	//根据检验计划类型获取检验计划
+/***********************************************************************
+************************************************************************
+ //queryIQCRecords根据检验计划类型获取检验计划
+************************************************************************
+***********************************************************************/
+	
 	$scope.queryIQCRecord = function() {
 		$http({
 			method: "POST",
 
 			//url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
-			url: "iqc/iqc_record/queryIQCRecord.json",
-			//url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
+			//url: "iqc/iqc_record/queryIQCRecord.json",
+			url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
 			// url: "iqc/iqc_record/queryIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {

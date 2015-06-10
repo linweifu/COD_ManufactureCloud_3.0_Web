@@ -31,36 +31,13 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 
 	$scope.iqcComplexDLCheck = iqcComplexDLCheck;
 
-	//调整时间格式
-	// Date.prototype.format = function() {
- //   		var year = this.getFullYear().toString();
- //   		var month = (this.getMonth()+1).toString();
- //   		var day = this.getDate().toString();
- //   		console.log(year);
+	
+/***********************************************************************
+************************************************************************
+ // 获取基本信息部分
+************************************************************************
+***********************************************************************/
 
-	// 	if (month<10) {
-	// 		month = "0" + month;
-	// 	}
-
-	// 	if (day<10) {
-	// 		day = "0" + day;
-	// 	}
-
-	//  	return (year + "-" + month + "-" +day );
-	// }
-
-	// 各种弹出框
-	// var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
-	// window.onbeforeunload=function(event){
-	//       event=event || window.event;
-	//       event.returnValue=msg;
-	//       return msg;
-	// }
-
-	// iqcComplexDLCheck.makeTime = time.format();
-	// iqcComplexDLCheck.entryTime = time.format();
-
-	// 获取基本信息部分
 	var queryCheckoutRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
 		iqcComplexDLCheck.materialNo = checkoutRecord.materialNo;
@@ -74,7 +51,7 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 
 		// 绑定定性部分
 		$rootScope.DL = JSON.parse(localStorage.getItem("DL"));
-		console.log($rootScope.DL);
+		//console.log($rootScope.DL);
 
 		//下拉数据绑定
 		// $rootScope.DL = $rootScope.DL.sample;
@@ -98,7 +75,11 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 		}
 	}
 	queryCheckoutRecord();
-
+/***********************************************************************
+************************************************************************
+ // 返回首页
+************************************************************************
+***********************************************************************/
 	$scope.next = function() {
 		localStorage.setItem("DL",JSON.stringify($rootScope.DL));
 		$location.path("account_index/iqcRecord");

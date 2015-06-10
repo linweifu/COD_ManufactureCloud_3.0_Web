@@ -3560,28 +3560,24 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 	
 }])
 FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scope,$location,$http){
-	// var iqcRecord = {
-	// 	iqcRecords: []
-	// };
 
 	$scope.companyShortName = localStorage.getItem('curCompanyName');
 	$scope.iqcRecord = [];
 
-	// $scope.iqcRecordBack = function(){
-	// 	// localStorage.removeItem('singleplan');
-	// 	$location.path('account_index/chooseModule').replace();
-	// }
+	
 
-	//  /api/2.0/bp/qcp/qcp
+	//判断是查看还是修订状态
 
 	 $scope.querySingleIQCRecordInfo =function(recordSid,operateStatusCode){
 	 	if (operateStatusCode=="TJ") {
+            
+
 	 		localStorage.setItem("checkoutRecordSid",recordSid);
-	 		//list.operateStatusWeb 
+	 		
 	 		$location.path("account_index/iqcRecordCheck");
-	 	}else if(operateStatusCode=="XD") {
+	 	}else if(operateStatusCode=="BC") {
 	 		localStorage.setItem("checkoutRecordSid",recordSid);
-	 		//console.log("修订");
+	 	
 	 		$location.path("account_index/iqcRecordRevise");
 	 	}else {
 	 		alert("不是“查看/修订”状态");
@@ -3614,15 +3610,19 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 
 	 	return (year + "-" + month + "-" +day );
 	}
-
-	//根据检验计划类型获取检验计划
+/***********************************************************************
+************************************************************************
+ //queryIQCRecords根据检验计划类型获取检验计划
+************************************************************************
+***********************************************************************/
+	
 	$scope.queryIQCRecord = function() {
 		$http({
 			method: "POST",
 
 			//url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
-			url: "iqc/iqc_record/queryIQCRecord.json",
-			//url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
+			//url: "iqc/iqc_record/queryIQCRecord.json",
+			url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
 			// url: "iqc/iqc_record/queryIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
@@ -5422,9 +5422,26 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
 
     var iqcRecordCheck = {
 
+        materialNo: "",
+        materialShortName: "",
+        materialVersion: "",
+        checkoutPlanNo: "",
+        checkoutPlanVersion: "",
 
+        externalReceiptNo: "",
+
+        checkoutRecordNo: "",
+        batchNo: "",
+        giveCheckoutTime: "",
+        vendor: "",
+        giveCheckoutAmount: "",
+        sampleAmount: "",
+
+        companyShortName :localStorage.getItem('curCompanyName')
 
     };
+
+    $scope.iqcRecordCheck = iqcRecordCheck;
    
    //自执行函数，删除相关本地存储
   function init(){
@@ -5433,14 +5450,17 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
 
     init();
 
-////////////////////////////////////////////////////
-///////////////////////////////////////////////////////
-///////////////////////////////////////////////////////
+/***********************************************************
+************************************************************
+queryIQCRecords 检验记录查询
+************************************************************
+***********************************************************/
+
  $scope.querySingleIQCRecord = function() {
         $http({
 
             method: "POST",
-             //url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
+            // url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
             url: "iqc/iqc_record/querySingleIQCRecord.json",
             header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
@@ -5476,21 +5496,20 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
         // });
     }
       $scope.querySingleIQCRecord();
-/////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////
 
-
-
-
+/***********************************************************
+************************************************************
+querySingleIQCRecord1 获取本地数据
+************************************************************
+***********************************************************/
     // 查询单个检验记录
     var querySingleIQCRecord1 = function(input_way_code){
         //var deffered = $q.defer();
 
-       // var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
-        //http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
-         var http_url = "iqc/iqc_add/" ;
-         http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+        var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+        http_url += (input_way_code == "CE")? "querySingleSimpleIQCRecord":"querySingleComplexIQCRecord";
+         // var http_url = "iqc/iqc_add/" ;
+         //  http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
         $http({
             method: "POST",
             // url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
@@ -5522,8 +5541,38 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
     }
 
     querySingleIQCRecord1();
- 
-   
+
+// /***********************************************************
+// ************************************************************
+// querySingleIQCRecord1 获取本地数据
+// ************************************************************
+// ***********************************************************/    
+//  // 获取基本信息部分
+//     var querySingleIQCRecord1 = function(){
+//         var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+//         console.log(checkoutRecord);
+//         iqcRecordCheck.materialNo = checkoutRecord.materialNo;
+//         iqcRecordCheck.materialShortName = checkoutRecord.materialShortName;
+//         iqcRecordCheck.materialVersion = checkoutRecord.materialVersion;
+//         iqcRecordCheck.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
+//         iqcRecordCheck.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
+
+//         iqcRecordCheck.externalReceiptNo  = checkoutRecord.externalReceiptNo;
+
+//         iqcRecordCheck.checkoutRecordNo = checkoutRecord.checkoutRecordNo;
+//         iqcRecordCheck.batchNo = checkoutRecord.batchNo;
+//         iqcRecordCheck.materialShortName = checkoutRecord.materialShortName;
+//         iqcRecordCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();
+//         iqcRecordCheck.vendor = checkoutRecord.vendorShortName;
+//         iqcRecordCheck.giveCheckoutAmount = checkoutRecord.giveCheckoutAmount;
+//         iqcRecordCheck.sampleAmount = checkoutRecord.sampleAmount;
+//     }
+//     querySingleIQCRecord1();
+ /***********************************************************
+************************************************************
+back 返回上一级
+************************************************************
+***********************************************************/  
 
 
     $scope.back = function(){
@@ -5551,6 +5600,11 @@ FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($sc
 	init();
 
 $scope.iqcRecordRevise = iqcRecordRevise;
+/*************************************************************
+**************************************************************
+queryIQCRecords检验记录查询
+**************************************************************
+*************************************************************/
  $scope.querySingleIQCRecord = function() {
     	$http({
 
@@ -5587,9 +5641,24 @@ $scope.iqcRecordRevise = iqcRecordRevise;
     }
 
       $scope.querySingleIQCRecord();
+/*************************************************************
+**************************************************************
+updateComplexIQCRecord检验记录更新
+**************************************************************
+*************************************************************/
+$scope.updateComplexIQCRecord = function(){
+
+    var o = {};
+    
 
 
 
+}
+
+/*************************************************************
+**************************************************************
+**************************************************************
+*************************************************************/
 	$scope.back = function(){
 
 		history.go(-1);
@@ -5630,36 +5699,13 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 
 	$scope.iqcComplexDLCheck = iqcComplexDLCheck;
 
-	//调整时间格式
-	// Date.prototype.format = function() {
- //   		var year = this.getFullYear().toString();
- //   		var month = (this.getMonth()+1).toString();
- //   		var day = this.getDate().toString();
- //   		console.log(year);
+	
+/***********************************************************************
+************************************************************************
+ // 获取基本信息部分
+************************************************************************
+***********************************************************************/
 
-	// 	if (month<10) {
-	// 		month = "0" + month;
-	// 	}
-
-	// 	if (day<10) {
-	// 		day = "0" + day;
-	// 	}
-
-	//  	return (year + "-" + month + "-" +day );
-	// }
-
-	// 各种弹出框
-	// var msg="您当前可能有正在填写的数据，刷新将导致数据丢失！";
-	// window.onbeforeunload=function(event){
-	//       event=event || window.event;
-	//       event.returnValue=msg;
-	//       return msg;
-	// }
-
-	// iqcComplexDLCheck.makeTime = time.format();
-	// iqcComplexDLCheck.entryTime = time.format();
-
-	// 获取基本信息部分
 	var queryCheckoutRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
 		iqcComplexDLCheck.materialNo = checkoutRecord.materialNo;
@@ -5673,7 +5719,7 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 
 		// 绑定定性部分
 		$rootScope.DL = JSON.parse(localStorage.getItem("DL"));
-		console.log($rootScope.DL);
+		//console.log($rootScope.DL);
 
 		//下拉数据绑定
 		// $rootScope.DL = $rootScope.DL.sample;
@@ -5697,7 +5743,11 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 		}
 	}
 	queryCheckoutRecord();
-
+/***********************************************************************
+************************************************************************
+ // 返回首页
+************************************************************************
+***********************************************************************/
 	$scope.next = function() {
 		localStorage.setItem("DL",JSON.stringify($rootScope.DL));
 		$location.path("account_index/iqcRecord");
@@ -5743,8 +5793,11 @@ FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$htt
  
 
   $scope.iqcComplexDXCheck = iqcComplexDXCheck;
-
+/***********************************************************************
+************************************************************************
  // 获取基本信息部分
+************************************************************************
+***********************************************************************/
   var queryCheckoutRecord = function(){
     
     var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
@@ -5784,13 +5837,11 @@ FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$htt
   }
   queryCheckoutRecord();
 
-
-    // $scope.back = function(){
-
-    //     $location.path("account_index/iqcRecord");
-
-    // }
-
+/***********************************************************************
+************************************************************************
+ // 返回首页
+************************************************************************
+***********************************************************************/
 
 
     $scope.back = function(){

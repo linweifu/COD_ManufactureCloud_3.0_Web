@@ -35,8 +35,11 @@ FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$htt
  
 
   $scope.iqcComplexDXCheck = iqcComplexDXCheck;
-
+/***********************************************************************
+************************************************************************
  // 获取基本信息部分
+************************************************************************
+***********************************************************************/
   var queryCheckoutRecord = function(){
     
     var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
@@ -76,13 +79,11 @@ FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$htt
   }
   queryCheckoutRecord();
 
-
-    // $scope.back = function(){
-
-    //     $location.path("account_index/iqcRecord");
-
-    // }
-
+/***********************************************************************
+************************************************************************
+ // 返回首页
+************************************************************************
+***********************************************************************/
 
 
     $scope.back = function(){
