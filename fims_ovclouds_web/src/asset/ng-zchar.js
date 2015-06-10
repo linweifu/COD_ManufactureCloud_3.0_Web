@@ -3732,10 +3732,10 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 		// 
 	queryCheckoutRecord();
 
-	$scope.addComplexDL = function() {
-		localStorage.setItem("DL",JSON.stringify($rootScope.DL));
-		alert("保存成功");
-	}
+	// $scope.addComplexDL = function() {
+	// 	localStorage.setItem("DL",JSON.stringify($rootScope.DL));
+	// 	alert("保存成功");
+	// }
 
 	$scope.updateComplexIQCRecord = function() {
 		// console.log($rootScope.DX);
@@ -3743,7 +3743,7 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 
 		$http({
 			method: "POST",
-			 url: config.HOST + "/api/2.0/bp/qcp/qcp/updateComplexIQCRecord",
+			 url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
 			//url: "iqc/iqc_add/updateComplexIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
@@ -3885,8 +3885,8 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 
 		$http({
 			method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qcp/qcp/updateComplexIQCRecord",
-			url: "iqc/iqc_add/updateComplexIQCRecord.json",
+			url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
+			// url: "iqc/iqc_add/updateComplexIQCRecord.json",
 			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
@@ -4342,6 +4342,7 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.dailyDetails = dailyDetails;
 
 		//调整时间格式
+		var time  = new Date();
 		Date.prototype.format = function() {
 	   		var year = this.getFullYear().toString();
 	   		var month = (this.getMonth()+1).toString();
@@ -4358,6 +4359,8 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 
 		 	return (year + "-" + month + "-" +day );
 		}
+		dailyDetails.checkoutTime = time.format();
+		// iqcAddCheck.entryTime = time.format();
 
 		$scope.dailyDetailsBack = function(){
 			// localStorage.removeItem('singleplan');
@@ -4367,12 +4370,12 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
-				//url: "iqc/iqc_dataCount/A102DailyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
+				url: "iqc/iqc_dataCount/A102DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
-					"checkoutTime": dailyDetails.checkoutTime+"T07:30:00Z",
+					"checkoutTime":((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
 				}
@@ -4466,8 +4469,8 @@ FIMS.controller('monthlyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getMonthDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
-				//url: "iqc/iqc_dataCount/A103MonthlyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
+				url: "iqc/iqc_dataCount/A103MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -4578,8 +4581,8 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 		$scope.getSingleMaterial = function(){
 			$http({
 				method: 'POST',
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
-				//url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
+				url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
@@ -4795,8 +4798,8 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 		$scope.getSingleVendor = function(){
 			$http({
 				method: 'POST',
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A1091MonthlyReport",
-				//url: "iqc/iqc_dataCount/A1091MonthlyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1091MonthlyReport",
+				url: "iqc/iqc_dataCount/A1091MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
@@ -4963,8 +4966,8 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.getMonthStatics0 = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
-				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -4995,8 +4998,8 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.getMonthStatics1 = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
-				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),

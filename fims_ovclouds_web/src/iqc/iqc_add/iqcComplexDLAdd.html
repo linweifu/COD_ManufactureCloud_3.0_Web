@@ -68,11 +68,11 @@
 		<div class="form-group">				
 			<label class="left control-label" style="margin-right: 1em;">三坐标</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.threeDimensionalRogramNo" required ng-disabled="true">
+				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.threeDimensionalRogram_no" required ng-disabled="true">
 			</div>
 			<label class="left control-label" style="margin-right: 1em;">标准值</label>	
 			<div class="col-sm-3">
-				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.list.referenceStandard" required ng-disabled="true">				
+				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.referenceStandard" required ng-disabled="true">				
 			</div>
 			<label class="left control-label" style="margin-right: 2em;">夹具</label>
 			<div class="col-sm-2">
@@ -109,7 +109,7 @@
 <div class="text-center" style="margin: .5em auto;">
 	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcComplexDXAdd">上一步</button>
 
-	<button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="addComplexDL()">保存</button>
+	<button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="updateComplexIQCRecord()">保存</button>
 
 	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;">提交</button>
 </div>

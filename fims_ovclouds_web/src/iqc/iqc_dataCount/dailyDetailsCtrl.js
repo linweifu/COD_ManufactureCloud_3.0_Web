@@ -8,6 +8,7 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.dailyDetails = dailyDetails;
 
 		//调整时间格式
+		var time  = new Date();
 		Date.prototype.format = function() {
 	   		var year = this.getFullYear().toString();
 	   		var month = (this.getMonth()+1).toString();
@@ -24,6 +25,8 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 
 		 	return (year + "-" + month + "-" +day );
 		}
+		dailyDetails.checkoutTime = time.format();
+		// iqcAddCheck.entryTime = time.format();
 
 		$scope.dailyDetailsBack = function(){
 			// localStorage.removeItem('singleplan');
@@ -33,12 +36,12 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
-				//url: "iqc/iqc_dataCount/A102DailyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
+				url: "iqc/iqc_dataCount/A102DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
-					"checkoutTime": dailyDetails.checkoutTime+"T07:30:00Z",
+					"checkoutTime":((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
 				}

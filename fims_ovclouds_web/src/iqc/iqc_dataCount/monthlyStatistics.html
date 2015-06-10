@@ -10,18 +10,17 @@
 	.name {font-size: 14px;}
 	.author {color: #f68539;font-size: 12px;}
 	.top {margin-top: 1.8em;}
-	.pager li {margin: 0 5px 0 5px;}
-	th,td {width: 1px;white-space: nowrap; word-break:  keep-all; }	
+	th,td {width: 1px;white-space: nowrap;word-break:  keep-all;}	
 	
 </style>
 
 <div id="container" class="container text-center">
-	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验质量状况日报明细</h3>
+	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验质量状况月报统计</h3>
 	<div class="form-group" style="margin-top: 1.5em;">
-		<form class="form-horizontal" id="form-horizontal" name="dailyDetailForm" novalidate>			
+		<form class="form-horizontal" id="form-horizontal" name="monthlyDetailsform" novalidate>
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
-			<input type="date" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="dailyDetails.checkoutTime" required>		
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getDailyDetails()">查询</button>				
+			<input type="month" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlyDetails.checkoutTime" required>		
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getMonthDetails()">查询</button>				
 		</form>
 	</div>
 	<!-- <span style="font-size: 20px;">{{companyShortName}}</span>
@@ -42,8 +41,19 @@
 			      <th>供应商编号</th>
 			      <th>供应商简称</th>
 			      <th>外部入库单号</th>
-			      <th>AQL</th>
+			      <th>检验员工号</th>
 			      <th>检验员姓名</th>
+			      <th>送检数量总计</th>
+			      <th>抽样数量总计</th>
+			      <th>抽样合格品数量总计</th>
+			      <th>抽样不合格品数量总计</th>
+			      <th>抽样不良现象总计</th>
+			      <th>平均抽样合格率</th>
+			      <th>整体抽样合格率</th>
+			      <th>平均抽样不合格率</th>
+			      <th>整体抽样不合格率</th>
+			      <th>整体抽样不合格率PPM</th>
+			      <th>批次合格率</th>
 			      <th>送检数量</th>
 			      <th>抽样数量</th>
 			      <th>抽样合格品数量</th>
@@ -52,11 +62,13 @@
 			      <th>抽样合格率 %</th>
 			      <th>抽样不合格率 %</th>
 			      <th>抽样不合格率PPM</th>
+			      <th>AQL</th>
+			      <!-- <th>判定结果</th> -->
 			      
 			    </tr>
 			  </thead>
 			  <tbody>		 
-			  	<tr ng-repeat="list in dailyDetails.dateSelected">
+			  	<tr ng-repeat="list in monthlyDetails.dateSelected">
 			  		<td>{{$index+1}}</td>
 			  		<td ng-bind="list.checkoutTime"></td>
 			  		<td ng-bind="list.checkoutRecordNo"></td>
@@ -67,22 +79,26 @@
 			  		<td ng-bind="list.materialShortName"></td>
 			  		<td ng-bind="list.vendorNo"></td>
 			  		<td ng-bind="list.vendorShortName"></td>
-			  		<td ng-bind="list.externalReceiptNo"></td>
-			  		<td ng-bind="list.aql"></td>
+					<td ng-bind="list.externalReceiptNo"></td>
+					<td ng-bind="list.nspectorJobNumber"></td>
 			  		<td ng-bind="list.nspectorName"></td>
+			  		<td ng-bind="list.aql"></td>
 			  		<td ng-bind="list.giveCheckoutAmount"></td>
 			  		<td ng-bind="list.sampleAmount"></td>
-			  		<td ng-bind="list.sampleQualifiedAmount"></td>
 			  		<td ng-bind="list.sampleUnqualifiedAmount"></td>
+			  		<td ng-bind="list.sampleQualifiedAmount"></td>
 			  		<td ng-bind="list.sampleDefectiveAmountTotal"></td>
 			  		<td ng-bind="list.sampleQualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
-			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>			  		
+			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
+			  		
+			  		<td ng-bind="list.determinationResults"></td>
+			  		
 			  	</tr>
 			  </tbody>
 			</table>
-			    
+			
 		</div>
-	<button class="btn btn-success btn-newMem" ng-click="dailyDetailsBack()">返回管理面板</button>
+	<button class="btn btn-success btn-newMem" ng-click="monthlyDetailsBack()">返回管理面板</button>
 	</div>
 </div>

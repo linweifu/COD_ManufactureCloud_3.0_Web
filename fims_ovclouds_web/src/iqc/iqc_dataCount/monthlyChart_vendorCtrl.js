@@ -81,8 +81,8 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 		$scope.getSingleMaterial = function(){
 			$http({
 				method: 'POST',
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
-				//url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
+				url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
