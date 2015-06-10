@@ -1,6 +1,12 @@
 FIMS.controller('materialCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var material = {};
+		var material = {
+			materialNo: "",
+			materialVersion: "",
+			materialShortName: "",
+			materialFullName: "",
+			notes:""
+		};
 		$scope.material = material;
 
 		$scope.materialBack = function(){
@@ -47,16 +53,17 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 				// url: "manage/engineer/material/addOrUpdateMaterials.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
-					"sid": localStorage.getItem('sid'),
+					
 				    "operateStatus": 1,
 				    "materialSid": localStorage.getItem('curM'),
-				    // "materialNo":updateMaterial.materialNo,
-				    "materialShortName":$scope.material.materialShortName,
-				    // "materialVersion":$scope.material.materialVersion,
-				    "materialFullName":$scope.material.materialFullName,
+				    "materialNo": material.materialNo,
+				    "materialShortName": material.materialShortName,
+				    "materialVersion": material.materialVersion,
+				    "materialFullName": material.materialFullName,
 				    "companySid":localStorage.getItem('cSid'),
-				    "companyShortName":$scope.material.companyShortName,
-				    "notes":$scope.material.notes
+				    "companyShortName": material.companyShortName,
+				    "notes": material.notes,
+				    "sid": localStorage.getItem('sid')
 				        
 				}
 			})

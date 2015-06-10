@@ -106,7 +106,7 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
             if (data.code == 'N01') {
             	$scope.queryVendorInfo();
                 alert(data.message);
-                $scope.newvendor = {
+                newvendor = {
                 	"vendorNo":"",
 				    "vendorShortName":"",
 				    "vendorFullName":"",
@@ -117,6 +117,7 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 				    "notes":"",
 				    "zipCode":""
                 }
+                $scope.newvendor = newvendor;
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");

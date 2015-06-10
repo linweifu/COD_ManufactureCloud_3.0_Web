@@ -1,6 +1,16 @@
 FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var vendor = {};
+		var vendor = {
+			"vendorNo":"",
+		    "vendorShortName":"",
+		    "vendorFullName":"",
+		    "companySid":"",
+		    "companyShortName":"",
+		    "contactPhone":"",
+		    "contactAddress":"",
+		    "notes":"",
+		    "zipCode":""
+		};
 
 		//数据绑定以及准备
 		$scope.vendor= vendor;

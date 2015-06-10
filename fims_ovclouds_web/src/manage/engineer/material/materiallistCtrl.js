@@ -1,5 +1,14 @@
 FIMS.controller('materialListCtrl', ['$scope', '$location', '$http', 
 	function($scope,$location,$http){
+		var newMaterial = {
+		"materialNo": "",
+        "materialShortName": "",
+        "materialVersion": "",
+        "materialFullName": "",
+        "notes": ""
+	};
+
+	$scope.newMaterial= newMaterial;
 	$scope.companyShortName = localStorage.getItem('curCompanyName');
 	$scope.materiallistBack = function(){
 		localStorage.removeItem('singlematerial');
@@ -65,16 +74,6 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
  //        })
 	// }
 
-	var newMaterial = {
-		"materialNo": "",
-        "materialShortName": "",
-        "materialVersion": "",
-        "materialFullName": "",
-        "notes": ""
-	};
-
-	$scope.newMaterial= newMaterial;
-
 	$scope.addOrUpdateMaterials = function(){
 		$http({
 			method: "POST",
@@ -98,13 +97,14 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
             if (data.code == 'N01') {
             	$scope.queryMaterialsInfo();
                 alert(data.message);
-                $scope.newMaterial = {
+                newMaterial = {
                 	"materialNo": "",
 			        "materialShortName": "",
 			        "materialVersion": "",
 			        "materialFullName": "",
 			        "notes": ""
                 }
+                $scope.newMaterial = newMaterial;
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");

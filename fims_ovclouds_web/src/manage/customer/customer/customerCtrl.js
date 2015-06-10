@@ -1,6 +1,16 @@
 FIMS.controller('customerCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var customer = {};
+		var customer = {
+			"customerNo":"",
+		    "customerShortName":"",
+		    "customerFullName":"",
+		    "companySid":"",
+		    "companyShortName":"",
+		    "contactPhone":"",
+		    "contactAddress":"",
+		    "notes":"",
+		    "zipCode":""			
+		};
 
 		// var customer = {
 		// 	"customerNo": customer.customerNo,

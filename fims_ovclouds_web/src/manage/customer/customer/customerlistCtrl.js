@@ -103,7 +103,7 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
             if (data.code == 'N01') {
             	$scope.queryCustomerInfo();
                 alert(data.message);
-                $scope.newcustomer = {
+                newcustomer = {
                 	"customerNo":"",
 				    "customerShortName":"",
 				    "customerFullName":"",
@@ -114,6 +114,7 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 				    "notes":"",
 				    "zipCode":""
                 }
+                $scope.newcustomer = newcustomer;
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");

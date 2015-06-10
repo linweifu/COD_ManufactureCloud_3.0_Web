@@ -637,7 +637,13 @@ FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($s
 }])
 FIMS.controller('materialCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var material = {};
+		var material = {
+			materialNo: "",
+			materialVersion: "",
+			materialShortName: "",
+			materialFullName: "",
+			notes:""
+		};
 		$scope.material = material;
 
 		$scope.materialBack = function(){
@@ -684,16 +690,17 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 				// url: "manage/engineer/material/addOrUpdateMaterials.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
-					"sid": localStorage.getItem('sid'),
+					
 				    "operateStatus": 1,
 				    "materialSid": localStorage.getItem('curM'),
-				    // "materialNo":updateMaterial.materialNo,
-				    "materialShortName":$scope.material.materialShortName,
-				    // "materialVersion":$scope.material.materialVersion,
-				    "materialFullName":$scope.material.materialFullName,
+				    "materialNo": material.materialNo,
+				    "materialShortName": material.materialShortName,
+				    "materialVersion": material.materialVersion,
+				    "materialFullName": material.materialFullName,
 				    "companySid":localStorage.getItem('cSid'),
-				    "companyShortName":$scope.material.companyShortName,
-				    "notes":$scope.material.notes
+				    "companyShortName": material.companyShortName,
+				    "notes": material.notes,
+				    "sid": localStorage.getItem('sid')
 				        
 				}
 			})
@@ -714,6 +721,15 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 }])
 FIMS.controller('materialListCtrl', ['$scope', '$location', '$http', 
 	function($scope,$location,$http){
+		var newMaterial = {
+		"materialNo": "",
+        "materialShortName": "",
+        "materialVersion": "",
+        "materialFullName": "",
+        "notes": ""
+	};
+
+	$scope.newMaterial= newMaterial;
 	$scope.companyShortName = localStorage.getItem('curCompanyName');
 	$scope.materiallistBack = function(){
 		localStorage.removeItem('singlematerial');
@@ -779,16 +795,6 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
  //        })
 	// }
 
-	var newMaterial = {
-		"materialNo": "",
-        "materialShortName": "",
-        "materialVersion": "",
-        "materialFullName": "",
-        "notes": ""
-	};
-
-	$scope.newMaterial= newMaterial;
-
 	$scope.addOrUpdateMaterials = function(){
 		$http({
 			method: "POST",
@@ -812,13 +818,14 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
             if (data.code == 'N01') {
             	$scope.queryMaterialsInfo();
                 alert(data.message);
-                $scope.newMaterial = {
+                newMaterial = {
                 	"materialNo": "",
 			        "materialShortName": "",
 			        "materialVersion": "",
 			        "materialFullName": "",
 			        "notes": ""
                 }
+                $scope.newMaterial = newMaterial;
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -833,7 +840,17 @@ FIMS.controller('materialListCtrl', ['$scope', '$location', '$http',
 }])
 FIMS.controller('customerCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var customer = {};
+		var customer = {
+			"customerNo":"",
+		    "customerShortName":"",
+		    "customerFullName":"",
+		    "companySid":"",
+		    "companyShortName":"",
+		    "contactPhone":"",
+		    "contactAddress":"",
+		    "notes":"",
+		    "zipCode":""			
+		};
 
 		// var customer = {
 		// 	"customerNo": customer.customerNo,
@@ -1029,7 +1046,7 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
             if (data.code == 'N01') {
             	$scope.queryCustomerInfo();
                 alert(data.message);
-                $scope.newcustomer = {
+                newcustomer = {
                 	"customerNo":"",
 				    "customerShortName":"",
 				    "customerFullName":"",
@@ -1040,6 +1057,7 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 				    "notes":"",
 				    "zipCode":""
                 }
+                $scope.newcustomer = newcustomer;
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -1054,7 +1072,17 @@ FIMS.controller('customerListCtrl', ['$scope', '$location', '$http',
 }])
 FIMS.controller('vendorCtrl', ['$scope',  '$location', '$http', 
 	function($scope,$location,$http){
-		var vendor = {};
+		var vendor = {
+			"vendorNo":"",
+		    "vendorShortName":"",
+		    "vendorFullName":"",
+		    "companySid":"",
+		    "companyShortName":"",
+		    "contactPhone":"",
+		    "contactAddress":"",
+		    "notes":"",
+		    "zipCode":""
+		};
 
 		//数据绑定以及准备
 		$scope.vendor= vendor;
@@ -1242,7 +1270,7 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
             if (data.code == 'N01') {
             	$scope.queryVendorInfo();
                 alert(data.message);
-                $scope.newvendor = {
+                newvendor = {
                 	"vendorNo":"",
 				    "vendorShortName":"",
 				    "vendorFullName":"",
@@ -1253,6 +1281,7 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 				    "notes":"",
 				    "zipCode":""
                 }
+                $scope.newvendor = newvendor;
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
