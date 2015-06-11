@@ -148,6 +148,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	//alert("公司信息更新成功");
             	//$location.path("account_index/chooseModule");
             	planRevise.auxCheckoutPlan = data.contents;
+                 
             	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
                   var maketime = new Date(planRevise.auxCheckoutPlan.makeTime*1000),

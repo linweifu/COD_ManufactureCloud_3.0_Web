@@ -16,10 +16,12 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 			},
 			QCPSelected :[],
 			display: "",
+			
 			page: localStorage.getItem("page")
 		};
 
 		$scope.companyShortName = localStorage.getItem('curCompanyName');
+		//makeJobNumber : localStorage.getItem("userJobNumber");
 		$scope.planlist = planlist;
 
 		//页面初始化
@@ -129,6 +131,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                planlist.display = "display:block"; 
 	 				localStorage.setItem('page',1);	
 	                planlist.QCPSelected = data.contents;
+	                 // localStorage.setItem("makeJobNumber",planCheck.makeJobNumber);
+	                //localStorage.setItem("makeJobNumber",planHistoryListCopy.singleQCP.materialSid);
 	                // console.log(planlist.QCPSelected.length);
 
 	                for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
@@ -264,6 +268,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	            if (data.code == 'N01') {           	
 	 				localStorage.setItem('page',1);
 	                planlist.QCPSelected = data.contents;
+
 	            	// comsole.log()
 	            }
 	            else if(data.code=="E00"){

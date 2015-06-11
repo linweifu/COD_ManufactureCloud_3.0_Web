@@ -1312,10 +1312,12 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 			},
 			QCPSelected :[],
 			display: "",
+			
 			page: localStorage.getItem("page")
 		};
 
 		$scope.companyShortName = localStorage.getItem('curCompanyName');
+		//makeJobNumber : localStorage.getItem("userJobNumber");
 		$scope.planlist = planlist;
 
 		//页面初始化
@@ -1425,6 +1427,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	                planlist.display = "display:block"; 
 	 				localStorage.setItem('page',1);	
 	                planlist.QCPSelected = data.contents;
+	                 // localStorage.setItem("makeJobNumber",planCheck.makeJobNumber);
+	                //localStorage.setItem("makeJobNumber",planHistoryListCopy.singleQCP.materialSid);
 	                // console.log(planlist.QCPSelected.length);
 
 	                for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
@@ -1560,6 +1564,7 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	            if (data.code == 'N01') {           	
 	 				localStorage.setItem('page',1);
 	                planlist.QCPSelected = data.contents;
+
 	            	// comsole.log()
 	            }
 	            else if(data.code=="E00"){
@@ -1635,7 +1640,7 @@ FIMS.controller('planCheckCtrl', ['$scope','$location','$http',function($scope,$
               	$scope.planCheck.entryTime = entrytime.format();
               	$scope.planCheck.makeTime = maketime.format();
               	localStorage.setItem("materialSid",$scope.planCheck.materialSid);
-              	localStorage.setItem("makeJobNumber",$scope.planCheck.makeJobNumber);
+              	//localStorage.setItem("makeJobNumber",$scope.planCheck.makeJobNumber);
               	// console.log($scope.planCheck.entryTime)
 
             }
@@ -1990,6 +1995,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	//alert("公司信息更新成功");
             	//$location.path("account_index/chooseModule");
             	planRevise.auxCheckoutPlan = data.contents;
+                 
             	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
                   var maketime = new Date(planRevise.auxCheckoutPlan.makeTime*1000),
@@ -2147,7 +2153,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		makeName : localStorage.getItem("userName"),
 		makeTime: "",
 		entryName: localStorage.getItem("userName"),
-		makeJobNumber: localStorage.getItem("makeJobNumber"),
+		makeJobNumber : localStorage.getItem("userJobNumber"),
 		entryTime: ""
 
 
