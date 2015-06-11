@@ -148,7 +148,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	//alert("公司信息更新成功");
             	//$location.path("account_index/chooseModule");
             	planRevise.auxCheckoutPlan = data.contents;
-                 
+
             	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
                   var maketime = new Date(planRevise.auxCheckoutPlan.makeTime*1000),
@@ -231,6 +231,9 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	alert(data.message+"，请重新登录");
             	localStorage.clear();
             	$location.path('login');
+            }else if(data.code=="E01"){
+                alert(data.message+",AQL格式不正确");
+            
             }else {
             	console.log(data.message);
             }
@@ -270,6 +273,17 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
      planRevise.back = function(){
             $location.path("account_index/planList");
       }
+/*
+***************************************************
+***************************************************
+***************************************************
+***************************************************
+*/
+
+
+
+
+
 /*
 ***************************************************
 ***************************************************

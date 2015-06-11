@@ -1995,7 +1995,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	//alert("公司信息更新成功");
             	//$location.path("account_index/chooseModule");
             	planRevise.auxCheckoutPlan = data.contents;
-                 
+
             	// console.log(planRevise.auxCheckoutPlan);
             	dataTransfer(planRevise.keyCheckoutPlan,planRevise.auxCheckoutPlan);
                   var maketime = new Date(planRevise.auxCheckoutPlan.makeTime*1000),
@@ -2078,6 +2078,9 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
             	alert(data.message+"，请重新登录");
             	localStorage.clear();
             	$location.path('login');
+            }else if(data.code=="E01"){
+                alert(data.message+",AQL格式不正确");
+            
             }else {
             	console.log(data.message);
             }
@@ -2117,6 +2120,17 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
      planRevise.back = function(){
             $location.path("account_index/planList");
       }
+/*
+***************************************************
+***************************************************
+***************************************************
+***************************************************
+*/
+
+
+
+
+
 /*
 ***************************************************
 ***************************************************
@@ -2214,9 +2228,12 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
                 alert(data.message+",请重新登陆");
                 localStorage.clear();
                 $location.path('login').replace();
-            }else {
+            }
+                else if(data.code=="E01"){
+                alert(data.message+",AQL格式不正确");
+               }     else {
                 alert(data.message);
-            }  
+               }  
         })
 	}
 
@@ -2361,6 +2378,27 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
             }  
         })
 	}
+/************************************************************
+*************************************************************
+只能输入数字和小数点的限制
+*************************************************************
+************************************************************/
+function check(e) { 
+    var re = /^\d+(?=\.{0,1}\d+$|$)/ 
+    if (e.value != "") { 
+        if (!re.test(e.value)) { 
+            alert("请输入正确的数字"); 
+            e.value = ""; 
+            e.focus(); 
+        } 
+    } 
+} 
+
+/************************************************************
+*************************************************************
+*************************************************************
+************************************************************/
+
 
 	$scope.backQCP = function(){
 		var a = confirm("您确定要退出吗？退出将丢失填写数据!")

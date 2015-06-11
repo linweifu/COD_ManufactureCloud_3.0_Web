@@ -60,7 +60,7 @@
 		<div class="form-group">
 			<label class="left control-label" style="margin-right: 1em">AQL</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="aql" name="aql" style="margin-left: 39px" ng-model="planAdd.aql" required>
+				<input type="text"  onblur="check(this)" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')" class="form-control" id="aql" name="aql" style="margin-left: 39px" ng-model="planAdd.aql" required>
 			</div>
             <label class="left control-label"style="margin-left:38px">制作人工号</label>
             <div class="col-sm-3">
