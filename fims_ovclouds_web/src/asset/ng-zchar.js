@@ -1635,6 +1635,7 @@ FIMS.controller('planCheckCtrl', ['$scope','$location','$http',function($scope,$
               	$scope.planCheck.entryTime = entrytime.format();
               	$scope.planCheck.makeTime = maketime.format();
               	localStorage.setItem("materialSid",$scope.planCheck.materialSid);
+              	localStorage.setItem("makeJobNumber",$scope.planCheck.makeJobNumber);
               	// console.log($scope.planCheck.entryTime)
 
             }
@@ -1979,7 +1980,9 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
                    headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 			data: {
 				"sid": localStorage.getItem('sid'),
-				"checkoutPlanSid": localStorage.getItem('checkoutPlanSid')
+				"checkoutPlanSid": localStorage.getItem('checkoutPlanSid'),
+                        "companySid": localStorage.getItem('companySid')
+ 
 			}
 		})
 		.success(function(data){
@@ -2056,6 +2059,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		            entryName		            : localStorage.getItem("userName"),
 		            entryTime		            : parseInt((new Date().valueOf())/1000),
 		            makeName		            : entry.makeName,
+                        makeJobNumber                 : entry.makeJobNumber,
 		            makeTime		            : parseInt((new Date(entry.makeTime)).valueOf()/1000),
 			}
 		})
@@ -2143,7 +2147,9 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		makeName : localStorage.getItem("userName"),
 		makeTime: "",
 		entryName: localStorage.getItem("userName"),
+		makeJobNumber: localStorage.getItem("makeJobNumber"),
 		entryTime: ""
+
 
 	};
 

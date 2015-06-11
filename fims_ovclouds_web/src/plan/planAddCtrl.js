@@ -21,7 +21,9 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		makeName : localStorage.getItem("userName"),
 		makeTime: "",
 		entryName: localStorage.getItem("userName"),
+		makeJobNumber: localStorage.getItem("makeJobNumber"),
 		entryTime: ""
+
 
 	};
 

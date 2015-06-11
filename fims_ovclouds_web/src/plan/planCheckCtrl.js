@@ -59,6 +59,7 @@ FIMS.controller('planCheckCtrl', ['$scope','$location','$http',function($scope,$
               	$scope.planCheck.entryTime = entrytime.format();
               	$scope.planCheck.makeTime = maketime.format();
               	localStorage.setItem("materialSid",$scope.planCheck.materialSid);
+              	localStorage.setItem("makeJobNumber",$scope.planCheck.makeJobNumber);
               	// console.log($scope.planCheck.entryTime)
 
             }
