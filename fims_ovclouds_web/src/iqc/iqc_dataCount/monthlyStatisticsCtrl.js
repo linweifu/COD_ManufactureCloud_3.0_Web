@@ -33,8 +33,8 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.getMonthStatics0 = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
-				url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -65,8 +65,8 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.getMonthStatics1 = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
-				url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),

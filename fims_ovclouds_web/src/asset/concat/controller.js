@@ -4449,59 +4449,27 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
-				url: "iqc/iqc_dataCount/A102DailyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
+				//url: "iqc/iqc_dataCount/A102DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
-					"checkoutTime":((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
+					"checkoutTime":dailyDetails.checkoutTime+"T07:30:00Z",
 					"companySid": localStorage.getItem('cSid')
 					
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01") {
-	            	//假数据
-	            	data.contents = [{
-						"iqcQualityDailyListSid":1,
-						"checkoutRecordNo":"WK-IQC-20150421-0001",
-						"batchNo":"null",
-						"companySid":1,
-						"companyShortName":"网库有限公司",
-						"materialSid":1,
-						"materialNo":"WK-RM-900303.A",
-						"materialVersion":"A",
-						"materialShortName":"铜接头",
-						"materialBarcode":"物料条形码",
-						"vendorSid":1,
-						"vendorNo":"v001",
-						"vendorShortName":"飞特",
-						"externalReceiptNo":"",
-						"aql":0.35,
-						"determinationResults":"Y",
-						"giveCheckoutAmount":20.0,
-						"sampleAmount":3.0,
-						"sampleQualifiedAmount":2.0,
-						"sampleUnqualifiedAmount":1.0,
-						"sampleDefectiveAmountTotal":0.0,
-						"sampleQualifiedRate":0.67,
-						"sampleUnqualifiedRate":0.33,
-						"sampleUnqualifiedRatePpm":330000.0,
-						"nspectorJobNumber":"10066038",
-						"nspectorName":"黄某",
-						"checkoutTime":1427891400,
-						"updateTimestamp":1432728739,
-						"notes":"null"
-					}]
+	            if(data.code == "N01"&&data.contents.length !== 0) {
+	    
 	            	dailyDetails.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
 	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            // else if (data.contents.length === 0) {
-	            // 	alert("暂无数据");
-	            // }
+	            else if (data.contents.length === 0) {
+	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
@@ -4548,8 +4516,8 @@ FIMS.controller('monthlyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getMonthDetails = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
-				url: "iqc/iqc_dataCount/A103MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
+				//url: "iqc/iqc_dataCount/A103MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -4660,8 +4628,8 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 		$scope.getSingleMaterial = function(){
 			$http({
 				method: 'POST',
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
-				url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1081MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1081MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
@@ -4877,8 +4845,8 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 		$scope.getSingleVendor = function(){
 			$http({
 				method: 'POST',
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1091MonthlyReport",
-				url: "iqc/iqc_dataCount/A1091MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1091MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1091MonthlyReport.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
@@ -5045,8 +5013,8 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.getMonthStatics0 = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
-				url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -5077,8 +5045,8 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.getMonthStatics1 = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
-				url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1031MonthlyReport",
+				//url: "iqc/iqc_dataCount/A1031MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
