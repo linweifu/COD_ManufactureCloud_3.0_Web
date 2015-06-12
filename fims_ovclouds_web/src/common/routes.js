@@ -297,7 +297,7 @@ FIMS.config([
 	})
 	.state('account_index.monthlyStatistics_matven',{
 		url:'/monthlyStatistics_matven',
-		controller: 'monthlyStatisticsCtrl',
+		//controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_matven.html'
 	})
 	.state('account_index.monthlyStatistics_material',{
@@ -312,8 +312,23 @@ FIMS.config([
 	})
 	.state('account_index.monthlySumStatistics',{
 		url:'/monthlySumStatistics',
-		controller: 'monthlyStatisticsCtrl',
+		//controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlySumStatistics.html'
+	})
+	.state('account_index.monthlySumStatics_Sampling',{
+		url:'/monthlySumStatics_Sampling',
+		//controller: 'monthlySumStatics_SamplingCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlySumStatics_Sampling.html'
+	})
+	.state('account_index.monthlySumStatics_PPM',{
+		url:'/monthlySumStatics_PPM',
+		//controller: 'monthlyStatisticsCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlySumStatics_PPM.html'
+	})
+	.state('account_index.monthlySumStatics_Batch',{
+		url:'/monthlySumStatics_Batch',
+		//controller: 'monthlyStatisticsCtrl',
+		templateUrl:'iqc/iqc_dataCount/monthlySumStatics_Batch.html'
 	})
 	.state('account_index.monthlyChart_vendor',{
 		url:'/monthlyChart_vendor',
