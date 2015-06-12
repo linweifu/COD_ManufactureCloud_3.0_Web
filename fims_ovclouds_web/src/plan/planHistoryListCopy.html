@@ -51,7 +51,7 @@
         <div class="form-group">
             <label class="left control-label" style="margin-right:53px">AQL</label>
             <div class="col-sm-5">
-                <input type="text" class="left form-control" name="aql" ng-model="planHistoryListCopy.singleQCP.aql" required >
+                <input type="text" onblur="check(this)" onkeyup="this.value=this.value.replace(/[^0-9.]/g,'')"  class="left form-control" name="aql" ng-model="planHistoryListCopy.singleQCP.aql" required >
             </div>
             <label class="left control-label"style="margin-right:5px">制作人工号</label>
             <div class="col-sm-3">
