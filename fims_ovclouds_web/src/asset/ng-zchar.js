@@ -5494,13 +5494,15 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
     var iqcRecordCheck = {
 
         materialNo: "",
+        materialName: "",
         materialShortName: "",
         materialVersion: "",
         checkoutPlanNo: "",
         checkoutPlanVersion: "",
-
+        checkoutRecordSid:"",
         externalReceiptNo: "",
-
+        checkoutRecordId:"",
+        vendorShortName:"",
         checkoutRecordNo: "",
         batchNo: "",
         giveCheckoutTime: "",
@@ -5512,7 +5514,27 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
 
     };
 
-    $scope.iqcRecordCheck = iqcRecordCheck;
+   // $scope.iqcRecordCheck = iqcRecordCheck;
+
+//调整时间格式
+    Date.prototype.format = function() {
+        var year = this.getFullYear().toString();
+        var month = (this.getMonth()+1).toString();
+        var day = this.getDate().toString();
+        console.log(year);
+
+        if (month<10) {
+            month = "0" + month;
+        }
+
+        if (day<10) {
+            day = "0" + day;
+        }
+
+        return (year + "-" + month + "-" +day );
+    }
+
+
    
    //自执行函数，删除相关本地存储
   function init(){
@@ -5527,12 +5549,18 @@ queryIQCRecords 检验记录查询
 ************************************************************
 ***********************************************************/
 
- $scope.querySingleIQCRecord = function() {
+ $scope.querySingleIQCRecord = function(input_way_code) {
+       
+        var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+        http_url += (input_way_code == "CE")? "querySingleSimpleIQCRecord":"querySingleComplexIQCRecord";
+
+
         $http({
 
             method: "POST",
+            url: http_url,
             // url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
-            url: "iqc/iqc_record/querySingleIQCRecord.json",
+            //url: "iqc/iqc_record/querySingleIQCRecord.json",
             header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),
@@ -5544,11 +5572,13 @@ queryIQCRecords 检验记录查询
 
         .success(function(data){
             if (data.code == 'N01') {
-                $scope.iqcRecordCheck = data.contents;
-                 
+               $scope.iqcRecordCheck = data.contents.checkoutRecord;
+               $scope.iqcRecordCheck.giveCheckoutTime = (new Date(data.contents.checkoutRecord.giveCheckoutTime*1000)).format();
+                // var giveCheckouttime = new Date($scope.iqcRecordCheck.giveCheckoutTime*1000),
+                //  $scope.iqcRecordCheck.giveCheckoutTime = giveCheckouttime.format();
                  // localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
-                
-
+                   // (planHistoryList.QCP)[i].makeTime = (new Date((planHistoryList.QCP)[i].makeTime*1000)).format();
+                 // $scope.iqcRecordCheck.giveCheckoutTime = (new Date(($scope.iqcRecordCheck.giveCheckoutTime*1000)).format();
 
                 // localStorage.setItem();
                 //localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
@@ -5613,32 +5643,7 @@ querySingleIQCRecord1 获取本地数据
 
     querySingleIQCRecord1();
 
-// /***********************************************************
-// ************************************************************
-// querySingleIQCRecord1 获取本地数据
-// ************************************************************
-// ***********************************************************/    
-//  // 获取基本信息部分
-//     var querySingleIQCRecord1 = function(){
-//         var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
-//         console.log(checkoutRecord);
-//         iqcRecordCheck.materialNo = checkoutRecord.materialNo;
-//         iqcRecordCheck.materialShortName = checkoutRecord.materialShortName;
-//         iqcRecordCheck.materialVersion = checkoutRecord.materialVersion;
-//         iqcRecordCheck.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
-//         iqcRecordCheck.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
 
-//         iqcRecordCheck.externalReceiptNo  = checkoutRecord.externalReceiptNo;
-
-//         iqcRecordCheck.checkoutRecordNo = checkoutRecord.checkoutRecordNo;
-//         iqcRecordCheck.batchNo = checkoutRecord.batchNo;
-//         iqcRecordCheck.materialShortName = checkoutRecord.materialShortName;
-//         iqcRecordCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();
-//         iqcRecordCheck.vendor = checkoutRecord.vendorShortName;
-//         iqcRecordCheck.giveCheckoutAmount = checkoutRecord.giveCheckoutAmount;
-//         iqcRecordCheck.sampleAmount = checkoutRecord.sampleAmount;
-//     }
-//     querySingleIQCRecord1();
  /***********************************************************
 ************************************************************
 back 返回上一级
@@ -5648,7 +5653,7 @@ back 返回上一级
 
     $scope.back = function(){
 
-        history.go(-1);
+       $location.path("account_index/iqcRecord");
 
     }
 
