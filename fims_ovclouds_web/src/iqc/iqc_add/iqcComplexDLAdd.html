@@ -111,5 +111,5 @@
 
 	<button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-disabled="planAddForm.$invalid" ng-click="updateComplexIQCRecord()">保存</button>
 
-	<button class="btn btn-default" style="padding: .3em .6em; margin:0 1em 1em 0;">提交</button>
+	<button class="btn btn-default" ng-disabled="planAddForm.$invalid" ng-click="submitComplexIQCRecord()" style="padding: .3em .6em; margin:0 1em 1em 0;">提交</button>
 </div>

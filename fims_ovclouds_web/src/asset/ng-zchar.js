@@ -3830,12 +3830,44 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 				// "companySid": localStorage.getItem('cSid'),
 				"checkoutRecordSid": iqcComplexDLAdd.checkoutRecordSid,
 				"DX": $rootScope.DX,
-				"DL": $rootScope.DL || JSON.parse(localStorage.getItem("DL"))
+				"DL": $rootScope.DL 
 			}
 		})
 		.success(function(data){
             if (data.code == 'N01') {
             	localStorage.setItem("DL",JSON.stringify($rootScope.DL));           	
+                alert(data.message);
+                // $location.path("account_index/iqcRecord");
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+	//提交复杂录入
+	$scope.submitComplexIQCRecord = function() {
+		// console.log($rootScope.DX);
+		// var keyDX
+
+		$http({
+			method: "POST",
+			 url: config.HOST + "/api/2.0/bp/qc/iqc/submitComplexIQCRecord",
+			//url: "iqc/iqc_add/submitComplexIQCRecord.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				// "companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": iqcComplexDLAdd.checkoutRecordSid,
+				"DX": $rootScope.DX,
+				"DL": $rootScope.DL 
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {            	         	
                 alert(data.message);
                 // $location.path("account_index/iqcRecord");
             }
