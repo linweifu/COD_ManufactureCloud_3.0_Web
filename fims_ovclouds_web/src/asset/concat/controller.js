@@ -3775,7 +3775,7 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 		checkoutRecordSid: "",
 
 		// $rootScope.DX: [],
-		
+		sampleCheckoutValue: "",
 		sampleSel: []
 	};//iqcComplexDLAdd
 
@@ -3831,18 +3831,10 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 				item.sampleCheckoutValue = iqcComplexDLAdd.sampleCheckoutValue;
 			}
 		}
-	}//下拉数据绑定
-		// $rootScope.DX = $rootScope.DX.sample;
-		// console.log($rootScope.DX);
-		// for (var i=0,len=$rootScope.DX.length;i<len;i++){
-		// 	$rootScope.DX.push($rootScope.DX[i].sample);
-		// 
+	}
 	queryCheckoutRecord();
 
-	// $scope.addComplexDL = function() {
-	// 	localStorage.setItem("DL",JSON.stringify($rootScope.DL));
-	// 	alert("保存成功");
-	// }
+
 
 	$scope.updateComplexIQCRecord = function() {
 		// console.log($rootScope.DX);
@@ -3897,7 +3889,7 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 		.success(function(data){
             if (data.code == 'N01') {            	         	
                 alert(data.message);
-                // $location.path("account_index/iqcRecord");
+                $location.path("account_index/iqcRecord");
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
