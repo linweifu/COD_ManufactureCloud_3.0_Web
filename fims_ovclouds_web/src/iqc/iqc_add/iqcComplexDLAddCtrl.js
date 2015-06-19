@@ -55,7 +55,6 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 		iqcComplexDLAdd.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
 		iqcComplexDLAdd.sampleAmount = checkoutRecord.sampleAmount;
 
-		iqcComplexDLAdd.checkoutRecordSid = checkoutRecord.checkoutRecordSid;
 
 		// 绑定定量部分
 		$rootScope.DL = JSON.parse(localStorage.getItem("DL"));
@@ -83,7 +82,7 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 			data: {
 				"sid": localStorage.getItem('sid'),
 				// "companySid": localStorage.getItem('cSid'),
-				"checkoutRecordSid": iqcComplexDLAdd.checkoutRecordSid,
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid'),
 				"DX": $rootScope.DX,
 				"DL": $rootScope.DL 
 			}
@@ -116,7 +115,7 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 			data: {
 				"sid": localStorage.getItem('sid'),
 				// "companySid": localStorage.getItem('cSid'),
-				"checkoutRecordSid": iqcComplexDLAdd.checkoutRecordSid,
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid'),
 				"DX": $rootScope.DX,
 				"DL": $rootScope.DL 
 			}
