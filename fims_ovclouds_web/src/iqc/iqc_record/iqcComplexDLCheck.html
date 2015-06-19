@@ -1,7 +1,7 @@
 <style type="text/css">
 	#container {
 		max-width: 850px;
-		max-height: 800px;
+		
 		background-color: #f8f8f8;
 		border: 1px solid #ececec;
 		border-radius: 5px;
@@ -19,7 +19,7 @@
 <h3 class="text-center">{{iqcComplexDLCheck.companyShortName}} (入库定量复杂录入查询)</h3>
 
 <div id="container" class="container">
-<form class="form-horizontal" id="form-horizontal" novalidate>
+  <form class="form-horizontal" id="form-horizontal" novalidate>
 	<div class="form-group">
 		<label class="left control-label">物料编号</label>
 		<div class="col-sm-3">
@@ -53,69 +53,66 @@
 			<input type="text" class="form-control" name="sampleAmount" ng-model="iqcComplexDLCheck.sampleAmount" required ng-disabled="true">
 		</div>
 	</div>
+  </form>
 </div>
 
 
 <div id="container" class="container" ng-repeat="list in DL">
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<label class="left control-label"style="margin-left:-24px;">检验项目</label>
+			<label class="left control-label">检验项目</label>
 			<div class="col-sm-3">
-				<input type="text" name="checkoutMetricName" class="form-control" style="margin-left:15px;" ng-model="list.checkoutMetricName" required ng-disabled="true" >
+				<input type="text" name="checkoutMetricName" class="form-control"  ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div>
-			<label class="left control-label"style="margin-left:3px;">检验方式</label>
+			<label class="left control-label">检验方式</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control"  style="margin-left:16px;" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
+				<input type="text" class="form-control"   name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
 			</div> 
 
-			<label class="left control-label"style="margin-left:24px;">位图</label>
+			<label class="left control-label"style="margin-left:26px;">位图</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control"  style="margin-left:28px;" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
+				<input type="text" class="form-control"  style="margin-left:3px;" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
 			</div>  
 
 		</div>	
        
-		<div class="form-group" style="margin-top:50px;">
-		<label class="left control-label" style="margin-left:-11px;">三坐标</label>
+		<div class="form-group" >
+		<label class="left control-label" style="margin-left:13px;">三坐标</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:16px;" name="checkoutToolName" ng-model="list.threeDimensionalRogramNo" required ng-disabled="true">
+				<input type="text" class="form-control" style="margin-left:2px;" name="checkoutToolName" ng-model="list.threeDimensionalRogramNo" required ng-disabled="true">
 			</div>
-			<label class="left control-label" style="margin-left:18px;">标准值</label>	
+			<label class="left control-label" style="margin-left:15px;">标准值</label>	
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:18px;"name="checkoutToolName" ng-model="list.list.referenceStandard" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:2px;"name="checkoutToolName" ng-model="list.list.referenceStandard" required ng-disabled="true">				
 			</div>
-			<label class="left control-label" style="margin-left:25px;" >夹具</label>
+			<label class="left control-label" style="margin-left:27px;" >夹具</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" style="margin-left:28px;" name="checkoutToolName" ng-model="list.fixtureId" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:3px;" name="checkoutToolName" ng-model="list.fixtureId" required ng-disabled="true">				
 			</div>
-	  </div>  
+	    </div>  
 
-       <div class="form-group" style="margin-top:100px;">							
-			<label class="left control-label" style="margin-left:-10px;">上限</label>
+         <div class="form-group" >							
+			<label class="left control-label" style="margin-left:23px;">上限</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:28px;" name="checkoutToolName" ng-model="list.upTolerance" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:5px;" name="checkoutToolName" ng-model="list.upTolerance" required ng-disabled="true">				
 			</div>
-			<label class="left control-label" style="margin-left:30px;">下限</label>
+			<label class="left control-label" style="margin-left:33px;">下限</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:33px;" name="checkoutToolName" ng-model="list.underTolerance" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:3px;" name="checkoutToolName" ng-model="list.underTolerance" required ng-disabled="true">				
 			</div>
-			<label class="left control-label" style="margin-left:42px;">单位</label>	
+			<label class="left control-label" style="margin-left:28px;">单位</label>	
 			<div class="col-sm-2">
-				<input type="text" class="form-control" style="margin-left:28px;"name="checkoutToolName" ng-model="list.metricUnit" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:2px;"name="checkoutToolName" ng-model="list.metricUnit" required ng-disabled="true">				
 			</div>			
 		</div>
 
 	</form>	
-
-
-</div>
-
-
-<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
+  <label style="color:green">录入的检验数据</label>
+	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
-			<input class="form-control"  ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDLCheck" ng-model="DL[mark].sample[$index].sampleCheckoutValue" required  ng-disabled="true">
+				<input class="form-control"  ng-model="DL[mark].sample[$index].sampleCheckoutValue" required  ng-disabled="true">
 			</div>
 		</div>
 	</form>

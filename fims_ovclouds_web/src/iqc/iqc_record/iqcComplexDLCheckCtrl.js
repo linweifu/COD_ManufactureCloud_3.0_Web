@@ -9,15 +9,28 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 		companyShortName: localStorage.getItem('curCompanyName'),
 
 		checkoutRecordSid: "",
-         
-         sampleCheckoutValue:"",
+
 		
-		sampleSel: []
+         
+        // sampleCheckoutValue: localStorage.getItem('DL'),
+		
+		 //DL: localStorage.getItem('DL'),
+		  // DL:{
+
+		  // 	sampleCheckoutValue:[]
+		  // }
+		   
 	};
-
+    
 	$scope.iqcComplexDLCheck = iqcComplexDLCheck;
+    //DL: localStorage.getItem('DL');
+//console.log(iqcComplexDLCheck.DL.sampleCheckoutValue);
+ 
+  // var checkdl =function(){
+  // 	var DL=localStorage.getItem("DL");
 
-	
+  // }
+
 /***********************************************************************
 ************************************************************************
  // 获取基本信息部分
@@ -35,19 +48,22 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 
 		iqcComplexDLCheck.checkoutRecordSid = checkoutRecord.checkoutRecordSid;
 
-		
+		// var a = JSON.parse(localStorage.getItem("DL"));
+		// iqcComplexDLCheck.sampleCheckoutValue = a.sampleCheckoutValue;
 
 		// 绑定定量部分
-		$rootScope.DL = JSON.parse(localStorage.getItem("DL"));
-		// iqcComplexDLCheck.sampleSel = $rootScope.DL;
-		//console.log($rootScope.DL);
+		 $rootScope.DL = JSON.parse(localStorage.getItem("DL"));
+		// sampleCheckoutValue
 
-		for (var i=0,len=$rootScope.DL.length;i<len;i++) {
-			for (var j=0,lenj=$rootScope.DL[i].sample.length;j<lenj;j++) {
-				//var item = $rootScope.DL[i].sample[j];
-				$rootScope.DL[i].sample[j].sampleCheckoutValue = iqcComplexDLCheck.sampleCheckoutValue;
-			}
-		}
+		// iqcComplexDLCheck.sampleSel = $rootScope.DL;
+		//console.log(DL);
+
+		// for (var i=0,len=$rootScope.DL.length;i<len;i++) {
+		// 	for (var j=0,lenj=$rootScope.DL[i].sample.length;j<lenj;j++) {
+		// 		//var item = $rootScope.DL[i].sample[j];
+		// 		$rootScope.DL[i].sample[j].sampleCheckoutValue = iqcComplexDLCheck.DL.sampleCheckoutValue;
+		// 	}
+		// }
 
 		
 	}

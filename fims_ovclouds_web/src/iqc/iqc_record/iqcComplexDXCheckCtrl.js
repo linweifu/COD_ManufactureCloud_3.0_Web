@@ -8,7 +8,7 @@ FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$htt
     checkoutPlanVersion: "",
     sampleAmount: "",
     companyShortName: localStorage.getItem('curCompanyName'),
-
+    
     checkoutRecordSid: "",
 
     // $rootScope.DX: [],

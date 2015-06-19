@@ -18,12 +18,12 @@
 <div id="container" class="container">
 	<form class="form-horizontal" id="form-horizontal" name="iqcRecordCheckForm" novalidate>
 	<div class="form-group">
-		<label class="left control-label">物料名称</label>
+		<label class="left control-label" style="margin-left:28px">物料名称</label>
 		<div class="col-md-4">
 			<input class="form-control" name="materialName" ng-model="iqcRecordCheck.materialShortName" required ng-disabled="true">
 		</div>
 
-		<label class="left control-label">物料版本</label>
+		<label class="left control-label"style="margin-left:30px">物料版本</label>
 		<div class="col-sm-4">
 			<input type="text" class="form-control" name="materialVersion" ng-model="iqcRecordCheck.materialVersion" required ng-disabled="true">
 		</div>
@@ -36,12 +36,12 @@
 <div id="container" class="container">
 <form class="form-horizontal" id="form-horizontal" novalidate>
 	<div class="form-group">
-		<label class="left control-label">物料编号</label>
+		<label class="left control-label" style="margin-left:28px">物料编号</label>
 		<div class="col-sm-4">
 			<input type="text" name="materialNo" class="form-control"ng-model="iqcRecordCheck.materialNo" required ng-disabled="true" >
 		</div>
 
-		<label class="left control-label">物料简称</label>
+		<label class="left control-label"style="margin-left:30px">物料简称</label>
 		<div class="col-sm-4">
 			<input type="text" class="form-control" name="materialShortName" ng-model="iqcRecordCheck.materialShortName" required  ng-disabled="true">
 		</div>
@@ -50,12 +50,12 @@
 	</div>
 
 	<div class="form-group">
-		<label class="left control-label">计划编号</label>
+		<label class="left control-label" style="margin-left:28px">计划编号</label>
 		<div class="col-sm-4">
 			<input type="text" class="form-control" name="checkoutPlanNo" ng-model="iqcRecordCheck.checkoutPlanNo" required ng-disabled="true" >
 		</div>
 
-		<label class="left control-label">计划版本</label>
+		<label class="left control-label"style="margin-left:30px">计划版本</label>
 		<div class="col-sm-4">
 			<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="iqcRecordCheck.checkoutPlanVersion" required ng-disabled="true">
 		</div>
@@ -79,24 +79,24 @@
 		</div>
 
 		<div class="form-group">
-			<label class="left control-label" style="margin-right:2em;">检验时间</label>
+			<label class="left control-label" style="margin-left:28px;">检验时间</label>
 			<div class="col-sm-4">
 				<input type="date" class="form-control" name="giveCheckoutTime" ng-model="iqcRecordCheck.giveCheckoutTime" required ng-disabled="true">
 			</div>
 
-			<label class="left control-label" style="margin-right: 1em;">供应商简称</label>
+			<label class="left control-label" style="margin-left: 14px;">供应商简称</label>
 			<div class="col-md-4">
 				<input class="form-control" name="vendorShortName"  ng-model="iqcRecordCheck.vendorShortName" required ng-disabled="true">
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="left control-label" style="margin-right:2em;">送检数量</label>
+			<label class="left control-label" style="margin-left:28px;">送检数量</label>
 			<div class="col-sm-4">
 				<input type="text" name="giveCheckoutAmount" class="form-control" ng-model="iqcRecordCheck.giveCheckoutAmount"  required ng-disabled="true">
 			</div>
 
-			<label class="left control-label" style="margin-right:2em;">抽样数量</label>
+			<label class="left control-label" style="margin-left:28px">抽样数量</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" name="sampleAmount" ng-model="iqcRecordCheck.sampleAmount" required  ng-disabled="true">
 			</div>

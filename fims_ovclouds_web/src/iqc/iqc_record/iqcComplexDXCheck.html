@@ -58,6 +58,7 @@
 <div id="container" class="container"  ng-repeat="list in DX">      <!-- ng-repeat="list in  DXCheck" -->
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
+			<!-- <label>{{DX[mark].sample[$index].sampleSid}}</label> -->
 			<label class="left control-label">检验项目</label>
 			<div class="col-sm-3">
 				<input type="text" name="checkoutMetricName" class="form-control"ng-model="list.checkoutMetricName" required ng-disabled="true" >
@@ -69,6 +70,7 @@
 			</div>
 		</div>
 	</form>
+	<label style="color:green">录入的检验结果</label>
 	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>

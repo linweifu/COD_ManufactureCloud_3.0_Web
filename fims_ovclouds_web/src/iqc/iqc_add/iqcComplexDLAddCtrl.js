@@ -10,7 +10,7 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 		checkoutRecordSid: "",
 
 		// $rootScope.DX: [],
-		sampleCheckoutValue: "",
+		//sampleCheckoutValue: ,
 		sampleSel: []
 	};//iqcComplexDLAdd
 
