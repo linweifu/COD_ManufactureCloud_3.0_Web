@@ -30,7 +30,7 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
         var year = this.getFullYear().toString();
         var month = (this.getMonth()+1).toString();
         var day = this.getDate().toString();
-        console.log(year);
+       // console.log(year);
 
         if (month<10) {
             month = "0" + month;
@@ -83,15 +83,9 @@ queryIQCRecords 检验记录查询
             if (data.code == 'N01') {
                $scope.iqcRecordCheck = data.contents.checkoutRecord;
                $scope.iqcRecordCheck.giveCheckoutTime = (new Date(data.contents.checkoutRecord.giveCheckoutTime*1000)).format();
-                // var giveCheckouttime = new Date($scope.iqcRecordCheck.giveCheckoutTime*1000),
-                //  $scope.iqcRecordCheck.giveCheckoutTime = giveCheckouttime.format();
-                 // localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
-                   // (planHistoryList.QCP)[i].makeTime = (new Date((planHistoryList.QCP)[i].makeTime*1000)).format();
-                 // $scope.iqcRecordCheck.giveCheckoutTime = (new Date(($scope.iqcRecordCheck.giveCheckoutTime*1000)).format();
-
-                // localStorage.setItem();
-                //localStorage.setItem("materialSid",$scope.iqcRecordCheck.materialSid);
-               // console.log($scope.iqcRecordCheck);
+                localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+                localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+                localStorage.setItem("DL",JSON.stringify(data.contents.DL));
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -113,44 +107,44 @@ querySingleIQCRecord1 获取本地数据
 ************************************************************
 ***********************************************************/
     // 查询单个检验记录
-    var querySingleIQCRecord1 = function(input_way_code){
-        //var deffered = $q.defer();
+    // var querySingleIQCRecord1 = function(input_way_code){
+    //     //var deffered = $q.defer();
 
-        var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
-        http_url += (input_way_code == "CE")? "querySingleSimpleIQCRecord":"querySingleComplexIQCRecord";
-         // var http_url = "iqc/iqc_add/" ;
-         //  http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
-        $http({
-            method: "POST",
-            // url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
-            url: http_url,
-            header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-            data: {
-                "sid": localStorage.getItem('sid'),
-                "companySid": localStorage.getItem('cSid'),
-                "checkoutRecordSid": localStorage.getItem('checkoutRecordSid')              
-            }
-        })
-        .success(function(data){
-            if (data.code == 'N01') {
-               // deffered.resolve(data.contents);            
-                localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
-                localStorage.setItem("DX",JSON.stringify(data.contents.DX));
-                localStorage.setItem("DL",JSON.stringify(data.contents.DL));
-            }
-            else if(data.code=="E00"){
-                alert(data.message+",请重新登陆");
-                localStorage.clear();
-                $location.path('login').replace();
-            }else {
-                alert(data.message);
-            }  
-        })
+    //     var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+    //     http_url += (input_way_code == "CE")? "querySingleSimpleIQCRecord":"querySingleComplexIQCRecord";
+    //      // var http_url = "iqc/iqc_add/" ;
+    //      //  http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+    //     $http({
+    //         method: "POST",
+    //         // url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
+    //         url: http_url,
+    //         header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+    //         data: {
+    //             "sid": localStorage.getItem('sid'),
+    //             "companySid": localStorage.getItem('cSid'),
+    //             "checkoutRecordSid": localStorage.getItem('checkoutRecordSid')              
+    //         }
+    //     })
+    //     .success(function(data){
+    //         if (data.code == 'N01') {
+    //            // deffered.resolve(data.contents);            
+    //             localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+    //             localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+    //             localStorage.setItem("DL",JSON.stringify(data.contents.DL));
+    //         }
+    //         else if(data.code=="E00"){
+    //             alert(data.message+",请重新登陆");
+    //             localStorage.clear();
+    //             $location.path('login').replace();
+    //         }else {
+    //             alert(data.message);
+    //         }  
+    //     })
 
-       // return deffered.promise;
-    }
+    //    // return deffered.promise;
+    // }
 
-    querySingleIQCRecord1();
+    // querySingleIQCRecord1();
 
 
  /***********************************************************

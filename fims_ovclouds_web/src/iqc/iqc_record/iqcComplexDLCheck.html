@@ -1,6 +1,7 @@
 <style type="text/css">
 	#container {
-		max-width: 768px;
+		max-width: 850px;
+		max-height: 800px;
 		background-color: #f8f8f8;
 		border: 1px solid #ececec;
 		border-radius: 5px;
@@ -58,14 +59,20 @@
 <div id="container" class="container" ng-repeat="list in DL">
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<label class="left control-label"style="margin-left:-11px;">检验项目</label>
-			<div class="col-sm-5">
-				<input type="text" name="checkoutMetricName" class="form-control"ng-model="list.checkoutMetricName" required ng-disabled="true" >
+			<label class="left control-label"style="margin-left:-24px;">检验项目</label>
+			<div class="col-sm-3">
+				<input type="text" name="checkoutMetricName" class="form-control" style="margin-left:15px;" ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div>
-			<label class="left control-label"style="margin-left:5px;">检验方式</label>
-			<div class="col-sm-4">
-				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
-			</div>
+			<label class="left control-label"style="margin-left:3px;">检验方式</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control"  style="margin-left:16px;" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
+			</div> 
+
+			<label class="left control-label"style="margin-left:24px;">位图</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control"  style="margin-left:28px;" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
+			</div>  
+
 		</div>	
        
 		<div class="form-group" style="margin-top:50px;">
@@ -104,15 +111,11 @@
 </div>
 
 
-
-
-
-	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
+<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
-			
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
-				<input type="text" class="form-control" ng-model="DL[mark].sample[$index].sampleCheckoutValue" placeholder="填入数值">
+			<input class="form-control"  ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDLCheck" ng-model="DL[mark].sample[$index].sampleCheckoutValue" required  ng-disabled="true">
 			</div>
 		</div>
 	</form>

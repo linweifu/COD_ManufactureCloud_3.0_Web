@@ -415,6 +415,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("userJobNumber",data.contents.userJobNumber);
                     
                     localStorage.setItem("input_way_code",data.contents.checkoutRecordInputWayCode);
+                    // localStorage.setItem("checkoutRecordInputWay",data.contents.checkoutRecordInputWay);
                     $location.path("account_index/chooseModule");
                 }
 

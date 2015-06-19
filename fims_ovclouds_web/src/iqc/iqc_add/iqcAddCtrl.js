@@ -21,6 +21,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 		giveCheckoutTime: "",
 		giveCheckoutAmount: "",
 		sampleAmount: "",
+		checkoutRecordInputWay:"",
 
 		companyShortName :localStorage.getItem('curCompanyName')
 
@@ -32,14 +33,14 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
 	$scope.iqcAdd = iqcAdd;
 
-	// var time  = new Date();
+	 var time  = new Date();
 
 	//调整时间格式
 	Date.prototype.format = function() {
    		var year = this.getFullYear().toString();
    		var month = (this.getMonth()+1).toString();
    		var day = this.getDate().toString();
-   		console.log(year);
+   		//console.log(year);
 
 		if (month<10) {
 			month = "0" + month;
@@ -54,7 +55,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
 	// iqcAdd.makeTime = time.format();
 	// iqcAdd.entryTime = time.format();
-
+      iqcAdd.giveCheckoutTime = time.format();
 
 	//获取物料字典
 	var queryMaterialsInfo = function(){
@@ -178,6 +179,12 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
 		var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
 		http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+		
+
+		// var checkoutRecordInputWay = (localStorage.getItem("input_way_code") == "CE")? "复杂录入":"简单录入";
+	   //var checkoutRecordInputWay = (input_way_code == "CE")? "复杂录入":"简单录入";
+   //    alert(checkoutRecordInputWay);
+		
 		// var http_url = "iqc/iqc_add/" ;
 		// http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
 		$http({
@@ -197,6 +204,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
                 localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
                 localStorage.setItem("DX",JSON.stringify(data.contents.DX));
                 localStorage.setItem("DL",JSON.stringify(data.contents.DL));
+               //localStorage.setItem("checkoutRecordInputWay",iqcAdd.checkoutRecordInputWay);
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -209,9 +217,27 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
         return deffered.promise;
 	}
+/******************************
+*******************************/
+//  var checkoutway = function(checkoutRecordInputWay){
 
+// // if(input_way_code == "CE")
+// // 	checkoutRecordInputWay = querySingleComplexIQCRecord;
+// // else if(input_way_code == "SE")
+// // 	checkoutRecordInputWay = querySingleSimpleIQCRecord;
+//  	var checkoutRecordInputWay = (input_way_code == "CE")? "querySingleComplexIQCRecord":"querySingleSimpleIQCRecord";
+
+//  }
+
+/******************************
+*******************************/
+  
 	// 确定添加
 	$scope.submitBaseIQCRecord = function(){
+
+    var checkoutRecordInputWay = (localStorage.getItem("input_way_code") == "CE")? "复杂录入":"简单录入";
+      //alert(checkoutRecordInputWay);
+       //localStorage.setItem("checkoutRecordInputWay",checkoutRecordInputWay);
 		$http({
 			method: "POST",
 			url: config.HOST + "/api/2.0/bp/qc/iqc/submitBaseIQCRecord",
@@ -244,9 +270,11 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
 
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
-			    "checkoutRecordInputWay":"阿杜",
-			    "operateStatusCode":"TJ",
-			    "operateStatus":"提交状态"
+
+			    "checkoutRecordInputWay":checkoutRecordInputWay
+
+			    //"operateStatusCode":"TJ",
+			    //"operateStatus":"提交状态"
 			}
 		})
 		.success(function(data){
