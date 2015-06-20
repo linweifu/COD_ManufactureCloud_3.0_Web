@@ -65,4 +65,10 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function (
 	}
 
 	$scope.joinCo = joinCo;
+
+    $scope.back = function(){
+
+       $location.path("account_index/chooseModule");
+    }
+
 }])

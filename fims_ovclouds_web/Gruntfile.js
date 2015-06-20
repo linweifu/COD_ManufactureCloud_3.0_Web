@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 				"src/iqc/iqc_dataCount/dailyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyChart_vendorCtrl.js","src/iqc/iqc_dataCount/monthlyChart_materialCtrl.js","src/iqc/iqc_dataCount/monthlyStatisticsCtrl.js","src/iqc/iqc_dataCount/dailyStatisticsCtrl.js",
 				"src/plan/planHistoryListCheckCtrl.js","src/plan/planHistoryMetricListCtrl.js","src/plan/planHistoryListCopyCtrl.js",
 				"src/iqc/iqc_record/iqcRecordCheckCtrl.js","src/iqc/iqc_record/iqcRecordReviseCtrl.js","src/iqc/iqc_record/iqcComplexDLCheckCtrl.js","src/iqc/iqc_record/iqcComplexDXCheckCtrl.js",
-				"src/iqc/iqc_record/iqcSimpleDLCheckCtrl.js","src/iqc/iqc_record/iqcSimpleDXCheckCtrl.js"
+				"src/iqc/iqc_record/iqcSimpleDLCheckCtrl.js","src/iqc/iqc_record/iqcSimpleDXCheckCtrl.js","src/iqc/iqc_record/iqcComplexDLReviseCtrl.js","src/iqc/iqc_record/iqcComplexDXReviseCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"
 			},

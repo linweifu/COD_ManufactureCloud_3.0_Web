@@ -191,6 +191,17 @@ FIMS.config([
 		templateUrl:'iqc/iqc_record/iqcSimpleDXCheck.html'
 	})
 
+   .state('account_index.iqcComplexDXRevise',{
+		url:'/iqcComplexDXRevise',
+		controller:'iqcComplexDXReviseCtrl',
+		templateUrl:'iqc/iqc_record/iqcComplexDXRevise.html'
+	})
+    
+     .state('account_index.iqcComplexDLRevise',{
+		url:'/iqcComplexDLRevise',
+		controller:'iqcComplexDLReviseCtrl',
+		templateUrl:'iqc/iqc_record/iqcComplexDLRevise.html'
+	})
 
 
 

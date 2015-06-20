@@ -20,6 +20,7 @@
 	<p style="margin-bottom: 1.5em;">你需要发送认证申请，等待管理员通过</p>
 	<input type="text" class="form-control " placeholder="请输入您在新公司的工号" style="margin-bottom: 1em;padding-top: 20px;padding-bottom: 20px;" ng-model="joinCo.applicantJobNumber" name="userJobNumber" required>
 	<textarea name="" id="" class="form-control" rows="6" ng-model="joinCo.notes" name="notes" required></textarea>
-	<button class="btn btn-success" id="btn-apply" ng-click="applyJoinCompany()" ng-disabled="applyForm.$invalid">申请加入</button>
+	<button class="btn btn-success" id="btn-apply" style="padding: .3em 1em; margin:1em 1em 1em 0;"  ng-click="applyJoinCompany()" ng-disabled="applyForm.$invalid">申请加入</button>
+	<button class="btn btn-primary" id="btn-apply"  style="padding: .3em 1em; margin:1em 1em 1em 0;"  ng-click="back()" >返回</button>
 </form>	
 </div>

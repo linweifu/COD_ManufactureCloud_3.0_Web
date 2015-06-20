@@ -326,7 +326,40 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             "cid": ''
         };
         chooseTeam.companyList=[];
-        
+
+/*********************************************************
+*********************************************************/
+ chooseTeam.sentUserActivateEmail = function(){
+    //var deffered = $q.defer();
+
+             $http({
+                method: 'post',
+                url: config.HOST + '/api/2.0/bp/account/user/sentUserActivateEmail',
+                // url: 'account/chooseModule/getAppliesJoinCompany.json',
+                headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+                data: {
+                    "sid": localStorage.getItem('sid')
+                     
+                }
+            }).success(function(data){
+                if (data.code == 'N01') {
+                    // deffered.resolve(data);   
+                    alert(data.message);
+                }
+                else if(data.code=="E00"){
+                    alert(data.message+",请重新登陆");
+                }else {
+                    alert(data.message);  
+                }
+            })
+
+             //return deffered.promise;
+        }
+
+
+    chooseTeam.sentUserActivateEmail();
+/*********************************************************
+*********************************************************/
         chooseTeam.subData = function(){
             $http({
                 method: 'POST',

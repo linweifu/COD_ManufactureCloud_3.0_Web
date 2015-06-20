@@ -18,14 +18,14 @@
 <div id="container" class="container">
 	<form class="form-horizontal" id="form-horizontal" name="iqcRecordReviseForm" novalidate>
 	<div class="form-group">
-		<label class="left control-label">物料名称</label>
+		<label class="left control-label" style="margin-left:28px">物料名称</label>
 		<div class="col-md-4">
-			<input class="form-control" name="materialName" ng-model="iqcRecordRevise.singleRecord.materialName" required ng-disabled="true">
+			<input class="form-control" name="materialName" ng-model="iqcRecordRevise.materialShortName" required ng-disabled="true">
 		</div>
 
-		<label class="left control-label">物料版本</label>
+		<label class="left control-label"style="margin-left:30px">物料版本</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" name="materialVersion" ng-model="iqcRecordRevise.singleRecord.materialVersion" required ng-disabled="true">
+			<input type="text" class="form-control" name="materialVersion" ng-model="iqcRecordRevise.materialVersion" required ng-disabled="true">
 		</div>
 
 		<!-- <button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-disabled=" queryQCPForm.materialVersion.$pristine || queryQCPForm.materialName.$pristine" ng-click="queryActivateQCPByMaterial()">确定</button> -->
@@ -36,86 +36,86 @@
 <div id="container" class="container">
 <form class="form-horizontal" id="form-horizontal" novalidate>
 	<div class="form-group">
-		<label class="left control-label">物料编号</label>
+		<label class="left control-label" style="margin-left:28px">物料编号</label>
 		<div class="col-sm-4">
-			<input type="text" name="materialNo" class="form-control"ng-model="iqcRecordRevise.singleRecord.materialNo" required ng-disabled="true" >
+			<input type="text" name="materialNo" class="form-control"ng-model="iqcRecordRevise.materialNo" required ng-disabled="true" >
 		</div>
 
-		<label class="left control-label">物料简称</label>
+		<label class="left control-label"style="margin-left:30px">物料简称</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" name="materialShortName" ng-model="iqcRecordRevise.singleRecord.materialShortName" required  ng-disabled="true">
+			<input type="text" class="form-control" name="materialShortName" ng-model="iqcRecordRevise.materialShortName" required  ng-disabled="true">
 		</div>
 
 		
 	</div>
 
 	<div class="form-group">
-		<label class="left control-label">计划编号</label>
+		<label class="left control-label" style="margin-left:28px">计划编号</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" name="checkoutPlanNo" ng-model="iqcRecordRevise.singleRecord.checkoutPlanNo" required ng-disabled="true" >
+			<input type="text" class="form-control" name="checkoutPlanNo" ng-model="iqcRecordRevise.checkoutPlanNo" required ng-disabled="true" >
 		</div>
 
-		<label class="left control-label">计划版本</label>
+		<label class="left control-label"style="margin-left:30px">计划版本</label>
 		<div class="col-sm-4">
-			<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="iqcRecordRevise.singleRecord.checkoutPlanVersion" required ng-disabled="true">
+			<input type="text" class="form-control" name="checkoutPlanVersion" ng-model="iqcRecordRevise.checkoutPlanVersion" required ng-disabled="true">
 		</div>
 	</div>
 </form>
 </div>
 
 <div id="container" class="container">
-	<h3>入库检验记录基本信息</h3>
-	<form class="form-horizontal" id="form-horizontal" name="iqcRecordRevise.singleRecordForm" novalidate>
+	<h3>入库检验记录基本信息修订</h3>
+	<form class="form-horizontal" id="form-horizontal" name="iqcRecordReviseForm" novalidate>
 		<div class="form-group">
 			<label class="left control-label">检验记录编号</label>
 			<div class="col-sm-4">
-				<input type="text" name="checkoutRecordId" class="form-control" ng-model="iqcRecordRevise.singleRecord.checkoutRecordId" required >
+				<input type="text" name="checkoutRecordNo" class="form-control" ng-model="iqcRecordRevise.checkoutRecordNo" required >
 			</div>
 
 			<label class="left control-label">物料内部批次</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" name="batchNo" ng-model="iqcRecordRevise.singleRecord.batchNo" required >
+				<input type="text" class="form-control" name="batchNo" ng-model="iqcRecordRevise.batchNo" required >
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="left control-label" style="margin-right:2em;">检验时间</label>
+			<label class="left control-label" style="margin-left:28px;">检验时间</label>
 			<div class="col-sm-4">
-				<input type="date" class="form-control" name="giveCheckoutTime" ng-model="iqcRecordRevise.singleRecord.giveCheckoutTime" required >
+				<input type="date" class="form-control" name="giveCheckoutTime" ng-model="iqcRecordRevise.giveCheckoutTime" required >
 			</div>
 
-			<label class="left control-label" style="margin-right: 1em;">供应商简称</label>
+			<label class="left control-label" style="margin-left: 14px;">供应商简称</label>
 			<div class="col-md-4">
-				<input class="form-control" name="vendorShortName"  ng-model="iqcRecordRevise.singleRecord.vendorShortName" required >
+				<input class="form-control" name="vendorShortName"  ng-model="iqcRecordRevise.vendorShortName" required >
 			</div>
 		</div>
 
 		<div class="form-group">
-			<label class="left control-label" style="margin-right:2em;">送检数量</label>
+			<label class="left control-label" style="margin-left:28px;">送检数量</label>
 			<div class="col-sm-4">
-				<input type="text" name="giveCheckoutAmount" class="form-control" ng-model="iqcRecordRevise.singleRecord.giveCheckoutAmount"  required >
+				<input type="text" name="giveCheckoutAmount" class="form-control" ng-model="iqcRecordRevise.giveCheckoutAmount"  required >
 			</div>
 
-			<label class="left control-label" style="margin-right:2em;">抽样数量</label>
+			<label class="left control-label" style="margin-left:28px">抽样数量</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" name="sampleAmount" ng-model="iqcRecordRevise.singleRecord.sampleAmount" required  >
+				<input type="text" class="form-control" name="sampleAmount" ng-model="iqcRecordRevise.sampleAmount" required >
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="left control-label">外部入库单号</label>
 			<div class="col-sm-4">
-				<input type="text" name="externalReceiptNo" class="form-control" ng-model="iqcRecordRevise.singleRecord.externalReceiptNo" required >
+				<input type="text" name="externalReceiptNo" class="form-control" ng-model="iqcRecordRevise.externalReceiptNo" required >
 			</div>
 		</div>
 
+        
+        <button class="btn btn-success" style=" width:70px;padding: .3em .6em; margin:0 1em 1em 0;" ng-disabled="iqcRecordReviseForm.$invalid" ng-click=" ">修改</button>
+         
+        <button class="btn btn-info" style=" width:70px;padding: .3em .6em; margin:0 1em 1em 0;"  ng-disabled="iqcRecordReviseForm.$invalid" ng-click=" ">提交</button>
 
-		<!-- <button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;"  ui-sref="account_index.iqcComplexDXCheck">修改</button>
-		<button class="btn btn-info" style="padding: .3em .6em; margin:0 1em 1em 0;"  ui-sref="account_index.iqcComplexDXCheck">启用</button> -->
+		<button class="btn btn-success" style=" padding: .3em .6em; margin:0 1em 1em 0;"  ui-sref="account_index.iqcComplexDXRevise">下一步</button>
 		
-		<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="back()">修改</button>
-
-		<button class="btn btn-primary" style="padding: .3em .6em; margin:0 1em 1em 0;" ng-click="back()">返回</button>
-
+		<button class="btn btn-primary" style=" width:70px; padding: .3em .6em; margin:0 1em 1em 0;" ng-click="back()">返回</button>
 	</form>
 </div>

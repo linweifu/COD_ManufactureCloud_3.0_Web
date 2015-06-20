@@ -37,6 +37,8 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
      	$scope.subData = chooseTeamService.subData;
 		$scope.createCom = chooseTeamService.createCom;
 		chooseTeamService.queryJoinedCompanies();
+		//email:localStorage.getItem("email");
+		$scope.email = localStorage.getItem("email");
 		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
 		$scope.joinedCompanies = chooseTeamService.joinedCompanies;
 		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
@@ -51,32 +53,7 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 		// 将所有当前改为1
 		localStorage.setItem("page",1);
 
-		// $scope.getApplies = function(){
-		// 	 $http({
-	 //            method: 'post',
-	 //            url: config.HOST + '/api/2.0/bp/account/relation/getAppliesJoinCompany',
-	 //            // url: 'account/chooseModule/getAppliesJoinCompany.json',
-	 //            headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	 //            data: {
-	 //                "sid": localStorage.getItem('sid'),
-	 //                 "contents": {
-		// 		        "companySid": localStorage.getItem("cSid")
-		// 		    }
-	 //            }
-	 //        }).success(function(data){
-	 //            if (data.code == 'N01') {
-	 //                localStorage.setItem('applyJoin', JSON.stringify(data.contents));
-	 //                $location.path("account_index/applyApproval");
-	 //            }
-	 //            else if(data.code=="E00"){
-  //                   alert(data.message+",请重新登陆");
-  //                   localStorage.clear();
-  //                   $location.path('login').replace();
-  //               }else {
-  //                   alert(data.message);
-  //               }  
-	 //        })
-		// }
+		
 }])
 
 FIMS.controller('userManageCtrl', ['$scope','$location','userManageService',
@@ -305,6 +282,12 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function (
 	}
 
 	$scope.joinCo = joinCo;
+
+    $scope.back = function(){
+
+       $location.path("account_index/chooseModule");
+    }
+
 }])
 FIMS.controller('comSettingCtrl', ['$scope','$location','$http','$q',function($scope,$location,$http,$q){
 	var comSetting = {
@@ -5771,50 +5754,94 @@ back 返回上一级
     }
 
 }])
-FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($scope,$location,$http){
+FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($scope,$location,$http,$q){
 
-	var iqcRecordRevise = {
+    var iqcRecordRevise = {
 
-         singleRecord:{
+        materialNo: "",
+        materialName: "",
+        materialShortName: "",
+        materialVersion: "",
+        checkoutPlanNo: "",
+        checkoutPlanVersion: "",
+        checkoutRecordSid:"",
+        externalReceiptNo: "",
+        checkoutRecordId:"",
+        vendorShortName:"",
+        checkoutRecordNo: "",
+        batchNo: "",
+        giveCheckoutTime: "",
+        vendor: "",
+        giveCheckoutAmount: "",
+        sampleAmount: "",
 
+        companyShortName :localStorage.getItem('curCompanyName')
+
+    };
+
+   // $scope.iqcRecordRevise = iqcRecordRevise;
+
+//调整时间格式
+    Date.prototype.format = function() {
+        var year = this.getFullYear().toString();
+        var month = (this.getMonth()+1).toString();
+        var day = this.getDate().toString();
+       // console.log(year);
+
+        if (month<10) {
+            month = "0" + month;
         }
 
-	};
+        if (day<10) {
+            day = "0" + day;
+        }
+
+        return (year + "-" + month + "-" +day );
+    }
+
+
    
    //自执行函数，删除相关本地存储
   function init(){
-		localStorage.removeItem('materialSid');
-	}
+        localStorage.removeItem('materialSid');
+    }
 
-	init();
+    init();
 
-$scope.iqcRecordRevise = iqcRecordRevise;
-/*************************************************************
-**************************************************************
-queryIQCRecords检验记录查询
-**************************************************************
-*************************************************************/
- $scope.querySingleIQCRecord = function() {
-    	$http({
+/***********************************************************
+************************************************************
+queryIQCRecords 检验记录查询
+************************************************************
+***********************************************************/
+
+ $scope.querySingleIQCRecord = function(input_way_code) {
+       
+        var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+        http_url += (input_way_code == "CE")? "querySingleSimpleIQCRecord":"querySingleComplexIQCRecord";
+
+
+        $http({
 
             method: "POST",
-			// url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecord",
-			url: "iqc/iqc_record/querySingleIQCRecord.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				"checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
-				"companySid": localStorage.getItem('cSid'),
-				 //"page": localStorage.getItem('page')
-			}
-    	})
+            url: http_url,
+            // url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
+            //url: "iqc/iqc_record/querySingleIQCRecord.json",
+            header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
+                "companySid": localStorage.getItem('cSid'),
+                 //"page": localStorage.getItem('page')
+            }
+        })
 
-    	.success(function(data){
+        .success(function(data){
             if (data.code == 'N01') {
-            	iqcRecordRevise.singleRecord = data.contents;
-                // localStorage.setItem();
-                localStorage.setItem("materialSid",$scope.iqcRecordRevise.materialSid);
-               // console.log($scope.iqcRecordRevise);
+               $scope.iqcRecordRevise = data.contents.checkoutRecord;
+               $scope.iqcRecordRevise.giveCheckoutTime = (new Date(data.contents.checkoutRecord.giveCheckoutTime*1000)).format();
+                localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+                localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+                localStorage.setItem("DL",JSON.stringify(data.contents.DL));
             }
             else if(data.code=="E00"){
                 alert(data.message+",请重新登陆");
@@ -5828,31 +5855,66 @@ queryIQCRecords检验记录查询
         //     console.log('querySingleIQCRecord'+data.message);
         // });
     }
-
       $scope.querySingleIQCRecord();
-/*************************************************************
-**************************************************************
-updateComplexIQCRecord检验记录更新
-**************************************************************
-*************************************************************/
-$scope.updateComplexIQCRecord = function(){
 
-    var o = {};
-    
+/***********************************************************
+************************************************************
+querySingleIQCRecord1 获取本地数据
+************************************************************
+***********************************************************/
+    // 查询单个检验记录
+    // var querySingleIQCRecord1 = function(input_way_code){
+    //     //var deffered = $q.defer();
+
+    //     var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+    //     http_url += (input_way_code == "CE")? "querySingleSimpleIQCRecord":"querySingleComplexIQCRecord";
+    //      // var http_url = "iqc/iqc_add/" ;
+    //      //  http_url += (input_way_code == "CE")? "querySingleComplexIQCRecord.json":"querySingleSimpleIQCRecord.json";
+    //     $http({
+    //         method: "POST",
+    //         // url: config.HOST + "/api/2.0/bp/qcp/qcp/querySingleIQCRecord",
+    //         url: http_url,
+    //         header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+    //         data: {
+    //             "sid": localStorage.getItem('sid'),
+    //             "companySid": localStorage.getItem('cSid'),
+    //             "checkoutRecordSid": localStorage.getItem('checkoutRecordSid')              
+    //         }
+    //     })
+    //     .success(function(data){
+    //         if (data.code == 'N01') {
+    //            // deffered.resolve(data.contents);            
+    //             localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+    //             localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+    //             localStorage.setItem("DL",JSON.stringify(data.contents.DL));
+    //         }
+    //         else if(data.code=="E00"){
+    //             alert(data.message+",请重新登陆");
+    //             localStorage.clear();
+    //             $location.path('login').replace();
+    //         }else {
+    //             alert(data.message);
+    //         }  
+    //     })
+
+    //    // return deffered.promise;
+    // }
+
+    // querySingleIQCRecord1();
 
 
+ /***********************************************************
+************************************************************
+back 返回上一级
+************************************************************
+***********************************************************/  
 
-}
 
-/*************************************************************
-**************************************************************
-**************************************************************
-*************************************************************/
-	$scope.back = function(){
+    $scope.back = function(){
 
-		history.go(-1);
+       $location.path("account_index/iqcRecord");
 
-	}
+    }
 
 }])
 FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$http',function($rootScope,$scope,$location,$http){
@@ -6076,3 +6138,224 @@ FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$htt
 
 }])
 
+
+FIMS.controller('iqcComplexDLReviseCtrl',['$rootScope','$scope','$location','$http',function($rootScope,$scope,$location,$http){
+	var iqcComplexDLRevise = {	
+		materialNo: "",
+		materialShortName: "",
+		materialVersion: "",
+		checkoutPlanNo: "",
+		checkoutPlanVersion: "",
+		sampleAmount: "",
+		companyShortName: localStorage.getItem('curCompanyName'),
+
+		checkoutRecordSid: "",
+
+		
+         
+        // sampleCheckoutValue: localStorage.getItem('DL'),
+		
+		 //DL: localStorage.getItem('DL'),
+		  // DL:{
+
+		  // 	sampleCheckoutValue:[]
+		  // }
+		   
+	};
+    
+	$scope.iqcComplexDLRevise = iqcComplexDLRevise;
+    //DL: localStorage.getItem('DL');
+//console.log(iqcComplexDLRevise.DL.sampleCheckoutValue);
+ 
+  // var checkdl =function(){
+  // 	var DL=localStorage.getItem("DL");
+
+  // }
+
+/***********************************************************************
+************************************************************************
+ // 获取基本信息部分
+************************************************************************
+***********************************************************************/
+
+	var queryCheckoutRecord = function(){
+		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+		iqcComplexDLRevise.materialNo = checkoutRecord.materialNo;
+		iqcComplexDLRevise.materialShortName = checkoutRecord.materialShortName;
+		iqcComplexDLRevise.materialVersion = checkoutRecord.materialVersion;
+		iqcComplexDLRevise.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
+		iqcComplexDLRevise.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
+		iqcComplexDLRevise.sampleAmount = checkoutRecord.sampleAmount;
+
+		iqcComplexDLRevise.checkoutRecordSid = checkoutRecord.checkoutRecordSid;
+
+		// var a = JSON.parse(localStorage.getItem("DL"));
+		// iqcComplexDLRevise.sampleCheckoutValue = a.sampleCheckoutValue;
+
+		// 绑定定量部分
+		 $rootScope.DL = JSON.parse(localStorage.getItem("DL"));
+		// sampleCheckoutValue
+
+		// iqcComplexDLRevise.sampleSel = $rootScope.DL;
+		//console.log(DL);
+
+		// for (var i=0,len=$rootScope.DL.length;i<len;i++) {
+		// 	for (var j=0,lenj=$rootScope.DL[i].sample.length;j<lenj;j++) {
+		// 		//var item = $rootScope.DL[i].sample[j];
+		// 		$rootScope.DL[i].sample[j].sampleCheckoutValue = iqcComplexDLRevise.DL.sampleCheckoutValue;
+		// 	}
+		// }
+
+		
+	}
+	queryCheckoutRecord();
+/***********************************************************************
+************************************************************************
+ // 返回首页
+************************************************************************
+***********************************************************************/
+
+	// var.updateComplexIQCRecord = function() {
+	// 	// console.log($rootScope.DX);
+	// 	// var keyDX
+
+	// 	$http({
+	// 		method: "POST",
+	// 		 url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
+	// 		//url: "iqc/iqc_add/updateComplexIQCRecord.json",
+	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+	// 		data: {
+	// 			"sid": localStorage.getItem('sid'),
+	// 			// "companySid": localStorage.getItem('cSid'),
+	// 			"checkoutRecordSid": iqcComplexDLRevise.checkoutRecordSid,
+	// 			"DX": $rootScope.DX,
+	// 			"DL": $rootScope.DL 
+	// 		}
+	// 	})
+	// 	.success(function(data){
+ //            if (data.code == 'N01') {
+ //            	localStorage.setItem("DL",JSON.stringify($rootScope.DL));           	
+ //                alert(data.message);
+ //                // $location.path("account_index/iqcRecord");
+ //            }
+ //            else if(data.code=="E00"){
+ //                alert(data.message+",请重新登陆");
+ //                localStorage.clear();
+ //                $location.path('login').replace();
+ //            }else {
+ //                alert(data.message);
+ //            }  
+ //        })
+	// }
+
+
+
+/***********************************************************************
+************************************************************************
+ // 返回首页
+************************************************************************
+***********************************************************************/
+
+	$scope.next = function() {
+		localStorage.setItem("DL",JSON.stringify($rootScope.DL));
+		$location.path("account_index/iqcRecord");
+	}
+
+	
+	
+}])
+FIMS.controller('iqcComplexDXReviseCtrl',['$rootScope','$scope','$location','$http',function($rootScope,$scope,$location,$http){
+    var iqcComplexDXRevise = { 
+
+    materialNo: "",
+    materialShortName: "",
+    materialVersion: "",
+    checkoutPlanNo: "",
+    checkoutPlanVersion: "",
+    sampleAmount: "",
+    companyShortName: localStorage.getItem('curCompanyName'),
+    
+    checkoutRecordSid: "",
+
+    // $rootScope.DX: [],
+    itemDic: [
+      {
+        "value": "",
+        "sampleCheckoutValue": "NULL"
+      },
+      {
+        "value": "是",
+        "sampleCheckoutValue": "是"
+      },
+      {
+        // "sampleNo": "",
+        "value": "否",
+        "sampleCheckoutValue": "否"
+      }
+    ],
+    sampleSel: []
+     
+
+    };
+
+ 
+
+  $scope.iqcComplexDXRevise = iqcComplexDXRevise;
+/***********************************************************************
+************************************************************************
+ // 获取基本信息部分
+************************************************************************
+***********************************************************************/
+  var queryCheckoutRecord = function(){
+    
+    var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
+    iqcComplexDXRevise.materialNo = checkoutRecord.materialNo;
+    iqcComplexDXRevise.materialShortName = checkoutRecord.materialShortName;
+    iqcComplexDXRevise.materialVersion = checkoutRecord.materialVersion;
+    iqcComplexDXRevise.checkoutPlanNo = checkoutRecord.checkoutPlanNo;
+    iqcComplexDXRevise.checkoutPlanVersion = checkoutRecord.checkoutPlanVersion;
+    iqcComplexDXRevise.sampleAmount = checkoutRecord.sampleAmount;
+
+    iqcComplexDXRevise.checkoutRecordSid = checkoutRecord.checkoutRecordSid;
+
+    // 绑定定性部分
+    $rootScope.DX = JSON.parse(localStorage.getItem("DX"));
+    //console.log($rootScope.DX);
+
+    //下拉数据绑定
+    // $rootScope.DX = $rootScope.DX.sample;
+    // console.log($rootScope.DX);
+    // for (var i=0,len=$rootScope.DX.length;i<len;i++){
+    //  $rootScope.DX.push($rootScope.DX[i].sample);
+    // }
+    // console.log($rootScope.DX);
+
+    for (var i=0,len=$rootScope.DX.length;i<len;i++) {
+      for (var j=0,lenj=$rootScope.DX[i].sample.length;j<lenj;j++) {
+        var item = $rootScope.DX[i].sample[j];
+        if (item.sampleCheckoutValue=="是") {
+          $rootScope.DX[i].sample[j].sampleCheckoutValue = iqcComplexDXRevise.itemDic[1].sampleCheckoutValue;
+        }else if (item.sampleCheckoutValue=="否"){
+          $rootScope.DX[i].sample[j].sampleCheckoutValue = iqcComplexDXRevise.itemDic[2].sampleCheckoutValue;
+        }else {
+          $rootScope.DX[i].sample[j].sampleCheckoutValue = iqcComplexDXRevise.itemDic[0].sampleCheckoutValue;
+        }
+      }
+    }
+  }
+  queryCheckoutRecord();
+
+/***********************************************************************
+************************************************************************
+ // 返回首页
+************************************************************************
+***********************************************************************/
+
+
+    $scope.back = function(){
+
+        $location.path("account_index/iqcRecord");
+
+    }
+
+}])
