@@ -58,7 +58,7 @@
 <div id="container" class="container"  ng-repeat="list in DX">      <!-- ng-repeat="list in  DXCheck" -->
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<label class="left control-label" >检验样品{{$index}}:</label>
+			<label class="left control-label" >检验样品{{$index+1}}:</label>
 			<label class="left control-label">检验项目</label>
 			<div class="col-sm-3">
 				<input type="text" name="checkoutMetricName" class="form-control"ng-model="list.checkoutMetricName" required ng-disabled="true" >

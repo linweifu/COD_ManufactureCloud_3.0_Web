@@ -60,7 +60,7 @@
 <div id="container" class="container" ng-repeat="list in DL">
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<label class="left control-label" style="margin-left:-13px;">检验样品{{$index}}:</label>
+			<label class="left control-label" style="margin-left:-13px;">检验样品{{$index+1}}:</label>
 			<label class="left control-label">检验项目</label>
 			<div class="col-sm-2">
 				<input type="text" name="checkoutMetricName" class="form-control" style="margin-left:-9px" ng-model="list.checkoutMetricName" required ng-disabled="true" >
