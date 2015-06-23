@@ -76,7 +76,7 @@
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
 				<!-- <select class="form-control" ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDLCheck.itemDic" ng-model="iqcComplexDLCheck.sampleSel[mark][$index].sampleCheckoutValue"></select> -->
-				<input class="form-control"  ng-model="DX[mark].sample[$index].sampleCheckoutValue" required >
+				<select class="form-control" ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDXRevise.itemDic" ng-model="DX[mark].sample[$index].sampleCheckoutValue" required></select>
 			</div>
 		</div>
 	</form>
@@ -92,9 +92,9 @@
 <div class="text-center" style="margin: .5em auto;">
 	<button class="btn btn-primary" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-click="back()">返回</button>
 
-	<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcRecordRevise">上一步</button>
-
-	<button class="btn btn-info" style="padding: .3em  1em; margin:0 1em 1em 0;" ng-disabled="iqcComplexDXReviseForm.$invalid" ng-click=" ">提交</button>
+	<!-- <button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcRecordRevise">上一步</button>
+ -->
+	<button class="btn btn-info" style="padding: .3em  1em; margin:0 1em 1em 0;" ng-disabled="iqcComplexDXReviseForm.$invalid" ng-click="updateComplexIQCRecord()">保存</button>
 
 	 <button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;"  ui-sref="account_index.iqcComplexDLRevise">下一步</button>
 

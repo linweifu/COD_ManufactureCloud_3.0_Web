@@ -17,7 +17,7 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	 	}else if(operateStatusCode=="BC") {
 	 		localStorage.setItem("checkoutRecordSid",recordSid);
 	 	
-	 		$location.path("account_index/iqcRecordRevise");
+	 		$location.path("account_index/iqcComplexDXRevise");
 	 	}else {
 	 		alert("不是“查看/修订”状态");
 	 	}

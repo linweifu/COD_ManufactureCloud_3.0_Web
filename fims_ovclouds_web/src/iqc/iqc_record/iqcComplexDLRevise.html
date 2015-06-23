@@ -122,7 +122,11 @@
 <div class="text-center" style="margin: .5em auto;">
 	<button class="btn btn-success" style="padding: .3em .6em; margin:0 1em 1em 0;" ui-sref="account_index.iqcComplexDXRevise">上一步</button>
 
-	<button class="btn btn-info" style="padding: .3em  1em; margin:0 1em 1em 0;" ng-disabled="iqcComplexDLReviseForm.$invalid" ng-click=" ">提交</button>
+	<button class="btn btn-info" style="padding: .3em  1em; margin:0 1em 1em 0;" ng-disabled="iqcComplexDLReviseForm.$invalid" ng-click="updateComplexIQCRecord()">保存</button>
 
-	<button class="btn btn-primary" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-click="next()">返回</button>
+   <button class="btn btn-success" ng-disabled="iqcComplexDLReviseForm.$invalid" ng-click="submitComplexIQCRecord()" style="padding: .3em 1em; margin:0 1em 1em 0;">提交</button>
+
+
+	<!-- <button class="btn btn-success" style="padding: .3em 1em; margin:0 1em 1em 0;" ng-click="next()">提交</button> -->
+
 </div>

@@ -8,4 +8,5 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
 		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
 		$scope.joinedCompanies = chooseTeamService.joinedCompanies;
 		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
+		$scope.sentUserActivateEmail = chooseTeamService.sentUserActivateEmail;
 }])

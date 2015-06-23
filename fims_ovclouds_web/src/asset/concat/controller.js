@@ -42,6 +42,7 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
 		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
 		$scope.joinedCompanies = chooseTeamService.joinedCompanies;
 		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
+		$scope.sentUserActivateEmail = chooseTeamService.sentUserActivateEmail;
 }])
 
 FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$http",
@@ -3668,7 +3669,7 @@ FIMS.controller('iqcRecordCtrl', ['$scope', '$location', '$http', function($scop
 	 	}else if(operateStatusCode=="BC") {
 	 		localStorage.setItem("checkoutRecordSid",recordSid);
 	 	
-	 		$location.path("account_index/iqcRecordRevise");
+	 		$location.path("account_index/iqcComplexDXRevise");
 	 	}else {
 	 		alert("不是“查看/修订”状态");
 	 	}
@@ -6211,51 +6212,85 @@ FIMS.controller('iqcComplexDLReviseCtrl',['$rootScope','$scope','$location','$ht
 	queryCheckoutRecord();
 /***********************************************************************
 ************************************************************************
- // 返回首页
+ // 保存
 ************************************************************************
 ***********************************************************************/
 
-	// var.updateComplexIQCRecord = function() {
-	// 	// console.log($rootScope.DX);
-	// 	// var keyDX
+	$scope.updateComplexIQCRecord = function() {
+		// console.log($rootScope.DX);
+		// var keyDX
 
-	// 	$http({
-	// 		method: "POST",
-	// 		 url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
-	// 		//url: "iqc/iqc_add/updateComplexIQCRecord.json",
-	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 		data: {
-	// 			"sid": localStorage.getItem('sid'),
-	// 			// "companySid": localStorage.getItem('cSid'),
-	// 			"checkoutRecordSid": iqcComplexDLRevise.checkoutRecordSid,
-	// 			"DX": $rootScope.DX,
-	// 			"DL": $rootScope.DL 
-	// 		}
-	// 	})
-	// 	.success(function(data){
- //            if (data.code == 'N01') {
- //            	localStorage.setItem("DL",JSON.stringify($rootScope.DL));           	
- //                alert(data.message);
- //                // $location.path("account_index/iqcRecord");
- //            }
- //            else if(data.code=="E00"){
- //                alert(data.message+",请重新登陆");
- //                localStorage.clear();
- //                $location.path('login').replace();
- //            }else {
- //                alert(data.message);
- //            }  
- //        })
-	// }
-
+		$http({
+			method: "POST",
+			 url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
+			//url: "iqc/iqc_add/updateComplexIQCRecord.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				// "companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid'),
+				"DX": $rootScope.DX,
+				"DL": $rootScope.DL 
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {
+            	localStorage.setItem("DL",JSON.stringify($rootScope.DL));           	
+                alert(data.message);
+                // $location.path("account_index/iqcRecord");
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
 
 
 /***********************************************************************
 ************************************************************************
- // 返回首页
+ // 提交
 ************************************************************************
 ***********************************************************************/
+$scope.submitComplexIQCRecord = function() {
+		// console.log($rootScope.DX);
+		// var keyDX
 
+		$http({
+			method: "POST",
+			 url: config.HOST + "/api/2.0/bp/qc/iqc/submitComplexIQCRecord",
+			//url: "iqc/iqc_add/submitComplexIQCRecord.json",
+			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+			data: {
+				"sid": localStorage.getItem('sid'),
+				// "companySid": localStorage.getItem('cSid'),
+				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid'),
+				"DX": $rootScope.DX,
+				"DL": $rootScope.DL 
+			}
+		})
+		.success(function(data){
+            if (data.code == 'N01') {            	         	
+                alert(data.message);
+                $location.path("account_index/iqcRecord");
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+	}
+/***********************************************************************
+************************************************************************
+ // 返回
+************************************************************************
+***********************************************************************/
 	$scope.next = function() {
 		localStorage.setItem("DL",JSON.stringify($rootScope.DL));
 		$location.path("account_index/iqcRecord");
@@ -6301,6 +6336,59 @@ FIMS.controller('iqcComplexDXReviseCtrl',['$rootScope','$scope','$location','$ht
  
 
   $scope.iqcComplexDXRevise = iqcComplexDXRevise;
+
+
+/***********************************************************
+************************************************************
+queryIQCRecords 检验记录查询
+************************************************************
+***********************************************************/
+
+ $scope.querySingleIQCRecord = function(input_way_code) {
+       
+        var http_url = config.HOST + "/api/2.0/bp/qc/iqc/" ;
+        http_url += (input_way_code == "CE")? "querySingleSimpleIQCRecord":"querySingleComplexIQCRecord";
+
+
+        $http({
+
+            method: "POST",
+            url: http_url,
+            // url: config.HOST + "/api/2.0/bp/qc/iqc/queryIQCRecords",
+            //url: "iqc/iqc_record/querySingleIQCRecord.json",
+            header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "checkoutRecordSid":localStorage.getItem('checkoutRecordSid'),
+                "companySid": localStorage.getItem('cSid'),
+                 //"page": localStorage.getItem('page')
+            }
+        })
+
+        .success(function(data){
+            if (data.code == 'N01') {
+               // $scope.iqcRecordRevise = data.contents.checkoutRecord;
+               // $scope.iqcRecordRevise.giveCheckoutTime = (new Date(data.contents.checkoutRecord.giveCheckoutTime*1000)).format();
+                localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
+                localStorage.setItem("DX",JSON.stringify(data.contents.DX));
+                localStorage.setItem("DL",JSON.stringify(data.contents.DL));
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+        // .error(function () {
+        //     console.log('querySingleIQCRecord'+data.message);
+        // });
+    }
+      $scope.querySingleIQCRecord();
+
+
+
 /***********************************************************************
 ************************************************************************
  // 获取基本信息部分
@@ -6344,6 +6432,48 @@ FIMS.controller('iqcComplexDXReviseCtrl',['$rootScope','$scope','$location','$ht
     }
   }
   queryCheckoutRecord();
+
+ /***********************************************************************
+************************************************************************
+ // 保存
+************************************************************************
+***********************************************************************/ 
+
+$scope.updateComplexIQCRecord = function() {
+    // console.log($rootScope.DX);
+    // var keyDX
+
+    $http({
+      method: "POST",
+      url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
+      // url: "iqc/iqc_add/updateComplexIQCRecord.json",
+      header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+      data: {
+        "sid": localStorage.getItem('sid'),
+        // "companySid": localStorage.getItem('cSid'),
+        "checkoutRecordSid": localStorage.getItem('checkoutRecordSid'),
+        "DX": $rootScope.DX,
+        "DL": $rootScope.DL || JSON.parse(localStorage.getItem("DL"))
+      }
+    })
+    .success(function(data){
+            if (data.code == 'N01') {
+              localStorage.setItem("DX",JSON.stringify($rootScope.DX));             
+                alert(data.message);
+                // $location.path("account_index/iqcRecord");
+            }
+            else if(data.code=="E00"){
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }else {
+                alert(data.message);
+            }  
+        })
+  }
+
+
+
 
 /***********************************************************************
 ************************************************************************

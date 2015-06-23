@@ -18,7 +18,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 // url: 'account/chooseModule/getAppliesJoinCompany.json',
                 headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
-                    "sid": localStorage.getItem('sid')
+                    "sid": localStorage.getItem('sid'),
+                    // "userId": login.user.email
+                     "userId":localStorage.getItem('email')
                      
                 }
             }).success(function(data){
@@ -37,7 +39,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
         }
 
 
-    chooseTeam.sentUserActivateEmail();
+    //chooseTeam.sentUserActivateEmail();
 /*********************************************************
 *********************************************************/
         chooseTeam.subData = function(){
