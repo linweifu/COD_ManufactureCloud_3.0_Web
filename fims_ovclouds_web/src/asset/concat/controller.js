@@ -2301,7 +2301,8 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		.success(function(data){
             if (data.code == 'N01') {           	
             	planAdd.materialShortName = data.contents.materialShortName;
-            	planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo.materialNo+"-"+planAdd.Selected.materialVersion ;
+            	planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo.materialNo;
+            	//planAdd.checkoutPlanNo = planAdd.Selected.QCPType.code+"-"+planAdd.Selected.materialNo.materialNo+"-"+planAdd.Selected.materialVersion ;
 
             }
             else if(data.code=="E00"){
