@@ -47,16 +47,16 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01"&&data.contents.length !== 0) {
-	    
+	            if(data.code == "N01") {
+	    // &&data.contents.length !== 0
 	            	dailyDetails.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
 	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
-	            	alert("暂无数据");}
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();

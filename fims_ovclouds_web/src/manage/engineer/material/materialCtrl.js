@@ -56,13 +56,13 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 					
 				    "operateStatus": 1,
 				    "materialSid": localStorage.getItem('curM'),
-				    "materialNo": material.materialNo,
-				    "materialShortName": material.materialShortName,
-				    "materialVersion": material.materialVersion,
-				    "materialFullName": material.materialFullName,
+				    "materialNo": $scope.material.materialNo,
+				    "materialShortName": $scope.material.materialShortName,
+				    "materialVersion": $scope.material.materialVersion,
+				    "materialFullName": $scope.material.materialFullName,
 				    "companySid":localStorage.getItem('cSid'),
-				    "companyShortName": material.companyShortName,
-				    "notes": material.notes,
+				    "companyShortName": $scope.material.companyShortName,
+				    "notes": $scope.material.notes,
 				    "sid": localStorage.getItem('sid')
 				        
 				}
