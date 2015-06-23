@@ -2169,7 +2169,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
    		var year = this.getFullYear().toString();
    		var month = (this.getMonth()+1).toString();
    		var day = this.getDate().toString();
-   		console.log(year);
+   		//console.log(year);
 
 		if (month<10) {
 			month = "0" + month;
