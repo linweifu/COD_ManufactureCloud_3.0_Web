@@ -76,14 +76,16 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){
-	            if(data.code == "N01"&&data.contents.length !== 0) {
+	            if(data.code == "N01") {
+	            	// data.contents.length !== 0
 	            	monthlyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(monthlyStatistics.dateSelected).length;i<len;i++){
 	                (monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime = (new Date((monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
-	            }else if (data.contents.length === 0) {
-	            	alert("暂无数据");
+	            // }
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");
 	            }else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();

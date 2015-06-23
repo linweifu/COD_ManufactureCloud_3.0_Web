@@ -677,13 +677,13 @@ FIMS.controller('materialCtrl', ['$scope',  '$location', '$http',
 					
 				    "operateStatus": 1,
 				    "materialSid": localStorage.getItem('curM'),
-				    "materialNo": material.materialNo,
-				    "materialShortName": material.materialShortName,
-				    "materialVersion": material.materialVersion,
-				    "materialFullName": material.materialFullName,
+				    "materialNo": $scope.material.materialNo,
+				    "materialShortName": $scope.material.materialShortName,
+				    "materialVersion": $scope.material.materialVersion,
+				    "materialFullName": $scope.material.materialFullName,
 				    "companySid":localStorage.getItem('cSid'),
-				    "companyShortName": material.companyShortName,
-				    "notes": material.notes,
+				    "companyShortName": $scope.material.companyShortName,
+				    "notes": $scope.material.notes,
 				    "sid": localStorage.getItem('sid')
 				        
 				}
@@ -4494,16 +4494,16 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01"&&data.contents.length !== 0) {
-	    
+	            if(data.code == "N01") {
+	    // &&data.contents.length !== 0
 	            	dailyDetails.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
 	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
-	            	alert("暂无数据");}
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
@@ -5090,14 +5090,16 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){
-	            if(data.code == "N01"&&data.contents.length !== 0) {
+	            if(data.code == "N01") {
+	            	// data.contents.length !== 0
 	            	monthlyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(monthlyStatistics.dateSelected).length;i<len;i++){
 	                (monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime = (new Date((monthlyStatistics.dateSelected)[i].iqcQualityDailyList.checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
-	            }else if (data.contents.length === 0) {
-	            	alert("暂无数据");
+	            // }
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");
 	            }else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
@@ -5157,16 +5159,16 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01"&&data.contents.length !== 0) {
-	    
+	            if(data.code == "N01") {
+	    // &&data.contents.length !== 0
 	            	dailyDetails.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
 	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
-	            	alert("暂无数据");}
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
