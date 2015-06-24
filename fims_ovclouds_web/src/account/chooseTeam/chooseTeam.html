@@ -9,10 +9,10 @@
 	.modal-footer {border-top: 0;}
 </style>
 <div ng-controller="chooseTeamController">
-<div class="container text-center" style="max-width: 880px;">
-  <div class="alert alert-warning alert-dismissible" role="alert">
+<div class="container text-center" style="max-width: 800px;">
+  <div class="alert alert-warning" id="warning-block" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <strong>提示:</strong> 您的邮箱{{email}}还未验证，请尽快查收邮件。如果没有收到你可以看看垃圾邮件，或重发邮件，或换个邮箱<a ng-click="sentUserActivateEmail()">重新激活</a>
+    <strong>提示:</strong> 您的邮箱{{email}}还未激活,。如果没有收激活邮件，你可以查看是否已在垃圾箱，或<a ng-click="sentUserActivateEmail()">重新激活</a>
   </div>
 </div>
 

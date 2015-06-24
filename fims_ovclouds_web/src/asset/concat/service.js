@@ -325,6 +325,8 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
             "name": '',
             "cid": ''
         };
+
+       //var userPurview
         chooseTeam.companyList=[];
 
 /*********************************************************
@@ -361,6 +363,27 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
     //chooseTeam.sentUserActivateEmail();
 /*********************************************************
+ 判断是否给出提示
+*********************************************************/
+
+ var a = localStorage.getItem("userPurview");
+
+function init(){
+    if(a==1)
+        {
+            $("#warning-block").hide();
+        }
+        else if(a==0)
+        {
+            $("#warning-block").show();
+        }
+
+ // $("#warning-block").show();
+ }
+
+ init();
+
+/*********************************************************
 *********************************************************/
         chooseTeam.subData = function(){
             $http({
@@ -381,6 +404,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                     localStorage.setItem("curCompanyName",data.contents.companyShortName);
                     localStorage.setItem("cSid",data.contents.companySid);
                     localStorage.setItem("applyJoinCompanyNumber",0);
+
                 }
                 else if(data.code=="E00"){
                     alert(data.message+"（创建公司）,请重新登陆");
@@ -405,10 +429,23 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 }
             }).success(function (data){
                 chooseTeam.companyList=[];
+
+                //$("#warning-block").hide();
                 if (data.code == 'N01') {
                     chooseTeam.companyList = data.contents;
+                  //  userPurview = data.contents.userPurview;
+                  // chooseTeam.companyList.userPurview = data.contents.userPurview;
+                   //console.log(data.contents.userPurview);
+
+
+                   
+                   // localStorage.setItem("userPurview",data.contents.userPurview);
                     for(var i=0;i<chooseTeam.companyList.length;i++){
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==1)?'':'disabled';
+                         // chooseTeam.companyList.userPurview = data.contents.userPurview;
+                          console.log( chooseTeam.companyList[i].userPurview);
+                         localStorage.setItem("userPurview", chooseTeam.companyList[i].userPurview);
+
                     }
                     $rootScope.companyList  =chooseTeam.companyList;
                 }

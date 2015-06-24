@@ -7,11 +7,12 @@
 	#h2 {margin-top: 0;margin-bottom: 0;}
 
 </style>
+<script type="text/javascript"></script>
 <div ng-controller="chooseModuleCtrl">
 <div class="container text-center" style="max-width: 798px;">
-	<div class="alert alert-warning alert-dismissible" role="alert">
+	<div class="alert alert-warning" id="warning-block" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <strong>温馨提示:</strong> 您有{{applyJoinCompanyNumber}}条未审核的加入申请，<a ui-sref="account_index.applyApproval">现在去处理</a>
+	  <strong>温馨提示:</strong> 您有{{applyJoinCompanyNumber}}条未审核的加入申请，现在去处理<a ui-sref="account_index.applyApproval"></a>
 	</div>
 </div>
 
