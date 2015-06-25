@@ -106,33 +106,35 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 	$scope.submitComplexIQCRecord = function() {
 		// console.log($rootScope.DX);
 		// var keyDX
-
-		$http({
-			method: "POST",
-			 url: config.HOST + "/api/2.0/bp/qc/iqc/submitComplexIQCRecord",
-			//url: "iqc/iqc_add/submitComplexIQCRecord.json",
-			header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-			data: {
-				"sid": localStorage.getItem('sid'),
-				// "companySid": localStorage.getItem('cSid'),
-				"checkoutRecordSid": localStorage.getItem('checkoutRecordSid'),
-				"DX": $rootScope.DX,
-				"DL": $rootScope.DL 
-			}
-		})
-		.success(function(data){
-            if (data.code == 'N01') {            	         	
-                alert(data.message);
-                $location.path("account_index/iqcRecord");
-            }
-            else if(data.code=="E00"){
-                alert(data.message+",请重新登陆");
-                localStorage.clear();
-                $location.path('login').replace();
-            }else {
-                alert(data.message);
-            }  
-        })
+		var a = confirm("确认提交？");
+		if (a === true){
+			$http({
+				method: "POST",
+				 url: config.HOST + "/api/2.0/bp/qc/iqc/submitComplexIQCRecord",
+				//url: "iqc/iqc_add/submitComplexIQCRecord.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					// "companySid": localStorage.getItem('cSid'),
+					"checkoutRecordSid": localStorage.getItem('checkoutRecordSid'),
+					"DX": $rootScope.DX,
+					"DL": $rootScope.DL 
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {            	         	
+	                alert(data.message);
+	                $location.path("account_index/iqcRecord");
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
 	}
 	
 }])
