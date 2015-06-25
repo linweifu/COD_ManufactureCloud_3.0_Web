@@ -132,7 +132,7 @@ $scope.submitComplexIQCRecord = function() {
 		})
 		.success(function(data){
             if (data.code == 'N01') {            	         	
-                alert(data.message);
+                alert("你确定要提交吗？提交后数据就不能更改！");
                 $location.path("account_index/iqcRecord");
             }
             else if(data.code=="E00"){

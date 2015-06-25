@@ -60,19 +60,19 @@
 <div id="container" class="container" ng-repeat="list in DL">
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<label class="left control-label" style="margin-left:-13px;">检验样品{{$index+1}}:</label>
-			<label class="left control-label">检验项目</label>
-			<div class="col-sm-2">
-				<input type="text" name="checkoutMetricName" class="form-control" style="margin-left:-9px" ng-model="list.checkoutMetricName" required ng-disabled="true" >
+			<!-- <label class="left control-label" style="margin-left:-13px;">检验样品{{$index+1}}:</label> -->
+			<label class="left control-label">检验指标</label>
+			<div class="col-sm-3">
+				<input type="text" name="checkoutMetricName" class="form-control"  ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div>
-			<label class="left control-label" style="margin-left:-7px">检验方式</label>
+			<label class="left control-label" >检验工具</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control"   name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
 			</div> 
 
 			<label class="left control-label"style="margin-left:26px;">位图</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control"  style="margin-left:3px;" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
+				<input type="text" class="form-control"  style="margin-left:3px;" name="mapPosition" ng-model="list.mapPosition" required ng-disabled="true">
 			</div>  
 
 		</div>	
@@ -80,11 +80,11 @@
 		<div class="form-group" >
 		<label class="left control-label" style="margin-left:13px;">三坐标</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:2px;" name="checkoutToolName" ng-model="list.threeDimensionalRogramNo" required ng-disabled="true">
+				<input type="text" class="form-control" style="margin-left:2px;" name="threeDimensionalRogramNo" ng-model="list.threeDimensionalRogramNo" required ng-disabled="true">
 			</div>
 			<label class="left control-label" style="margin-left:15px;">标准值</label>	
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:2px;"name="checkoutToolName" ng-model="list.list.referenceStandard" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:2px;"name="referenceStandard" ng-model="list.referenceStandard" required ng-disabled="true">				
 			</div>
 			<label class="left control-label" style="margin-left:27px;" >夹具</label>
 			<div class="col-sm-2">
@@ -95,25 +95,25 @@
          <div class="form-group" >							
 			<label class="left control-label" style="margin-left:23px;">上限</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:5px;" name="checkoutToolName" ng-model="list.upTolerance" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:5px;" name="upTolerance" ng-model="list.upTolerance" required ng-disabled="true">				
 			</div>
 			<label class="left control-label" style="margin-left:33px;">下限</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:3px;" name="checkoutToolName" ng-model="list.underTolerance" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:3px;" name="underTolerance" ng-model="list.underTolerance" required ng-disabled="true">				
 			</div>
 			<label class="left control-label" style="margin-left:30px;">单位</label>	
 			<div class="col-sm-2">
-				<input type="text" class="form-control" style="margin-left:2px;"name="checkoutToolName" ng-model="list.metricUnit" required ng-disabled="true">				
+				<input type="text" class="form-control" style="margin-left:2px;"name="metricUnit" ng-model="list.metricUnit" required ng-disabled="true">				
 			</div>			
 		</div>
 
 	</form>	
-  <label style="color:green">录入的检验数据</label>
+  <!-- <label style="color:green">录入的检验数据</label> -->
 	<form class="form-horizontal" id="form-horizontal" name="iqcComplexDLReviseForm" novalidate>
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
-				<input class="form-control"  ng-model="DL[mark].sample[$index].sampleCheckoutValue" required >
+				<input class="form-control"  ng-model="DL[mark].sample[$index].sampleCheckoutValue" placeholder="null" required>
 			</div>
 		</div>
 	</form>

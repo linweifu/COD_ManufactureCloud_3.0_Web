@@ -59,22 +59,22 @@
 
 	<form class="form-horizontal" id="form-horizontal" novalidate>
 		<div class="form-group">
-			<label class="left control-label" >检验样品{{$index+1}}:</label>
+			<!-- <label class="left control-label" >检验样品{{$index+1}}:</label> -->
 			<!-- <div class="col-sm-2">
 				<input type="text" name="checkoutMetricName" class="form-control"ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div> -->
-			<label class="left control-label">检验项目</label>
+			<label class="left control-label">检验指标</label>
 			<div class="col-sm-3">
 				<input type="text" name="checkoutMetricName" class="form-control"ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div>
 
-			<label class="left control-label">检验方式</label>
+			<label class="left control-label">检验工具</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.checkoutToolName" required  ng-disabled="true">
 			</div>
 		</div>
 	</form>
-	<label style="color:green">录入的检验结果</label>
+	<!-- <label style="color:green">录入的检验结果</label> -->
 	<form class="form-horizontal" id="form-horizontal" name="planAddForm" novalidate>
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>

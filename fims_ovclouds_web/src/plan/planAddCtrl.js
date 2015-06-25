@@ -22,6 +22,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		makeTime: "",
 		entryName: localStorage.getItem("userName"),
 		makeJobNumber : localStorage.getItem("userJobNumber"),
+		 //"makeJobNumber":localStorage.getItem('userJobNumber'),
 		entryTime: ""
 
 
@@ -214,7 +215,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	            "entryJobNumber":localStorage.getItem('userJobNumber'),
 	            "entryName":planAdd.entryName,
 	            "entryTime":((new Date(planAdd.entryTime)).valueOf())/1000,
-	            "makeJobNumber":localStorage.getItem('userJobNumber'),
+	            "makeJobNumber":planAdd.makeJobNumber,
 	            "makeName":planAdd.makeName,
 	            "makeTime":((new Date(planAdd.makeTime)).valueOf())/1000,
 			}

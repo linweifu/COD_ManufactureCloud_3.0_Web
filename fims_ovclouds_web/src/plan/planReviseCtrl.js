@@ -225,6 +225,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		.success(function(data){
             if (data.code=="N01"){
             	alert(data.message);
+                  $location.path('account_index/planList');
                   planRevise.querySingleQCP();
             }
             else if(data.code=="E00"){

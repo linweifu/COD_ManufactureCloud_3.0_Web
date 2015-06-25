@@ -2114,6 +2114,7 @@ FIMS.controller('planReviseCtrl', ['$scope','$location','$http',function($scope,
 		.success(function(data){
             if (data.code=="N01"){
             	alert(data.message);
+                  $location.path('account_index/planList');
                   planRevise.querySingleQCP();
             }
             else if(data.code=="E00"){
@@ -2210,6 +2211,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 		makeTime: "",
 		entryName: localStorage.getItem("userName"),
 		makeJobNumber : localStorage.getItem("userJobNumber"),
+		 //"makeJobNumber":localStorage.getItem('userJobNumber'),
 		entryTime: ""
 
 
@@ -2402,7 +2404,7 @@ FIMS.controller('planAddCtrl', ['$scope','$location','$http',function($scope,$lo
 	            "entryJobNumber":localStorage.getItem('userJobNumber'),
 	            "entryName":planAdd.entryName,
 	            "entryTime":((new Date(planAdd.entryTime)).valueOf())/1000,
-	            "makeJobNumber":localStorage.getItem('userJobNumber'),
+	            "makeJobNumber":planAdd.makeJobNumber,
 	            "makeName":planAdd.makeName,
 	            "makeTime":((new Date(planAdd.makeTime)).valueOf())/1000,
 			}
@@ -6339,7 +6341,7 @@ $scope.submitComplexIQCRecord = function() {
 		})
 		.success(function(data){
             if (data.code == 'N01') {            	         	
-                alert(data.message);
+                alert("你确定要提交吗？提交后数据就不能更改！");
                 $location.path("account_index/iqcRecord");
             }
             else if(data.code=="E00"){
