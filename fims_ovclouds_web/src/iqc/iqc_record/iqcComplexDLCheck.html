@@ -62,10 +62,10 @@
 		<div class="form-group">
 			<!-- <label class="left control-label"style="margin-left:-13px;">检验样品{{$index+1}}:</label> -->
 			<label class="left control-label">检验指标</label>
-			<div class="col-sm-2">
-				<input type="text" name="checkoutMetricName" class="form-control" style="margin-left:-6px"  ng-model="list.checkoutMetricName" required ng-disabled="true" >
+			<div class="col-sm-3">
+				<input type="text" name="checkoutMetricName" class="form-control"  ng-model="list.checkoutMetricName" required ng-disabled="true" >
 			</div>
-			<label class="left control-label" style="margin-left:-3px">检验工具</label>
+			<label class="left control-label" >检验工具</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" name="checkoutToolName" ng-model="list.checkoutToolName" required ng-disabled="true">
 			</div> 
@@ -80,7 +80,7 @@
 		<div class="form-group" >
 		<label class="left control-label" style="margin-left:13px;">三坐标</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" style="margin-left:2px;" name="threeDimensionalRogramNo" ng-model="list.threeDimensionalRogramNo" required ng-disabled="true">
+				<input type="text" class="form-control" style="margin-left:2px;" name="threeDimensionalRogramNo" ng-model="list.threeDimensionalRogram_no" required ng-disabled="true">
 			</div>
 			<label class="left control-label" style="margin-left:15px;">标准值</label>	
 			<div class="col-sm-3">
@@ -113,6 +113,7 @@
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
+				<label class="text-center">S{{$index}}</label>
 				<input class="form-control"  ng-model="DL[mark].sample[$index].sampleCheckoutValue" required  ng-disabled="true">
 			</div>
 		</div>

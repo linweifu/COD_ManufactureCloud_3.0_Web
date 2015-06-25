@@ -75,7 +75,7 @@
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
-				<!-- <select class="form-control" ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDLCheck.itemDic" ng-model="iqcComplexDLCheck.sampleSel[mark][$index].sampleCheckoutValue"></select> -->
+				<label class="text-center">S{{$index}}</label>
 				<select class="form-control" ng-options="o.sampleCheckoutValue as o.value for o in iqcComplexDXRevise.itemDic" ng-model="DX[mark].sample[$index].sampleCheckoutValue" required></select>
 			</div>
 		</div>

@@ -6906,6 +6906,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 }
             }).success(function(data){
                 if (data.code == 'N01') {
+                    localStorage.setItem('mailActive',data.contents.mailActive); 
                     // deffered.resolve(data);   
                     alert(data.message);
                 }
