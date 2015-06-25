@@ -3163,8 +3163,8 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
-	            	// planHistoryList.dicQCPType = [];
-	            	// planHistoryList.Selected.materialName = {};
+	            	 //planHistoryList.dicQCPType = [];
+	            	 //planHistoryList.Selected.materialName = {};
 	                // planHistoryList.display = "display:block"; 
 	 				// localStorage.setItem('page',1);	
 	                planHistoryList.QCP = data.contents;
@@ -6892,8 +6892,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
              $http({
                 method: 'post',
-                url: config.HOST + '/api/2.0/bp/account/user/sentUserActivateEmail',
+                //url: config.HOST + '/api/2.0/bp/account/user/sentUserActivateEmail',
                 // url: 'account/chooseModule/getAppliesJoinCompany.json',
+                 url: config.HOST + '/api/3.0/ll/account/user/sentUserActivateEmail',
                 headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem('sid'),

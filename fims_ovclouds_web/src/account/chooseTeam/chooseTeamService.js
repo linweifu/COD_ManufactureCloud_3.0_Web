@@ -16,8 +16,9 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
              $http({
                 method: 'post',
-                url: config.HOST + '/api/2.0/bp/account/user/sentUserActivateEmail',
+                //url: config.HOST + '/api/2.0/bp/account/user/sentUserActivateEmail',
                 // url: 'account/chooseModule/getAppliesJoinCompany.json',
+                 url: config.HOST + '/api/3.0/ll/account/user/sentUserActivateEmail',
                 headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
                 data: {
                     "sid": localStorage.getItem('sid'),

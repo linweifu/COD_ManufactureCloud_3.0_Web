@@ -3163,8 +3163,8 @@ FIMS.controller('planHistoryListCtrl', ['$scope', '$location', '$http',
 			})
 			.success(function(data){
 	            if (data.code == 'N01') {
-	            	// planHistoryList.dicQCPType = [];
-	            	// planHistoryList.Selected.materialName = {};
+	            	 //planHistoryList.dicQCPType = [];
+	            	 //planHistoryList.Selected.materialName = {};
 	                // planHistoryList.display = "display:block"; 
 	 				// localStorage.setItem('page',1);	
 	                planHistoryList.QCP = data.contents;
