@@ -52,7 +52,8 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                 if(storage){
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
-                    storage.setItem('email',login.user.email);    
+                    storage.setItem('email',login.user.email);   
+                    storage.setItem('mailActive',localData.mailActive);   
                 }else{
                     // $.cookie('email',localData);
                 }

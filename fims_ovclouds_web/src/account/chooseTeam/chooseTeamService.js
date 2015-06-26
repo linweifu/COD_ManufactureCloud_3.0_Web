@@ -16,7 +16,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
              $http({
                 method: 'post',
-                //url: config.HOST + '/api/2.0/bp/account/user/sentUserActivateEmail',
+              //  url: config.HOST + '/api/2.0/bp/account/user/sentUserActivateEmail',
                 // url: 'account/chooseModule/getAppliesJoinCompany.json',
                  url: config.HOST + '/api/3.0/ll/account/user/sentUserActivateEmail',
                 headers:  {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
@@ -28,7 +28,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 }
             }).success(function(data){
                 if (data.code == 'N01') {
-                    localStorage.setItem('mailActive',data.contents.mailActive); 
+                   // localStorage.setItem('mailActive',data.contents.mailActive); 
                     // deffered.resolve(data);   
                     alert(data.message);
                 }
@@ -48,14 +48,15 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
  判断是否给出提示
 *********************************************************/
 
- var a = localStorage.getItem("userPurview");
+ var b = localStorage.getItem("mailActive");
+ //console.log(b);
 
 function init(){
-    if(a==1)
+    if(b==1)
         {
             $("#warning-block").hide();
         }
-        else if(a==0)
+        else if(b==0)
         {
             $("#warning-block").show();
         }
@@ -125,7 +126,7 @@ function init(){
                     for(var i=0;i<chooseTeam.companyList.length;i++){
                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==1)?'':'disabled';
                          // chooseTeam.companyList.userPurview = data.contents.userPurview;
-                          console.log( chooseTeam.companyList[i].userPurview);
+                         // console.log( chooseTeam.companyList[i].userPurview);
                          localStorage.setItem("userPurview", chooseTeam.companyList[i].userPurview);
 
                     }

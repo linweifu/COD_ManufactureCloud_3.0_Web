@@ -11,6 +11,10 @@
 
 	.table th{text-align: center;}
 
+	.selected {
+		background-color: lightgreen;
+	}
+
 	.btn-newMem {
 		padding: .4em 4.5em ;
 		margin: .5em  auto .6em auto;
@@ -82,7 +86,7 @@
 		  </thead>
 		  <tbody>
 		 
-		  	<tr ng-repeat="list in planlist.QCPSelected">
+		  	<tr ng-repeat="list in planlist.QCPSelected" ng-class='{selected:$index==selectedRow}'>
 		  		<td>{{$index+1}}</td>
 		  		<td ng-bind="list.checkoutPlanNo"></td>
 		  		<td ng-bind="list.checkoutPlanVersion"></td>
