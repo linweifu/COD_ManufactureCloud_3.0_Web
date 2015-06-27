@@ -9,4 +9,34 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
 		$scope.joinedCompanies = chooseTeamService.joinedCompanies;
 		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
 		$scope.sentUserActivateEmail = chooseTeamService.sentUserActivateEmail;
+
+
+
+
+
+
+
+/*********************************************************
+ 判断是否给出激活提示
+*********************************************************/
+
+ var a = localStorage.getItem("mailActive");
+ 
+function init(){
+    if(a==1)
+        {
+            $("#warning-block").hide();
+        }
+        else if(a==0)
+        {
+           $("#warning-block").show();
+        }
+
+ 
+ }
+
+ init();
+
+/*********************************************************
+*********************************************************/
 }])

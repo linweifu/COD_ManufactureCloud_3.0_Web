@@ -9,8 +9,12 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
        //var userPurview
         chooseTeam.companyList=[];
 
-/*********************************************************
-*********************************************************/
+
+
+ /*********************************************************
+ *********************************************************/
+
+
  chooseTeam.sentUserActivateEmail = function(){
     //var deffered = $q.defer();
 
@@ -44,28 +48,6 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
 
 
     //chooseTeam.sentUserActivateEmail();
-/*********************************************************
- 判断是否给出提示
-*********************************************************/
-
- var b = localStorage.getItem("mailActive");
- //console.log(b);
-
-function init(){
-    if(b==1)
-        {
-            $("#warning-block").hide();
-        }
-        else if(b==0)
-        {
-            $("#warning-block").show();
-        }
-
- // $("#warning-block").show();
- }
-
- init();
-
 /*********************************************************
 *********************************************************/
         chooseTeam.subData = function(){

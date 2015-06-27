@@ -13,6 +13,30 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
         alert_display: 'none'
     };
 
+// /*********************************************************
+// //  判断是否给出提示
+// // *********************************************************/
+
+//  var a = localStorage.getItem("mailActive");
+//  //console.log(b);
+
+// function init(){
+//     if(a==1)
+//         {
+//             $("#warning-block").hide();
+//         }
+//         else if(a==0)
+//         {
+//            $("#warning-block").show();
+//         }
+
+//  // $("#warning-block").show();
+//  }
+
+//  init();
+
+
+
     login.subData = function () {
         // var postUrl = '';
         // if (login.user.email=="zchar.hong@qq.com" && login.user.password=="123456"){
