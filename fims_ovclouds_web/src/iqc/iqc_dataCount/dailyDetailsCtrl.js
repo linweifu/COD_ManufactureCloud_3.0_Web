@@ -36,12 +36,12 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
-				//url: "iqc/iqc_dataCount/A102DailyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
+				url: "iqc/iqc_dataCount/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
-					"sid": localStorage.getItem('sid'),
-					"checkoutTime":dailyDetails.checkoutTime+"T07:30:00Z",
+					// "sid": localStorage.getItem('sid'),
+					"checkoutTime":  ((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
 				}

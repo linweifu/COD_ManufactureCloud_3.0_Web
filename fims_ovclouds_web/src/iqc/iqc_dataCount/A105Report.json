@@ -1,0 +1,57 @@
+{
+    "code": "N01",
+    "message": "数据获取成功",
+    "contents": [
+        {
+            "month": "1",
+            "samplePassRateTarget": "0.1",
+            "samplePassRate": "0.17"
+
+        },
+        {
+            "month": "2",
+            "samplePassRateTarget": "0.25",
+            "samplePassRate": "0.27"
+        },
+        {
+            "month": "3",
+            "samplePassRateTarget": "0.35",
+            "samplePassRate": "0.37"
+        },
+        {
+            "month": "4",
+            "samplePassRateTarget": "0.45",
+            "samplePassRate": "0.47"
+        },
+        {
+            "month": "5",
+            "samplePassRateTarget": "0.51",
+            "samplePassRate": "0.56"
+        },
+        {
+            "month": "6",
+            "samplePassRateTarget": "0.35",
+            "samplePassRate": "0.67"
+        },
+        {
+            "month": "7",
+            "samplePassRateTarget": "0.35",
+            "samplePassRate": "0.67"
+        },
+        {
+            "month": "8"
+        },
+        {
+            "month": "9"
+        },
+        {
+            "month": "10"
+        },
+        {
+            "month": "11"
+        },
+        {
+            "month": "12"
+        }
+    ]
+}

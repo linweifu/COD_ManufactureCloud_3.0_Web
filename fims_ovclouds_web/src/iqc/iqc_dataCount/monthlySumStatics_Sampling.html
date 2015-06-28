@@ -13,18 +13,14 @@
 </style>
 
 <div id="container" class="container text-center">
-	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验抽样合格率月报图表</h3>
+	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验抽样合格率月报汇总统计图表</h3>
 	<div class="form-group" style="margin-top: 1.5em;">
 		<form class="form-horizontal" id="form-horizontal" name="monthlyStatisticsform" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
-			<input type="month" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlyChart.checkoutTime" required>	
-			<label class=" control-label" style="margin-right:1em;margin-left:2em;">供应商名称</label>	
-
-			<select class="form-control" ng-options="o as o.name for o in monthlyChart.dictionary.vendorName" ng-model="monthlyChart.Selected.vendorName"></select>
-			
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getSingleVendor()">查询</button>				
+			<input class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlySumStatistics.checkoutTime" placeholder="填入查询年" required>				
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="A105Report()">查询</button>				
 		</form>
 	</div>
-	<div id="main1" style="height:400px;width:900px;margin: 0 auto"></div>
-	<button class="btn btn-success btn-newMem" ng-click="monthlyChartBack()">返回管理面板</button>
+	<div id="main" style="height:400px;width:900px;margin: 0 auto"></div>
+	<button class="btn btn-success btn-newMem" ng-click="monthlySumStatisticsBack()">返回管理面板</button>
 </div>
