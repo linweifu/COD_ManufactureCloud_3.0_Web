@@ -1,4 +1,4 @@
-FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function ($scope,$http,$state,$location) {
+FIMS.controller('joinCoCtrl', ['$scope','$rootScope','$http', '$state','$location',function ($scope,$rootScope,$http,$state,$location) {
 	var joinCo = {
 			paramObj: {},
 			applicantJobNumber: "",
@@ -28,8 +28,19 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function (
 	}
 	
 	init();
+/************************************************
+************************************************/
+// var pages=[],j=2；
+// for (var i=1;i<data.totalpage;i++)
+// {
+// 	pages.push(j);
+// 	j++;
+// 	$rootScope.pages = pages;
 
-
+// }
+// console.log(pages);
+/************************************************
+************************************************/
 	$scope.applyJoinCompany = function(){
 		var paramObj = JSON.parse(localStorage.getItem('apj'));
 		$http({

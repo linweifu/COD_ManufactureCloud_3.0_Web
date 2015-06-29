@@ -92,36 +92,7 @@ FIMS.controller('chooseModuleCtrl',['$scope', '$rootScope','$q','$location',"$ht
 判断是否为超级管理员
 ***********************************************
 **********************************************/	
-// $scope.queryJoinedCompanies = function(){
-//             $http({
-//                 method: 'POST',
-//                 url: config.HOST+'/api/2.0/bp/account/relation/queryJoinedCompanies',
-//                 // url: "account/chooseTeam/queryJoinedCompanies.json",
-//                 headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-//                 data: {
-//                     "sid": localStorage.getItem("sid"),
-//                 }
-//             }).success(function (data){
-//                 chooseTeam.companyList=[];
-//                 if (data.code == 'N01') {
-//                     chooseTeam.companyList = data.contents;
-//                     for(var i=0;i<chooseTeam.companyList.length;i++){
-//                         chooseTeam.companyList[i].userApplyStatus = (chooseTeam.companyList[i].userApplyStatus==1)?'':'disabled';
-//                     }
-//                     $rootScope.companyList  =chooseTeam.companyList;
-//                 }
-//                 else if(data.code=="E00"){
-//                     alert(data.message+",请重新登陆");
-//                     localStorage.clear();
-//                     $location.path('login').replace();
-//                 }else {
-//                     console.log(data.message);
-//                 }  
-                
-//             }).error(function (data){
-                
-//             });
-//         }
+
  function init(){
  	if(a==1)
 		{
@@ -304,7 +275,7 @@ FIMS.controller('applyApprovalCtrl', ['$scope', '$location','$http',function($sc
         });
 	}
 }])
-FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function ($scope,$http,$state,$location) {
+FIMS.controller('joinCoCtrl', ['$scope','$rootScope','$http', '$state','$location',function ($scope,$rootScope,$http,$state,$location) {
 	var joinCo = {
 			paramObj: {},
 			applicantJobNumber: "",
@@ -334,8 +305,19 @@ FIMS.controller('joinCoCtrl', ['$scope','$http', '$state','$location',function (
 	}
 	
 	init();
+/************************************************
+************************************************/
+// var pages=[],j=2；
+// for (var i=1;i<data.totalpage;i++)
+// {
+// 	pages.push(j);
+// 	j++;
+// 	$rootScope.pages = pages;
 
-
+// }
+// console.log(pages);
+/************************************************
+************************************************/
 	$scope.applyJoinCompany = function(){
 		var paramObj = JSON.parse(localStorage.getItem('apj'));
 		$http({
@@ -1368,6 +1350,45 @@ FIMS.controller('vendorListCtrl', ['$scope', '$location', '$http',
 }])
 FIMS.controller('planListCtrl', ['$scope', '$location', '$http', 
 	function($scope,$location,$http){
+
+
+/*************************************************
+*************************************************/
+
+// $scope.itemsPerPage = 5;
+// $scope.currentPage = 0; $scope.items = [];
+// for (var i=0; i<50; i++) {
+// $scope.items.push({
+// id: i, name: "name "+ i, description: "description " + i });
+
+// $scope.prevPage = function() { 
+// if ($scope.currentPage > 0) {
+// $scope.currentPage--; }
+// };
+
+
+// $scope.prevPageDisabled = function() {
+// return $scope.currentPage === 0 ? "disabled" : "";
+// };
+
+
+// $scope.pageCount = function() {
+// return Math.ceil($scope.items.length/$scope.itemsPerPage)-1;
+// };
+
+
+// $scope.nextPage = function() {
+// if ($scope.currentPage < $scope.pageCount()) {
+// $scope.currentPage++; }
+// };
+
+// $scope.nextPageDisabled = function() {
+// return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+//    };
+// }
+
+/*************************************************
+**************************************************/
 		var planlist = {
 			dictionary: {
 				QCPType: [],
@@ -1385,7 +1406,10 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 			QCPSelected :[],
 			display: "",
 			
-			page: localStorage.getItem("page")
+			//page: localStorage.getItem("page")
+			page:"2"
+
+
 		};
 
 		$scope.companyShortName = localStorage.getItem('curCompanyName');
@@ -1403,7 +1427,12 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 		}
 
 		//  /api/2.0/bp/qcp/qcp
+/******************************************************
+******************************************************/
 
+
+/*******************************************************
+******************************************************/
 		$scope.querySingleplanInfo =function(planSid,checkoutPlanStatusCode){
 			if (checkoutPlanStatusCode=="cps001") {
 				localStorage.setItem("checkoutPlanSid",planSid);
@@ -1451,15 +1480,62 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 
 		$scope.queryDicQCPType();
 
-
+/*********************************************************
+*********************************************************/
 		// 上一页
-		$scope.previous = function(){
-			if (planlist.page==1) {
-				alert("当前是第1页...")
-			} 
+		// $scope.previous = function(){
+		// 	if (planlist.page==1) {
+		// 		alert("当前是第1页...")
+		// 	} 
 			
-		}
+		// }
 
+		$scope.previous = function(){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
+				// url: "plan/queryQCPByType.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"companySid": localStorage.getItem('cSid'),
+					"checkoutPlanTypeCode": planlist.Selected.QCPType.code,
+					"page": localStorage.getItem('page')
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	            	planlist.dictionary.materialVersion = [];
+	            	planlist.Selected.materialName = {};
+	                planlist.display = "display:block"; 
+	 				//localStorage.setItem('page',2);	
+	                planlist.QCPSelected = data.contents;
+	                 // localStorage.setItem("makeJobNumber",planCheck.makeJobNumber);
+	                //localStorage.setItem("makeJobNumber",planHistoryListCopy.singleQCP.materialSid);
+	                // console.log(planlist.QCPSelected.length);
+
+	                for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
+	                	(planlist.QCPSelected)[i].makeTime = (new Date((planlist.QCPSelected)[i].makeTime*1000)).format();
+	                	(planlist.QCPSelected)[i].entryTime = (new Date((planlist.QCPSelected)[i].entryTime*1000)).format();
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	                // console.log(planlist.QCPSelected);
+ 
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	            	planlist.QCPSelected= [];  
+	            	planlist.dictionary.materialVersion = [];
+	            	planlist.Selected.materialName = {};
+	                alert(data.message);
+	            }  
+	        })
+		}
+/*********************************************************
+*********************************************************/
 		//时间戳格式转化
 		Date.prototype.format = function() {
 	   		var year = this.getFullYear().toString();
@@ -1477,7 +1553,8 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 
 		 	return (year + "-" + month + "-" +day );
 		}
-
+/*********************************************************
+*********************************************************/
 		//根据检验计划类型获取检验计划
 		$scope.queryQCPByType = function(){
 			$http({
@@ -1524,7 +1601,58 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	        })
 		}
 		
+/**********************************************************
+**********************************************************/
+ //$scope.nextPage = function(){
 
+  $scope.nextPage = function(){
+			$http({
+				method: "POST",
+				url: config.HOST + "/api/2.0/bp/qcp/qcp/queryQCPByType",
+				// url: "plan/queryQCPByType.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {
+					"sid": localStorage.getItem('sid'),
+					"companySid": localStorage.getItem('cSid'),
+					"checkoutPlanTypeCode": planlist.Selected.QCPType.code,
+					"page": planlist.page
+				}
+			})
+			.success(function(data){
+	            if (data.code == 'N01') {
+	            	planlist.dictionary.materialVersion = [];
+	            	planlist.Selected.materialName = {};
+	                planlist.display = "display:block"; 
+	 				localStorage.setItem('page',1);	
+	                planlist.QCPSelected = data.contents;
+	                 // localStorage.setItem("makeJobNumber",planCheck.makeJobNumber);
+	                //localStorage.setItem("makeJobNumber",planHistoryListCopy.singleQCP.materialSid);
+	                // console.log(planlist.QCPSelected.length);
+
+	                for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
+	                	(planlist.QCPSelected)[i].makeTime = (new Date((planlist.QCPSelected)[i].makeTime*1000)).format();
+	                	(planlist.QCPSelected)[i].entryTime = (new Date((planlist.QCPSelected)[i].entryTime*1000)).format();
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	                // console.log(planlist.QCPSelected);
+ 
+	            }
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	            	planlist.QCPSelected= [];  
+	            	planlist.dictionary.materialVersion = [];
+	            	planlist.Selected.materialName = {};
+	                alert(data.message);
+	            }  
+	        })
+		}
+ //}
+
+/**********************************************************
+**********************************************************/
 		// 查询检验计划
 		// $scope.queryQCP = function(){
 		// 	$http({
@@ -1570,6 +1698,12 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 			.success(function(data){
 	            if (data.code == 'N01') {
 	            	planlist.dictionary.materialName = data.contents;
+
+	            	 for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
+	                	(planlist.QCPSelected)[i].makeTime = (new Date((planlist.QCPSelected)[i].makeTime*1000)).format();
+	                	(planlist.QCPSelected)[i].entryTime = (new Date((planlist.QCPSelected)[i].entryTime*1000)).format();
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -1606,7 +1740,13 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	            	planlist.Selected.materialVersion = "";
 	                planlist.dictionary.materialVersion = data.contents;
 
-	                // planlist.QCPSelected = data.contents;
+	                //  for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
+	                // 	(planlist.QCPSelected)[i].makeTime = (new Date((planlist.QCPSelected)[i].makeTime*1000)).format();
+	                // 	(planlist.QCPSelected)[i].entryTime = (new Date((planlist.QCPSelected)[i].entryTime*1000)).format();
+	                // 	// console.log((planlist.QCPSelected)[i])
+	                // }
+
+	                 //planlist.QCPSelected = data.contents;
 	            }
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -1636,6 +1776,11 @@ FIMS.controller('planListCtrl', ['$scope', '$location', '$http',
 	            if (data.code == 'N01') {           	
 	 				localStorage.setItem('page',1);
 	                planlist.QCPSelected = data.contents;
+	                 for(var i=0,len=(planlist.QCPSelected).length;i<len;i++){
+	                	(planlist.QCPSelected)[i].makeTime = (new Date((planlist.QCPSelected)[i].makeTime*1000)).format();
+	                	(planlist.QCPSelected)[i].entryTime = (new Date((planlist.QCPSelected)[i].entryTime*1000)).format();
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
 
 	            	// comsole.log()
 	            }

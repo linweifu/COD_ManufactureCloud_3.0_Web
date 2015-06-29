@@ -38,6 +38,7 @@
 	
 </style>
 
+
 <div id="container" class="container text-center" ng-controller="planListCtrl">
 <!-- <div id="container" class="container text-center"> -->
 	<div class="row" style="margin-bottom: 1.5em;">
@@ -105,14 +106,28 @@
 		  </tbody>
 		</table>
 		<nav style="{{planlist.display}}">
-		  <ul class="pager">
-		    <li class="disabled"><a href="javascript:void(0)" ><span aria-hidden="true">&larr;</span> 上一页</a></li>
-		    <li><a href="javascript:void(0)">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+
+		  <ul class="pager"> 
+		
+		    <li ><a ng-click="previous()" ><span aria-hidden="true">&larr;</span> 上一页</a></li>
+		    <li><a ng-click="nextPage()">下一页 <span aria-hidden="true">&rarr;</span></a></li>
 		  </ul>
+ 
 		</nav>
+		<!-- <div style="{{planlist.display}}">
+		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="nextPage()">下一页</button>
+	    </div> -->
+		
 	</div>
 	</div>
 
 	<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-right:.3em;" ui-sref="account_index.planAdd">新增检验计划</button>
 	<button class="btn btn-default btn-newMem" ng-click="planlistBack()">返回管理面板</button>
 </div>
+
+
+
+
+  <!-- <div class="container" ng-controller="PageCtrl">
+   <pagination num-pages="pages" curr-page="page" on-select-page="selectPage(page)"></pagination>
+ </div> -->
