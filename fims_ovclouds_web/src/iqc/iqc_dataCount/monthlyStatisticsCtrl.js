@@ -7,7 +7,8 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 
 		$scope.companyShortName = localStorage.getItem("curCompanyName");
 		$scope.monthlyStatistics = monthlyStatistics;
-
+		
+		var time  = new Date();
 		Date.prototype.format = function() {
 	   		var year = this.getFullYear().toString();
 	   		var month = (this.getMonth()+1).toString();
@@ -24,6 +25,7 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 
 		 	return (year + "-" + month + "-" +day );
 		}
+		monthlyStatistics.checkoutTime = time.format();
 		
 		$scope.monthlyStatisticsBack = function(){
 			// localStorage.removeItem('singleplan');
@@ -38,7 +40,7 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
-					"checkoutTime": monthlyStatistics.checkoutTime+"-01T07:30:00Z",
+					"checkoutTime": ((new Date(monthlyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid'),
 					"sign": 0
 				}
@@ -70,7 +72,7 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
-					"checkoutTime": monthlyStatistics.checkoutTime+"-01T07:30:00Z",
+					"checkoutTime": ((new Date(monthlyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid'),
 					"sign": 1
 				}

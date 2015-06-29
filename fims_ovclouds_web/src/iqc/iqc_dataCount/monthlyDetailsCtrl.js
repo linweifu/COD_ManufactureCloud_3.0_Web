@@ -31,15 +31,14 @@ FIMS.controller('monthlyDetailsCtrl',['$scope','$location',"$http",
 			$location.path('account_index/iqcDataCount').replace();
 		}
 
-		$scope.getMonthDetails = function(){
+		$scope.A103MonthlyReport = function(){
 			$http({
 				method: "POST",
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
 				//url: "iqc/iqc_dataCount/A103MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"checkoutTime": monthlyDetails.checkoutTime+"-01T07:30:00Z",
+				data: {					
+					"checkoutTime": ((new Date(monthlyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')					
 				}
 			})

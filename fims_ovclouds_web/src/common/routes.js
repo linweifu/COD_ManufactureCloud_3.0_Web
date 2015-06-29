@@ -273,22 +273,22 @@ FIMS.config([
 	})
 	.state('account_index.dailyStatistics_venmat',{
 		url:'/dailyStatistics0',
-		// controller: 'dailyStatistics',
+		controller: 'dailyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/dailyStatistics_venmat.html'
 	})
 	.state('account_index.dailyStatistics_matven',{
 		url:'/dailyStatistics1',
-		// controller: 'dailyStatistics',
+		controller: 'dailyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/dailyStatistics_matven.html'
 	})
 	.state('account_index.dailyStatistics_vendor',{
 		url:'/dailyStatistics_vendor',
-		// controller: 'dailyStatistics',
+		controller: 'dailyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/dailyStatistics_vendor.html'
 	})
 	.state('account_index.dailyStatistics_material',{
 		url:'/dailyStatistics_material',
-		// controller: 'dailyStatistics',
+		controller: 'dailyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/dailyStatistics_material.html'
 	})
 	.state('account_index.monthlyDetails',{
@@ -323,22 +323,22 @@ FIMS.config([
 	})
 	.state('account_index.monthlySumStatistics',{
 		url:'/monthlySumStatistics',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlySumStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlySumStatistics.html'
 	})
 	.state('account_index.monthlySumStatics_Sampling',{
 		url:'/monthlySumStatics_Sampling',
-		//controller: 'monthlySumStatics_SamplingCtrl',
+		controller: 'monthlySumStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlySumStatics_Sampling.html'
 	})
 	.state('account_index.monthlySumStatics_PPM',{
 		url:'/monthlySumStatics_PPM',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlySumStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlySumStatics_PPM.html'
 	})
 	.state('account_index.monthlySumStatics_Batch',{
 		url:'/monthlySumStatics_Batch',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlySumStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlySumStatics_Batch.html'
 	})
 	.state('account_index.monthlyChart_vendor',{

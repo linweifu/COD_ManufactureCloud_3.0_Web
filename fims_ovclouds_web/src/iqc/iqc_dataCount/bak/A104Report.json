@@ -1,0 +1,53 @@
+{
+    "code": "N01",
+    "message": "A104报表获取成功",
+    "contents": [
+        {
+            "month": "1"
+        },
+        {
+            "month": "2"
+        },
+        {
+            "month": "3"
+        },
+        {
+            "month": "4",
+            "giveCheckoutAmountTotal": 145,
+            "sampleAmountTotal": 14,
+            "sampleQualifiedAmountTotal": 9,
+            "sampleUnqualifiedAmountTotal": 5,
+            "sampleDefectiveAmountTotalTotal": 8,
+            "averageQualifiedRate": 0.65,
+            "totalQualifiedRate": 0.64,
+            "averageUnqualifiedRate": 0.35000002,
+            "totalUnqualifiedRate": 0.36,
+            "totalUnqualifiedRatePpm": 360000,
+            "batchPassRate": 1
+        },
+        {
+            "month": "5"
+        },
+        {
+            "month": "6"
+        },
+        {
+            "month": "7"
+        },
+        {
+            "month": "8"
+        },
+        {
+            "month": "9"
+        },
+        {
+            "month": "10"
+        },
+        {
+            "month": "11"
+        },
+        {
+            "month": "12"
+        }
+    ]
+}

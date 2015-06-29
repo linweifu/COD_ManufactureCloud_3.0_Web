@@ -1,0 +1,44 @@
+{
+    "code": "N01",
+    "message": "数据获取成功",
+    "contents": [
+        {
+            "month": "1"
+        },
+        {
+            "month": "2"
+        },
+        {
+            "month": "3"
+        },
+        {
+            "month": "4",
+            "totalDefectiveRatePPMTarget": "650000.0",
+            "totalDefectiveRatePPM": "360000.0"
+        },
+        {
+            "month": "5"
+        },
+        {
+            "month": "6"
+        },
+        {
+            "month": "7"
+        },
+        {
+            "month": "8"
+        },
+        {
+            "month": "9"
+        },
+        {
+            "month": "10"
+        },
+        {
+            "month": "11"
+        },
+        {
+            "month": "12"
+        }
+    ]
+}

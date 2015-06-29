@@ -1,0 +1,68 @@
+{
+    "code": "N01",
+    "message": "102_2物料统计和明细获取成功",
+    "contents": [
+        {
+            "giveCheckoutAmountTotal": 110,
+            "sampleAmountTotal": 11,
+            "sampleQualifiedAmountTotal": 6,
+            "sampleUnqualifiedAmountTotal": 5,
+            "sampleDefectiveAmountTotalTotal": 7,
+            "averageQualifiedRate": 0.56,
+            "totalQualifiedRate": 0.55,
+            "averageUnqualifiedRate": 0.44,
+            "totalUnqualifiedRate": 0.45,
+            "totalUnqualifiedRatePpm": 450000,
+            "batchPassRate": 0.67,
+            "defectives": [
+                {
+                    "defectiveSid": 0,
+                    "iqcQualityDailyListSid": 0,
+                    "defectiveNo": 1,
+                    "defectiveName": "颜色",
+                    "defectiveAmount": 0,
+                    "updateTimestamp": 0
+                },
+                {
+                    "defectiveSid": 0,
+                    "iqcQualityDailyListSid": 0,
+                    "defectiveNo": 4,
+                    "defectiveName": "位置尺寸",
+                    "defectiveAmount": 1,
+                    "updateTimestamp": 0
+                }
+            ],
+            "iqcQualityDailyListSid": 1,
+            "checkoutRecordSid": 1,
+            "checkoutRecordNo": "WK-IQC-20150421-0001",
+            "batchNo": "201504200001",
+            "companySid": 1,
+            "companyShortName": "网酷有限公司",
+            "materialSid": 1,
+            "materialNo": "WK-RM-900303.A",
+            "materialVersion": "A",
+            "materialShortName": "铜接头",
+            "materialBarcode": "201210100001",
+            "vendorSid": 1,
+            "vendorNo": "v001",
+            "vendorShortName": "飞特",
+            "externalReceiptNo": "",
+            "aql": 0.35,
+            "determinationResults": "Y",
+            "giveCheckoutAmount": 20,
+            "sampleAmount": 3,
+            "sampleQualifiedAmount": 2,
+            "sampleUnqualifiedAmount": 1,
+            "sampleDefectiveAmountTotal": 2,
+            "sampleQualifiedRate": 0.67,
+            "sampleUnqualifiedRate": 0.33,
+            "sampleUnqualifiedRatePpm": 330000,
+            "nspectorJobNumber": "10066038",
+            "nspectorName": "黄某",
+            "checkoutTime": 1427891400,
+            "updateTimestamp": 1427891400,
+            "notes": "1427891400"
+        }
+    ]
+
+}

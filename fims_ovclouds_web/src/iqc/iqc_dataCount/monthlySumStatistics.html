@@ -13,12 +13,12 @@
 	th,td {width: 1px;white-space: nowrap; word-break:  keep-all; }	  
 </style>
 <div id="container" class="container text-center">
-	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验质量状况每月月报统计(按物料分组)</h3>
+	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验质量状况月报汇总统计</h3>
 	<div class="form-group" style="margin-top: 1.5em;">
 		<form class="form-horizontal" id="form-horizontal" name="monthlyStatisticsform" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
-			<input type="month" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlyStatistics.checkoutTime" required>		
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getMonthStatics1()">查询</button>				
+			<input class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlySumStatistics.checkoutTime"  placeholder="填入查询年" required>		
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-disabled="monthlyStatisticsform.$invalid" ng-click="A104Report()">查询</button>				
 		</form>
 	</div>
 	<div class="row">
@@ -27,50 +27,44 @@
 				<thead>
 				    <tr>
 					  <th>序号</th>
-			          <th>日期</th>
+			          <th>年月</th>
 				      <th>送检数量总计</th>
 				      <th>抽样数量总计</th>
 				      <th>抽样合格品数量总计</th>
 				      <th>抽样不合格品数量总计</th>
-				      <th>抽样不良现象总计</th>
+				      <th>批次内抽样不良总计总计</th>
 				      <th>平均抽样合格率</th>
 				      <th>整体抽样合格率</th>
 				      <th>平均抽样不合格率</th>
 				      <th>整体抽样不合格率</th>
 				      <th>整体抽样不合格率PPM</th>
 				      <th>批次合格率</th>
-				      <th>进货批次数量</th>
-				      <th>合格批次数量</th>
+				      <!-- <th>进货批次数量</th>
+				      <th>合格批次数量</th> -->
 				    </tr>
 			    </thead>
-			  <!-- <tbody>		 
-			  	<tr ng-repeat="list in monthlyStatistics.dateSelected">
+			  <tbody>		 
+			  	<tr ng-repeat="list in monthlySumStatistics.dateSelected">
 			  		<td>{{$index+1}}</td>  		
-			  		<td ng-bind="list.iqcQualityDailyList.giveCheckoutAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleUnqualifiedAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleDefectiveAmountTotal"></td>
-			  		<td ng-bind="list.averageSampleQualifiedRate"></td>
-			  		<td ng-bind="list.overallSampleQualifiedRate"></td>
-			  		<td ng-bind="list.averageSampleUnqualifiedRate"></td>
-			  		<td ng-bind="list.overallSampleUnqualifiedRate"></td>
-			  		<td ng-bind="list.overallSampleUnqualifiedRatePpm"></td>
-			  		<td ng-bind="list.batchQualifiedRate"></td>
-			  		<td ng-bind="list.submitCheckoutAmountTotal"></td>
+			  		<td ng-bind="list.checkoutTime"></td>
+			  		<td ng-bind="list.giveCheckoutAmountTotal"></td>
 			  		<td ng-bind="list.sampleAmountTotal"></td>
 			  		<td ng-bind="list.sampleQualifiedAmountTotal"></td>
 			  		<td ng-bind="list.sampleUnqualifiedAmountTotal"></td>
-			  		<td ng-bind="list.inbatchSampleBadPhenomenonTotalTotal"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedRate"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedRate"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleUnqualifiedRatePpm"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.aql"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.determinationResults"></td>	  		
+			  		<td ng-bind="list.sampleDefectiveAmountTotalTotal"></td>
+			  		<td ng-bind="list.averageQualifiedRate"></td>
+			  		<td ng-bind="list.totalQualifiedRate"></td>
+			  		<td ng-bind="list.averageUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.batchPassRate"></td>
+			  		<!-- <td ng-bind="list.sampleAmountTotal"></td>
+			  		<td ng-bind="list.sampleQualifiedAmountTotal"></td> -->
+			  			  		
 			  	</tr>
-			  </tbody> --> 
+			  </tbody> 
 			</table>
 		</div>
-		<button class="btn btn-success btn-newMem" ng-click="monthlyStatisticsBack()">返回管理面板</button>
+		<button class="btn btn-success btn-newMem" ng-click="monthlySumStatisticsBack()">返回管理面板</button>
 	</div>
 </div>

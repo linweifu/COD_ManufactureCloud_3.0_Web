@@ -36,20 +36,21 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
-				//url: "iqc/iqc_dataCount/A102DailyReport.json",
+				// url: config.HOST + "/api/2.0/bp/evaluate/report/A102_0DailyReport",
+				url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
-					"sid": localStorage.getItem('sid'),
-					"checkoutTime":dailyDetails.checkoutTime+"T07:30:00Z",
+					// "sid": localStorage.getItem('sid'),
+					"checkoutTime":  ((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
 				}
 			})
 			.success(function(data){				
 	            if(data.code == "N01") {
-	    // &&data.contents.length !== 0
+	    // &&data.contents.length !== 0	    			
 	            	dailyDetails.dateSelected = data.contents;
+	            	// dailyDetails.defectives = data.contents.defectives;
 	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
 	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])

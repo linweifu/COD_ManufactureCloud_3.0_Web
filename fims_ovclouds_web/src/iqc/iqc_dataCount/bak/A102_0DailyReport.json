@@ -1,0 +1,69 @@
+{
+   "code":"N01",
+"message":"102明细获取成功",
+"contents":[
+    {
+        "giveCheckoutAmountTotal":255.0,
+        "sampleAmountTotal":25.0,
+        "sampleQualifiedAmountTotal":16.0,
+        "sampleUnqualifiedAmountTotal":9.0,
+        "sampleDefectiveAmountTotalTotal":11.0,
+        "averageQualifiedRate":0.64,
+        "totalQualifiedRate":0.64,
+        "averageUnqualifiedRate":0.36,
+        "totalUnqualifiedRate":0.36,
+        "totalUnqualifiedRatePpm":360000.0,
+        "batchPassRate":0.86,
+        "defectives":[
+            {
+                "defectiveSid":0,
+                "iqcQualityDailyListSid":0,
+                "defectiveNo":1,
+                "defectiveName":"颜色",
+                "defectiveAmount":0.0,
+                "updateTimestamp":0
+            },
+            {
+                "defectiveSid":0,
+                "iqcQualityDailyListSid":0,
+                "defectiveNo":4,
+                "defectiveName":"位置尺寸",
+                "defectiveAmount":1.0,
+                "updateTimestamp":0
+            }
+        ],
+        "iqcQualityDailyListSid":1,
+        "checkoutRecordSid":1,
+        "checkoutRecordNo":"WK-IQC-20150421-0001",
+        "batchNo":"201504200001",
+        "companySid":1,
+        "companyShortName":"网酷有限公司",
+        "materialSid":1,
+        "materialNo":"WK-RM-900303.A",
+        "materialVersion":"A",
+        "materialShortName":"铜接头",
+        "materialBarcode":"201210100001",
+        "vendorSid":1,
+        "vendorNo":"v001",
+        "vendorShortName":"飞特",
+        "externalReceiptNo":"",
+        "aql":0.35,
+        "determinationResults":"Y",
+        "giveCheckoutAmount":20.0,
+        "sampleAmount":3.0,
+        "sampleQualifiedAmount":2.0,
+        "sampleUnqualifiedAmount":1.0,
+        "sampleDefectiveAmountTotal":2.0,
+        "sampleQualifiedRate":0.67,
+        "sampleUnqualifiedRate":0.33,
+        "sampleUnqualifiedRatePpm":330000.0,
+        "nspectorJobNumber":"10066038",
+        "nspectorName":"黄某",
+        "checkoutTime":1427891400,
+        "updateTimestamp":1427891400,
+        "notes":"1427891400"
+    }
+
+
+]
+}
