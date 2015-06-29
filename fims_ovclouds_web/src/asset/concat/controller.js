@@ -4580,7 +4580,7 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
+				// url: config.HOST + "/api/2.0/bp/evaluate/report/A102_0DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
@@ -5239,30 +5239,129 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 		dailyStatistics.checkoutTime = time.format();
 		// iqcAddCheck.entryTime = time.format();
 
+
 		$scope.dailyStatisticsBack = function(){
 			// localStorage.removeItem('singleplan');
 			$location.path('account_index/iqcDataCount').replace();
 		}
 
-		$scope.getDailyDetails = function(){
+		$scope.A102_1DailyReport = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
-				//url: "iqc/iqc_dataCount/A102DailyReport.json",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1DailyReport",
+				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {
-					"sid": localStorage.getItem('sid'),
-					"checkoutTime":dailyDetails.checkoutTime+"T07:30:00Z",
+				data: {					
+					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
 				}
 			})
 			.success(function(data){				
 	            if(data.code == "N01") {
-	    // &&data.contents.length !== 0
-	            	dailyDetails.dateSelected = data.contents;
-	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
-	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
+	         // &&data.contents.length !== 0
+	            	dailyStatistics.dateSelected = data.contents;
+	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
+	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	            }
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");}
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+
+		$scope.A102_1_1DailyReport = function(){
+			$http({
+				method: "POST",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1_1DailyReport",
+				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {					
+					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
+					"companySid": localStorage.getItem('cSid')
+					
+				}
+			})
+			.success(function(data){				
+	            if(data.code == "N01") {
+	         // &&data.contents.length !== 0
+	            	dailyStatistics.dateSelected = data.contents;
+	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
+	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	            }
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");}
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+
+		$scope.A102_2DailyReport = function(){
+			$http({
+				method: "POST",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_2DailyReport",
+				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {					
+					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
+					"companySid": localStorage.getItem('cSid')
+					
+				}
+			})
+			.success(function(data){				
+	            if(data.code == "N01") {
+	         // &&data.contents.length !== 0
+	            	dailyStatistics.dateSelected = data.contents;
+	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
+	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
+	                	// console.log((planlist.QCPSelected)[i])
+	                }
+	            }
+	            // else if (data.contents.length === 0) {
+	            // 	alert("暂无数据");}
+	            else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+	        })
+		}
+
+		$scope.A102_3DailyReport = function(){
+			$http({
+				method: "POST",
+				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_3DailyReport",
+				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
+				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data: {					
+					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
+					"companySid": localStorage.getItem('cSid')
+					
+				}
+			})
+			.success(function(data){				
+	            if(data.code == "N01") {
+	         // &&data.contents.length !== 0
+	            	dailyStatistics.dateSelected = data.contents;
+	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
+	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }

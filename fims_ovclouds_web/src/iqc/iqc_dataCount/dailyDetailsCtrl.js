@@ -36,7 +36,7 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102DailyReport",
+				// url: config.HOST + "/api/2.0/bp/evaluate/report/A102_0DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {

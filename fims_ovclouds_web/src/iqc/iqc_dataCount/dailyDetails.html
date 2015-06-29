@@ -52,9 +52,9 @@
 			      <th>抽样合格率 %</th>
 			      <th>抽样不合格率 %</th>
 			      <th>抽样不合格率PPM</th>
-			      <div ng-repeat="list in dailyDetails.dateSelected">			      
+			      <!-- <div ng-repeat="list in dailyDetails.dateSelected">			      
 			         <th ng-repeat="s in list.defectives track by $index" ng-bind="list.defectives[$index].defectiveName"></th>
-			  	  </div>	     
+			  	  </div> -->	     
 			    </tr>
 			  </thead>
 			  <tbody>		 
@@ -80,7 +80,7 @@
 			  		<td ng-bind="list.sampleQualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
-			  		<td ng-repeat="s in list.defectives track by $index" ng-bind="list.defectives[$index].defectiveAmount"></td>			  		
+			  		<!-- <td ng-repeat="s in list.defectives track by $index" ng-bind="list.defectives[$index].defectiveAmount"></td> -->			  		
 			  	</tr>
 			  </tbody>
 			</table>

@@ -21,7 +21,7 @@
 		<form class="form-horizontal" id="form-horizontal" name="dailyDetailForm" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
 			<input type="date" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="dailyStatistics.checkoutTime" required>		
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getdailyStatistics_material()">查询</button>				
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="A102_3DailyReport()">查询</button>				
 		</form>
 	</div>
 	<!-- <span style="font-size: 20px;">{{companyShortName}}</span>
@@ -47,7 +47,8 @@
 			      <th>送检数量总计</th>
 			      <th>抽样数量总计</th>
 			      <th>抽样合格品数量总计</th>
-			      <th>批次内抽样不良现象总计</th>
+			      <th>抽样不合格品数量总计</th>
+			      <th>批次内抽样不良现象总计总计</th>
 			      <th>平均抽样合格率</th>
 			      <th>整体抽样合格率</th>
 			      <th>平均抽样不合格率</th>
@@ -69,40 +70,40 @@
 			  <tbody>		 
 			  	<tr ng-repeat="list in dailyStatistics.dateSelected">
 			  		<td>{{$index+1}}</td>
-			  		<td ng-bind="list.checkoutTime"></td>
+			  		<td ng-bind="list.checkoutTime"></td>    
 			  		<td ng-bind="list.checkoutRecordNo"></td>
 			  		<td ng-bind="list.batchNo"></td>
 			  		<td ng-bind="list.materialBarcode"></td>
-			  		<td ng-bind="list.materialNo"></td>
+			  		<td ng-bind="list.vendorNo"></td>
+			  		<td ng-bind="list.vendorShortName"></td>			  		
+			  		<td ng-bind="list.externalReceiptNo"></td>
+			  		<td ng-bind="list.nspectorJobNumber"></td>
+			  		<td ng-bind="list.nspectorName"></td>
+			  		 <td ng-bind="list.materialNo"></td>
 			  		<td ng-bind="list.materialVersion"></td>
 			  		<td ng-bind="list.materialShortName"></td>
-			  		<td ng-bind="list.vendorNo"></td>
-			  		<td ng-bind="list.vendorShortName"></td>
-			  		<td ng-bind="list.externalReceiptNo"></td>
-			  		<!-- <th>检验员工号</th>
-			      <th>检验员姓名</th>
-			      <th>送检数量总计</th>
-			      <th>抽样数量总计</th>
-			      <th>抽样合格品数量总计</th>
-			      <th>批次内抽样不良现象总计</th>
-			      <th>平均抽样合格率</th>
-			      <th>整体抽样合格率</th>
-			      <th>平均抽样不合格率</th>
-			      <th>整体抽样不合格率</th>
-			      <th>整体抽样不合格率PPM</th>
-			      <th>批次合格率</th>
-			       -->
+			  		<td ng-bind="list.giveCheckoutAmountTotal"></td> 
+			  		<td ng-bind="list.sampleAmountTotal"></td> 
+			  		<td ng-bind="list.sampleQualifiedAmountTotal"></td> 
+			  		<td ng-bind="list.sampleUnqualifiedAmountTotal"></td> 		
+			  		<td ng-bind="list.sampleDefectiveAmountTotalTotal"></td> 
+			  		<td ng-bind="list.averageQualifiedRate"></td> 
+			  		<td ng-bind="list.totalQualifiedRate"></td>
+			  		<td ng-bind="list.averageUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.batchPassRate"></td>
 			  		<td ng-bind="list.giveCheckoutAmount"></td>
 			  		<td ng-bind="list.sampleAmount"></td>
 			  		<td ng-bind="list.sampleQualifiedAmount"></td>
 			  		<td ng-bind="list.sampleUnqualifiedAmount"></td>
-			  		<td ng-bind="list.sampleDefectiveAmountTotal"></td>
+			  		<td ng-bind="list.sampleDefectiveAmountTotal"></td>		  		
 			  		<td ng-bind="list.sampleQualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
 			  		<td ng-bind="list.aql"></td>
 			  					  		
-			  	</tr>
+			  	</tr
 			  </tbody>
 			</table>
 			    
