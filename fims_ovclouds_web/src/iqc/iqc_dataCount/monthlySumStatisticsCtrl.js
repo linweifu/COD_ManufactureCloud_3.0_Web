@@ -56,8 +56,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 		}
 
 
-		// monthlySumStatistics.checkoutTime = time.format();
-		// iqcAddCheck.entryTime = time.format();
+		// monthlySumStatistics.checkoutTime = time.format();		
 
 		$scope.monthlySumStatisticsBack = function(){
 			// localStorage.removeItem('singleplan');
@@ -68,7 +67,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 			$http({
 				method: "POST",
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A104Report",
-				// url: "iqc/iqc_dataCount/A104Report.json",
+				// url: "iqc/iqc_dataCount/bak/A104Report.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -100,7 +99,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A105Report",
-				// url: "iqc/iqc_dataCount/A105Report.json",
+				// url: "iqc/iqc_dataCount/bak/A105Report.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {	    
 	                "sid": localStorage.getItem('sid'),
@@ -148,8 +147,9 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 			            ],
 			            yAxis : [
 			                {
-			                    type : 'value',	                  
-			                
+			                    type : 'value',	 
+			                    max : 100,
+			                	name : '%',                 
 			                    splitArea : {show : true}
 			                }
 			            ],
@@ -177,5 +177,172 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 			}).error(function(){
                 console.log('接口报错');
             });
+		}
+
+		$scope.A106Report = function(){
+			$http({
+				method: 'POST',
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A106Report",
+				// url: "iqc/iqc_dataCount/bak/A106Report.json",
+	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data:  {	    
+	                "sid": localStorage.getItem('sid'),
+	                "checkoutTime": ((new Date(monthlySumStatistics.checkoutTime)).valueOf())/1000,
+					"companySid": localStorage.getItem('cSid')
+	            }
+			})
+			.success(function(data){
+				if (data.code == "N01") {
+					var xAxisData = [];
+					var batchPassRateArr = [];
+				 	var batchPassRateTargetArr = [];				 	
+			 		for(var i=0;i<data.contents.length;i++) {
+				 		xAxisData.push(data.contents[i].month);
+				 		batchPassRateTargetArr.push(data.contents[i].batchPassRateTarget*100);
+				 		batchPassRateArr.push(data.contents[i].batchPassRate*100);
+
+				 	}
+				 	for(var i=0 ;i<batchPassRateTargetArr.length;i++)
+ 					{
+			             if(isNaN(batchPassRateTargetArr[i]))
+			             {
+			             	delete batchPassRateTargetArr[i];		                    	
+			                      		                      			                  
+			             }
+			         } 
+			         // console.log(samplePassRateTargetArr); 				 	 
+					var option = {
+						tooltip : {
+					        trigger: 'axis'
+					    },
+			      		toolbox: {
+                    		show : true,
+                		},
+					    // calculable : true,
+					    legend: {
+					        data:['批次合格率 %','批次合格率目标 %']
+					    },    
+			            xAxis : [
+			                {
+			                    type : 'category',
+			                    name : '月份',
+			                    data : xAxisData
+			                }
+			            ],
+			            yAxis : [
+			                {
+			                    type : 'value',	                  
+			                	max : 100,
+			                	name : '%',
+			                    splitArea : {show : true}
+			                }
+			            ],
+			            series : [
+			                {
+			                    name: '批次合格率 %',
+			                    type: 'bar',
+			                    data: batchPassRateArr
+			                },
+			                {
+					            name: '批次合格率目标 %',
+					            type: 'line',					           
+					            data: batchPassRateTargetArr
+					        }
+			            ]
+			        };
+					echarts(option,"main");
+				}else if(data.code == "E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+			}).error(function(){
+                console.log('接口报错');
+            });	
+		}
+
+		$scope.A107Report = function(){
+			$http({
+				method: 'POST',
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A107Report",
+				// url: "iqc/iqc_dataCount/bak/A107Report.json",
+	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data:  {	    
+	                "sid": localStorage.getItem('sid'),
+	                "checkoutTime": ((new Date(monthlySumStatistics.checkoutTime)).valueOf())/1000,
+					"companySid": localStorage.getItem('cSid')
+	            }
+			})
+			.success(function(data){
+				if (data.code == "N01") {
+					var xAxisData = [];
+					var totalDefectiveRatePPMArr = [];
+				 	var totalDefectiveRatePPMTargetArr = [];				 	
+			 		for(var i=0;i<data.contents.length;i++) {
+				 		xAxisData.push(data.contents[i].month);
+				 		totalDefectiveRatePPMTargetArr.push(data.contents[i].totalDefectiveRatePPMTarget);
+				 		totalDefectiveRatePPMArr.push(data.contents[i].totalDefectiveRatePPM);
+
+				 	}
+				 	for(var i=0 ;i<totalDefectiveRatePPMTargetArr.length;i++)
+ 					{
+			             if(isNaN(totalDefectiveRatePPMTargetArr[i]))
+			             {
+			             	delete totalDefectiveRatePPMTargetArr[i];		                    	
+			                      		                      			                  
+			             }
+			         } 
+			         // console.log(samplePassRateTargetArr); 				 	 
+					var option = {
+						tooltip : {
+					        trigger: 'axis'
+					    },
+			      		toolbox: {
+                    		show : true,
+                		},
+					    // calculable : true,
+					    legend: {
+					        data:['总计不良率 PPM','总计不良率目标 PPM']
+					    },    
+			            xAxis : [
+			                {
+			                    type : 'category',
+			                    name : '月份',
+			                    data : xAxisData
+			                }
+			            ],
+			            yAxis : [
+			                {
+			                    type : 'value',	              
+			                	
+			                    splitArea : {show : true}
+			                }
+			            ],
+			            series : [
+			                {
+			                    name: '总计不良率 PPM',
+			                    type: 'bar',
+			                    data: totalDefectiveRatePPMArr
+			                },
+			                {
+					            name: '总计不良率目标 PPM',
+					            type: 'line',					           
+					            data: totalDefectiveRatePPMTargetArr
+					        }
+			            ]
+			        };
+					echarts(option,"main");
+				}else if(data.code == "E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+			}).error(function(){
+                console.log('接口报错');
+            });	
 		}
 }])
