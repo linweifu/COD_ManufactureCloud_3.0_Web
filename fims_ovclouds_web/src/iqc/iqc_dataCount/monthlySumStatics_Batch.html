@@ -17,8 +17,8 @@
 	<div class="form-group" style="margin-top: 1.5em;">
 		<form class="form-horizontal" id="form-horizontal" name="monthlyStatisticsform" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
-			<input type="text" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlySumStatistics.checkoutTime" placeholder="填入查询年" required>	
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;"  ng-disabled="monthlyStatisticsform.$invalid"  ng-click="A106Report()">查询</button>				
+			<input type="text" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlySumStatistics.checkoutTime" placeholder="填入查询年" onkeyup="value=this.value.replace(/\D+/g,'')" required>	
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;"  ng-disabled="monthlyStatisticsform.$invalid"  onclick="var checkoutTime=document.getElementById('checkoutTime');if(!/^\d+$/.test(checkoutTime.value)) {alert('请正确输入年数'); checkoutTime.value=checkoutTime.value.replace(/[^\d]+/g,'');}else{return A106Report()} ">查询</button>				
 		</form>
 	</div>
 	<div id="main" style="height:400px;width:900px;margin: 0 auto"></div>

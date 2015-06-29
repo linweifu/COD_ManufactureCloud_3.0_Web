@@ -1,18 +1,37 @@
 {
-    "code": "N01",
-    "message": "获取A103报表信息成功",
+     "code": "N01",
+    "message": "103_0月报明细获取成功",
     "contents": [
         {
+            "defectives": [
+                {
+                    "defectiveSid": 1,
+                    "iqcQualityDailyListSid": 1,
+                    "defectiveNo": 1,
+                    "defectiveName": "颜色",
+                    "defectiveAmount": 0,
+                    "updateTimestamp": 1427891400
+                },
+                {
+                    "defectiveSid": 182,
+                    "iqcQualityDailyListSid": 1,
+                    "defectiveNo": 4,
+                    "defectiveName": "位置尺寸",
+                    "defectiveAmount": 1,
+                    "updateTimestamp": 1435311647
+                }
+            ],
             "iqcQualityDailyListSid": 1,
+            "checkoutRecordSid": 1,
             "checkoutRecordNo": "WK-IQC-20150421-0001",
-            "batchNo": "null",
+            "batchNo": "201504200001",
             "companySid": 1,
-            "companyShortName": "网库有限公司",
+            "companyShortName": "网酷有限公司",
             "materialSid": 1,
             "materialNo": "WK-RM-900303.A",
             "materialVersion": "A",
             "materialShortName": "铜接头",
-            "materialBarcode": "物料条形码",
+            "materialBarcode": "201210100001",
             "vendorSid": 1,
             "vendorNo": "v001",
             "vendorShortName": "飞特",
@@ -23,15 +42,15 @@
             "sampleAmount": 3,
             "sampleQualifiedAmount": 2,
             "sampleUnqualifiedAmount": 1,
-            "sampleDefectiveAmountTotal": 0,
+            "sampleDefectiveAmountTotal": 2,
             "sampleQualifiedRate": 0.67,
             "sampleUnqualifiedRate": 0.33,
             "sampleUnqualifiedRatePpm": 330000,
             "nspectorJobNumber": "10066038",
             "nspectorName": "黄某",
             "checkoutTime": 1427891400,
-            "updateTimestamp": 1432728739,
-            "notes": "null"
+            "updateTimestamp": 1427891400,
+            "notes": "1427891400"
         }
     ]
 }

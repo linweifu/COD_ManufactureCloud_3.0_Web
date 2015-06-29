@@ -4729,7 +4729,7 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 				url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
-					// "sid": localStorage.getItem('sid'),
+					"sid": localStorage.getItem('sid'),
 					"checkoutTime":  ((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -4794,24 +4794,28 @@ FIMS.controller('monthlyDetailsCtrl',['$scope','$location',"$http",
 			$http({
 				method: "POST",
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A103MonthlyReport",
-				//url: "iqc/iqc_dataCount/A103MonthlyReport.json",
+				//url: "iqc/iqc_dataCount/bak/A103MonthlyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {	
+					"sid": localStorage.getItem('sid'),					
 					"checkoutTime": ((new Date(monthlyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')					
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01"&&data.message !== "获取数据为空") {
+	            if(data.code == "N01") {
+	            	// &&data.message !== "获取数据为空"
 	            	monthlyDetails.dateSelected = data.contents;
 	           		for(var i=0,len=(monthlyDetails.dateSelected).length;i<len;i++){
 	                (monthlyDetails.dateSelected)[i].checkoutTime = (new Date((monthlyDetails.dateSelected)[i].checkoutTime*1000)).format(); 
 	                     	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
-	            }else if (data.message === "获取数据为空") {
-	            	alert("暂无数据");
-	            }else if(data.code=="E00"){
+	            }
+	            // else if (data.message === "获取数据为空") {
+	            // 	alert("暂无数据");
+	            // }
+	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
 	                $location.path('login').replace();
@@ -5396,7 +5400,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {		
+					"sid": localStorage.getItem('sid'),			
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -5429,7 +5434,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1_1DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {
+					"sid": localStorage.getItem('sid'),					
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -5462,7 +5468,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_2DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {	
+					"sid": localStorage.getItem('sid'),				
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -5495,7 +5502,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_3DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {	
+					"sid": localStorage.getItem('sid'),				
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -5587,7 +5595,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 			$location.path('account_index/iqcDataCount').replace();
 		}
 
-		$scope.A104Report = function(){
+		A104Report = function(){
 			$http({
 				method: "POST",
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A104Report",
@@ -5619,7 +5627,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 	        })
 		}
 
-		$scope.A105Report = function(){
+		A105Report = function(){
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A105Report",
@@ -5703,7 +5711,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
             });
 		}
 
-		$scope.A106Report = function(){
+		A106Report = function(){
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A106Report",
@@ -5787,7 +5795,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
             });	
 		}
 
-		$scope.A107Report = function(){
+		A107Report = function(){
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A107Report",
@@ -5869,6 +5877,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
                 console.log('接口报错');
             });	
 		}
+
 }])
 FIMS.controller('planHistoryListCheckCtrl', ['$scope','$location','$http',function($scope,$location,$http){
 	var planHistoryListCheck = {

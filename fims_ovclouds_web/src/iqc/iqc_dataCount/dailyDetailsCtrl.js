@@ -40,7 +40,7 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 				url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
-					// "sid": localStorage.getItem('sid'),
+					"sid": localStorage.getItem('sid'),
 					"checkoutTime":  ((new Date(dailyDetails.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					

@@ -40,7 +40,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {		
+					"sid": localStorage.getItem('sid'),			
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -73,7 +74,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1_1DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {
+					"sid": localStorage.getItem('sid'),					
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -106,7 +108,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_2DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {	
+					"sid": localStorage.getItem('sid'),				
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					
@@ -139,7 +142,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_3DailyReport",
 				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-				data: {					
+				data: {	
+					"sid": localStorage.getItem('sid'),				
 					"checkoutTime": ((new Date(dailyStatistics.checkoutTime)).valueOf())/1000,
 					"companySid": localStorage.getItem('cSid')
 					

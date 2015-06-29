@@ -63,7 +63,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 			$location.path('account_index/iqcDataCount').replace();
 		}
 
-		$scope.A104Report = function(){
+		A104Report = function(){
 			$http({
 				method: "POST",
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A104Report",
@@ -95,7 +95,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 	        })
 		}
 
-		$scope.A105Report = function(){
+		A105Report = function(){
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A105Report",
@@ -179,7 +179,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
             });
 		}
 
-		$scope.A106Report = function(){
+		A106Report = function(){
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A106Report",
@@ -263,7 +263,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
             });	
 		}
 
-		$scope.A107Report = function(){
+		A107Report = function(){
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A107Report",
@@ -345,4 +345,5 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
                 console.log('接口报错');
             });	
 		}
+
 }])
