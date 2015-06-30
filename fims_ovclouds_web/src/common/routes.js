@@ -298,17 +298,17 @@ FIMS.config([
 	})
 	.state('account_index.monthlyStatistics',{
 		url:'/monthlyStatistics',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics.html'
 	})
 	.state('account_index.monthlyStatistics_venmat',{
 		url:'/monthlyStatistics_venmat',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_venmat.html'
 	})
 	.state('account_index.monthlyStatistics_matven',{
 		url:'/monthlyStatistics_matven',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_matven.html'
 	})
 	.state('account_index.monthlyStatistics_material',{
@@ -341,15 +341,25 @@ FIMS.config([
 		controller: 'monthlySumStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlySumStatics_Batch.html'
 	})
-	.state('account_index.monthlyChart_vendor',{
-		url:'/monthlyChart_vendor',
+	.state('account_index.monthlyChart_vendor_allmat',{
+		url:'/monthlyChart_vendor(allmat)',
 		controller: 'monthlyChart_vendorCtrl',
-		templateUrl: 'iqc/iqc_dataCount/monthlyChart_vendor.html'
+		templateUrl: 'iqc/iqc_dataCount/monthlyChart_vendor(allmat).html'
 	})
-	.state('account_index.monthlyChart_material',{
-		url:'/monthlyChart_material',
+	.state('account_index.monthlyChart_vendor_onemat',{
+		url:'/monthlyChart_vendor(onemat)',
+		controller: 'monthlyChart_vendorCtrl',
+		templateUrl: 'iqc/iqc_dataCount/monthlyChart_vendor(onemat).html'
+	})
+	.state('account_index.monthlyChart_material_allven',{
+		url:'/monthlyChart_material(allven)',
 		controller: 'monthlyChart_materialCtrl',
-		templateUrl: 'iqc/iqc_dataCount/monthlyChart_material.html'
+		templateUrl: 'iqc/iqc_dataCount/monthlyChart_material(allven).html'
+	})
+	.state('account_index.monthlyChart_material_oneven',{
+		url:'/monthlyChart_material(oneven)',
+		controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'iqc/iqc_dataCount/monthlyChart_material(oneven).html'
 	})
 }]);
 

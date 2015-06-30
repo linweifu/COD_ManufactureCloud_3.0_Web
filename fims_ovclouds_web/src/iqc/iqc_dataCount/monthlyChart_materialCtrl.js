@@ -55,8 +55,8 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 			// console.log(div);
 			require.config({
 	            paths: {
-	                echarts: 'echarts.js'
-	            }
+		            echarts: './deps/echarts'
+		        }
 	        });
 			require(
 	            [
@@ -78,20 +78,19 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 	        );
 
 		}
-
-		$scope.getSingleVendor = function(){
+		$scope.A1091Report = function(){
 			$http({
 				method: 'POST',
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A1091MonthlyReport",
-				//url: "iqc/iqc_dataCount/A1091MonthlyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1091Report",
+				//url: "iqc/iqc_dataCount/bak/A1091Report.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
 	                //"materialid": dataCount.dataCountInputs.dataCountTab4.materialid,
 	                "sid": localStorage.getItem('sid'),
-	                "date": monthlyChart.checkoutTime+"-01T23:00:10Z",
-	                "vendorSid": monthlyChart.Selected.vendorName.vendorSid,
-					"companySid": localStorage.getItem('cSid')
+	                "checkoutTime": ((new Date(monthlyChart.checkoutTime)).valueOf())/1000,
+	                "companySid": localStorage.getItem('cSid'),
+					"vendorSid": monthlyChart.Selected.vendorName.vendorSid
 
 	            }
 			})
@@ -103,8 +102,8 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 				 	var PPMpercentArr = [];
 
 			 		for(var i=0;i<data.contents.length;i++) {
-				 		xAxisData.push(data.contents[i].materialShortName);
-				 		sampercentArr.push(data.contents[i].sampercent*100);
+				 		xAxisData.push(data.contents[i].materialname);
+				 		sampercentArr.push(data.contents[i].samplePercent*100);
 				 		batchpercentArr.push(data.contents[i].batchpercent*100);
 				 		PPMpercentArr.push(data.contents[i].PPMpercent);
 				 	}
@@ -203,7 +202,141 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 					echarts(option1,"main1");
 					echarts(option2,"main2");
 					echarts(option3,"main3");
-				}else if(data.code == "E00"){
+				}else if(data.code=="E00"){
+	                alert(data.message+",请重新登陆");
+	                localStorage.clear();
+	                $location.path('login').replace();
+	            }else {
+	                alert(data.message);
+	            }  
+			}).error(function(){
+                console.log('接口报错');
+            });
+		}
+
+		$scope.A1092Report = function(){
+			$http({
+				method: 'POST',
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A1092Report",
+				//url: "iqc/iqc_dataCount/bak/A1091Report.json",
+	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+				data:  {
+	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",
+	                //"materialid": dataCount.dataCountInputs.dataCountTab4.materialid,
+	                "sid": localStorage.getItem('sid'),
+	                "checkoutTime": ((new Date(monthlyChart.checkoutTime)).valueOf())/1000,
+	                "companySid": localStorage.getItem('cSid')					
+	            }
+			})
+			.success(function(data){
+				if (data.code == "N01") {
+					var xAxisData = [];
+				 	var sampercentArr = [];
+				 	var batchpercentArr = [];
+				 	var PPMpercentArr = [];
+
+			 		for(var i=0;i<data.contents.length;i++) {
+				 		xAxisData.push(data.contents[i].materialShortName);
+				 		sampercentArr.push(data.contents[i].samplePercent*100);
+				 		batchpercentArr.push(data.contents[i].batchpercent*100);
+				 		PPMpercentArr.push(data.contents[i].PPMpercent);
+				 	}
+
+					var option1 = {
+						color:  [
+						  "#00a7eb"
+						],
+			         	tooltip: {
+			                show: true
+			            },			     
+			            xAxis : [
+			                {
+			                    type : 'category',
+			                    data : xAxisData,
+			                }
+			            ],
+			            yAxis : [
+			                {
+			                    type : 'value',
+			                    name : '抽样合格率%',
+			                   max : 100
+
+			                }
+			            ],
+			            series : [
+			                {
+			                    // "name":"销量",
+			                    "type":"bar",
+			                    "data":sampercentArr,
+			                }
+			            ]
+			        };
+
+			        var option2 = {
+			        	color:  [
+						  "#11cd6e"
+						],
+			         	tooltip: {
+			                show: true
+			            },
+			            // legend: {
+			            //     data:['抽样合格率']
+			            // },
+			            xAxis : [
+			                {
+			                    type : 'category',
+			                    data : xAxisData,
+			                }
+			            ],
+			            yAxis : [
+			                {
+			                    type : 'value',
+			                    name : '批次合格率%',
+			                   max : 100
+
+			                }
+			            ],
+			            series : [
+			                {
+			                    // "name":"销量",
+			                    "type":"bar",
+			                    "data":batchpercentArr,
+			                }
+			            ]
+			        };
+
+			        var option3 = {
+			         	tooltip: {
+			                show: true
+			            },
+			            // legend: {
+			            //     data:['抽样合格率']
+			            // },
+			            xAxis : [
+			                {
+			                    type : 'category',
+			                    data : xAxisData,
+			                }
+			            ],
+			            yAxis : [
+			                {
+			                    type : 'value',
+			                    name : '总计不良率 PPM',
+			                }
+			            ],
+			            series : [
+			                {
+			                    // "name":"销量",
+			                    "type":"bar",
+			                    "data":PPMpercentArr,
+			                }
+			            ]
+			        };
+
+					echarts(option1,"main1");
+					echarts(option2,"main2");
+					echarts(option3,"main3");
+				}else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
 	                $location.path('login').replace();

@@ -13,14 +13,16 @@
 </style>
 
 <div id="container" class="container text-center">
-	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验批次合格率月报汇总统计图表</h3>
+	<h3 style="font-weight: 700;">{{companyShortName}}&nbsp;&nbsp;&nbsp;进货检验质量状况每月图表_物料（全供应商）</h3>
 	<div class="form-group" style="margin-top: 1.5em;">
 		<form class="form-horizontal" id="form-horizontal" name="monthlyStatisticsform" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
-			<input type="text" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlySumStatistics.checkoutTime" placeholder="填入查询年" onkeyup="value=this.value.replace(/\D+/g,'')" required>	
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;"  ng-disabled="monthlyStatisticsform.$invalid"  onclick="var checkoutTime=document.getElementById('checkoutTime');if(!/^\d+$/.test(checkoutTime.value)) {alert('请正确输入年数'); checkoutTime.value=checkoutTime.value.replace(/[^\d]+/g,'');}else{return A106Report()} ">查询</button>				
+			<input type="month" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlyChart.checkoutTime" required>			
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="A1092Report()">查询</button>				
 		</form>
 	</div>
-	<div id="main" style="height:400px;width:900px;margin: 0 auto"></div>
-	<button class="btn btn-success btn-newMem" ng-click="monthlySumStatisticsBack()">返回管理面板</button>
+	<div id="main1" style="height:400px;width:900px;margin: 0 auto"></div>
+	<div id="main2" style="height:400px;width:900px;margin: 0 auto"></div>
+	<div id="main3" style="height:400px;width:900px;margin: 0 auto"></div>
+	<button class="btn btn-success btn-newMem" ng-click="monthlyChartBack()">返回管理面板</button>
 </div>
