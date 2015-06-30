@@ -37,8 +37,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.A102_1DailyReport = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1DailyReport",
-				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1DailyReport",
+				//url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {		
 					"sid": localStorage.getItem('sid'),			
@@ -48,16 +48,16 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01") {
-	         // &&data.contents.length !== 0
+	            if(data.code == "N01"&&data.contents.length !== 0) {
+	         // 
 	            	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            // else if (data.contents.length === 0) {
-	            // 	alert("暂无数据");}
+	            else if (data.contents.length === 0) {
+	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
@@ -71,8 +71,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.A102_1_1DailyReport = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1_1DailyReport",
-				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A102_1_1DailyReport",
+				//url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),					
@@ -82,16 +82,16 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01") {
-	         // &&data.contents.length !== 0
+	            if(data.code == "N01"&&data.contents.length !== 0) {
+	         // 
 	            	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            // else if (data.contents.length === 0) {
-	            // 	alert("暂无数据");}
+	            else if (data.contents.length === 0) {
+	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
@@ -105,8 +105,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.A102_2DailyReport = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_2DailyReport",
-				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A102_2DailyReport",
+				//url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {	
 					"sid": localStorage.getItem('sid'),				
@@ -116,16 +116,16 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01") {
-	         // &&data.contents.length !== 0
+	            if(data.code == "N01"&&data.contents.length !== 0) {
+	         // 
 	            	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            // else if (data.contents.length === 0) {
-	            // 	alert("暂无数据");}
+	            else if (data.contents.length === 0) {
+	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();
@@ -139,8 +139,8 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 		$scope.A102_3DailyReport = function(){
 			$http({
 				method: "POST",
-				//url: config.HOST + "/api/2.0/bp/evaluate/report/A102_3DailyReport",
-				url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A102_3DailyReport",
+				//url: "iqc/iqc_dataCount/bak/A102_2DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {	
 					"sid": localStorage.getItem('sid'),				
@@ -150,16 +150,16 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01") {
-	         // &&data.contents.length !== 0
+	            if(data.code == "N01"&&data.contents.length !== 0) {
+	         //
 	            	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            // else if (data.contents.length === 0) {
-	            // 	alert("暂无数据");}
+	            else if (data.contents.length === 0) {
+	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
 	                localStorage.clear();

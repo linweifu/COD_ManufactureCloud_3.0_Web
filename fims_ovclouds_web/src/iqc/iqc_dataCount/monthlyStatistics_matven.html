@@ -18,7 +18,7 @@
 		<form class="form-horizontal" id="form-horizontal" name="monthlyStatisticsform" novalidate>			
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
 			<input type="month" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlyStatistics.checkoutTime" required>		
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getMonthStatics1()">查询</button>				
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="A103_1_1MonthlyReport()">查询</button>				
 		</form>
 	</div>
 	<div class="row">
@@ -59,44 +59,45 @@
 				      <th>抽样不合格率 %</th>
 				      <th>抽样不合格率PPM</th>
 				      <th>AQL</th>
+				      <th>判定结果</th>
 				    </tr>
 			    </thead>
 			  <tbody>		 
 			  	<tr ng-repeat="list in monthlyStatistics.dateSelected">
 			  		<td>{{$index+1}}</td>
-			  		<td ng-bind="list.iqcQualityDailyList.checkoutTime"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.checkoutRecordNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.batchNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialBarcode"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialVersion"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.materialShortName"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.vendorNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.vendorShortName"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.externalReceiptNo"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.nspectorJobNumber"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.nspectorName"></td>	  		
-			  		<td ng-bind="list.iqcQualityDailyList.giveCheckoutAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleUnqualifiedAmount"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleDefectiveAmountTotal"></td>
-			  		<td ng-bind="list.averageSampleQualifiedRate"></td>
-			  		<td ng-bind="list.overallSampleQualifiedRate"></td>
-			  		<td ng-bind="list.averageSampleUnqualifiedRate"></td>
-			  		<td ng-bind="list.overallSampleUnqualifiedRate"></td>
-			  		<td ng-bind="list.overallSampleUnqualifiedRatePpm"></td>
-			  		<td ng-bind="list.batchQualifiedRate"></td>
-			  		<td ng-bind="list.submitCheckoutAmountTotal"></td>
+			  		<td ng-bind="list.checkoutTime"></td>
+			  		<td ng-bind="list.checkoutRecordNo"></td>
+			  		<td ng-bind="list.batchNo"></td>
+			  		<td ng-bind="list.materialBarcode"></td>			  		
+					<td ng-bind="list.externalReceiptNo"></td>
+					<td ng-bind="list.nspectorJobNumber"></td>
+			  		<td ng-bind="list.nspectorName"></td>
+			  		<td ng-bind="list.materialNo"></td>
+			  		<td ng-bind="list.materialVersion"></td>
+			  		<td ng-bind="list.materialShortName"></td>
+			  		<td ng-bind="list.vendorNo"></td>
+			  		<td ng-bind="list.vendorShortName"></td>	  					  		
+			  		<td ng-bind="list.giveCheckoutAmountTotal"></td>
 			  		<td ng-bind="list.sampleAmountTotal"></td>
 			  		<td ng-bind="list.sampleQualifiedAmountTotal"></td>
 			  		<td ng-bind="list.sampleUnqualifiedAmountTotal"></td>
-			  		<td ng-bind="list.inbatchSampleBadPhenomenonTotalTotal"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedRate"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleQualifiedRate"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.sampleUnqualifiedRatePpm"></td>
-			  		<td ng-bind="list.iqcQualityDailyList.aql"></td>
-			  		<!-- <td ng-bind="list.iqcQualityDailyList.determinationResults"></td> -->
+			  		<td ng-bind="list.sampleDefectiveAmountTotalTotal"></td>
+			  		<td ng-bind="list.averageQualifiedRate"></td>
+			  		<td ng-bind="list.totalQualifiedRate"></td>
+			  		<td ng-bind="list.averageUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.batchPassRate"></td>			  		
+			  		<td ng-bind="list.giveCheckoutAmount"></td>
+			  		<td ng-bind="list.sampleAmount"></td>
+			  		<td ng-bind="list.sampleQualifiedAmount"></td>
+			  		<td ng-bind="list.sampleUnqualifiedAmount"></td>	  		
+			  		<td ng-bind="list.sampleDefectiveAmountTotal"></td>
+			  		<td ng-bind="list.sampleQualifiedRate"></td>
+			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
+			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.aql"></td>
+			  		<td ng-bind="list.determinationResults"></td>
 			  		
 			  	</tr>
 			  </tbody>

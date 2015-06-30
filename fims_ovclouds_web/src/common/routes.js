@@ -298,17 +298,17 @@ FIMS.config([
 	})
 	.state('account_index.monthlyStatistics',{
 		url:'/monthlyStatistics',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics.html'
 	})
 	.state('account_index.monthlyStatistics_venmat',{
 		url:'/monthlyStatistics_venmat',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_venmat.html'
 	})
 	.state('account_index.monthlyStatistics_matven',{
 		url:'/monthlyStatistics_matven',
-		//controller: 'monthlyStatisticsCtrl',
+		controller: 'monthlyStatisticsCtrl',
 		templateUrl:'iqc/iqc_dataCount/monthlyStatistics_matven.html'
 	})
 	.state('account_index.monthlyStatistics_material',{

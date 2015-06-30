@@ -20,11 +20,9 @@
 		<form class="form-horizontal" id="form-horizontal" name="monthlyStatisticsform" novalidate>
 			<label class=" control-label" style="margin-right:1em;">检验时间</label>
 			<input type="month" class="form-control" id="checkoutTime" name="checkoutTime" ng-model="monthlyStatistics.checkoutTime" required>		
-			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="getMonthDetails()">查询</button>				
+			<button class="btn btn-success btn-newMem" id="btn-newMem" style="margin-left: 1.5em;" ng-click="A103_0MonthlyReport()">查询</button>				
 		</form>
-	</div>
-	<!-- <span style="font-size: 20px;">{{companyShortName}}</span>
-	<span style="font-size: 20px;">{{companyShortName}}</span> -->
+	</div>	
 	<div class="row">
 		<div class="table-responsive"  style="margin-bottom: 1.5em;">
 			<table class="table table-striped table-bordered table-hover ">
@@ -32,7 +30,7 @@
 			    <tr>
 			      <th>序号</th>
 			      <th>检验日期</th>
-			      <th>进货检验记录编号</th>
+			      <th>检验记录编号</th>
 			      <th>批次编号</th>
 			      <th>条形码编号</th>
 			      <th>物料编号</th>
@@ -47,7 +45,7 @@
 			      <th>抽样数量总计</th>
 			      <th>抽样合格品数量总计</th>
 			      <th>抽样不合格品数量总计</th>
-			      <th>抽样不良现象总计</th>
+			      <th>抽样不良现象总计总计</th>
 			      <th>平均抽样合格率</th>
 			      <th>整体抽样合格率</th>
 			      <th>平均抽样不合格率</th>
@@ -68,7 +66,7 @@
 			    </tr>
 			  </thead>
 			  <tbody>		 
-			  	<tr ng-repeat="list in monthlyDetails.dateSelected">
+			  	<tr ng-repeat="list in monthlyStatistics.dateSelected">
 			  		<td>{{$index+1}}</td>
 			  		<td ng-bind="list.checkoutTime"></td>
 			  		<td ng-bind="list.checkoutRecordNo"></td>
@@ -82,16 +80,26 @@
 					<td ng-bind="list.externalReceiptNo"></td>
 					<td ng-bind="list.nspectorJobNumber"></td>
 			  		<td ng-bind="list.nspectorName"></td>
-			  		<td ng-bind="list.aql"></td>
+			  		<td ng-bind="list.giveCheckoutAmountTotal"></td>
+			  		<td ng-bind="list.sampleAmountTotal"></td>
+			  		<td ng-bind="list.sampleQualifiedAmountTotal"></td>
+			  		<td ng-bind="list.sampleUnqualifiedAmountTotal"></td>
+			  		<td ng-bind="list.sampleDefectiveAmountTotalTotal"></td>
+			  		<td ng-bind="list.averageQualifiedRate"></td>
+			  		<td ng-bind="list.totalQualifiedRate"></td>
+			  		<td ng-bind="list.averageUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRate"></td>
+			  		<td ng-bind="list.totalUnqualifiedRatePpm"></td>
+			  		<td ng-bind="list.batchPassRate"></td>			  		
 			  		<td ng-bind="list.giveCheckoutAmount"></td>
 			  		<td ng-bind="list.sampleAmount"></td>
-			  		<td ng-bind="list.sampleUnqualifiedAmount"></td>
 			  		<td ng-bind="list.sampleQualifiedAmount"></td>
+			  		<td ng-bind="list.sampleUnqualifiedAmount"></td>	  		
 			  		<td ng-bind="list.sampleDefectiveAmountTotal"></td>
 			  		<td ng-bind="list.sampleQualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRate"></td>
 			  		<td ng-bind="list.sampleUnqualifiedRatePpm"></td>
-			  		
+			  		<td ng-bind="list.aql"></td>
 			  		<td ng-bind="list.determinationResults"></td>
 			  		
 			  	</tr>
