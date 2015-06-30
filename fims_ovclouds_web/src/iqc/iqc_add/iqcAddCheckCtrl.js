@@ -10,7 +10,8 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 
 		checkoutRecordNo: "",
 		batchNo: "",
-		giveCheckoutTime: "",
+		//giveCheckoutTime: "",
+		checkoutTime:"",
 		vendor: "",
 		giveCheckoutAmount: "",
 		sampleAmount: "",
@@ -102,7 +103,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
-		console.log(checkoutRecord);
+		//console.log(checkoutRecord);
 		iqcAddCheck.materialNo = checkoutRecord.materialNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
 		iqcAddCheck.materialVersion = checkoutRecord.materialVersion;
@@ -114,7 +115,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 		iqcAddCheck.checkoutRecordNo = checkoutRecord.checkoutRecordNo;
 		iqcAddCheck.batchNo = checkoutRecord.batchNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
-		iqcAddCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();
+		iqcAddCheck.checkoutTime = (new Date(checkoutRecord.checkoutTime*1000)).format();
 		iqcAddCheck.vendor = checkoutRecord.vendorShortName;
 		iqcAddCheck.giveCheckoutAmount = checkoutRecord.giveCheckoutAmount;
 		iqcAddCheck.sampleAmount = checkoutRecord.sampleAmount;

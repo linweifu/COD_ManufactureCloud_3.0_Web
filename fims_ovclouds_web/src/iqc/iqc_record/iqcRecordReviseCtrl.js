@@ -15,6 +15,7 @@ FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($sc
         checkoutRecordNo: "",
         batchNo: "",
         giveCheckoutTime: "",
+        checkoutTime:"",
         vendor: "",
         giveCheckoutAmount: "",
         sampleAmount: "",
@@ -82,7 +83,7 @@ queryIQCRecords 检验记录查询
         .success(function(data){
             if (data.code == 'N01') {
                $scope.iqcRecordRevise = data.contents.checkoutRecord;
-               $scope.iqcRecordRevise.giveCheckoutTime = (new Date(data.contents.checkoutRecord.giveCheckoutTime*1000)).format();
+               $scope.iqcRecordRevise.checkoutTime = (new Date(data.contents.checkoutRecord.checkoutTime*1000)).format();
                 localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
                 localStorage.setItem("DX",JSON.stringify(data.contents.DX));
                 localStorage.setItem("DL",JSON.stringify(data.contents.DL));

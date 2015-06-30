@@ -19,6 +19,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 		checkoutRecordNo: "",
 		batchNo: "",
 		giveCheckoutTime: "",
+		checkoutTime:"",
 		giveCheckoutAmount: "",
 		sampleAmount: "",
 		checkoutRecordInputWay:"",
@@ -55,7 +56,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
 	// iqcAdd.makeTime = time.format();
 	// iqcAdd.entryTime = time.format();
-      iqcAdd.giveCheckoutTime = time.format();
+      iqcAdd.checkoutTime = time.format();
 
 	//获取物料字典
 	var queryMaterialsInfo = function(){
@@ -259,10 +260,11 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
 				"nspectorJobNumber": localStorage.getItem('userJobNumber'),
 			    "nspectorName": localStorage.getItem('userName'),
-			    "checkoutTime": parseInt((new Date()).valueOf()/1000),
+			    //"checkoutTime": parseInt((new Date()).valueOf()/1000),
 			    
 			    "giveCheckoutAmount": iqcAdd.giveCheckoutAmount,
 			    "giveCheckoutTime": ((new Date(iqcAdd.giveCheckoutTime)).valueOf())/1000,
+			    "checkoutTime": ((new Date(iqcAdd.checkoutTime)).valueOf())/1000,
 			    "sampleAmount": iqcAdd.sampleAmount,
 
 			    "vendorSid": iqcAdd.Selected.vendor.vendorSid,

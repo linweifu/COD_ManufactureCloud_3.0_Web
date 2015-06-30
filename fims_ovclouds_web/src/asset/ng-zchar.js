@@ -3587,6 +3587,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 		checkoutRecordNo: "",
 		batchNo: "",
 		giveCheckoutTime: "",
+		checkoutTime:"",
 		giveCheckoutAmount: "",
 		sampleAmount: "",
 		checkoutRecordInputWay:"",
@@ -3623,7 +3624,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
 	// iqcAdd.makeTime = time.format();
 	// iqcAdd.entryTime = time.format();
-      iqcAdd.giveCheckoutTime = time.format();
+      iqcAdd.checkoutTime = time.format();
 
 	//获取物料字典
 	var queryMaterialsInfo = function(){
@@ -3827,10 +3828,11 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 
 				"nspectorJobNumber": localStorage.getItem('userJobNumber'),
 			    "nspectorName": localStorage.getItem('userName'),
-			    "checkoutTime": parseInt((new Date()).valueOf()/1000),
+			    //"checkoutTime": parseInt((new Date()).valueOf()/1000),
 			    
 			    "giveCheckoutAmount": iqcAdd.giveCheckoutAmount,
 			    "giveCheckoutTime": ((new Date(iqcAdd.giveCheckoutTime)).valueOf())/1000,
+			    "checkoutTime": ((new Date(iqcAdd.checkoutTime)).valueOf())/1000,
 			    "sampleAmount": iqcAdd.sampleAmount,
 
 			    "vendorSid": iqcAdd.Selected.vendor.vendorSid,
@@ -4533,7 +4535,8 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 
 		checkoutRecordNo: "",
 		batchNo: "",
-		giveCheckoutTime: "",
+		//giveCheckoutTime: "",
+		checkoutTime:"",
 		vendor: "",
 		giveCheckoutAmount: "",
 		sampleAmount: "",
@@ -4625,7 +4628,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 	// 获取基本信息部分
 	var querySingleIQCRecord = function(){
 		var checkoutRecord = JSON.parse(localStorage.getItem("checkoutRecord"));
-		console.log(checkoutRecord);
+		//console.log(checkoutRecord);
 		iqcAddCheck.materialNo = checkoutRecord.materialNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
 		iqcAddCheck.materialVersion = checkoutRecord.materialVersion;
@@ -4637,7 +4640,7 @@ FIMS.controller('iqcAddCheckCtrl', ['$scope','$location','$http',function($scope
 		iqcAddCheck.checkoutRecordNo = checkoutRecord.checkoutRecordNo;
 		iqcAddCheck.batchNo = checkoutRecord.batchNo;
 		iqcAddCheck.materialShortName = checkoutRecord.materialShortName;
-		iqcAddCheck.giveCheckoutTime = (new Date(checkoutRecord.giveCheckoutTime*1000)).format();
+		iqcAddCheck.checkoutTime = (new Date(checkoutRecord.checkoutTime*1000)).format();
 		iqcAddCheck.vendor = checkoutRecord.vendorShortName;
 		iqcAddCheck.giveCheckoutAmount = checkoutRecord.giveCheckoutAmount;
 		iqcAddCheck.sampleAmount = checkoutRecord.sampleAmount;
@@ -6301,7 +6304,8 @@ FIMS.controller('iqcRecordCheckCtrl',['$scope','$location','$http',function($sco
         vendorShortName:"",
         checkoutRecordNo: "",
         batchNo: "",
-        giveCheckoutTime: "",
+       // giveCheckoutTime: "",
+        checkoutTime:"",
         vendor: "",
         giveCheckoutAmount: "",
         sampleAmount: "",
@@ -6369,7 +6373,7 @@ queryIQCRecords 检验记录查询
         .success(function(data){
             if (data.code == 'N01') {
                $scope.iqcRecordCheck = data.contents.checkoutRecord;
-               $scope.iqcRecordCheck.giveCheckoutTime = (new Date(data.contents.checkoutRecord.giveCheckoutTime*1000)).format();
+               $scope.iqcRecordCheck.checkoutTime = (new Date(data.contents.checkoutRecord.checkoutTime*1000)).format();
                 localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
                 localStorage.setItem("DX",JSON.stringify(data.contents.DX));
                 localStorage.setItem("DL",JSON.stringify(data.contents.DL));
@@ -6465,6 +6469,7 @@ FIMS.controller('iqcRecordReviseCtrl',['$scope','$location','$http',function($sc
         checkoutRecordNo: "",
         batchNo: "",
         giveCheckoutTime: "",
+        checkoutTime:"",
         vendor: "",
         giveCheckoutAmount: "",
         sampleAmount: "",
@@ -6532,7 +6537,7 @@ queryIQCRecords 检验记录查询
         .success(function(data){
             if (data.code == 'N01') {
                $scope.iqcRecordRevise = data.contents.checkoutRecord;
-               $scope.iqcRecordRevise.giveCheckoutTime = (new Date(data.contents.checkoutRecord.giveCheckoutTime*1000)).format();
+               $scope.iqcRecordRevise.checkoutTime = (new Date(data.contents.checkoutRecord.checkoutTime*1000)).format();
                 localStorage.setItem("checkoutRecord",JSON.stringify(data.contents.checkoutRecord));
                 localStorage.setItem("DX",JSON.stringify(data.contents.DX));
                 localStorage.setItem("DL",JSON.stringify(data.contents.DL));
@@ -6636,6 +6641,8 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 	};
     
 	$scope.iqcComplexDLCheck = iqcComplexDLCheck;
+	//String.format("%03d",$index);
+	//$scope.$index:=format('%0.3d',[$index]); 
     //DL: localStorage.getItem('DL');
 //console.log(iqcComplexDLCheck.DL.sampleCheckoutValue);
  
@@ -6683,43 +6690,23 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 	queryCheckoutRecord();
 /***********************************************************************
 ************************************************************************
- // 返回首页
+ //返回字符串指定位数 不足补齐0
 ************************************************************************
 ***********************************************************************/
-
-	// var.updateComplexIQCRecord = function() {
-	// 	// console.log($rootScope.DX);
-	// 	// var keyDX
-
-	// 	$http({
-	// 		method: "POST",
-	// 		 url: config.HOST + "/api/2.0/bp/qc/iqc/updateComplexIQCRecord",
-	// 		//url: "iqc/iqc_add/updateComplexIQCRecord.json",
-	// 		header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-	// 		data: {
-	// 			"sid": localStorage.getItem('sid'),
-	// 			// "companySid": localStorage.getItem('cSid'),
-	// 			"checkoutRecordSid": iqcComplexDLCheck.checkoutRecordSid,
-	// 			"DX": $rootScope.DX,
-	// 			"DL": $rootScope.DL 
-	// 		}
-	// 	})
-	// 	.success(function(data){
- //            if (data.code == 'N01') {
- //            	localStorage.setItem("DL",JSON.stringify($rootScope.DL));           	
- //                alert(data.message);
- //                // $location.path("account_index/iqcRecord");
- //            }
- //            else if(data.code=="E00"){
- //                alert(data.message+",请重新登陆");
- //                localStorage.clear();
- //                $location.path('login').replace();
- //            }else {
- //                alert(data.message);
- //            }  
- //        })
-	// }
-
+// function FilledZeroStr(st, num) {             
+// var retSt = 000;          
+//    // by script 
+//            
+//  if (st.indexOf(".") == st.lastIndexOf(".")) { 
+//                 var stNum = st.indexOf(".") > -1 ? st.split(".")[1].length : 0;               
+//                 for (var i = 0; i < num - stNum; i++) 
+//                 {     
+// 	                retSt += "0";   
+//                 }        
+//           } 
+//             return retSt;  
+//        }
+// $index:=format('%0.3d',[$index]);  
 
 
 /***********************************************************************
