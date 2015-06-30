@@ -24,8 +24,7 @@ FIMS.controller('monthlyStatisticsCtrl',['$scope','$location',"$http",
 			}
 
 		 	return (year + "-" + month + "-" +day );
-		}
-		monthlyStatistics.checkoutTime = time.format();
+		}		
 		
 		$scope.monthlyStatisticsBack = function(){
 			// localStorage.removeItem('singleplan');

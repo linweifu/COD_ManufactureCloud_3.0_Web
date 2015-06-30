@@ -1,0 +1,23 @@
+{
+    "code": "N01",
+    "message": "102_2物料统计和明细获取成功",
+    "contents": [
+{
+ "materialname": "O型圈",
+ "sampercent": "0.5",
+ "batchpercent": "0.6",
+ "PPMpercent": "70"
+ },
+ {
+ "materialname": "铜接头",
+ "sampercent": "0.3",
+ "batchpercent": "0.5",
+ "PPMpercent": "50"
+ },
+ {
+ "materialname": "气阀",
+ "sampercent": "0.4",
+ "batchpercent": "0.7",
+ "PPMpercent": "90"
+ }]
+        }
