@@ -6027,7 +6027,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
  					{
 			             if(isNaN(samplePassRateTargetArr[i]))
 			             {
-			             	delete samplePassRateTargetArr[i];		                    	
+			             	samplePassRateTargetArr[i] = 0;		                    	
 			                      		                      			                  
 			             }
 			         } 
@@ -6111,7 +6111,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
  					{
 			             if(isNaN(batchPassRateTargetArr[i]))
 			             {
-			             	delete batchPassRateTargetArr[i];		                    	
+			             	batchPassRateTargetArr[i] = 0;			                    	
 			                      		                      			                  
 			             }
 			         } 
@@ -6195,7 +6195,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
  					{
 			             if(isNaN(totalDefectiveRatePPMTargetArr[i]))
 			             {
-			             	delete totalDefectiveRatePPMTargetArr[i];		                    	
+			             	totalDefectiveRatePPMTargetArr[i] = 0;		                    	
 			                      		                      			                  
 			             }
 			         } 
