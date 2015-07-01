@@ -4008,18 +4008,9 @@ FIMS.controller('iqcComplexDLAddCtrl',['$rootScope','$scope','$location','$http'
 	$scope.iqcComplexDLAdd = iqcComplexDLAdd;
 /***********************************************************************
 ***********************************************************************/
-$scope.format = function($index){
-if($index<10)
-{
-  $index ="00"+$index;
-}
-else if(10<$index<100)
-{
-  $index = "0"+$index;
-}
-
-   return $index;
-}
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 /***********************************************************************
 ***********************************************************************/	
 	//调整时间格式
@@ -4178,18 +4169,9 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 	$scope.iqcComplexDXAdd = iqcComplexDXAdd;
 /***********************************************************************
 ***********************************************************************/
-$scope.format = function($index){
-if($index<10)
-{
-  $index ="00"+$index;
-}
-else if(10<$index<100)
-{
-  $index = "0"+$index;
-}
-
-   return $index;
-}
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 /***********************************************************************
 ***********************************************************************/
 	//调整时间格式
@@ -7039,21 +7021,24 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 	};
     
 	$scope.iqcComplexDLCheck = iqcComplexDLCheck;
+/***********************************************************************
+************************************************************************/
 
+// $scope.format = function($index){
+// if($index<10)
+// {
+// 	$index ="00"+$index;
+// }
+// else if(10<$index<100)
+// {
+// 	$index = "0"+$index;
+// }
 
-$scope.format = function($index){
-if($index<10)
-{
-	$index ="00"+$index;
-}
-else if(10<$index<100)
-{
-	$index = "0"+$index;
-}
-
-   return $index;
-}
-
+//    return $index;
+// }
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 
 /***********************************************************************
 ************************************************************************
@@ -7153,18 +7138,9 @@ FIMS.controller('iqcComplexDXCheckCtrl',['$rootScope','$scope','$location','$htt
   $scope.iqcComplexDXCheck = iqcComplexDXCheck;
 /***********************************************************************
 ***********************************************************************/
-$scope.format = function($index){
-if($index<10)
-{
-  $index ="00"+$index;
-}
-else if(10<$index<100)
-{
-  $index = "0"+$index;
-}
-
-   return $index;
-}
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 /***********************************************************************
 ***********************************************************************
  // 获取基本信息部分
@@ -7253,18 +7229,9 @@ FIMS.controller('iqcComplexDLReviseCtrl',['$rootScope','$scope','$location','$ht
     //DL: localStorage.getItem('DL');
 /***********************************************************************
 ***********************************************************************/
-$scope.format = function($index){
-if($index<10)
-{
-  $index ="00"+$index;
-}
-else if(10<$index<100)
-{
-  $index = "0"+$index;
-}
-
-   return $index;
-}
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 
 /***********************************************************************
 ************************************************************************
@@ -7432,18 +7399,9 @@ FIMS.controller('iqcComplexDXReviseCtrl',['$rootScope','$scope','$location','$ht
 
 /***********************************************************************
 ***********************************************************************/
-  $scope.format = function($index){
-if($index<10)
-{
-  $index ="00"+$index;
-}
-else if(10<$index<100)
-{
-  $index = "0"+$index;
-}
-
-   return $index;
-}
+ $scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 /***********************************************************
 ************************************************************
 queryIQCRecords 检验记录查询

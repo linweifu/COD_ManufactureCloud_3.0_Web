@@ -12,21 +12,24 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 	};
     
 	$scope.iqcComplexDLCheck = iqcComplexDLCheck;
+/***********************************************************************
+************************************************************************/
 
+// $scope.format = function($index){
+// if($index<10)
+// {
+// 	$index ="00"+$index;
+// }
+// else if(10<$index<100)
+// {
+// 	$index = "0"+$index;
+// }
 
-$scope.format = function($index){
-if($index<10)
-{
-	$index ="00"+$index;
-}
-else if(10<$index<100)
-{
-	$index = "0"+$index;
-}
-
-   return $index;
-}
-
+//    return $index;
+// }
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 
 /***********************************************************************
 ************************************************************************

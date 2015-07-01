@@ -79,7 +79,7 @@
 		<div class="form-group">
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index">
-				<label class="text-center">S{{format($index)}}</label>
+				<label class="text-center">S{{Ptitle($index,3)}}</label>
 				<input class="form-control"  ng-model="DX[mark].sample[$index].sampleCheckoutValue" required  ng-disabled="true">
 			</div>
 		</div>
