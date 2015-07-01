@@ -7020,8 +7020,53 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
 	};
     
 	$scope.iqcComplexDLCheck = iqcComplexDLCheck;
-	//String.format("%03d",$index);
-	//$scope.$index:=format('%0.3d',[$index]); 
+	//var $index;
+	//if($index<10)
+
+	//$index ="00"+$index;
+
+	// $scope.i=00;
+
+	// if(10<$index<100)
+	// 	$scope.i=00;
+
+function format ($index){
+if($index<10)
+{
+	$index ="00"+$index;
+}
+else if(10<$index<100)
+{
+	$index = "0"+$index;
+}
+
+   return $index;
+}
+console.log( format(11));
+console.log( format(10));
+
+///////////////////////////////
+//////////////////////////////
+// function format (i){
+
+//   format('000',   i)       
+//    return i;
+// }
+// console.log( format(1));
+// console.log( format(10));
+// $scope.function(){
+
+// i={if(0<=$index<=9)
+//    {
+// 	i ="00";
+//    }
+//    else if(10<$index<100)
+//    {
+// 	i = "0";
+//    }}
+//    return i;
+// }//$index:= String.format("%03d",$index);
+	//$index:=format('%0.3d',[$index]); 
     //DL: localStorage.getItem('DL');
 //console.log(iqcComplexDLCheck.DL.sampleCheckoutValue);
  
@@ -7029,6 +7074,35 @@ FIMS.controller('iqcComplexDLCheckCtrl',['$rootScope','$scope','$location','$htt
   // 	var DL=localStorage.getItem("DL");
 
   // }
+// function init(i) {
+// 	//var i;
+
+// 	for($index=0;$index<100;$index++){
+// 	if(0<=$index<=9)
+// 	{
+// 		i=00;
+// 	}
+// 	else if(10<=$index<=99)
+// 	{
+// 		i=0;
+// 	}
+
+// }
+// return i;
+// }
+
+
+	
+
+	//	i="00";
+	
+	// else if(10<=$index<=99)
+	// {
+	// 	i=0;
+	// }
+
+
+//return i;
 
 /***********************************************************************
 ************************************************************************
