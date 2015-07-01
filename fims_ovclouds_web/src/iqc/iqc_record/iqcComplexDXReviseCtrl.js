@@ -36,7 +36,20 @@ FIMS.controller('iqcComplexDXReviseCtrl',['$rootScope','$scope','$location','$ht
 
   $scope.iqcComplexDXRevise = iqcComplexDXRevise;
 
+/***********************************************************************
+***********************************************************************/
+  $scope.format = function($index){
+if($index<10)
+{
+  $index ="00"+$index;
+}
+else if(10<$index<100)
+{
+  $index = "0"+$index;
+}
 
+   return $index;
+}
 /***********************************************************
 ************************************************************
 queryIQCRecords 检验记录查询

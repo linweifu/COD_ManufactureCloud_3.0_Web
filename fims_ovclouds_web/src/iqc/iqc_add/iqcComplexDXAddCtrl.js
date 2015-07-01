@@ -30,7 +30,22 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 	};
 
 	$scope.iqcComplexDXAdd = iqcComplexDXAdd;
+/***********************************************************************
+***********************************************************************/
+$scope.format = function($index){
+if($index<10)
+{
+  $index ="00"+$index;
+}
+else if(10<$index<100)
+{
+  $index = "0"+$index;
+}
 
+   return $index;
+}
+/***********************************************************************
+***********************************************************************/
 	//调整时间格式
 	Date.prototype.format = function() {
    		var year = this.getFullYear().toString();
