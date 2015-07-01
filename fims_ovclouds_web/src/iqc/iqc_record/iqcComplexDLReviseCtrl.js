@@ -24,12 +24,11 @@ FIMS.controller('iqcComplexDLReviseCtrl',['$rootScope','$scope','$location','$ht
     
 	$scope.iqcComplexDLRevise = iqcComplexDLRevise;
     //DL: localStorage.getItem('DL');
-//console.log(iqcComplexDLRevise.DL.sampleCheckoutValue);
- 
-  // var checkdl =function(){
-  // 	var DL=localStorage.getItem("DL");
-
-  // }
+/***********************************************************************
+***********************************************************************/
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 
 /***********************************************************************
 ************************************************************************

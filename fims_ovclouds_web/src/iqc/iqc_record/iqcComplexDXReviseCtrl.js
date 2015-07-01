@@ -36,7 +36,11 @@ FIMS.controller('iqcComplexDXReviseCtrl',['$rootScope','$scope','$location','$ht
 
   $scope.iqcComplexDXRevise = iqcComplexDXRevise;
 
-
+/***********************************************************************
+***********************************************************************/
+ $scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
 /***********************************************************
 ************************************************************
 queryIQCRecords 检验记录查询

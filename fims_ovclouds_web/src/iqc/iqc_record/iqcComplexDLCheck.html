@@ -16,30 +16,12 @@
 
 </style>
 
-// <script type="text/javascript">
+ <script type="text/javascript">
 
-// function format ($index){
-// if($index<10)
-// {
-// 	$index ="00"+$index;
-// }
-// else if(10<$index<100)
-// {
-// 	$index = "0"+$index;
-// }
+function PrefixInteger(num, length) 
+{  return (Array(length).join('0') + num).slice(-length); }
 
-//    return $index;
-// }//$index:=format('%03d',[$index]);
-// //$index :=   FormatFloat('000',$index);   
-
-// // case   $index   of   
-// //       0..9:   $index   :=   '00'   +   IntToStr($index);   
-// //       10..99:   $index   :=   '0'   +   IntToStr($index);   
-// //   end;
-
-int $index;
- $index = $index.ToString("000"))
-// </script>
+ </script>
 
 <h3 class="text-center">{{iqcComplexDLCheck.companyShortName}} (入库定量复杂录入查询)</h3>
 
@@ -139,8 +121,10 @@ int $index;
 			<div style="display: none;" ng-bind="mark=$index"></div>
 			<!-- <label class="text-center"  >S{{$index}}</label> -->
 			<div class="col-md-2" ng-repeat="s in list.sample track by $index " >
-				 <!-- <button ng-click="format (12)">qewqrewtr</button> -->
-				<label class="text-center" >S{{($index.toPrecision(3))}}</label>
+				 <!--  <button ng-click="format ($index)">S{{$index}}</button>  -->
+                <!--  <div><input type="button" value="提交"ng-click="PrefixInteger(0, 5)"></div> -->
+             <!--  <label><script type='text/javascript'> PrefixInteger($index,3)</script></label> -->
+				<label class="text-center" >S{{Ptitle($index,3)}}</label>
 				<input class="form-control"  ng-model="DL[mark].sample[$index].sampleCheckoutValue" required  ng-disabled="true">
 			</div>
 		</div>

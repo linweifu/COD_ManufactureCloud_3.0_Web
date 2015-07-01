@@ -30,7 +30,13 @@ FIMS.controller('iqcComplexDXAddCtrl',['$rootScope','$scope','$location','$http'
 	};
 
 	$scope.iqcComplexDXAdd = iqcComplexDXAdd;
-
+/***********************************************************************
+***********************************************************************/
+$scope.Ptitle=function (num, length) { 
+ return (Array(length).join('0') + num).slice(-length);
+  }
+/***********************************************************************
+***********************************************************************/
 	//调整时间格式
 	Date.prototype.format = function() {
    		var year = this.getFullYear().toString();
