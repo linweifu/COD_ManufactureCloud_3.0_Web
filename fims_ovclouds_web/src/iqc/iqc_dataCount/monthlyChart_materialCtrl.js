@@ -102,7 +102,7 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 				 	var PPMpercentArr = [];
 
 			 		for(var i=0;i<data.contents.length;i++) {
-				 		xAxisData.push(data.contents[i].materialname);
+				 		xAxisData.push(data.contents[i].materialName);
 				 		sampercentArr.push(data.contents[i].samplePercent*100);
 				 		batchpercentArr.push(data.contents[i].batchpercent*100);
 				 		PPMpercentArr.push(data.contents[i].PPMpercent);
@@ -236,7 +236,7 @@ FIMS.controller('monthlyChart_materialCtrl',['$scope','$location',"$http",
 				 	var PPMpercentArr = [];
 
 			 		for(var i=0;i<data.contents.length;i++) {
-				 		xAxisData.push(data.contents[i].materialShortName);
+				 		xAxisData.push(data.contents[i].materialName);
 				 		sampercentArr.push(data.contents[i].samplePercent*100);
 				 		batchpercentArr.push(data.contents[i].batchpercent*100);
 				 		PPMpercentArr.push(data.contents[i].PPMpercent);
