@@ -217,7 +217,7 @@ FIMS.controller('monthlyChart_vendorCtrl',['$scope','$location',"$http",
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A1082Report",
-				//url: "iqc/iqc_dataCount/bak/A1081Report.json",
+				//url: "iqc/iqc_dataCount/bak/A1082Report.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {
 	                //"date": dataCount.dataCountInputs.dataCountTab4.checkoutTime+"-01T00:00:00Z",

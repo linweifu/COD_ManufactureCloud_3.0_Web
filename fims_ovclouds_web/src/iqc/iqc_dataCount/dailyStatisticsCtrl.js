@@ -48,15 +48,14 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01"&&data.contents.length !== 0) {
-	         // 
+	            if(data.code == "N01"&&data.contents.length !== 0) { 
 	            	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
+	            else if (data.code == "N01"&&data.contents.length === 0) {
 	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -83,14 +82,13 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 			})
 			.success(function(data){				
 	            if(data.code == "N01"&&data.contents.length !== 0) {
-	         // 
-	            	dailyStatistics.dateSelected = data.contents;
+	               	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
+	            else if (data.code == "N01"&&data.contents.length === 0) {
 	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -117,14 +115,13 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 			})
 			.success(function(data){				
 	            if(data.code == "N01"&&data.contents.length !== 0) {
-	         // 
-	            	dailyStatistics.dateSelected = data.contents;
+	               	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
+	            else if (data.code == "N01"&&data.contents.length === 0) {
 	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");
@@ -151,14 +148,13 @@ FIMS.controller('dailyStatisticsCtrl',['$scope','$location',"$http",
 			})
 			.success(function(data){				
 	            if(data.code == "N01"&&data.contents.length !== 0) {
-	         //
-	            	dailyStatistics.dateSelected = data.contents;
+	             	dailyStatistics.dateSelected = data.contents;
 	           		for(var i=0,len=(dailyStatistics.dateSelected).length;i<len;i++){
 	                (dailyStatistics.dateSelected)[i].checkoutTime = (new Date((dailyStatistics.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
+	            else if (data.code == "N01"&&data.contents.length === 0) {
 	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");

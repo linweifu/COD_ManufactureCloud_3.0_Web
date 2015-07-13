@@ -3,42 +3,64 @@
     "message": "数据获取成功",
     "contents": [
         {
-            "month": "1"
+            "month": "1",
+            "totalDefectiveRatePPMTarget": "0.73",
+            "totalDefectiveRatePPM": "0.81"
         },
         {
-            "month": "2"
+            "month": "2",
+            "totalDefectiveRatePPMTarget": "0.74",
+            "totalDefectiveRatePPM": "0.82"
         },
         {
-            "month": "3"
+            "month": "3",
+            "totalDefectiveRatePPMTarget": "0.8",
+            "totalDefectiveRatePPM": "0.8"
         },
         {
             "month": "4",
-            "totalDefectiveRatePPMTarget": "650000.0",
-            "totalDefectiveRatePPM": "360000.0"
+            "totalDefectiveRatePPMTarget": "0.8",
+            "totalDefectiveRatePPM": "0.81"
         },
         {
-            "month": "5"
+            "month": "5",
+            "totalDefectiveRatePPMTarget": "0.85",
+            "totalDefectiveRatePPM": "0.75"
         },
         {
-            "month": "6"
+            "month": "6",
+            "totalDefectiveRatePPMTarget": "0.85",
+            "totalDefectiveRatePPM": "0.78"
         },
         {
-            "month": "7"
+            "month": "7",
+            "totalDefectiveRatePPMTarget": "0.8",
+            "totalDefectiveRatePPM": "0.8"
         },
         {
-            "month": "8"
+            "month": "8",
+            "totalDefectiveRatePPMTarget": "0.74",
+            "totalDefectiveRatePPM": "0.76"
         },
         {
-            "month": "9"
+            "month": "9",
+            "totalDefectiveRatePPMTarget": "0.78",
+            "totalDefectiveRatePPM": "0.75"
         },
         {
-            "month": "10"
+            "month": "10",
+            "totalDefectiveRatePPMTarget": "0.83",
+            "totalDefectiveRatePPM": "0.8"
         },
         {
-            "month": "11"
+            "month": "11",
+            "totalDefectiveRatePPMTarget": "0.83",
+            "totalDefectiveRatePPM": "0.82"
         },
         {
-            "month": "12"
+            "month": "12",
+            "totalDefectiveRatePPMTarget": "0.65",
+            "totalDefectiveRatePPM": "0.7"
         }
     ]
 }

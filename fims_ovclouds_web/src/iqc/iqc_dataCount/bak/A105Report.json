@@ -4,54 +4,64 @@
     "contents": [
         {
             "month": "1",
-            "samplePassRateTarget": "0.1",
-            "samplePassRate": "0.17"
+            "samplePassRateTarget": "0.75",
+            "samplePassRate": "0.81"
 
         },
         {
             "month": "2",
-            "samplePassRateTarget": "0.25",
-            "samplePassRate": "0.27"
+            "samplePassRateTarget": "0.75",
+            "samplePassRate": "0.82"
         },
         {
             "month": "3",
-            "samplePassRateTarget": "0.35",
-            "samplePassRate": "0.37"
+            "samplePassRateTarget": "0.8",
+            "samplePassRate": "0.8"
         },
         {
             "month": "4",
-            "samplePassRateTarget": "0.45",
-            "samplePassRate": "0.47"
+            "samplePassRateTarget": "0.8",
+            "samplePassRate": "0.81"
         },
         {
             "month": "5",
-            "samplePassRateTarget": "0.51",
-            "samplePassRate": "0.56"
+            "samplePassRateTarget": "0.85",
+            "samplePassRate": "0.75"
         },
         {
             "month": "6",
-            "samplePassRateTarget": "0.35",
-            "samplePassRate": "0.67"
+            "samplePassRateTarget": "0.85",
+            "samplePassRate": "0.78"
         },
         {
             "month": "7",
-            "samplePassRateTarget": "0.35",
-            "samplePassRate": "0.67"
+            "samplePassRateTarget": "0.8",
+            "samplePassRate": "0.8"
         },
         {
-            "month": "8"
+            "month": "8",
+            "samplePassRateTarget": "0.74",
+            "samplePassRate": "0.76"
         },
         {
-            "month": "9"
+            "month": "9",
+            "samplePassRateTarget": "0.78",
+            "samplePassRate": "0.75"
         },
         {
-            "month": "10"
+            "month": "10",
+            "samplePassRateTarget": "0.83",
+            "samplePassRate": "0.8"
         },
         {
-            "month": "11"
+            "month": "11",
+            "samplePassRateTarget": "0.83",
+            "samplePassRate": "0.82"
         },
         {
-            "month": "12"
+            "month": "12",
+            "samplePassRateTarget": "0.65",
+            "samplePassRate": "0.7"
         }
     ]
 }

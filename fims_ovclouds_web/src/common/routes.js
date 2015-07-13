@@ -217,6 +217,11 @@ FIMS.config([
 		controller:'iqcRecordCtrl',
 		templateUrl:'iqc/iqc_record/iqcRecord.html'
 	})
+	.state('account_index.selectmode',{
+		url:'/selectmode',
+		// controller:'iqcRecordCtrl',
+		templateUrl:'iqc/iqc_add/selectmode.html'
+	})
 	.state('account_index.iqcAdd',{
 		url:'/iqcAdd',
 		controller:'iqcAddCtrl',

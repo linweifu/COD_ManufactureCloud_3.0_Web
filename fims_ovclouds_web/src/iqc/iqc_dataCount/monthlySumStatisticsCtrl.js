@@ -98,8 +98,8 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 		A105Report = function(){
 			$http({
 				method: 'POST',
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A105Report",
-				// url: "iqc/iqc_dataCount/bak/A105Report.json",
+				 url: config.HOST + "/api/2.0/bp/evaluate/report/A105Report",
+				//url: "iqc/iqc_dataCount/bak/A105Report.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {	    
 	                "sid": localStorage.getItem('sid'),
@@ -182,8 +182,8 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 		A106Report = function(){
 			$http({
 				method: 'POST',
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A106Report",
-				// url: "iqc/iqc_dataCount/bak/A106Report.json",
+				 url: config.HOST + "/api/2.0/bp/evaluate/report/A106Report",
+				//url: "iqc/iqc_dataCount/bak/A106Report.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {	    
 	                "sid": localStorage.getItem('sid'),
@@ -267,7 +267,7 @@ FIMS.controller('monthlySumStatisticsCtrl',['$scope','$location',"$http",
 			$http({
 				method: 'POST',
 				url: config.HOST + "/api/2.0/bp/evaluate/report/A107Report",
-				// url: "iqc/iqc_dataCount/bak/A107Report.json",
+				//url: "iqc/iqc_dataCount/bak/A107Report.json",
 	            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data:  {	    
 	                "sid": localStorage.getItem('sid'),

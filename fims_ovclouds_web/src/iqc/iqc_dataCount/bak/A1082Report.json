@@ -1,0 +1,23 @@
+{
+    "code": "N01",
+    "message": "102_2物料统计和明细获取成功",
+    "contents": [
+{
+ "vendorShortName": "上海汇普",
+ "sampercent": "0.5",
+ "batchpercent": "0.6",
+ "PPMpercent": "5000"
+ },
+ {
+ "vendorShortName": "上海巨翰",
+ "sampercent": "0.5",
+ "batchpercent": "0.6",
+ "PPMpercent": "5500"
+ },
+ {
+ "vendorShortName": "上海亿科",
+ "sampercent": "0.5",
+ "batchpercent": "0.6",
+ "PPMpercent": "5800"
+ }]
+ }

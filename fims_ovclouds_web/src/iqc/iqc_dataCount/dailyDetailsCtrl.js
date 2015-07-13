@@ -2,7 +2,8 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 	function($scope,$location,$http) {
 		var dailyDetails = {
 			checkoutTime: "",
-			dateSelected: []
+			dateSelected: [],
+			defectives: []
 		};
 		$scope.companyShortName = localStorage.getItem("curCompanyName");	
 		$scope.dailyDetails = dailyDetails;
@@ -36,8 +37,8 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				url: config.HOST + "/api/2.0/bp/evaluate/report/A102_0DailyReport",
-				// url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
+				 url: config.HOST + "/api/2.0/bp/evaluate/report/A102_0DailyReport",
+				//url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -47,16 +48,16 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 				}
 			})
 			.success(function(data){				
-	            if(data.code == "N01"&&data.contents.length !== 0) {
-	    // 			
+	            if(data.code == "N01"&&data.contents.length !== 0) { 			
 	            	dailyDetails.dateSelected = data.contents;
-	            	// dailyDetails.defectives = data.contents.defectives;
+	            	dailyDetails.defectives = data.contents.defectives;
+	            	console.log((dailyDetails.defectives));
 	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
 	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
 	                	// console.log((planlist.QCPSelected)[i])
 	                }
 	            }
-	            else if (data.contents.length === 0) {
+	            else if (data.code == "N01"&&data.contents.length === 0) {
 	            	alert("暂无数据");}
 	            else if(data.code=="E00"){
 	                alert(data.message+",请重新登陆");

@@ -3,21 +3,40 @@
     "message": "102_2物料统计和明细获取成功",
     "contents": [
 {
- "vendorShortName": "上海汇普",
- "sampercent": "0.5",
- "batchpercent": "0.6",
- "PPMpercent": "10"
+ "vendorShortName": "汇普",
+ "samplePercent": "0.8",
+ "batchpercent": "0.75",
+ "PPMpercent": "6100"
  },
  {
- "vendorShortName": "上海巨翰",
- "sampercent": "0.5",
- "batchpercent": "0.6",
- "PPMpercent": "100"
+ "vendorShortName": "巨翰",
+ "samplePercent": "0.65",
+ "batchpercent": "0.7",
+ "PPMpercent": "5200"
  },
  {
- "vendorShortName": "上海亿科",
- "sampercent": "0.5",
- "batchpercent": "0.6",
- "PPMpercent": "100"
- }]
-        }
+ "vendorShortName": "亿科",
+ "samplePercent": "0.55",
+ "batchpercent": "0.65",
+ "PPMpercent": "5300"
+ },
+ {
+ "vendorShortName": "万博",
+ "samplePercent": "0.82",
+ "batchpercent": "0.83",
+ "PPMpercent": "3300"
+ },
+ {
+ "vendorShortName": "世嘉",
+ "samplePercent": "0.85",
+ "batchpercent": "0.71",
+ "PPMpercent": "3500"
+ },
+ {
+ "vendorShortName": "飞特",
+ "samplePercent": "0.95",
+ "batchpercent": "0.89",
+ "PPMpercent": "2300"
+ }
+ ]
+ }

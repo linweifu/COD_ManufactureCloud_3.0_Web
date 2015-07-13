@@ -3,42 +3,64 @@
     "message": "数据获取成功",
     "contents": [
         {
-            "month": "1"
+            "month": "1",
+            "batchPassRateTarget": "0.73",
+            "batchPassRate": "0.72"
         },
         {
-            "month": "2"
+            "month": "2",
+            "batchPassRateTarget": "0.74",
+            "batchPassRate": "0.82"
         },
         {
-            "month": "3"
+            "month": "3",
+            "batchPassRateTarget": "0.8",
+            "batchPassRate": "0.8"
         },
         {
             "month": "4",
-            "batchPassRateTarget": "0.0",
-            "batchPassRate": "1.0"
+            "batchPassRateTarget": "0.8",
+            "batchPassRate": "0.81"
         },
         {
-            "month": "5"
+            "month": "5",
+            "batchPassRateTarget": "0.85",
+            "batchPassRate": "0.95"
         },
         {
-            "month": "6"
+            "month": "6",
+            "batchPassRateTarget": "0.85",
+            "batchPassRate": "0.78"
         },
         {
-            "month": "7"
+            "month": "7",
+            "batchPassRateTarget": "0.8",
+            "batchPassRate": "0.83"
         },
         {
-            "month": "8"
+            "month": "8",
+            "batchPassRateTarget": "0.82",
+            "batchPassRate": "0.76"
         },
         {
-            "month": "9"
+            "month": "9",
+            "batchPassRateTarget": "0.78",
+            "batchPassRate": "0.75"
         },
         {
-            "month": "10"
+            "month": "10",
+            "batchPassRateTarget": "0.83",
+            "batchPassRate": "0.8"
         },
         {
-            "month": "11"
+            "month": "11",
+            "batchPassRateTarget": "0.83",
+            "batchPassRate": "0.82"
         },
         {
-            "month": "12"
+            "month": "12",
+            "batchPassRateTarget": "0.65",
+            "batchPassRate": "0.7"
         }
     ]
 }
