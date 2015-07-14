@@ -250,29 +250,22 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 				"checkoutRecordNo": iqcAdd.checkoutRecordNo,
 				"companySid": localStorage.getItem('cSid'),
 			    "batchNo": iqcAdd.batchNo,
-
-			    "externalReceiptNo": iqcAdd.externalReceiptNo,
-			    
+			    "externalReceiptNo": iqcAdd.externalReceiptNo,			    
 			    "entryId": localStorage.getItem('email'),
 			    "entryJobNumber": localStorage.getItem('userJobNumber'),
 			    "entryName": localStorage.getItem('userName'),
 			    "entryTime": parseInt((new Date()).valueOf()/1000),
-
 				"nspectorJobNumber": localStorage.getItem('userJobNumber'),
 			    "nspectorName": localStorage.getItem('userName'),
-			    //"checkoutTime": parseInt((new Date()).valueOf()/1000),
-			    
+			    //"checkoutTime": parseInt((new Date()).valueOf()/1000),			    
 			    "giveCheckoutAmount": iqcAdd.giveCheckoutAmount,
 			    "giveCheckoutTime": ((new Date(iqcAdd.giveCheckoutTime)).valueOf())/1000,
 			    "checkoutTime": ((new Date(iqcAdd.checkoutTime)).valueOf())/1000,
 			    "sampleAmount": iqcAdd.sampleAmount,
-
 			    "vendorSid": iqcAdd.Selected.vendor.vendorSid,
 			    "vendorNo": iqcAdd.Selected.vendor.vendorNo,
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
-
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
-
 			    "checkoutRecordInputWay":checkoutRecordInputWay
 
 			    //"operateStatusCode":"TJ",
@@ -313,7 +306,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 	$scope.back = function(){
 		var a = confirm("您确定要退出吗？退出将丢失填写数据!")
 		if (a) {
-			$location.path("account_index/iqcIndex");
+			$location.path("account_index/selectmode");
 		}
 	}
 
