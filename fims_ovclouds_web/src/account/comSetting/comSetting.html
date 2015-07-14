@@ -21,7 +21,9 @@
 			<div class="col-sm-4">
 				<input type="text" class="form-control" id="comName" name="shortName" ng-model="comSetting.shortName" ng-disabled="true" required> 
 			</div>
-			<a class="col-sm-2 control-label link">修改公司简称</a>
+			<!-- <a data-toggle="modal" data-target="#reviseDLItem" data-whatever="@mdo" ng-click="reviseDLItem(list)">修改</a> -->
+			<a data-toggle="modal" data-target="#revisecomName" data-whatever="@mdo" ng-click="revisecomName(list)">修改公司简称</a>
+         
 		</div>
 		<div class="form-group">
 			<label for="name" class="left control-label">公司全称</label>
@@ -93,3 +95,36 @@
 		<button class="btn btn-default" style="padding: .3em .6em; margin-left: 1em;" ng-click="back()" >返回</button>
 	</form>
 </div>
+
+ <div class="modal fade" id="revisecomName" tabindex="-1" role="dialog" aria-labelledby="comNameLabel" aria-hidden="true">
+		   <div class="modal-dialog">
+			<div class="modal-content text-left">
+    			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    			<h3 class="text-center">修改公司简称</h3>
+    			<div class="modal-body">
+			        <form name="revisecomNameForm" novalidate>
+			          <div class="form-group">
+			          		<label class="control-label">新公司简称</label>            
+				            <input type="text" class="form-control" ng-model="comSetting.shortName" required >
+			          </div>
+			         <!--  <div class="form-group">
+			             <label  class="control-label">新公司简称</label>
+			             <input type="text" class="form-control" ng-model=" "  required >
+			           
+			          </div> -->
+			           </form>
+  				</div>
+		     	<div class="modal-footer">
+			        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-disabled="revisecomNameForm.$invalid" ng-click="comSetting.improveComInfo()">修改公司简称</button>
+			      
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        
+     
+		      	</div>
+	   	 	</div>
+  		</div>
+	</div>
+
+
+
+

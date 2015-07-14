@@ -57,7 +57,7 @@ FIMS.config([
 	})
 	.state('account_index.userSetting',{
 		url:'/userSetting',
-		// controller:'userSettingController',
+		 controller:'userSettingCtrl',
 		templateUrl:"account/userSetting/userSetting.html"
 	})
 	.state('account_index.comSetting',{

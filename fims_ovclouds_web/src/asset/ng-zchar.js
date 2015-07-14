@@ -29,6 +29,8 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		// $rootScope.userName = localStorage.getItem("userName");
 		$scope.usersetting = userSettingService.user;
 		$scope.subData = userSettingService.subData;
+		$scope.updateUserId = userSettingService.updateUserId;
+		$scope.updateUserName = userSettingService.updateUserName;
 		userSettingService.queryUserExtendInfo();
 }])
 
@@ -7837,6 +7839,7 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         "email": localStorage.getItem('email'),
         "userName": localStorage.getItem('userName'),
         "contactPhone": "",
+         "password":"",
         "contactAddress": ""
     };
     userSetting.queryUserExtendInfo = function(){
@@ -7861,7 +7864,7 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
                 localStorage.clear();
                 $location.path('login').replace();
             }else {
-                console.log(data.message);
+               // console.log(data.message);
             }  
 
         }) 
@@ -7898,6 +7901,72 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         
     }
 
+/*************************************************************
+**************************************************************
+更新用户姓名updateUserName
+**************************************************************
+*************************************************************/
+ userSetting.updateUserName = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/updateUserName',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "userName": userSetting.user.userName
+            }
+        })
+        .success(function(data){
+            if(data.code == 'N01') {
+              // localStorage.setItem('userName',userSetting.user.userName); 
+                alert("修改成功");
+            } 
+            else if(data.code=="E00"){
+                alert(data.message);
+                localStorage.clear();
+                //$location.path('login').replace();
+            }else {
+               // console.log(data.message);
+            }  
+
+        }) 
+        
+    }
+
+/*************************************************************
+**************************************************************
+更新用户邮箱updateUserId
+**************************************************************
+*************************************************************/
+ userSetting.updateUserId = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/updateUserId',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid'),
+                "email": userSetting.user.email
+            }
+        })
+        .success(function(data){
+            if(data.code == 'N01') {
+                alert("修改成功");
+            } 
+            else if(data.code=="E00"){
+                alert(data.message);
+                localStorage.clear();
+                //$location.path('login').replace();
+            }else {
+               // console.log(data.message);
+            }  
+
+        }) 
+        
+    }
+/*************************************************************
+**************************************************************
+**************************************************************
+*************************************************************/
     return userSetting;
 }]);
 
