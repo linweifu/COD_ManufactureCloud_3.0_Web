@@ -3818,29 +3818,22 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 				"checkoutRecordNo": iqcAdd.checkoutRecordNo,
 				"companySid": localStorage.getItem('cSid'),
 			    "batchNo": iqcAdd.batchNo,
-
-			    "externalReceiptNo": iqcAdd.externalReceiptNo,
-			    
+			    "externalReceiptNo": iqcAdd.externalReceiptNo,			    
 			    "entryId": localStorage.getItem('email'),
 			    "entryJobNumber": localStorage.getItem('userJobNumber'),
 			    "entryName": localStorage.getItem('userName'),
 			    "entryTime": parseInt((new Date()).valueOf()/1000),
-
 				"nspectorJobNumber": localStorage.getItem('userJobNumber'),
 			    "nspectorName": localStorage.getItem('userName'),
-			    //"checkoutTime": parseInt((new Date()).valueOf()/1000),
-			    
+			    //"checkoutTime": parseInt((new Date()).valueOf()/1000),			    
 			    "giveCheckoutAmount": iqcAdd.giveCheckoutAmount,
 			    "giveCheckoutTime": ((new Date(iqcAdd.giveCheckoutTime)).valueOf())/1000,
 			    "checkoutTime": ((new Date(iqcAdd.checkoutTime)).valueOf())/1000,
 			    "sampleAmount": iqcAdd.sampleAmount,
-
 			    "vendorSid": iqcAdd.Selected.vendor.vendorSid,
 			    "vendorNo": iqcAdd.Selected.vendor.vendorNo,
 			    "vendorShortName": iqcAdd.Selected.vendor.vendorShortName,
-
 			    "checkoutRecordInputWayCode": localStorage.getItem("input_way_code"),
-
 			    "checkoutRecordInputWay":checkoutRecordInputWay
 
 			    //"operateStatusCode":"TJ",
@@ -3881,7 +3874,7 @@ FIMS.controller('iqcAddCtrl', ['$scope','$location','$http','$q',function($scope
 	$scope.back = function(){
 		var a = confirm("您确定要退出吗？退出将丢失填写数据!")
 		if (a) {
-			$location.path("account_index/iqcIndex");
+			$location.path("account_index/selectmode");
 		}
 	}
 
@@ -4741,8 +4734,8 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 		$scope.getDailyDetails = function(){
 			$http({
 				method: "POST",
-				 url: config.HOST + "/api/2.0/bp/evaluate/report/A102_0DailyReport",
-				//url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
+				url: config.HOST + "/api/2.0/bp/evaluate/report/A102_0DailyReport",
+				// url: "iqc/iqc_dataCount/bak/A102_0DailyReport.json",
 				header: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
 				data: {
 					"sid": localStorage.getItem('sid'),
@@ -4754,12 +4747,13 @@ FIMS.controller('dailyDetailsCtrl',['$scope','$location',"$http",
 			.success(function(data){				
 	            if(data.code == "N01"&&data.contents.length !== 0) { 			
 	            	dailyDetails.dateSelected = data.contents;
-	            	dailyDetails.defectives = data.contents.defectives;
-	            	console.log((dailyDetails.defectives));
+	            	// dailyDetails.defectives = dailyDetails.dateSelected.defectives;	            	
 	           		for(var i=0,len=(dailyDetails.dateSelected).length;i<len;i++){
-	                (dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
-	                	// console.log((planlist.QCPSelected)[i])
+	                	(dailyDetails.dateSelected)[i].checkoutTime = (new Date((dailyDetails.dateSelected)[i].checkoutTime*1000)).format();      	
+	                	dailyDetails.defectives[i] = (dailyDetails.dateSelected)[i].defectives;
 	                }
+	                console.log((dailyDetails.defectives));
+	                
 	            }
 	            else if (data.code == "N01"&&data.contents.length === 0) {
 	            	alert("暂无数据");}

@@ -1,8 +1,8 @@
 <style>
 	.chooseA {display:block;background-color: #f8f8f8;display: inline-block; width: 265px;height: 238px;marigin-right: 25px;vertical-align: top;cursor: pointer;}
-	.col-md-4 p {clear: both;font-size: 1.2em;em;margin-top: 1em;}
-	#container {max-width: 800px;}
-	.img-responsive {width: 80%;}
+	.col-md-6 p {clear: both;font-size: 1.2em;em;margin-top: 1em;}
+	#container {max-width: 700px;}
+	.img-responsive {width: 60%;}
 	.row {margin-top: 2em;}
 	#h2 {margin-top: 0;margin-bottom: 0;}
 
@@ -10,12 +10,12 @@
 <h2 class="text-center" id="h2">{{curCompanyName}}（入库质量检验）</h2>
 <div class="container text-center"  id="container">
 	<div class="row">
-		<a class="col-md-4 col-xs-4" ui-sref="account_index.iqcAdd" >
+		<a class="col-md-6 col-xs-6" ui-sref="account_index.iqcAdd" >
 			<img src="common/img/manually.png" alt="" class="center-block img-responsive">
-			<!-- <img src="common/img/manually.png" alt="" class="center-block img-responsive "> -->
 			<p>手工录入方式</p>
 		</a>
-		<a class="col-md-4 col-xs-4" ui-sref="account_index.qrcode">
+		
+		<a class="col-md-6 col-xs-6" ui-sref="account_index.qrcode">
 			<img src="common/img/qrcode.png" alt="" class="center-block img-responsive ">
 			<p>二维码录入方式</p>
 		</a>		
