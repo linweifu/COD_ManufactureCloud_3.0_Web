@@ -391,12 +391,12 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
             headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
                 "sid": localStorage.getItem('sid'),
-                "email": userSetting.user.email
+                "userId": userSetting.user.email
             }
         })
         .success(function(data){
             if(data.code == 'N01') {
-                alert("修改成功");
+                alert(data.message);
             } 
             else if(data.code=="E00"){
                 alert(data.message);
