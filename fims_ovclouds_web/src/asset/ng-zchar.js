@@ -46,7 +46,11 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
 		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
 		$scope.sentUserActivateEmail = chooseTeamService.sentUserActivateEmail;
 
-
+        var joinCo = {
+			paramObj: {},
+			// applicantJobNumber: "",
+			// notes: "我是"+localStorage.getItem('userName')
+	};
 
 
 
@@ -72,6 +76,26 @@ function init(){
  }
 
  init();
+
+/*********************************************************
+*********************************************************/
+function init(){
+		// console.log($stateParams.companyShortName);
+		var url = location.href;
+		var param = url.substring(url.indexOf("?")+1, url.length).split("&");
+		for (var i=0;i< param.length;i++) {
+			joinCo.paramObj[param[i].substring(0,param[i].indexOf("="))] = param[i].substring(param[i].indexOf("=")+1)
+		}
+		if (joinCo.paramObj!=null){
+			
+				localStorage.setItem("code",JSON.stringify(joinCo.paramObj.code));
+			
+
+		}
+	}
+	
+	init();
+
 
 /*********************************************************
 *********************************************************/
@@ -7960,7 +7984,8 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                 if(storage){
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
-                    storage.setItem('email',login.user.email);   
+                    storage.setItem('email',login.user.email);  
+                    //storage.setItem('password',login.user.password); 
                     storage.setItem('mailActive',localData.mailActive);   
                 }else{
                     // $.cookie('email',localData);
