@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 			// 	dest: 'src/asset/style.less'
 			// },
 			controller: {
-				src: ["src/account/login/loginController.js","src/account/sigup/sigupController.js",
+				src: ["src/account/login/loginController.js","src/account/Weblogin/WebloginCtrl.js","src/account/sigup/sigupController.js",
 				"src/account/account_index/account_indexController.js","src/account/userSetting/userSettingCtrl.js",
 				"src/account/chooseTeam/chooseTeamController.js","src/account/chooseModule/chooseModuleCtrl.js",
 				"src/account/userManage/userManageCtrl.js","src/account/agreeMem/agreeMemCtrl.js",
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 				"src/manage/vendor/vendor/vendorCtrl.js",'src/manage/vendor/vendor/vendorlistCtrl.js',
 				'src/plan/planListCtrl.js','src/plan/planCheckCtrl.js',"src/plan/planReviseCtrl.js",
 				"src/plan/planAddCtrl.js","src/plan/planMetricListCtrl.js","src/plan/planHistoryListCtrl.js","src/plan/planMetricListCheckCtrl.js",
-				"src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/iqcAddCtrl.js","src/iqc/iqc_add/iqcAddCodeCtrl.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
+				"src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/iqcAddCtrl.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
 				"src/iqc/iqc_record/iqcRecordCtrl.js","src/iqc/iqc_add/iqcComplexDLAddCtrl.js","src/iqc/iqc_add/iqcComplexDXAddCtrl.js",
 				"src/iqc/iqc_add/iqcSimpleDLAddCtrl.js","src/iqc/iqc_add/iqcSimpleDXAddCtrl.js","src/tool/qrCode/qrCodeCtrl.js",
 				"src/iqc/iqc_add/iqcAddCheckCtrl.js","src/tool/tool_index/tool_indexCtrl.js",
