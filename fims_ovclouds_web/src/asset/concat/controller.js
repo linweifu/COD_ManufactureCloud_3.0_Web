@@ -9,6 +9,89 @@ FIMS.controller('loginController',['$location','$scope','loginService', '$rootSc
 		}	
 }])
 
+FIMS.controller('WebCtrl',['$scope', '$rootScope','$q','$location',"$http",
+	function($scope, $rootScope, $q,$location,$http) {
+  
+        var joinCo = {
+			paramObj: {},
+			
+	};
+
+
+/*********************************************************
+*********************************************************/
+function init(){
+		
+		var url = location.href;
+		var param = url.substring(url.indexOf("?")+1, url.length).split("&");
+		for (var i=0;i< param.length;i++) {
+			joinCo.paramObj[param[i].substring(0,param[i].indexOf("="))] = param[i].substring(param[i].indexOf("=")+1)
+		}
+		if (joinCo.paramObj!=null){
+			
+				localStorage.setItem("code",JSON.stringify(joinCo.paramObj.code));
+			
+
+		}
+	}
+	
+	init();
+
+
+/*********************************************************
+**********************************************************
+loginSystemByWechat 微信直接登录
+**********************************************************
+*********************************************************/
+$scope.loginSystemByWechat = function(){
+	  $http({
+           //http://ovclouds.com/api/2.0/bp/account/user/loginSystemByWechat
+            url: config.HOST+"/api/2.0/bp/account/user/loginSystemByWechat",
+            method: 'POST',
+            headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+            	
+            	  "code": localStorage.getItem("code"),
+                 // "code": paramObj.code,
+            }
+        }).success(function(data){
+        	if(data.code == "N01") {
+        	 var storage = window.localStorage;
+             var localData = data.contents;
+
+             if(storage){
+                    storage.setItem('sid',localData.sid);    
+                    storage.setItem('webName',localData.userName);    
+                    storage.setItem('websid',localData.userSid);  
+                    //storage.setItem('password',login.user.password); 
+                    storage.setItem('mailActive',localData.mailActive); 
+                     storage.setItem('wxActive',localData.mailActive);  
+                }else{
+                    // $.cookie('email',localData);
+                }
+                
+                alert(data.message);
+               $location.path("account_index/chooseTeam").replace();  
+        	}else {
+
+        		alert(data.message);
+        	}
+
+        })
+
+}
+
+ $scope.loginSystemByWechat();
+/*********************************************************
+**********************************************************
+**********************************************************
+*********************************************************/
+
+
+
+
+}])
+
 FIMS.controller('sigupController',['$scope','sigupService', '$rootScope','$q',
 	function($scope,sigupService, $rootScope, $q) {
 		$scope.user = sigupService.user;
@@ -46,11 +129,11 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
 		$scope.setWorkingCompany = chooseTeamService.setWorkingCompany;
 		$scope.sentUserActivateEmail = chooseTeamService.sentUserActivateEmail;
 
-        var joinCo = {
-			paramObj: {},
-			// applicantJobNumber: "",
-			// notes: "我是"+localStorage.getItem('userName')
-	};
+ //        var joinCo = {
+	// 		paramObj: {},
+	// 		// applicantJobNumber: "",
+	// 		// notes: "我是"+localStorage.getItem('userName')
+	// };
 
 
 
@@ -79,22 +162,7 @@ function init(){
 
 /*********************************************************
 *********************************************************/
-function init(){
-		// console.log($stateParams.companyShortName);
-		var url = location.href;
-		var param = url.substring(url.indexOf("?")+1, url.length).split("&");
-		for (var i=0;i< param.length;i++) {
-			joinCo.paramObj[param[i].substring(0,param[i].indexOf("="))] = param[i].substring(param[i].indexOf("=")+1)
-		}
-		if (joinCo.paramObj!=null){
-			
-				localStorage.setItem("code",JSON.stringify(joinCo.paramObj.code));
-			
 
-		}
-	}
-	
-	init();
 
 
 /*********************************************************
@@ -152,7 +220,7 @@ FIMS.controller('userManageCtrl', ['$scope','$location','userManageService',
 	}
 	userManageService.queryMember();
 	$scope.companyMem =  userManageService.companyMem;
-	// console.log(userManageService.companyMem);
+	
 }])
 FIMS.controller('agreeMemCtrl', ['$scope','$location','$http',
 	function($scope,$location,$http){
@@ -308,10 +376,7 @@ FIMS.controller('joinCoCtrl', ['$scope','$rootScope','$http', '$state','$locatio
 			notes: "我是"+localStorage.getItem('userName')
 	};
 
-	// function(){
-	// 	var url = window.location.search; 
-	// 	console.log(url);
-	// }();
+	
 	function init(){
 		// console.log($stateParams.companyShortName);
 		var url = location.href;

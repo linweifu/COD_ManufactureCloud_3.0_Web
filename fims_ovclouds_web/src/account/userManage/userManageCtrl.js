@@ -8,5 +8,5 @@ FIMS.controller('userManageCtrl', ['$scope','$location','userManageService',
 	}
 	userManageService.queryMember();
 	$scope.companyMem =  userManageService.companyMem;
-	// console.log(userManageService.companyMem);
+	
 }])

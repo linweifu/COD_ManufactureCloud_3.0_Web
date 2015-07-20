@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 			// 	dest: 'src/asset/style.less'
 			// },
 			controller: {
-				src: ["src/account/login/loginController.js","src/account/sigup/sigupController.js",
+				src: ["src/account/login/loginController.js","src/account/login/WebCtrl.js","src/account/Weblogin/WebloginCtrl.js","src/account/sigup/sigupController.js",
 				"src/account/account_index/account_indexController.js","src/account/userSetting/userSettingCtrl.js",
 				"src/account/chooseTeam/chooseTeamController.js","src/account/chooseModule/chooseModuleCtrl.js",
 				"src/account/userManage/userManageCtrl.js","src/account/agreeMem/agreeMemCtrl.js",

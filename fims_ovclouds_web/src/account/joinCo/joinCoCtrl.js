@@ -5,10 +5,7 @@ FIMS.controller('joinCoCtrl', ['$scope','$rootScope','$http', '$state','$locatio
 			notes: "我是"+localStorage.getItem('userName')
 	};
 
-	// function(){
-	// 	var url = window.location.search; 
-	// 	console.log(url);
-	// }();
+	
 	function init(){
 		// console.log($stateParams.companyShortName);
 		var url = location.href;

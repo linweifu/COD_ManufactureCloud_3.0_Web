@@ -15,6 +15,20 @@ FIMS.config([
 		url:'/login',
 		templateUrl:'account/login/login.html'
 	})
+    
+
+    .state('Web',{
+		url:'/Web',
+		controller:'WebCtrl',
+		templateUrl:'account/login/Web.html'
+	}) 
+
+ //    .state('Weblogin',{
+	// 	url:'/Weblogin',
+	// 	templateUrl:'account/Weblogin/Weblogin.html'
+	// }) 
+
+
 	.state('sigup',{
 		url:'/sigup',
 		// controller:'recordController',
