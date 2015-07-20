@@ -240,11 +240,11 @@ FIMS.config([
 		templateUrl:'iqc/iqc_add/iqcAdd.html'
 	})
 
- //    .state('account_index.iqcAddCode',{
-	// 	url:'/iqcAddCode',
-	// 	controller:'iqcAddCodeCtrl',
-	// 	templateUrl:'iqc/iqc_add/iqcAddCode.html'
-	// })
+ 	.state('account_index.iqcqrcodeAdd',{
+		url:'/iqcqrcodeAdd',
+		controller:'iqcqrcodeAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcqrcodeAdd.html'
+	})
 
 
 	.state('account_index.iqcAddCheck',{

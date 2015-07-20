@@ -80,7 +80,7 @@
                 "defectiveSid":0,
                 "iqcQualityDailyListSid":0,
                 "defectiveNo":1,
-                "defectiveName":"sdd",
+                "defectiveName":"大小",
                 "defectiveAmount":0.0,
                 "updateTimestamp":0
             },
@@ -88,7 +88,7 @@
                 "defectiveSid":0,
                 "iqcQualityDailyListSid":0,
                 "defectiveNo":4,
-                "defectiveName":"ddd",
+                "defectiveName":"破损",
                 "defectiveAmount":1.0,
                 "updateTimestamp":0
             }
