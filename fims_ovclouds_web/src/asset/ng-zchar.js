@@ -62,8 +62,8 @@ $scope.loginSystemByWechat = function(){
 
              if(storage){
                     storage.setItem('sid',localData.sid);    
-                    storage.setItem('webName',localData.userName);    
-                    storage.setItem('websid',localData.userSid);  
+                    storage.setItem('userName',localData.userName);    
+                    storage.setItem('userSid',localData.userSid);  
                     //storage.setItem('password',login.user.password); 
                     storage.setItem('mailActive',localData.mailActive); 
                      storage.setItem('wxActive',localData.mailActive);  
