@@ -18,7 +18,7 @@ function init(){
 		}
 		if (joinCo.paramObj!=null){
 			
-				localStorage.setItem("code",JSON.stringify(joinCo.paramObj.code));
+				localStorage.setItem('code',joinCo.paramObj.code);
 			
 
 		}
@@ -41,8 +41,8 @@ $scope.loginSystemByWechat = function(){
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
             	
-            	  "code": localStorage.getItem('code')
-                 // "code": joinCo.paramObj.code
+            	  "code": localStorage.getItem('code'),
+                 // "code": joinCo.paramObj.code,
             }
         }).success(function(data){
         	if(data.code == "N01") {
