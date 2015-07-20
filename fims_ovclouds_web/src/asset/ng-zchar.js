@@ -37,6 +37,7 @@ function init(){
 	
 	init();
 
+  //console.log(joinCo.paramObj.code);
 
 /*********************************************************
 **********************************************************
@@ -51,8 +52,8 @@ $scope.loginSystemByWechat = function(){
             headers: {"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
             data: {
             	
-            	  "code": localStorage.getItem("code"),
-                 // "code": paramObj.code,
+            	  "code": localStorage.getItem('code')
+                 // "code": joinCo.paramObj.code
             }
         }).success(function(data){
         	if(data.code == "N01") {
