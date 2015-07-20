@@ -71,11 +71,11 @@ $scope.loginSystemByWechat = function(){
                     // $.cookie('email',localData);
                 }
                 
-                alert(data.message);
+                // alert(data.message);
                $location.path("account_index/chooseTeam").replace();  
         	}else {
 
-        		alert(data.message);
+        		// alert(data.message);
         	}
 
         })
