@@ -10,8 +10,9 @@ module.exports = function(grunt) {
 			// 	dest: 'src/asset/style.less'
 			// },
 			controller: {
-				src: ["src/account/login/loginController.js","src/account/login/WebCtrl.js","src/account/Weblogin/WebloginCtrl.js","src/account/sigup/sigupController.js",
-				"src/account/account_index/account_indexController.js","src/account/userSetting/userSettingCtrl.js",
+
+				src: ["src/account/login/loginController.js","src/account/login/WebCtrl.js","src/account/sigup/sigupController.js",
+                "src/account/account_index/account_indexController.js","src/account/userSetting/userSettingCtrl.js",
 				"src/account/chooseTeam/chooseTeamController.js","src/account/chooseModule/chooseModuleCtrl.js",
 				"src/account/userManage/userManageCtrl.js","src/account/agreeMem/agreeMemCtrl.js",
 				"src/account/applyApproval/applyApprovalCtrl.js","src/account/company_index/.company_indexCtrl.js",
@@ -21,13 +22,13 @@ module.exports = function(grunt) {
 				"src/manage/vendor/vendor/vendorCtrl.js",'src/manage/vendor/vendor/vendorlistCtrl.js',
 				'src/plan/planListCtrl.js','src/plan/planCheckCtrl.js',"src/plan/planReviseCtrl.js",
 				"src/plan/planAddCtrl.js","src/plan/planMetricListCtrl.js","src/plan/planHistoryListCtrl.js","src/plan/planMetricListCheckCtrl.js",
-				"src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/iqcAddCtrl.js","src/iqc/iqc_add/iqcAddCodeCtrl.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
+				"src/iqc/iqc_index/iqcIndexCtrl.js","src/iqc/iqc_add/iqcAddCtrl.js","src/iqc/iqc_dataCount/iqcDataCountCtrl.js",
 				"src/iqc/iqc_record/iqcRecordCtrl.js","src/iqc/iqc_add/iqcComplexDLAddCtrl.js","src/iqc/iqc_add/iqcComplexDXAddCtrl.js",
 				"src/iqc/iqc_add/iqcSimpleDLAddCtrl.js","src/iqc/iqc_add/iqcSimpleDXAddCtrl.js","src/tool/qrCode/qrCodeCtrl.js",
 				"src/iqc/iqc_add/iqcAddCheckCtrl.js","src/tool/tool_index/tool_indexCtrl.js",
 				"src/iqc/iqc_dataCount/dailyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyDetailsCtrl.js","src/iqc/iqc_dataCount/monthlyChart_vendorCtrl.js","src/iqc/iqc_dataCount/monthlyChart_materialCtrl.js","src/iqc/iqc_dataCount/monthlyStatisticsCtrl.js","src/iqc/iqc_dataCount/dailyStatisticsCtrl.js","src/iqc/iqc_dataCount/monthlySumStatisticsCtrl.js",
 				"src/plan/planHistoryListCheckCtrl.js","src/plan/planHistoryMetricListCtrl.js","src/plan/planHistoryListCopyCtrl.js",
-				"src/iqc/iqc_record/iqcRecordCheckCtrl.js","src/iqc/iqc_record/iqcRecordReviseCtrl.js","src/iqc/iqc_record/iqcComplexDLCheckCtrl.js","src/iqc/iqc_record/iqcComplexDXCheckCtrl.js",
+				"src/iqc/iqc_record/iqcRecordCheckCtrl.js","src/iqc/iqc_record/iqcRecordReviseCtrl.js","src/iqc/iqc_record/iqcComplexDLCheckCtrl.js","src/iqc/iqc_record/iqcComplexDXCheckCtrl.js","src/iqc/iqc_add/iqcqrcodeAddCtrl.js",
 				"src/iqc/iqc_record/iqcSimpleDLCheckCtrl.js","src/iqc/iqc_record/iqcSimpleDXCheckCtrl.js","src/iqc/iqc_record/iqcComplexDLReviseCtrl.js","src/iqc/iqc_record/iqcComplexDXReviseCtrl.js"
 				],
 				dest: "src/asset/concat/controller.js"

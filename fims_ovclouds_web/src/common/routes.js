@@ -17,6 +17,7 @@ FIMS.config([
 	})
     
 
+
     .state('Web',{
 		url:'/Web',
 		controller:'WebCtrl',
@@ -27,6 +28,14 @@ FIMS.config([
 	// 	url:'/Weblogin',
 	// 	templateUrl:'account/Weblogin/Weblogin.html'
 	// }) 
+
+ 
+    .state('Weblogin',{
+		url:'/Weblogin',
+	    controller:'WebloginCtrl',
+		templateUrl:'account/Weblogin/Weblogin.html'
+	}) 
+
 
 
 	.state('sigup',{
@@ -242,10 +251,10 @@ FIMS.config([
 		templateUrl:'iqc/iqc_add/iqcAdd.html'
 	})
 
-    .state('account_index.iqcAddCode',{
-		url:'/iqcAddCode',
-		controller:'iqcAddCodeCtrl',
-		templateUrl:'iqc/iqc_add/iqcAddCode.html'
+ 	.state('account_index.iqcqrcodeAdd',{
+		url:'/iqcqrcodeAdd',
+		controller:'iqcqrcodeAddCtrl',
+		templateUrl:'iqc/iqc_add/iqcqrcodeAdd.html'
 	})
 
 
