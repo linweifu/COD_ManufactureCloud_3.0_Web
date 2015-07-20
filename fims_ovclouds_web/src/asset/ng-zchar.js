@@ -4481,6 +4481,7 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
         "materialNameSelected": {},
         "materialVersionSelected": {},
         "vendorSelected": {},
+         "externalReceiptNo":"",
         "curCom": localStorage.getItem('curCompanyName') + "(IPC二维码生成器)"
 	};
 
@@ -4578,7 +4579,8 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
                 "materialName": qrCode.materialNameSelected.materialShortName,
                 "materialVersion": qrCode.materialVersionSelected.materialVersion,
                 "vendorNo": qrCode.vendorSelected.vendorNo,
-                "vendorShortName": qrCode.vendorSelected.vendorShortName
+                "vendorShortName": qrCode.vendorSelected.vendorShortName,
+                "externalReceiptNo":qrCode.externalReceiptNo
             }
         })
         .success(function(data){
