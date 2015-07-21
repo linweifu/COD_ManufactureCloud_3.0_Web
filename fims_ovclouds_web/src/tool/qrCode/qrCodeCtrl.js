@@ -105,6 +105,7 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
                 "materialName": qrCode.materialNameSelected.materialShortName,
                 "materialVersion": qrCode.materialVersionSelected.materialVersion,
                 "vendorNo": qrCode.vendorSelected.vendorNo,
+                "vendorSid": qrCode.vendorSelected.vendorSid,
                 "vendorShortName": qrCode.vendorSelected.vendorShortName,
                 "externalReceiptNo":qrCode.externalReceiptNo
             }
