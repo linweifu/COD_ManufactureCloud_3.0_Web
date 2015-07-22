@@ -4482,7 +4482,7 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
         "materialVersionSelected": {},
         "vendorSelected": {},
          "externalReceiptNo":"",
-        "curCom": localStorage.getItem('curCompanyName') + "(IPC二维码生成器)"
+        "curCom": localStorage.getItem('curCompanyName')
 	};
 
 	var resource = "resource/";
@@ -4591,7 +4591,9 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
                 resource += data.filename;
                 $("#qrcode").attr("src",resource);
                 resource = "resource/";
-            }
+               if(document.getElementById("print").style.display=='none'){
+                    document.getElementById("print").style.display='';}
+            }            
         });
 	}
 
@@ -4611,6 +4613,20 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
 			history.go(-1);
 		}
 	}
+
+    $scope.print = function(){
+        { 
+          if (confirm('确定打印吗？')) {
+          
+              　　    /*var newstr = document.all.item(id).innerHTML;*/
+                        var newstr = document.getElementById('qrcode').innerHTML;
+                        printWindow = window.open();
+              　      　printWindow.document.write(newstr);
+              　　      printWindow.print();
+              　　      return false;
+             　   　 }
+        } 
+    }
 
 	$scope.qrCode = qrCode;
 }]);
@@ -7325,10 +7341,11 @@ FIMS.controller('iqcqrcodeAddCtrl', ['$scope','$location','$http','$q',function(
 	}
 		
 	function codeMessage(){
-		var a = iqcqrcodeAdd.message.replace(/\“/g,'"');
+		var a = iqcqrcodeAdd.message.replace(/\，/g,',');
+		a = a.replace(/\“/g,'"');
 		a = a.replace(/\”/g,'"');
 		a = a.replace(/\：/g,':');
-		a = a.replace(/\，/g,',');
+		console.log(a);
 		var obj = JSON.parse(a);
 		iqcqrcodeAdd.qcode = obj;
 		console.log(iqcqrcodeAdd.message);

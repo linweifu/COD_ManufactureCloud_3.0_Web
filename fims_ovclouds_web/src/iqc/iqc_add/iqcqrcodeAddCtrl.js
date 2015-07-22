@@ -46,10 +46,11 @@ FIMS.controller('iqcqrcodeAddCtrl', ['$scope','$location','$http','$q',function(
 	}
 		
 	function codeMessage(){
-		var a = iqcqrcodeAdd.message.replace(/\“/g,'"');
+		var a = iqcqrcodeAdd.message.replace(/\，/g,',');
+		a = a.replace(/\“/g,'"');
 		a = a.replace(/\”/g,'"');
 		a = a.replace(/\：/g,':');
-		a = a.replace(/\，/g,',');
+		console.log(a);
 		var obj = JSON.parse(a);
 		iqcqrcodeAdd.qcode = obj;
 		console.log(iqcqrcodeAdd.message);

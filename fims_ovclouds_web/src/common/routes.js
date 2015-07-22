@@ -298,6 +298,22 @@ FIMS.config([
 		controller:'qrCodeCtrl',
 		templateUrl:'tool/qrCode/qrCode.html'
 	})
+	.state('account_index.IPQCqrCode',{
+		url:'/IPQCqrCode',
+		controller:'qrCodeCtrl',
+		templateUrl:'tool/qrCode/IPQCqrCode.html'
+	})
+	.state('account_index.FQCqrCode',{
+		url:'/FQCqrCode',
+		controller:'qrCodeCtrl',
+		templateUrl:'tool/qrCode/FQCqrCode.html'
+	})
+	.state('account_index.OQCqrCode',{
+		url:'/OQCqrCode',
+		controller:'qrCodeCtrl',
+		templateUrl:'tool/qrCode/OQCqrCode.html'
+	})
+
 	.state('account_index.iqcDataCount',{
 		url:'/iqcDataCount',
 		templateUrl:'iqc/iqc_dataCount/chooseCount.html'
