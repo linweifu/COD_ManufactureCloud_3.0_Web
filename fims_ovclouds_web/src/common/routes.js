@@ -301,7 +301,7 @@ FIMS.config([
 	.state('account_index.IPQCqrCode',{
 		url:'/IPQCqrCode',
 		controller:'qrCodeCtrl',
-		templateUrl:'tool/qrCode/IPQCqrCode.html'
+		templateUrl:'tool/qrCode/IPQCqrcode.html'
 	})
 	.state('account_index.FQCqrCode',{
 		url:'/FQCqrCode',

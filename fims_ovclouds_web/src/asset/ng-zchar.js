@@ -4619,7 +4619,7 @@ FIMS.controller('qrCodeCtrl',['$scope','$http', '$location', function($scope,$ht
           if (confirm('确定打印吗？')) {
           
               　　    /*var newstr = document.all.item(id).innerHTML;*/
-                        var newstr = document.getElementById('qrcode').innerHTML;
+                        var newstr = document.getElementById('qrcodepic').innerHTML;
                         printWindow = window.open();
               　      　printWindow.document.write(newstr);
               　　      printWindow.print();
