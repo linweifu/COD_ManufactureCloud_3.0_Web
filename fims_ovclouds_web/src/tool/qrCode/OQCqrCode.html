@@ -43,8 +43,11 @@
 		<button class="btn btn-default" style="padding: .3em .6em;"  ng-click="back();">返回管理面板</button>
 	</form>
 
-	<div class="col-md-5 text-center" style="margin-top: 1.5em;">
-		<img id="qrcode" src="" alt="" class="center-block img-responsive">		
+	<div class="col-md-5 text-center">
+		<div id="qrcodepic" style="margin-top: 1.5em;">
+			<img id="qrcode" src="" alt="" class="center-block img-responsive">		
+		</div>
+		<button id="print" style="display: none;margin-top:.5em;padding: .3em .6em;" class="btn btn-default" ng-click="print()">打印二维码</button>
 	</div>
 
 </div>
