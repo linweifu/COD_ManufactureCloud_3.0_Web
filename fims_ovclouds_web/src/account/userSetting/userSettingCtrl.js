@@ -5,8 +5,7 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.subData = userSettingService.subData;
 		$scope.updateUserId = userSettingService.updateUserId;
 		$scope.updateUserName = userSettingService.updateUserName;
-		//$scope.getWechatQR = userSettingService.getWechatQR;
 		$scope.http = localStorage.getItem('http');
 		userSettingService.queryUserExtendInfo();
-		userSettingService.getWechatQR();
+		
 }])

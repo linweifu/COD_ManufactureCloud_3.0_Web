@@ -115,10 +115,9 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.subData = userSettingService.subData;
 		$scope.updateUserId = userSettingService.updateUserId;
 		$scope.updateUserName = userSettingService.updateUserName;
-		//$scope.getWechatQR = userSettingService.getWechatQR;
 		$scope.http = localStorage.getItem('http');
 		userSettingService.queryUserExtendInfo();
-		userSettingService.getWechatQR();
+		
 }])
 
 FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScope','$q',
@@ -126,6 +125,7 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
      	$scope.subData = chooseTeamService.subData;
 		$scope.createCom = chooseTeamService.createCom;
 		chooseTeamService.queryJoinedCompanies();
+		chooseTeamService.getWechatQR();
 		//email:localStorage.getItem("email");
 		$scope.email = localStorage.getItem("email");
 		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
@@ -8147,6 +8147,7 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
     userSetting.user = {
         "email": localStorage.getItem('email'),
         "userName": localStorage.getItem('userName'),
+        // "http": localStorage.getItem('http'),
         "contactPhone": "",
          "password":"",
         "contactAddress": ""
@@ -8272,30 +8273,7 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         }) 
         
     }
-/*************************************************************
-**************************************************************
-获取微信带参二维码getWechatQR
-**************************************************************
-*************************************************************/
-userSetting.getWechatQR = function(){
-        $http({
-            method: 'post',
-            url: config.HOST + '/api/2.0/bp/account/user/getWechatQR',
-            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
-            data: {
-                "sid": localStorage.getItem('sid')
-                //"userId": userSetting.user.email
-            }
-        })
-        .success(function(data){
 
-            
-             localStorage.setItem('http',data);
-           
-
-        }) 
-        
-    }
 /*************************************************************
 **************************************************************
 **************************************************************
@@ -8475,6 +8453,35 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 
             });
        }
+
+       /*************************************************************
+**************************************************************
+获取微信带参二维码getWechatQR
+**************************************************************
+*************************************************************/
+chooseTeam.getWechatQR = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/getWechatQR',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid')
+                //"userId": userSetting.user.email
+            }
+        })
+        .success(function(data){
+
+            
+             localStorage.setItem('http',data);
+           
+
+        }) 
+        
+    }
+/*************************************************************
+**************************************************************
+**************************************************************
+*************************************************************/
 		return chooseTeam;
 	}
 

@@ -115,10 +115,9 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.subData = userSettingService.subData;
 		$scope.updateUserId = userSettingService.updateUserId;
 		$scope.updateUserName = userSettingService.updateUserName;
-		//$scope.getWechatQR = userSettingService.getWechatQR;
 		$scope.http = localStorage.getItem('http');
 		userSettingService.queryUserExtendInfo();
-		userSettingService.getWechatQR();
+		
 }])
 
 FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScope','$q',
@@ -126,6 +125,7 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
      	$scope.subData = chooseTeamService.subData;
 		$scope.createCom = chooseTeamService.createCom;
 		chooseTeamService.queryJoinedCompanies();
+		chooseTeamService.getWechatQR();
 		//email:localStorage.getItem("email");
 		$scope.email = localStorage.getItem("email");
 		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
