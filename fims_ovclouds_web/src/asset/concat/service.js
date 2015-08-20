@@ -412,8 +412,33 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
     }
 /*************************************************************
 **************************************************************
+获取微信带参二维码getWechatQR
 **************************************************************
 *************************************************************/
+userSetting.getWechatQR = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/getWechatQR',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid')
+                //"userId": userSetting.user.email
+            }
+        })
+        .success(function(data){
+
+            
+             localStorage.setItem('http',data);
+           
+
+        }) 
+        
+    }
+/*************************************************************
+**************************************************************
+**************************************************************
+*************************************************************/
+
     return userSetting;
 }]);
 
