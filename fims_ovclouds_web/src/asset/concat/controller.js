@@ -117,6 +117,11 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.updateUserName = userSettingService.updateUserName;
 		$scope.http = localStorage.getItem('http');
 		userSettingService.queryUserExtendInfo();
+
+	  //var wxActive=localStorage.getItem('wxActive');
+	    $scope.wxActive = localStorage.getItem("wxActive");
+        //console.log(wxActive);
+
 		
 }])
 

@@ -77,7 +77,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
                     storage.setItem('email',login.user.email);  
-                    //storage.setItem('password',login.user.password); 
+                    storage.setItem('wxActive',localData.wxActive); 
                     storage.setItem('mailActive',localData.mailActive);   
                 }else{
                     // $.cookie('email',localData);

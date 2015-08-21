@@ -7,10 +7,12 @@
 		padding: 0 25px 20px 25px;
 	}	
 	h3 {color: #000;}
+	.img {background-color:green;color: #fff;border-radius: 3px;font-size: 0.8em;padding: 2px 4px;margin-right: 3px}
 	.status {background-color: #999;color: #fff;border-radius: 3px;font-size: 0.8em;padding: 2px 4px;margin-right: 3px}
+	
 	.desc {font-size: 12px;color: #999;margin: 5px 0 0 2px;margin-left:18px;}
 	#form-horizontal {margin-top: 1.5em;color: #333}
-	.link {text-align: left !important; color: rgb(79,159,207)} 
+	.link {text-align: left !important; color: rgb(79,159,207)}
 	#label {padding: 0.7em;display: inline-block;}
 </style>
 
@@ -41,8 +43,12 @@
 		</div>
 		<div class="form-group">
 			<label for="password" class=" control-label"style="margin-left:18px">绑定微信</label>
-			<span class="status">未绑定</span>
-			<a href="{{http}}" ng-click=" getWechatQR()">绑定</a>
+			<span  class="status"  >未绑定</span>
+			<span  class="img" id="spanid" style="display:none">已绑定微信:{{}}</span>
+			<span style="display:none" onclick= "">解绑</span>
+			
+			<a data-toggle="modal" data-target="#bangding" data-whatever="@mdo" >绑定</a>
+			
 			<p class="desc">绑定后，可直接使用微信登录</p>
 		</div>
 		<div class="form-group">
@@ -140,6 +146,18 @@
 			      
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 		      	</div>
+	   	 	</div>
+  		</div>
+</div>
+
+<div class="modal fade" id="bangding" tabindex="-1" role="dialog" aria-labelledby="NameLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width:460px; ">
+			<div class="modal-content text-left" >
+    			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    			<div style="height:400px;">
+    	           <img  alt="微信扫码，完成账户绑定" title="微信扫码，完成账户绑定" src="{{http}}" id="tar" width="285" height="300"  style="padding:5px;border:2px solid gray;margin-top:56px;margin-left:80px;" >
+    		    </div>
+		        <p style="margin-left:120px;margin-top:-10px;margin-bottom:46px;font-size:20px;">微信扫码，完成账户绑定</p>
 	   	 	</div>
   		</div>
 </div>

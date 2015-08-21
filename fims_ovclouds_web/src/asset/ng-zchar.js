@@ -117,6 +117,11 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.updateUserName = userSettingService.updateUserName;
 		$scope.http = localStorage.getItem('http');
 		userSettingService.queryUserExtendInfo();
+
+	  //var wxActive=localStorage.getItem('wxActive');
+	    $scope.wxActive = localStorage.getItem("wxActive");
+        //console.log(wxActive);
+
 		
 }])
 
@@ -7939,7 +7944,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
                     storage.setItem('email',login.user.email);  
-                    //storage.setItem('password',login.user.password); 
+                    storage.setItem('wxActive',localData.wxActive); 
                     storage.setItem('mailActive',localData.mailActive);   
                 }else{
                     // $.cookie('email',localData);
@@ -8278,7 +8283,7 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
 **************************************************************
 **************************************************************
 *************************************************************/
-
+ 
     return userSetting;
 }]);
 
