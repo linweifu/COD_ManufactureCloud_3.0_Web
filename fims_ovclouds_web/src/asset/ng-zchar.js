@@ -115,13 +115,46 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.subData = userSettingService.subData;
 		$scope.updateUserId = userSettingService.updateUserId;
 		$scope.updateUserName = userSettingService.updateUserName;
+		$scope.unbindWechat = userSettingService.unbindWechat;
 		$scope.http = localStorage.getItem('http');
 		userSettingService.queryUserExtendInfo();
 
-	  //var wxActive=localStorage.getItem('wxActive');
-	    $scope.wxActive = localStorage.getItem("wxActive");
+	  var wxActive=localStorage.getItem('wxActive');
+	    //$scope.wxActive = localStorage.getItem("wxActive");
         //console.log(wxActive);
 
+//var a = localStorage.getItem("mailActive");
+ 
+function init(){
+    if(wxActive==1)
+        {
+           var tar = document.getElementById('tar');
+           var bd = document.getElementById('bd');
+           var spanid = document.getElementById('spanid');
+           var wx = document.getElementById('wx');
+        tar.style.display = tar.style.display=='block' ? '' : 'none';
+        bd.style.display = bd.style.display=='block' ? 'block' : 'none';
+        spanid.style.display = spanid.style.display=='block' ? '' : '';
+        wx.style.display = wx.style.display=='block' ? 'none' : '';
+
+        }
+        else if(wxActive==0)
+        {
+           var tar = document.getElementById('tar');
+           var bd = document.getElementById('bd');
+           var spanid = document.getElementById('spanid');
+           var wx = document.getElementById('wx');
+        tar.style.display = tar.style.display=='block' ? 'none' : '';
+        bd.style.display = bd.style.display=='block' ? 'none' : '';
+        spanid.style.display = spanid.style.display=='block' ? '' : 'none';
+        wx.style.display = wx.style.display=='block' ? '' : 'none';
+
+        }
+
+ 
+ }
+
+ init();
 		
 }])
 
@@ -8281,9 +8314,38 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
 
 /*************************************************************
 **************************************************************
+解绑微信 unbindWechat
 **************************************************************
 *************************************************************/
- 
+ userSetting.unbindWechat = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/unbindWechat',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid')
+                
+            }
+        })
+        .success(function(data){
+            if(data.code == 'N01') {
+                alert(data.message);
+            } 
+            else if(data.code=="E00"){
+                alert(data.message);
+                localStorage.clear();
+                //$location.path('login').replace();
+            }else {
+               // console.log(data.message);
+            }  
+
+        }) 
+        
+    }
+/*************************************************************
+**************************************************************
+**************************************************************
+*************************************************************/ 
     return userSetting;
 }]);
 

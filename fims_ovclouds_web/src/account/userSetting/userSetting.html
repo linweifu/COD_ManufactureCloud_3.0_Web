@@ -43,11 +43,13 @@
 		</div>
 		<div class="form-group">
 			<label for="password" class=" control-label"style="margin-left:18px">绑定微信</label>
-			<span  class="status"  >未绑定</span>
-			<span  class="img" id="spanid" style="display:none">已绑定微信:{{}}</span>
-			<span style="display:none" onclick= "">解绑</span>
+			<span  class="status" id="tar" >未绑定</span>
+			<a id="bd" data-toggle="modal" data-target="#bangding" data-whatever="@mdo" >绑定</a>
+
+			<span  class="img" id="spanid">已绑定微信</span>
+			<a   id="wx" ng-click="unbindWechat()">解绑</a>
 			
-			<a data-toggle="modal" data-target="#bangding" data-whatever="@mdo" >绑定</a>
+			
 			
 			<p class="desc">绑定后，可直接使用微信登录</p>
 		</div>
