@@ -7,6 +7,7 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.updateUserName = userSettingService.updateUserName;
 		$scope.unbindWechat = userSettingService.unbindWechat;
 		$scope.http = localStorage.getItem('http');
+		//$scope.userName = localStorage.getItem('userName');
 		userSettingService.queryUserExtendInfo();
 
 	  var wxActive=localStorage.getItem('wxActive');
