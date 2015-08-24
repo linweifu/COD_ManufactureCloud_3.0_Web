@@ -96,7 +96,12 @@ $scope.loginSystemByWechat = function(){
 **********************************************************
 **********************************************************
 *********************************************************/
-
+function clear() {
+Source=document.body.firstChild.data;
+document.open();
+document.close();
+document.body.innerHTML=Source;
+}
 
 
 
