@@ -15,7 +15,11 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
         //console.log(wxActive);
 
 //var a = localStorage.getItem("mailActive");
- 
+/*************************************************************
+**************************************************************
+//绑定与解绑切换
+**************************************************************
+*************************************************************/ 
 function init(){
     if(wxActive==1)
         {
@@ -23,10 +27,10 @@ function init(){
            var bd = document.getElementById('bd');
            var spanid = document.getElementById('spanid');
            var wx = document.getElementById('wx');
-        tar.style.display = tar.style.display=='block' ? '' : 'none';
-        bd.style.display = bd.style.display=='block' ? 'block' : 'none';
-        spanid.style.display = spanid.style.display=='block' ? '' : '';
-        wx.style.display = wx.style.display=='block' ? 'none' : '';
+           tar.style.display = tar.style.display=='block' ? '' : 'none';
+           bd.style.display = bd.style.display=='block' ? 'block' : 'none';
+           spanid.style.display = spanid.style.display=='block' ? '' : '';
+           wx.style.display = wx.style.display=='block' ? 'none' : '';
 
         }
         else if(wxActive==0)
@@ -35,11 +39,12 @@ function init(){
            var bd = document.getElementById('bd');
            var spanid = document.getElementById('spanid');
            var wx = document.getElementById('wx');
-        tar.style.display = tar.style.display=='block' ? 'none' : '';
-        bd.style.display = bd.style.display=='block' ? 'none' : '';
-        spanid.style.display = spanid.style.display=='block' ? '' : 'none';
-        wx.style.display = wx.style.display=='block' ? '' : 'none';
+           tar.style.display = tar.style.display=='block' ? 'none' : '';
+           bd.style.display = bd.style.display=='block' ? 'none' : '';
+           spanid.style.display = spanid.style.display=='block' ? '' : 'none';
+           wx.style.display = wx.style.display=='block' ? '' : 'none';
 
+          
         }
 
  

@@ -55,7 +55,7 @@ $scope.loginSystemByWechat = function(){
                     storage.setItem('userSid',localData.userSid);  
                     //storage.setItem('password',login.user.password); 
                     storage.setItem('mailActive',localData.mailActive); 
-                     storage.setItem('wxActive',localData.mailActive);  
+                    storage.setItem('wxActive',localData.wxActive);  
                 }
                 else{
                    // $.cookie('email',localData); 
@@ -81,16 +81,7 @@ $scope.loginSystemByWechat = function(){
 }
 
  $scope.loginSystemByWechat();
-/*********************************************************
-**********************************************************
-**********************************************************
-*********************************************************/
-function clear() {
-Source=document.body.firstChild.data;
-document.open();
-document.close();
-document.body.innerHTML=Source;
-}
+
 
 
 
