@@ -56,16 +56,25 @@ $scope.loginSystemByWechat = function(){
                     //storage.setItem('password',login.user.password); 
                     storage.setItem('mailActive',localData.mailActive); 
                      storage.setItem('wxActive',localData.mailActive);  
-                }else{
-                    // $.cookie('email',localData);
+                }
+                else{
+                   // $.cookie('email',localData); 
+                    //alert(data.message);
                 }
                 
-                // alert(data.message);
+               
                $location.path("account_index/chooseTeam").replace();  
-        	}else {
+        	} 
+          else if(data.code== "E01")
+          {
+                alert(data.message+",请重新登陆");
+                localStorage.clear();
+                $location.path('login').replace();
+            }
+         //  else {
 
-        		// alert(data.message);
-        	}
+        	// 	 alert(data.message);
+        	// }
 
         })
 
