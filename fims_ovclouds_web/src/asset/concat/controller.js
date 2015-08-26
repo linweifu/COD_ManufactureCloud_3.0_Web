@@ -106,7 +106,7 @@ $scope.loginSystemByWechat = function(){
                     storage.setItem('userSid',localData.userSid);  
                     //storage.setItem('password',login.user.password); 
                     storage.setItem('mailActive',localData.mailActive); 
-                    storage.setItem('wxActive',localData.wxActive);  
+                    storage.setItem('wxActive',localData.whetherBindWx);  
                 }
                 else{
                    // $.cookie('email',localData); 
