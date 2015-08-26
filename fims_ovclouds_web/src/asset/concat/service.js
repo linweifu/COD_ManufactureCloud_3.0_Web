@@ -429,7 +429,23 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
         })
         .success(function(data){
             if(data.code == 'N01') {
+                localStorage.setItem('wxActive',data.contents.whetherBindWx);
+                var wxActive=localStorage.getItem('wxActive');
+               // console.log(wxActive);
                 alert(data.message);
+                if(wxActive==0)
+            {
+                 var tar = document.getElementById('tar');
+                 var bd = document.getElementById('bd');
+                 var spanid = document.getElementById('spanid');
+                 var wx = document.getElementById('wx');
+                 tar.style.display = tar.style.display=='block' ? 'none' : '';
+                 bd.style.display = bd.style.display=='block' ? 'none' : '';
+                 spanid.style.display = spanid.style.display=='block' ? '' : 'none';
+                 wx.style.display = wx.style.display=='block' ? '' : 'none';
+
+
+            }
             } 
             else if(data.code=="E00"){
                 alert(data.message);
@@ -465,11 +481,12 @@ userSetting.queryUserInfo = function(){
         .success(function(data){
 
             if(data.code == 'N01') {
-                alert(data.message); 
+                //alert("亲，确定要绑定吗？"); 
                 localStorage.setItem('wxActive',data.contents.whetherBindWx);
                 var wxActive=localStorage.getItem('wxActive');
-                if(wxActive==1)
-        {
+                 alert("绑定成功！"); 
+             if(wxActive==1)
+           {
            var tar = document.getElementById('tar');
            var bd = document.getElementById('bd');
            var spanid = document.getElementById('spanid');
@@ -477,28 +494,35 @@ userSetting.queryUserInfo = function(){
            tar.style.display = tar.style.display=='block' ? '' : 'none';
            bd.style.display = bd.style.display=='block' ? 'block' : 'none';
            spanid.style.display = spanid.style.display=='block' ? '' : '';
-           wx.style.display = wx.style.display=='block' ? 'none' : '';
+           wx.style.display = wx.style.display=='block' ? 'none' : ''; 
+          
 
-        }
-        else if(wxActive==0)
-        {
-           var tar = document.getElementById('tar');
-           var bd = document.getElementById('bd');
-           var spanid = document.getElementById('spanid');
-           var wx = document.getElementById('wx');
-           tar.style.display = tar.style.display=='block' ? 'none' : '';
-           bd.style.display = bd.style.display=='block' ? 'none' : '';
-           spanid.style.display = spanid.style.display=='block' ? '' : 'none';
-           wx.style.display = wx.style.display=='block' ? '' : 'none';
+          }
+         // else if(wxActive==0)
+        // {
+        //    var tar = document.getElementById('tar');
+        //    var bd = document.getElementById('bd');
+        //    var spanid = document.getElementById('spanid');
+        //    var wx = document.getElementById('wx');
+        //    tar.style.display = tar.style.display=='block' ? 'none' : '';
+        //    bd.style.display = bd.style.display=='block' ? 'none' : '';
+        //    spanid.style.display = spanid.style.display=='block' ? '' : 'none';
+        //    wx.style.display = wx.style.display=='block' ? '' : 'none';
 
 
-        }
+        // }
+
+       
                // console.log(wxActive);
                 //localStorage.setItem('userName',data.contents.userName);
             } 
             else if(data.code=="E00"){
-                alert(data.message);
-                localStorage.clear();
+
+            
+              
+               alert(data.message);
+               localStorage.clear();
+                
                 //$location.path('login').replace();
             }else {
                // console.log(data.message);
