@@ -8435,9 +8435,10 @@ userSetting.queryUserInfo = function(){
                 //alert("亲，确定要绑定吗？"); 
                 localStorage.setItem('wxActive',data.contents.whetherBindWx);
                 var wxActive=localStorage.getItem('wxActive');
-                 alert("绑定成功！"); 
+                
              if(wxActive==1)
-           {
+           { 
+            alert("绑定成功！"); 
            var tar = document.getElementById('tar');
            var bd = document.getElementById('bd');
            var spanid = document.getElementById('spanid');
@@ -8467,12 +8468,10 @@ userSetting.queryUserInfo = function(){
                // console.log(wxActive);
                 //localStorage.setItem('userName',data.contents.userName);
             } 
-            else if(data.code=="E00"){
 
-            
-              
-               alert(data.message);
-               localStorage.clear();
+            else if(data.code=="E00"){ 
+                alert(data.message);
+                localStorage.clear();
                 
                 //$location.path('login').replace();
             }else {
