@@ -52,11 +52,11 @@ FIMS.controller('loginController',['$location','$scope','loginService', '$rootSc
 FIMS.controller('WebCtrl',['$scope', '$rootScope','$q','$location',"$http",
 	function($scope, $rootScope, $q,$location,$http) {
 
-    // login.user = {
-    //     email: '',
+   var user = {
+        email: '',
         
-    // };
-    user.email = localStorage.getItem
+     };
+   // user.email = localStorage.getItem
     //     
   
         var joinCo = {
