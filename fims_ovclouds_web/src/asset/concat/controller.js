@@ -51,6 +51,11 @@ FIMS.controller('loginController',['$location','$scope','loginService', '$rootSc
 
 FIMS.controller('WebCtrl',['$scope', '$rootScope','$q','$location',"$http",
 	function($scope, $rootScope, $q,$location,$http) {
+
+    login.user = {
+        email: '',
+        
+    };
   
         var joinCo = {
 			paramObj: {},
@@ -104,7 +109,8 @@ $scope.loginSystemByWechat = function(){
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
                     storage.setItem('userSid',localData.userSid);  
-                    storage.setItem('userId',localData.userId); 
+                    storage.setItem('email',login.user.email);
+                    //storage.setItem('userId',localData.userId); 
                     storage.setItem('mailActive',localData.mailActive); 
                     storage.setItem('wxActive',localData.whetherBindWx);  
                 }
