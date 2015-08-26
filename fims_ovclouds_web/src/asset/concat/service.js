@@ -77,7 +77,7 @@ FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($loc
                     storage.setItem('sid',localData.sid);    
                     storage.setItem('userName',localData.userName);    
                     storage.setItem('email',login.user.email);  
-                    storage.setItem('wxActive',localData.wxActive); 
+                    storage.setItem('wxActive',localData.whetherBindWx); 
                     storage.setItem('mailActive',localData.mailActive);   
                 }else{
                     // $.cookie('email',localData);
@@ -446,6 +446,78 @@ FIMS.factory('userSettingService',  ['$location',"account_indexService",'$rootSc
 **************************************************************
 **************************************************************
 *************************************************************/ 
+
+/*************************************************************
+**************************************************************
+获取用户是否绑定信息queryUserInfo
+**************************************************************
+*************************************************************/
+userSetting.queryUserInfo = function(){
+        $http({
+            method: 'post',
+            url: config.HOST + '/api/2.0/bp/account/user/queryUserInfo',
+            headers:{"Content-Type":"application/x-www-form-urlencoded;charset=UTF-8"},
+            data: {
+                "sid": localStorage.getItem('sid')
+                //"userId": userSetting.user.email
+            }
+        })
+        .success(function(data){
+
+            if(data.code == 'N01') {
+                alert(data.message); 
+                localStorage.setItem('wxActive',data.contents.whetherBindWx);
+                var wxActive=localStorage.getItem('wxActive');
+                if(wxActive==1)
+        {
+           var tar = document.getElementById('tar');
+           var bd = document.getElementById('bd');
+           var spanid = document.getElementById('spanid');
+           var wx = document.getElementById('wx');
+           tar.style.display = tar.style.display=='block' ? '' : 'none';
+           bd.style.display = bd.style.display=='block' ? 'block' : 'none';
+           spanid.style.display = spanid.style.display=='block' ? '' : '';
+           wx.style.display = wx.style.display=='block' ? 'none' : '';
+
+        }
+        else if(wxActive==0)
+        {
+           var tar = document.getElementById('tar');
+           var bd = document.getElementById('bd');
+           var spanid = document.getElementById('spanid');
+           var wx = document.getElementById('wx');
+           tar.style.display = tar.style.display=='block' ? 'none' : '';
+           bd.style.display = bd.style.display=='block' ? 'none' : '';
+           spanid.style.display = spanid.style.display=='block' ? '' : 'none';
+           wx.style.display = wx.style.display=='block' ? '' : 'none';
+
+
+        }
+               // console.log(wxActive);
+                //localStorage.setItem('userName',data.contents.userName);
+            } 
+            else if(data.code=="E00"){
+                alert(data.message);
+                localStorage.clear();
+                //$location.path('login').replace();
+            }else {
+               // console.log(data.message);
+            }  
+           
+            
+             
+
+        }) 
+        
+    }
+/*************************************************************
+**************************************************************
+**************************************************************
+*************************************************************/
+
+
+
+
     return userSetting;
 }]);
 
@@ -620,8 +692,7 @@ FIMS.factory('chooseTeamService',['$location','$http','$q','$rootScope',
                 
             });
        }
-
-       /*************************************************************
+/*************************************************************
 **************************************************************
 获取微信带参二维码getWechatQR
 **************************************************************
@@ -640,7 +711,8 @@ chooseTeam.getWechatQR = function(){
 
             
              localStorage.setItem('http',data);
-           
+            
+             
 
         }) 
         

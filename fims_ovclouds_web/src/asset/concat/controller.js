@@ -6,7 +6,47 @@ FIMS.controller('loginController',['$location','$scope','loginService', '$rootSc
 			$scope.user = loginService.user;
 			$scope.response = loginService.response;
 			$scope.subData = loginService.subData;
-		}	
+		}
+
+		
+
+/*************************************************************
+**************************************************************
+//绑定与解绑切换
+**************************************************************
+*************************************************************/ 
+// function init(){
+//     if(wxActive==1)
+//         {
+//            var tar = document.getElementById('tar');
+//            var bd = document.getElementById('bd');
+//            var spanid = document.getElementById('spanid');
+//            var wx = document.getElementById('wx');
+//            tar.style.display = tar.style.display=='block' ? '' : 'none';
+//            bd.style.display = bd.style.display=='block' ? 'block' : 'none';
+//            spanid.style.display = spanid.style.display=='block' ? '' : '';
+//            wx.style.display = wx.style.display=='block' ? 'none' : '';
+
+//         }
+//         else if(wxActive==0)
+//         {
+//            var tar = document.getElementById('tar');
+//            var bd = document.getElementById('bd');
+//            var spanid = document.getElementById('spanid');
+//            var wx = document.getElementById('wx');
+//            tar.style.display = tar.style.display=='block' ? 'none' : '';
+//            bd.style.display = bd.style.display=='block' ? 'none' : '';
+//            spanid.style.display = spanid.style.display=='block' ? '' : 'none';
+//            wx.style.display = wx.style.display=='block' ? '' : 'none';
+
+
+//         }
+
+ 
+//  }
+
+//  init();
+
 }])
 
 FIMS.controller('WebCtrl',['$scope', '$rootScope','$q','$location',"$http",
@@ -120,16 +160,16 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.subData = userSettingService.subData;
 		$scope.updateUserId = userSettingService.updateUserId;
 		$scope.updateUserName = userSettingService.updateUserName;
+		//$scope.getWechatQR = chooseTeamService.getWechatQR;
+		$scope.queryUserInfo = userSettingService.queryUserInfo;
+		//userSettingService.getWechatQR();
 		$scope.unbindWechat = userSettingService.unbindWechat;
 		$scope.http = localStorage.getItem('http');
 		//$scope.userName = localStorage.getItem('userName');
 		userSettingService.queryUserExtendInfo();
 
 	  var wxActive=localStorage.getItem('wxActive');
-	    //$scope.wxActive = localStorage.getItem("wxActive");
-        //console.log(wxActive);
-
-//var a = localStorage.getItem("mailActive");
+	    
 /*************************************************************
 **************************************************************
 //绑定与解绑切换
@@ -159,7 +199,7 @@ function init(){
            spanid.style.display = spanid.style.display=='block' ? '' : 'none';
            wx.style.display = wx.style.display=='block' ? '' : 'none';
 
-          
+
         }
 
  
@@ -174,8 +214,8 @@ FIMS.controller('chooseTeamController',['$scope','chooseTeamService', '$rootScop
      	$scope.subData = chooseTeamService.subData;
 		$scope.createCom = chooseTeamService.createCom;
 		chooseTeamService.queryJoinedCompanies();
+		//$scope.getWechatQR = chooseTeamService.getWechatQR;
 		chooseTeamService.getWechatQR();
-		//email:localStorage.getItem("email");
 		$scope.email = localStorage.getItem("email");
 		// $scope.companyList = chooseTeamService.queryJoinedCompanies();
 		$scope.joinedCompanies = chooseTeamService.joinedCompanies;

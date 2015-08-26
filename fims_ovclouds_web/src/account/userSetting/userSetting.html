@@ -44,10 +44,10 @@
 		<div class="form-group">
 			<label for="password" class=" control-label"style="margin-left:18px">绑定微信</label>
 			<span  class="status" id="tar" >未绑定</span>
-			<a id="bd" data-toggle="modal" data-target="#bangding" data-whatever="@mdo" >绑定</a>
+			<a  id="bd" data-toggle="modal" data-target="#getWechatQR" data-whatever="@mdo" ng-click="chooseTeamService.getWechatQR()">绑定</a>
 
 			<span  class="img" id="spanid">已绑定微信</span>
-			<a   id="wx" ng-click="unbindWechat()">解绑</a>
+			<a id="wx" ng-click="unbindWechat()">解绑</a>
 			
 			
 			
@@ -152,10 +152,10 @@
   		</div>
 </div>
 
-<div class="modal fade" id="bangding" tabindex="-1" role="dialog" aria-labelledby="NameLabel" aria-hidden="true">
+<div class="modal fade" id="getWechatQR" tabindex="-1" role="dialog" aria-labelledby="NameLabel" aria-hidden="true">
 		<div class="modal-dialog" style="width:460px; ">
 			<div class="modal-content text-left" >
-    			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    			<button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="queryUserInfo()"><span aria-hidden="true">&times;</span></button>
     			<div style="height:400px;">
     	           <img  alt="微信扫码，完成账户绑定" title="微信扫码，完成账户绑定" src="{{http}}" id="tar" width="285" height="300"  style="padding:5px;border:2px solid gray;margin-top:56px;margin-left:80px;" >
     		    </div>

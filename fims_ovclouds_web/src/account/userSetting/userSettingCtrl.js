@@ -5,16 +5,16 @@ FIMS.controller('userSettingCtrl',['$scope','userSettingService', '$rootScope','
 		$scope.subData = userSettingService.subData;
 		$scope.updateUserId = userSettingService.updateUserId;
 		$scope.updateUserName = userSettingService.updateUserName;
+		//$scope.getWechatQR = chooseTeamService.getWechatQR;
+		$scope.queryUserInfo = userSettingService.queryUserInfo;
+		//userSettingService.getWechatQR();
 		$scope.unbindWechat = userSettingService.unbindWechat;
 		$scope.http = localStorage.getItem('http');
 		//$scope.userName = localStorage.getItem('userName');
 		userSettingService.queryUserExtendInfo();
 
 	  var wxActive=localStorage.getItem('wxActive');
-	    //$scope.wxActive = localStorage.getItem("wxActive");
-        //console.log(wxActive);
-
-//var a = localStorage.getItem("mailActive");
+	    
 /*************************************************************
 **************************************************************
 //绑定与解绑切换
@@ -44,7 +44,7 @@ function init(){
            spanid.style.display = spanid.style.display=='block' ? '' : 'none';
            wx.style.display = wx.style.display=='block' ? '' : 'none';
 
-          
+
         }
 
  
