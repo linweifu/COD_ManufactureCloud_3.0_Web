@@ -413,6 +413,36 @@ FIMS.config([
 		controller: 'monthlyChart_materialCtrl',
 		templateUrl: 'iqc/iqc_dataCount/monthlyChart_material(oneven).html'
 	})
+	.state('honey1',{
+		url:'/wechat/honey1',
+		// controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'wechattest/honey1.html'
+	})
+	.state('honey2',{
+		url:'/wechat/honey2',
+		// controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'wechattest/honey2.html'
+	})	
+	.state('honey3',{
+		url:'/wechat/honey3',
+		// controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'wechattest/honey3.html'
+	})
+	.state('honey4',{
+		url:'/wechat/honey4',
+		// controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'wechattest/honey4.html'
+	})
+	.state('rice1',{
+		url:'/wechat/rice1',
+		// controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'wechattest/rice1.html'
+	})
+	.state('rice2',{
+		url:'/wechat/rice2',
+		// controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'wechattest/rice2.html'
+	})
 }]);
 
 
