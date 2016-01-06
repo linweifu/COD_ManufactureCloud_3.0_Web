@@ -443,6 +443,11 @@ FIMS.config([
 		// controller: 'monthlyChart_materialCtrl',
 		templateUrl: 'wechattest/rice2.html'
 	})
+	.state('about',{
+		url:'/wechat/about',
+		// controller: 'monthlyChart_materialCtrl',
+		templateUrl: 'wechattest/about.html'
+	})
 }]);
 
 
