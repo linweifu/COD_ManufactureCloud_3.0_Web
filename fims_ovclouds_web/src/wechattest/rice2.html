@@ -1,1 +1,62 @@
-这里是葛仙米-甄稀!!!
+<style>
+	.container {width: 100%;padding: 0px;font-size: 8px;}
+</style>
+<div class="container" ng-controller="wechatTestCtrl">
+	<img class="col-sm-12 col-xs-12" style="padding: 0px;" height="220px;"  src="./common/img/t.jpg" class="img-responsive" alt="Responsive image">	
+	<div class="row">
+		<label class="col-sm-6 col-xs-6" style="margin:13px 0 10px 10px;">百花蜜-甄稀</label>
+	</div>
+	<div class="col-sm-1 col-xs-1">￥99</div>
+	<div class="col-sm-3 col-xs-3 col-sm-offset-7 col-xs-offset-7">
+		<button class="btn btn-default">客服</button>
+	</div>
+	<div class="col-xs-12 col-sm-12" style="margin-top: 10px;">
+		<button class="btn btn-success btn-block">购买</button>
+	</div>
+	<div style="margin-top: 90px;" class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	  	<div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingOne">
+		      	<h4 class="panel-title" style="text-align: left;width: 100%;" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+			        <a style="width: 100%;text-decoration: none;">商品详情<span class="caret" style="float: right;"></span></a>
+		      	</h4>
+		    </div>
+		    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+			    <div class="panel-body">
+			        <img class="col-sm-12 col-xs-12" style="padding: 0px;" height="100px;"  src="./common/img/t.jpg" class="img-responsive" alt="Responsive image">	
+			    </div>
+		    </div>
+	    </div>
+  		<div class="panel panel-default">
+	    	<div class="panel-heading" role="tab" id="headingTwo">
+		      	<h4 class="panel-title" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			        <a style="width: 100%;text-decoration: none;">商品图片
+			        	<span class="caret" style="float: right;"></span>
+			        </a>
+		      	</h4>
+	    	</div>
+    		<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+		      	<div class="panel-body">
+		        	这里是商品图片
+		      	</div>
+    		</div>
+  		</div>
+  		<div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="headingThree">
+		      	<h4 class="panel-title" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			        <a style="width: 100%;text-decoration: none;">
+			          商品参数<span class="caret" style="float: right;"></span>
+			        </a>
+		      	</h4>
+		    </div>
+   			<div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+	      		<div class="panel-body">这里是商品参数</div>
+    		</div>
+  		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$('#tab a').click(function(e) {
+		/* Act on the event */
+		e.preventDefault();
+	});
+</script>

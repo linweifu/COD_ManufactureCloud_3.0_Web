@@ -7958,6 +7958,18 @@ $scope.updateComplexIQCRecord = function() {
     }
 
 }])
+FIMS.controller('wechatTestCtrl',['$rootScope','$scope','$location','$http',
+	function($rootScope,$scope,$location,$http){
+		$('#headingOne a').click(function(e) {
+				e.preventDefault();
+		});
+		$('#headingTwo a').click(function(e) {
+				e.preventDefault();
+		});
+		$('#headingThree a').click(function(e) {
+				e.preventDefault();
+		});
+	}]);
 FIMS.factory('loginService',  ['$location', '$rootScope', '$http' ,function($location,$rootScope, $http) {
     var login = {};
 
